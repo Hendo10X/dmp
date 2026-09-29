@@ -1,12 +1,28 @@
 import type { Metadata } from "next"
-import { Geist_Mono, Inter } from "next/font/google"
+import {
+  Geist_Mono,
+  Hedvig_Letters_Sans,
+  Special_Gothic_Expanded_One,
+} from "next/font/google"
 
 import "lenis/dist/lenis.css"
 import "./globals.css"
 import { Providers } from "@/components/providers"
 import { cn } from "@/lib/utils"
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
+// Logo + headings
+const fontDisplay = Special_Gothic_Expanded_One({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-display",
+})
+
+// Body, subtext, UI
+const fontSans = Hedvig_Letters_Sans({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-sans",
+})
 
 const fontMono = Geist_Mono({
   subsets: ["latin"],
@@ -27,12 +43,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      suppressHydrationWarning
       className={cn(
         "antialiased",
-        fontMono.variable,
-        "font-sans",
-        inter.variable
+        fontDisplay.variable,
+        fontSans.variable,
+        fontMono.variable
       )}
     >
       <body>
