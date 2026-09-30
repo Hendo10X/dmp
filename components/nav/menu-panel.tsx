@@ -83,7 +83,7 @@ export function MenuPanel({ onNavigate }: { onNavigate: () => void }) {
                 variants={reveal}
                 className="flex flex-wrap gap-x-8 gap-y-2 text-[0.7rem] tracking-[0.18em] text-white/60 uppercase"
               >
-                <li className="text-white">Sport × Technology Consulting</li>
+                <li className="text-white">Demonstrating Possibilities</li>
                 {navFooterLinks.map((link) => (
                   <li key={link.href}>
                     <Link

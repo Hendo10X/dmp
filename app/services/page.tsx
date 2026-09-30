@@ -13,7 +13,7 @@ import { Cta } from "@/components/page/closing"
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Strategy, data and technology, commercial and research services for the business of sport.",
+    "Commercial advisory, investment advisory, strategy and research for sport and adjacent markets across Africa.",
 }
 
 export default function ServicesPage() {
@@ -22,7 +22,7 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="What we do."
-        intro="Four pillars, one outcome: sport organisations that make better decisions and can prove it. Start with the pillar closest to your challenge."
+        intro="Commercial and investment advisory at the core, supported by strategy and research. Start with the pillar closest to your challenge."
       />
 
       <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">

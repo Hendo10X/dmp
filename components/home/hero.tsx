@@ -99,14 +99,14 @@ export function Hero() {
               delay={0.1}
               className="text-[clamp(3.25rem,7.5vw,8rem)] leading-[0.92] tracking-[0.01em]"
             >
-              Strategy for the business of sport.
+              Demonstrating possibilities.
             </SplitReveal>
           </div>
           <div className="flex flex-col items-start gap-7 md:col-span-4">
             <p className="max-w-md text-base leading-relaxed text-white/85 md:text-lg">
-              DMP works with federations, institutions, investors and brands to
-              turn data, technology and sharp strategy into performance, on the
-              field and on the balance sheet.
+              Commercial and investment advisory at the intersection of sport
+              and adjacent markets, across Nigeria and the wider African
+              continent.
             </p>
             <ArrowLink href="/services">Explore our services</ArrowLink>
           </div>

@@ -13,7 +13,7 @@ import { Cta } from "@/components/page/closing"
 export const metadata: Metadata = {
   title: "Careers",
   description:
-    "Join DMP: consultants, analysts and engineers working on the business of sport.",
+    "Join DMPartners: advisors and analysts demonstrating what is possible in African sport.",
 }
 
 const process = [
@@ -41,7 +41,7 @@ export default function CareersPage() {
       <PageHero
         eyebrow="DMP Careers"
         title="Do the best work of your career in sport."
-        intro="We hire curious, rigorous people who care about sport and want their work to show up in results."
+        intro="We hire curious, rigorous people who believe in what sport can do for Nigeria and the continent, and want to prove it."
         image={images.training}
         imageAlt="Two athletes training together"
       />

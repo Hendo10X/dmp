@@ -8,7 +8,7 @@ export function Services() {
       <SectionHeader
         eyebrow="What we do"
         title="Four ways we move sport forward."
-        intro="Each pillar stands on its own, and they work best together: strategy set by evidence, delivered through technology, funded by a model that lasts."
+        intro="Each pillar stands on its own, and they work best together: commercial and investment cases built on evidence, backed by strategy and structures that last."
         action={
           <ArrowLink href="/services" tone="muted">
             All services

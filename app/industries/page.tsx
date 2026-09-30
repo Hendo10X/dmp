@@ -15,7 +15,7 @@ import { Cta } from "@/components/page/closing"
 export const metadata: Metadata = {
   title: "Industries",
   description:
-    "Sector depth across football, Olympic sport, racket sports, sports science, esports and venues.",
+    "Sport and the adjacent markets around it: leagues, grassroots sport, media, tourism, venues and wellness.",
 }
 
 export default function IndustriesPage() {
@@ -23,8 +23,8 @@ export default function IndustriesPage() {
     <main>
       <PageHero
         eyebrow="Industries"
-        title="Sector depth, not generic advice."
-        intro="Every sport has its own economics, politics and data. We bring specialists who have worked inside them."
+        title="Sport and the markets around it."
+        intro="The sports industry does not stand alone. Its value flows into media, tourism, real estate and health, and that is where much of the opportunity lies."
       />
 
       <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">

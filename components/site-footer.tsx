@@ -44,7 +44,8 @@ export function SiteFooter() {
             Insights, in your inbox.
           </SplitReveal>
           <p className="mt-5 max-w-sm text-base leading-relaxed text-white/70">
-            Research, reports and news from DMP. A few times a year, never more.
+            Research, reports and news from DMPartners. A few times a year,
+            never more.
           </p>
           <Subscribe />
         </div>
@@ -76,8 +77,8 @@ export function SiteFooter() {
       </div>
 
       <div className="mt-24 flex flex-wrap justify-between gap-4 px-4 text-[0.7rem] tracking-[0.18em] text-white/50 uppercase md:px-7">
-        <span>&copy; {new Date().getFullYear()} DMP</span>
-        <span>Sport &times; Technology Consulting</span>
+        <span>&copy; {new Date().getFullYear()} DMPartners</span>
+        <span>Demonstrating Possibilities</span>
       </div>
 
       {/* Oversized wordmark bleeding off the bottom edge. */}

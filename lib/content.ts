@@ -1,4 +1,7 @@
-// Site content in one place. Everything here is PLACEHOLDER copy written to
+// Site content in one place. DMPartners: commercial and investment advisory
+// at the intersection of the sports industry and adjacent markets, across
+// Nigeria and the wider African continent. "Demonstrating Possibilities."
+// Everything here is PLACEHOLDER copy written to
 // the structure in docs/brief.md: replace with client-approved content
 // (or move to a CMS) before launch. Figures and quotes are illustrative.
 
@@ -29,13 +32,73 @@ export type Service = {
 
 export const services: Service[] = [
   {
+    slug: "commercial-advisory",
+    title: "Commercial Advisory",
+    summary:
+      "Revenue models, sponsorship, media and partnerships that make sport commercially sustainable.",
+    shape: "triangle",
+    image: images.tennis,
+    what: "We build the commercial case for sport and the markets around it: sponsorship and media strategy, revenue diversification, pricing and the partnerships that turn audiences into lasting income.",
+    forWhom: ["federations", "corporates", "smes"],
+    approach: [
+      {
+        title: "Size the market",
+        body: "Audiences, rights, comparables and realistic revenue ranges across Nigeria and the continent.",
+      },
+      {
+        title: "Model the options",
+        body: "Scenarios and sensitivities that show what really drives value.",
+      },
+      {
+        title: "Package the offer",
+        body: "Clear, evidence-led propositions for partners, sponsors and broadcasters.",
+      },
+      {
+        title: "Close and deliver",
+        body: "Negotiation support and partner onboarding through to signature and activation.",
+      },
+    ],
+    caseStudy: "league-sponsorship-reset",
+    insight: "investable-league",
+  },
+  {
+    slug: "investment-advisory",
+    title: "Investment Advisory",
+    summary:
+      "Due diligence, valuation and investment cases for capital entering sport and adjacent markets.",
+    shape: "quarter",
+    image: images.consult,
+    what: "We help investors, financial institutions and governments put capital to work in sport with confidence: market entry studies, commercial due diligence, feasibility and the investment cases that show what is possible.",
+    forWhom: ["investors", "mdas", "corporates"],
+    approach: [
+      {
+        title: "Frame the thesis",
+        body: "Agree what the investment must prove and the risks that matter most.",
+      },
+      {
+        title: "Test the evidence",
+        body: "Market data, operator interviews and site visits, not assumptions.",
+      },
+      {
+        title: "Value the opportunity",
+        body: "Transparent models, benchmarks and downside cases.",
+      },
+      {
+        title: "Support the decision",
+        body: "Investment papers, board briefings and support through to close.",
+      },
+    ],
+    caseStudy: "talent-pathway-review",
+    insight: "investable-league",
+  },
+  {
     slug: "strategy-governance",
     title: "Strategy & Governance",
     summary:
       "Long-range plans, structures and policy for federations, leagues and public bodies.",
     shape: "circle",
-    image: images.consult,
-    what: "We help sports organisations decide where they are going and build the structures to get there: multi-year strategies, governance reviews, board effectiveness and policy that stands up to scrutiny.",
+    image: images.coaching,
+    what: "We help sports organisations decide where they are going and build the structures to get there: multi-year strategies, governance reviews, operating models and policy that stands up to scrutiny.",
     forWhom: ["federations", "mdas", "associations"],
     approach: [
       {
@@ -59,73 +122,13 @@ export const services: Service[] = [
     insight: "federation-data-strategy",
   },
   {
-    slug: "performance-data-technology",
-    title: "Performance Data & Technology",
-    summary:
-      "Data platforms, analytics and digital tools that turn information into an edge.",
-    shape: "square",
-    image: images.science,
-    what: "From athlete monitoring to membership systems, we design and deliver the data and technology that sport runs on, and make sure people actually use it.",
-    forWhom: ["federations", "academia", "smes"],
-    approach: [
-      {
-        title: "Map the data",
-        body: "What exists, where it lives, who owns it and what it could tell you.",
-      },
-      {
-        title: "Design the stack",
-        body: "Vendor-neutral architecture sized to your budget and skills.",
-      },
-      {
-        title: "Build and integrate",
-        body: "Delivery alongside your team, with clear milestones and testing.",
-      },
-      {
-        title: "Grow capability",
-        body: "Training and playbooks so the platform keeps improving without us.",
-      },
-    ],
-    caseStudy: "federation-data-rebuild",
-    insight: "wearables-welfare",
-  },
-  {
-    slug: "commercial-investment",
-    title: "Commercial & Investment",
-    summary:
-      "Revenue models, partnerships and investment cases that make sport bankable.",
-    shape: "triangle",
-    image: images.tennis,
-    what: "We build the commercial case for sport: sponsorship and media strategy, revenue diversification, feasibility studies and the investment materials that give capital confidence.",
-    forWhom: ["corporates", "investors", "federations"],
-    approach: [
-      {
-        title: "Size the market",
-        body: "Audiences, rights, comparables and realistic revenue ranges.",
-      },
-      {
-        title: "Model the options",
-        body: "Scenarios and sensitivities that show what really drives value.",
-      },
-      {
-        title: "Package the case",
-        body: "Clear, evidence-led materials for boards, partners and investors.",
-      },
-      {
-        title: "Support the deal",
-        body: "Negotiation support and partner onboarding through to signature.",
-      },
-    ],
-    caseStudy: "league-sponsorship-reset",
-    insight: "investable-league",
-  },
-  {
     slug: "research-insight",
     title: "Research & Insight",
     summary:
-      "Evidence, market studies and reports that inform decisions and shape policy.",
-    shape: "quarter",
-    image: images.coaching,
-    what: "Independent research on participation, performance and the sports economy, designed to be used: by ministries setting policy, investors weighing markets and federations planning ahead.",
+      "Evidence and market studies on the sports economy that inform decisions and shape policy.",
+    shape: "square",
+    image: images.science,
+    what: "Independent research on the size, growth and potential of the sports economy in Nigeria and across Africa, designed to be used: by ministries setting policy, investors weighing markets and federations planning ahead.",
     forWhom: ["mdas", "academia", "investors"],
     approach: [
       {
@@ -253,45 +256,45 @@ export type Sector = {
 export const sectors: Sector[] = [
   {
     slug: "football",
-    title: "Football",
-    body: "Club and league strategy, academy systems and matchday economics.",
+    title: "Football & Leagues",
+    body: "Club and league strategy, rights, academies and matchday economics.",
     shape: "circle",
     image: images.coaching,
   },
   {
     slug: "olympic-sport",
-    title: "Olympic & Paralympic Sport",
-    body: "High-performance systems, funding cases and athlete pathways.",
+    title: "Olympic & Grassroots Sport",
+    body: "Funding cases, athlete pathways and participation growth.",
     shape: "square",
     image: images.training,
   },
   {
-    slug: "racket-sports",
-    title: "Racket & Individual Sports",
-    body: "Tour economics, participation growth and event strategy.",
+    slug: "media",
+    title: "Media & Entertainment",
+    body: "Broadcast, streaming and content models built around sport audiences.",
     shape: "triangle",
     image: images.tennis,
   },
   {
-    slug: "sports-science",
-    title: "Sports Science & Health",
-    body: "Athlete welfare, medical data governance and applied research.",
+    slug: "tourism-events",
+    title: "Sports Tourism & Events",
+    body: "Event bidding, hosting economics and the visitor economy around sport.",
     shape: "quarter",
-    image: images.science,
-  },
-  {
-    slug: "esports",
-    title: "Esports & Gaming",
-    body: "Audience strategy, league design and brand partnerships.",
-    shape: "circle",
     image: images.consult,
   },
   {
     slug: "infrastructure",
-    title: "Venues & Infrastructure",
-    body: "Feasibility, operating models and community use of facilities.",
-    shape: "square",
+    title: "Venues & Real Estate",
+    body: "Feasibility, financing and operating models for venues and mixed-use sites.",
+    shape: "circle",
     image: images.training,
+  },
+  {
+    slug: "health-wellness",
+    title: "Health, Wellness & Science",
+    body: "Sports medicine, wellness markets and applied research.",
+    shape: "square",
+    image: images.science,
   },
 ]
 
@@ -317,7 +320,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "federation-data-rebuild",
     title: "A national federation rebuilds around its data",
     client: "National sports federation",
-    service: "performance-data-technology",
+    service: "strategy-governance",
     sector: "olympic-sport",
     image: images.science,
     summary:
@@ -341,7 +344,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "league-sponsorship-reset",
     title: "A professional league resets its sponsorship model",
     client: "Professional sports league",
-    service: "commercial-investment",
+    service: "commercial-advisory",
     sector: "football",
     image: images.coaching,
     summary:
@@ -493,7 +496,7 @@ export const values = [
 export const team = [
   { name: "Partner Name", role: "Founding Partner", initials: "FP" },
   { name: "Partner Name", role: "Managing Partner", initials: "MP" },
-  { name: "Team Member", role: "Head of Data & Technology", initials: "DT" },
+  { name: "Team Member", role: "Head of Investment Advisory", initials: "DT" },
   { name: "Team Member", role: "Head of Research", initials: "HR" },
   { name: "Team Member", role: "Commercial Lead", initials: "CL" },
   { name: "Team Member", role: "Senior Consultant", initials: "SC" },
@@ -509,8 +512,8 @@ export const openings = [
     location: "Hybrid",
   },
   {
-    title: "Data Engineer",
-    team: "Performance Data & Technology",
+    title: "Investment Analyst",
+    team: "Investment Advisory",
     type: "Full-time",
     location: "Hybrid",
   },

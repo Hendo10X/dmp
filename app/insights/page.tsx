@@ -11,7 +11,7 @@ import { Cta } from "@/components/page/closing"
 export const metadata: Metadata = {
   title: "Insights",
   description:
-    "Reports, perspectives and news on the business of sport from DMP.",
+    "Reports, perspectives and news on the business of sport from DMPartners.",
 }
 
 export default function InsightsPage() {

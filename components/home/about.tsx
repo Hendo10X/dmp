@@ -90,21 +90,21 @@ export function About() {
 
         <div className="md:col-span-5 md:col-start-8">
           <Reveal y={16}>
-            <Eyebrow className="text-oxford/70">About DMP</Eyebrow>
+            <Eyebrow className="text-oxford/70">About DMPartners</Eyebrow>
           </Reveal>
           <SplitReveal className="mt-6 text-[clamp(2.5rem,4.6vw,4.75rem)] leading-[0.95] tracking-[0.01em] text-oxford">
-            Talent wins games.{" "}
-            <span className="text-oxford/45">Systems win decades.</span>
+            Not aspiration.{" "}
+            <span className="text-oxford/45">Possibilities within reach.</span>
           </SplitReveal>
           <SplitReveal
             as="p"
             className="mt-8 max-w-xl text-base leading-relaxed text-foreground md:text-lg"
           >
-            DMP is a consultancy working where sport, business and technology
-            meet. We help federations, public institutions, investors and brands
-            build the strategy, data and digital capability that turn ambition
-            into measurable performance. Independent in our thinking, practical
-            in our delivery.
+            DMPartners is a commercial and investment advisory practice working
+            where the sports industry meets adjacent markets. We exist to show
+            what is achievable in Nigeria and across the continent, with work
+            aimed squarely at industrial development and opportunities that are
+            already within reach.
           </SplitReveal>
           <Reveal y={16} className="mt-10">
             <ArrowLink href="/about" tone="muted">

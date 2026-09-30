@@ -14,16 +14,16 @@ import { Cta, Quote } from "@/components/page/closing"
 export const metadata: Metadata = {
   title: "About",
   description:
-    "DMP's purpose, people and performance: a consultancy built for the business of sport.",
+    "DMPartners: commercial and investment advisory for the sports industry and adjacent markets across Nigeria and Africa.",
 }
 
 export default function AboutPage() {
   return (
     <main>
       <PageHero
-        eyebrow="About DMP"
+        eyebrow="About DMPartners"
         title="Purpose, people, performance."
-        intro="We exist to help sport run with the same rigour as any serious industry, so that athletes, fans and communities get more from it."
+        intro="Guided by our tagline, Demonstrating Possibilities, we show what is achievable in Nigeria and across the African continent through sport and the markets around it."
         image={images.consult}
         imageAlt="A DMP consultant in conversation with an athlete"
       />
@@ -33,18 +33,18 @@ export default function AboutPage() {
         <SectionHeader
           eyebrow="Purpose"
           title="Why we exist."
-          intro="Sport creates jobs, health and national pride. Too often it is run on instinct. We bring evidence, systems and commercial discipline to the organisations that shape it."
+          intro="Sport creates jobs, investment and national pride. Our work is aimed squarely at industrial development, and at proving that the opportunities we describe are possibilities already within reach."
         />
 
         <div className="mt-16 grid gap-10 md:mt-24 md:grid-cols-2 md:gap-6">
           {[
             {
               label: "Mission",
-              text: "To make sport better governed, better funded and better measured.",
+              text: "To demonstrate what is achievable in sport across Nigeria and Africa, and turn it into industrial development.",
             },
             {
               label: "Positioning",
-              text: "An independent consultancy at the intersection of sport, business and technology.",
+              text: "Commercial and investment advisory at the intersection of the sports industry and adjacent markets.",
             },
           ].map((item) => (
             <div key={item.label} className="flex flex-col gap-5">
@@ -138,14 +138,16 @@ export default function AboutPage() {
               as="p"
               className="text-[clamp(1.5rem,2.6vw,2.5rem)] leading-[1.2] tracking-tight text-oxford"
             >
-              We started DMP because we kept meeting brilliant people in sport
-              held back by weak systems.
+              We started DMPartners because we kept meeting people who could see
+              what sport in Africa could become, and too few who could show it
+              was possible.
             </SplitReveal>
             <SplitReveal as="p">
-              Coaches without data. Federations without a plan beyond the next
-              tournament. Investors who wanted to back sport but could not find
-              a case they trusted. None of these are problems of talent. They
-              are problems of structure, and structure can be fixed.
+              Federations without a commercial plan beyond the next tournament.
+              Investors who wanted to back sport but could not find a case they
+              trusted. Governments that saw the potential but lacked the
+              evidence. None of these are problems of talent. They are problems
+              of structure and proof, and both can be built.
             </SplitReveal>
             <SplitReveal as="p">
               That is our promise to every client: we will tell you what the

@@ -153,7 +153,7 @@ export function ZoomReveal() {
           data-zoom-word="right"
           className="font-display text-[clamp(2.25rem,5.5vw,5.5rem)] leading-none tracking-[0.01em] text-oxford"
         >
-          Tech
+          Markets
         </span>
       </div>
     </section>

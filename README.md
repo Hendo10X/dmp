@@ -1,21 +1,41 @@
-# Next.js template
+# DMPartners
 
-This is a Next.js template with shadcn/ui.
+Website for **DMPartners**, a consulting practice providing commercial and
+investment advisory at the intersection of the sports industry and adjacent
+markets across Nigeria and the wider African continent.
 
-## Adding components
+*Demonstrating Possibilities.*
 
-To add components to your app, run the following command:
+## Stack
+
+- [Next.js](https://nextjs.org) (App Router) with TypeScript
+- [Tailwind CSS](https://tailwindcss.com) v4 and [shadcn/ui](https://ui.shadcn.com)
+- [GSAP](https://gsap.com) (ScrollTrigger, SplitText) and [Lenis](https://lenis.darkroom.engineering) for scroll motion
+- [Motion](https://motion.dev) for micro-interactions
+- [Bun](https://bun.sh) as the package manager
+
+## Getting started
 
 ```bash
-npx shadcn@latest add button
+bun install
+bun dev
 ```
 
-This will place the ui components in the `components` directory.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Using components
+## Project structure
 
-To use the components in your app, import them as follows:
+- `app/` routes: home, about, services, industries, who-we-serve,
+  case-studies, insights, careers, contact, privacy, terms
+- `components/home/` home page sections
+- `components/page/` shared page building blocks (hero, section header,
+  cards, filters, closing sections)
+- `lib/content.ts` all site copy and data (placeholder until final content
+  is supplied)
 
-```tsx
-import { Button } from "@/components/ui/button";
-```
+## Scripts
+
+- `bun dev` start the dev server
+- `bun run build` production build
+- `bun run typecheck` TypeScript check
+- `bun run format` Prettier

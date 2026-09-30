@@ -6,8 +6,8 @@ import { SplitReveal } from "@/components/motion/split-reveal"
 // Partner or client quote on Electric Blue. Default copy is placeholder.
 export function Quote({
   eyebrow = "From our partners",
-  text = "Sport is an industry. It deserves the same rigour, the same data and the same ambition as any other. That is the standard we hold ourselves to.",
-  by = "Founding Partner, DMP",
+  text = "The opportunities in African sport are not aspiration. They are possibilities already within reach. Our work is to demonstrate them.",
+  by = "Founding Partner, DMPartners",
 }: {
   eyebrow?: string
   text?: string

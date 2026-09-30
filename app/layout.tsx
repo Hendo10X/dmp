@@ -41,11 +41,11 @@ const fontMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "DMP | Where Sport Meets Technology",
-    template: "%s | DMP",
+    default: "DMPartners | Demonstrating Possibilities",
+    template: "%s | DMPartners",
   },
   description:
-    "DMP is a consultancy operating at the intersection of sports and technology.",
+    "DMPartners provides commercial and investment advisory at the intersection of the sports industry and adjacent markets across Nigeria and the wider African continent.",
 }
 
 export default function RootLayout({
