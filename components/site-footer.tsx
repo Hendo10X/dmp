@@ -82,7 +82,7 @@ export function SiteFooter() {
       {/* Oversized wordmark bleeding off the bottom edge. */}
       <p
         aria-hidden
-        className="mt-6 -mb-[0.2em] text-center font-display text-[31vw] leading-[0.8] tracking-tighter text-white/[0.06] select-none"
+        className="mt-6 -mb-[0.2em] text-center font-logo text-[31vw] leading-[0.8] tracking-tighter text-white/[0.06] select-none"
       >
         DMP
       </p>

@@ -76,7 +76,7 @@ export function Header() {
               href="/"
               onClick={close}
               className={cn(
-                "justify-self-start pl-4 font-display tracking-[0.01em] transition-[font-size] duration-700 md:pl-6",
+                "justify-self-start pl-4 font-logo tracking-tight transition-[font-size] duration-700 md:pl-6",
                 SHRINK_EASE,
                 compact ? "text-lg" : "text-xl md:text-2xl"
               )}
