@@ -104,6 +104,8 @@
   }
   html {
     @apply font-sans;
+    /* Keep layout still when scroll is locked (preloader, open menu). */
+    scrollbar-gutter: stable;
   }
   body {
     @apply bg-background text-foreground;

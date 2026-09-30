@@ -4,6 +4,7 @@ import * as React from "react"
 import { useLenis } from "lenis/react"
 
 import { gsap, useGSAP } from "@/lib/gsap"
+import { markPreloaderDone } from "@/lib/preloader-store"
 import { cn } from "@/lib/utils"
 import {
   collapseAnimation,
@@ -40,6 +41,7 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
     () => {
       const finish = () => {
         setDone(true)
+        markPreloaderDone()
         onComplete?.()
       }
 

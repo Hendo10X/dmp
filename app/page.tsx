@@ -1,11 +1,17 @@
 import { Preloader } from "@/components/preloader/preloader"
+import { Header } from "@/components/nav/header"
+import { Hero } from "@/components/home/hero"
+import { Intro } from "@/components/home/intro"
 
-// Main page intentionally empty for now — only the preloader is built.
 export default function Page() {
   return (
     <>
       <Preloader />
-      <main className="min-h-svh" />
+      <Header />
+      <main>
+        <Hero />
+        <Intro />
+      </main>
     </>
   )
 }
