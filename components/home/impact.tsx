@@ -3,8 +3,7 @@
 import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { HugeiconsIcon } from "@hugeicons/react"
-import { ArrowRight02Icon } from "@hugeicons/core-free-icons"
+import { Arrow } from "@/components/ui/arrow"
 
 import { cn } from "@/lib/utils"
 import { Reveal } from "@/components/motion/reveal"
@@ -144,10 +143,8 @@ function CaseColumn() {
             className="group mt-5 inline-flex items-center gap-2 text-[0.7rem] tracking-[0.18em] uppercase"
           >
             Read case study
-            <HugeiconsIcon
-              icon={ArrowRight02Icon}
+            <Arrow
               size={16}
-              strokeWidth={1.5}
               className="transition-transform duration-500 group-hover:translate-x-1"
             />
           </Link>

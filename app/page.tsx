@@ -6,6 +6,8 @@ import { Services } from "@/components/home/services"
 import { ZoomReveal } from "@/components/home/zoom-reveal"
 import { Impact } from "@/components/home/impact"
 import { Insights } from "@/components/home/insights"
+import { Process } from "@/components/home/process"
+import { Audiences } from "@/components/home/audiences"
 import { Cta, Quote } from "@/components/home/closing"
 import { SiteFooter } from "@/components/site-footer"
 
@@ -20,8 +22,10 @@ export default function Page() {
         <Hero />
         <About />
         <Services />
+        <Process />
         <ZoomReveal />
         <Impact />
+        <Audiences />
         <Insights />
         <Quote />
         <Cta />

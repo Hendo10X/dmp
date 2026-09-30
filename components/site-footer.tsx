@@ -3,8 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { AnimatePresence, motion } from "motion/react"
-import { HugeiconsIcon } from "@hugeicons/react"
-import { ArrowRight02Icon, Tick02Icon } from "@hugeicons/core-free-icons"
+import { Arrow, Tick } from "@/components/ui/arrow"
 
 const columns = [
   {
@@ -128,11 +127,7 @@ function Subscribe() {
             transition={{ duration: 0.25 }}
             className="flex text-xs font-medium"
           >
-            <HugeiconsIcon
-              icon={sent ? Tick02Icon : ArrowRight02Icon}
-              size={20}
-              strokeWidth={1.5}
-            />
+            {sent ? <Tick /> : <Arrow />}
           </motion.span>
         </AnimatePresence>
       </button>

@@ -2,8 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "motion/react"
-import { HugeiconsIcon } from "@hugeicons/react"
-import { ArrowRight02Icon } from "@hugeicons/core-free-icons"
+import { Arrow } from "@/components/ui/arrow"
 
 import { cn } from "@/lib/utils"
 
@@ -63,7 +62,7 @@ export function ArrowLink({
           transition={{ type: "spring", stiffness: 400, damping: 25 }}
           className="flex"
         >
-          <HugeiconsIcon icon={ArrowRight02Icon} size={20} strokeWidth={1.5} />
+          <Arrow size={20} />
         </motion.span>
       </span>
     </MotionLink>
