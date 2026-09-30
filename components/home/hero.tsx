@@ -62,7 +62,6 @@ export function Hero() {
   return (
     <section
       ref={section}
-      data-nav-theme="dark"
       className="relative h-svh min-h-[36rem] overflow-hidden bg-oxford text-white"
     >
       <div ref={media} className="absolute inset-0 will-change-transform">
@@ -92,9 +91,6 @@ export function Hero() {
           className="grid w-full gap-8 md:grid-cols-12 md:items-end md:gap-6"
         >
           <div className="md:col-span-8">
-            <p className="mb-5 text-[0.7rem] tracking-[0.18em] text-electric uppercase">
-              Sport · Technology · Strategy
-            </p>
             <h1 className="text-[clamp(2.25rem,5.4vw,5.75rem)] leading-[1.02] tracking-tight">
               Strategy for the business of sport.
             </h1>
