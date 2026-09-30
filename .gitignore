@@ -34,3 +34,10 @@ pnpm-debug.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local-only: AI tooling and client documents
+.claude/
+CLAUDE.md
+AGENTS.md
+skills-lock.json
+docs/
