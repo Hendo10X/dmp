@@ -1,9 +1,5 @@
 import type { Metadata } from "next"
-import {
-  Geist_Mono,
-  Hedvig_Letters_Sans,
-  Special_Gothic_Expanded_One,
-} from "next/font/google"
+import { Geist_Mono, Hedvig_Letters_Sans, Staatliches } from "next/font/google"
 
 import "lenis/dist/lenis.css"
 import "./globals.css"
@@ -11,7 +7,7 @@ import { Providers } from "@/components/providers"
 import { cn } from "@/lib/utils"
 
 // Logo + headings
-const fontDisplay = Special_Gothic_Expanded_One({
+const fontDisplay = Staatliches({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-display",
@@ -30,7 +26,7 @@ const fontMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "DMP — Where Sport Meets Technology",
+  title: "DMP | Where Sport Meets Technology",
   description:
     "DMP is a consultancy operating at the intersection of sports and technology.",
 }

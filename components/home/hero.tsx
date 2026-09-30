@@ -21,7 +21,7 @@ export function Hero() {
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         // Entrance, held until the preloader hands over. Everything in the
-        // copy block moves as one — no stagger.
+        // copy block moves as one, no stagger.
         entrance.current = gsap
           .timeline({ paused: true })
           .fromTo(
@@ -91,14 +91,14 @@ export function Hero() {
           className="grid w-full gap-8 md:grid-cols-12 md:items-end md:gap-6"
         >
           <div className="md:col-span-8">
-            <h1 className="text-[clamp(2.25rem,5.4vw,5.75rem)] leading-[1.02] tracking-tight">
+            <h1 className="text-[clamp(3.25rem,7.5vw,8rem)] leading-[0.92] tracking-[0.01em]">
               Strategy for the business of sport.
             </h1>
           </div>
           <div className="flex flex-col items-start gap-7 md:col-span-4">
             <p className="max-w-md text-base leading-relaxed text-white/85 md:text-lg">
               DMP works with federations, institutions, investors and brands to
-              turn data, technology and sharp strategy into performance — on the
+              turn data, technology and sharp strategy into performance, on the
               field and on the balance sheet.
             </p>
             <ArrowLink href="/services">Explore our services</ArrowLink>

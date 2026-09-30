@@ -16,9 +16,9 @@ export function Header() {
   const ready = usePreloaderDone()
   const lenis = useLenis()
   const close = React.useCallback(() => setOpen(false), [])
-  const scrolled = useScrolledPast(48)
-  // Shrink once the page moves; the open menu always gets the full bar.
-  const compact = scrolled && !open
+  // Shrink once the page moves. The menu opens at whatever width the bar
+  // already has, so opening never changes the bar's size.
+  const compact = useScrolledPast(48)
 
   // Freeze the page behind the open menu.
   React.useEffect(() => {
@@ -60,14 +60,14 @@ export function Header() {
         <nav
           aria-label="Main"
           className={cn(
-            "mx-auto max-w-full bg-oxford text-white transition-[max-width] duration-700",
+            "@container mx-auto max-w-full bg-oxford text-white transition-[max-width] duration-700",
             SHRINK_EASE,
             compact && "md:max-w-[44rem]"
           )}
         >
           <div
             className={cn(
-              "grid grid-cols-[1fr_auto] items-center transition-[height] duration-700 md:grid-cols-[1fr_auto_1fr]",
+              "grid grid-cols-[1fr_auto] items-center transition-[height] duration-700 @xl:grid-cols-[1fr_auto_1fr]",
               SHRINK_EASE,
               compact ? "h-12" : "h-14 md:h-16"
             )}
@@ -76,7 +76,7 @@ export function Header() {
               href="/"
               onClick={close}
               className={cn(
-                "justify-self-start pl-4 font-display tracking-tight transition-[font-size] duration-700 md:pl-6",
+                "justify-self-start pl-4 font-display tracking-[0.01em] transition-[font-size] duration-700 md:pl-6",
                 SHRINK_EASE,
                 compact ? "text-lg" : "text-xl md:text-2xl"
               )}
@@ -89,7 +89,7 @@ export function Header() {
               aria-expanded={open}
               aria-controls="site-menu"
               onClick={() => setOpen((value) => !value)}
-              className="flex h-full items-center gap-3 justify-self-end px-4 text-[0.7rem] tracking-[0.18em] uppercase outline-none focus-visible:text-electric md:justify-self-center"
+              className="flex h-full items-center gap-3 justify-self-end px-4 text-[0.7rem] tracking-[0.18em] uppercase outline-none focus-visible:text-electric @xl:justify-self-center"
             >
               <Burger open={open} />
               <span className="grid">
@@ -116,7 +116,7 @@ export function Header() {
             <ArrowLink
               href="/contact"
               onClick={close}
-              className="hidden h-full justify-self-end md:inline-flex"
+              className="hidden h-full justify-self-end @xl:inline-flex"
             >
               Talk to us
             </ArrowLink>
