@@ -62,6 +62,7 @@ export function Hero() {
   return (
     <section
       ref={section}
+      data-nav-theme="dark"
       className="relative h-svh min-h-[36rem] overflow-hidden bg-oxford text-white"
     >
       <div ref={media} className="absolute inset-0 will-change-transform">

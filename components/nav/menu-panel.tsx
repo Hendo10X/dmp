@@ -9,8 +9,9 @@ import { ArrowLink } from "@/components/ui/arrow-link"
 import { dim, fade, panel, reveal } from "@/components/nav/anim"
 import { navFooterLinks, navLinks } from "@/components/nav/links"
 
-// Adapted from olivierlarose/nav-menu: the panel grows out of the bar,
-// titles rise out of a mask, hovering one blurs the rest and swaps the image.
+// Adapted from olivierlarose/nav-menu: the sheet sits behind the bar and
+// grows down from it; titles rise out of a mask, hovering one blurs the rest
+// and swaps the image.
 export function MenuPanel({ onNavigate }: { onNavigate: () => void }) {
   const [hovered, setHovered] = React.useState<number | null>(null)
   const [shown, setShown] = React.useState(0)
@@ -27,11 +28,11 @@ export function MenuPanel({ onNavigate }: { onNavigate: () => void }) {
       initial="closed"
       animate="open"
       exit="closed"
-      className="overflow-hidden"
+      className="absolute inset-x-0 top-0 overflow-hidden rounded-md bg-oxford text-white"
     >
       <div
         data-lenis-prevent
-        className="flex max-h-[calc(100svh-5.5rem)] gap-12 overflow-y-auto px-4 pt-6 pb-6 md:px-6 md:pt-10 lg:justify-between"
+        className="flex max-h-[calc(100svh-1.5rem)] gap-12 overflow-y-auto px-4 pt-24 pb-6 md:max-h-[calc(100svh-2rem)] md:px-6 md:pt-32 lg:justify-between"
       >
         <div className="flex min-w-0 flex-col justify-between gap-12">
           <ul

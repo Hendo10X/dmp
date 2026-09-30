@@ -6,16 +6,39 @@ import { AnimatePresence, motion } from "motion/react"
 import { useLenis } from "lenis/react"
 
 import { cn } from "@/lib/utils"
+import { ScrollTrigger, useGSAP } from "@/lib/gsap"
 import { usePreloaderDone } from "@/lib/preloader-store"
-import { ArrowLink } from "@/components/ui/arrow-link"
 import { backdrop, ease } from "@/components/nav/anim"
 import { MenuPanel } from "@/components/nav/menu-panel"
 
+// Vertical point (px from the top) used to decide what the bar is sitting on.
+const PROBE = 48
+
 export function Header() {
   const [open, setOpen] = React.useState(false)
+  const [onDark, setOnDark] = React.useState(false)
   const ready = usePreloaderDone()
   const lenis = useLenis()
   const close = React.useCallback(() => setOpen(false), [])
+
+  // Logo and "Let's Talk" have no backing, so they flip to white over any
+  // section marked data-nav-theme="dark".
+  useGSAP(() => {
+    const active = new Set<Element>()
+    const triggers = darkSections().map((section) =>
+      ScrollTrigger.create({
+        trigger: section,
+        start: `top ${PROBE}px`,
+        end: `bottom ${PROBE}px`,
+        onToggle: (self) => {
+          if (self.isActive) active.add(section)
+          else active.delete(section)
+          setOnDark(active.size > 0)
+        },
+      })
+    )
+    return () => triggers.forEach((trigger) => trigger.kill())
+  })
 
   // Freeze the page behind the open menu.
   React.useEffect(() => {
@@ -30,6 +53,8 @@ export function Header() {
       window.removeEventListener("keydown", onKeyDown)
     }
   }, [open, lenis])
+
+  const light = open || onDark
 
   return (
     <>
@@ -54,12 +79,21 @@ export function Header() {
         transition={{ duration: 1, ease }}
         className="fixed inset-x-0 top-0 z-50 p-3 md:p-4"
       >
-        <nav aria-label="Main" className="bg-oxford text-white">
-          <div className="grid h-14 grid-cols-[1fr_auto] items-center md:h-16 md:grid-cols-[1fr_auto_1fr]">
+        <nav aria-label="Main" className="relative">
+          <AnimatePresence>
+            {open && <MenuPanel key="panel" onNavigate={close} />}
+          </AnimatePresence>
+
+          <div
+            className={cn(
+              "relative grid h-16 grid-cols-[1fr_auto] items-center gap-4 px-4 transition-colors duration-500 md:h-20 md:grid-cols-[1fr_auto_1fr] md:px-6",
+              light ? "text-white" : "text-oxford"
+            )}
+          >
             <Link
               href="/"
               onClick={close}
-              className="justify-self-start pl-4 font-display text-xl tracking-tight md:pl-6 md:text-2xl"
+              className="justify-self-start font-display text-2xl tracking-tight md:text-3xl"
             >
               DMP
             </Link>
@@ -69,10 +103,9 @@ export function Header() {
               aria-expanded={open}
               aria-controls="site-menu"
               onClick={() => setOpen((value) => !value)}
-              className="flex h-full items-center gap-3 justify-self-end px-4 text-[0.7rem] tracking-[0.18em] uppercase outline-none focus-visible:text-electric md:justify-self-center"
+              className="flex h-12 w-40 items-center justify-between gap-6 rounded-md bg-oxford px-5 text-base text-white outline-offset-2 focus-visible:outline-2 focus-visible:outline-electric md:w-[min(31rem,40vw)]"
             >
-              <Burger open={open} />
-              <span className="grid">
+              <span className="grid text-left">
                 <span
                   className={cn(
                     "col-start-1 row-start-1 transition-opacity duration-300",
@@ -91,39 +124,63 @@ export function Header() {
                   Close
                 </span>
               </span>
+              <Lines open={open} />
             </button>
 
-            <ArrowLink
-              href="/contact"
-              onClick={close}
-              className="hidden h-full justify-self-end md:inline-flex"
-            >
-              Talk to us
-            </ArrowLink>
+            <LetsTalk onClick={close} />
           </div>
-
-          <AnimatePresence>
-            {open && <MenuPanel key="panel" onNavigate={close} />}
-          </AnimatePresence>
         </nav>
       </motion.header>
     </>
   )
 }
 
-function Burger({ open }: { open: boolean }) {
+function darkSections() {
+  return Array.from(document.querySelectorAll('[data-nav-theme="dark"]'))
+}
+
+function LetsTalk({ onClick }: { onClick: () => void }) {
+  return (
+    <motion.span
+      initial="rest"
+      whileHover="hover"
+      className="hidden justify-self-end md:block"
+    >
+      <Link
+        href="/contact"
+        onClick={onClick}
+        className="relative block py-1 text-base outline-offset-4 focus-visible:outline-2 focus-visible:outline-electric"
+      >
+        Let&apos;s Talk
+        <motion.span
+          aria-hidden
+          variants={{ rest: { scaleX: 0 }, hover: { scaleX: 1 } }}
+          transition={{ duration: 0.4, ease }}
+          className="absolute inset-x-0 bottom-0 h-0.5 origin-left bg-lime"
+        />
+      </Link>
+    </motion.span>
+  )
+}
+
+// Two long hairlines that shrink and cross into an X when open.
+function Lines({ open }: { open: boolean }) {
   const line =
     "absolute left-0 h-px w-full bg-current transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
   return (
-    <span aria-hidden className="relative block h-2.5 w-6">
+    <span aria-hidden className="relative block h-2.5 w-10 md:w-[4.5rem]">
       <span
-        className={cn(line, "top-0", open && "translate-y-[4.5px] rotate-45")}
+        className={cn(
+          line,
+          "top-0",
+          open && "translate-y-[4.5px] scale-x-50 rotate-45 md:scale-x-[0.28]"
+        )}
       />
       <span
         className={cn(
           line,
           "bottom-0",
-          open && "-translate-y-[4.5px] -rotate-45"
+          open && "-translate-y-[4.5px] scale-x-50 -rotate-45 md:scale-x-[0.28]"
         )}
       />
     </span>
