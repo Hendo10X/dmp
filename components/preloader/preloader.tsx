@@ -104,7 +104,7 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
                   ref={isBrand ? brand : undefined}
                   className={cn(
                     "block text-(length:--word) leading-[1.2] tracking-tight",
-                    isBrand && "font-display text-electric"
+                    isBrand && "text-electric"
                   )}
                 >
                   {isBrand ? BRAND_WORD : word}
