@@ -54,8 +54,6 @@ export function Header() {
     }
   }, [open, lenis])
 
-  const light = open || onDark
-
   return (
     <>
       <AnimatePresence>
@@ -68,7 +66,7 @@ export function Header() {
             animate="open"
             exit="closed"
             onClick={close}
-            className="fixed inset-0 z-40 bg-onyx/60"
+            className="fixed inset-0 z-40 bg-onyx/40"
           />
         )}
       </AnimatePresence>
@@ -79,15 +77,11 @@ export function Header() {
         transition={{ duration: 1, ease }}
         className="fixed inset-x-0 top-0 z-50 p-3 md:p-4"
       >
-        <nav aria-label="Main" className="relative">
-          <AnimatePresence>
-            {open && <MenuPanel key="panel" onNavigate={close} />}
-          </AnimatePresence>
-
+        <nav aria-label="Main">
           <div
             className={cn(
-              "relative grid h-16 grid-cols-[1fr_auto] items-center gap-4 px-4 transition-colors duration-500 md:h-20 md:grid-cols-[1fr_auto_1fr] md:px-6",
-              light ? "text-white" : "text-oxford"
+              "relative grid h-16 grid-cols-[auto_1fr] items-center gap-4 px-4 transition-colors duration-500 md:h-20 md:grid-cols-[1fr_auto_1fr] md:px-6",
+              onDark ? "text-white" : "text-oxford"
             )}
           >
             <Link
@@ -98,34 +92,25 @@ export function Header() {
               DMP
             </Link>
 
-            <button
-              type="button"
-              aria-expanded={open}
-              aria-controls="site-menu"
-              onClick={() => setOpen((value) => !value)}
-              className="flex h-12 w-40 items-center justify-between gap-6 rounded-md bg-oxford px-5 text-base text-white outline-offset-2 focus-visible:outline-2 focus-visible:outline-electric md:w-[min(31rem,40vw)]"
-            >
-              <span className="grid text-left">
-                <span
-                  className={cn(
-                    "col-start-1 row-start-1 transition-opacity duration-300",
-                    open && "opacity-0"
-                  )}
+            {/* The Menu block is the dropdown's header; the list grows out of it. */}
+            <div className="relative h-12 w-full max-w-xs justify-self-end md:w-[min(31rem,40vw)] md:max-w-none md:justify-self-center">
+              <div className="absolute inset-x-0 top-0 overflow-hidden rounded-md bg-oxford text-white">
+                <button
+                  type="button"
+                  aria-expanded={open}
+                  aria-controls="site-menu"
+                  aria-label={open ? "Close menu" : "Open menu"}
+                  onClick={() => setOpen((value) => !value)}
+                  className="flex h-12 w-full items-center justify-between gap-6 px-5 text-base outline-none focus-visible:text-electric"
                 >
                   Menu
-                </span>
-                <span
-                  aria-hidden
-                  className={cn(
-                    "col-start-1 row-start-1 transition-opacity duration-300",
-                    !open && "opacity-0"
-                  )}
-                >
-                  Close
-                </span>
-              </span>
-              <Lines open={open} />
-            </button>
+                  <Lines open={open} />
+                </button>
+                <AnimatePresence>
+                  {open && <MenuPanel key="panel" onNavigate={close} />}
+                </AnimatePresence>
+              </div>
+            </div>
 
             <LetsTalk onClick={close} />
           </div>
@@ -163,7 +148,7 @@ function LetsTalk({ onClick }: { onClick: () => void }) {
   )
 }
 
-// Two long hairlines that shrink and cross into an X when open.
+// Two long hairlines that cross into a wide, shallow X when open.
 function Lines({ open }: { open: boolean }) {
   const line =
     "absolute left-0 h-px w-full bg-current transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
@@ -173,14 +158,14 @@ function Lines({ open }: { open: boolean }) {
         className={cn(
           line,
           "top-0",
-          open && "translate-y-[4.5px] scale-x-50 rotate-45 md:scale-x-[0.28]"
+          open && "translate-y-[4.5px] rotate-[14deg] md:rotate-[8deg]"
         )}
       />
       <span
         className={cn(
           line,
           "bottom-0",
-          open && "-translate-y-[4.5px] scale-x-50 -rotate-45 md:scale-x-[0.28]"
+          open && "-translate-y-[4.5px] -rotate-[14deg] md:-rotate-[8deg]"
         )}
       />
     </span>

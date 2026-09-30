@@ -1,28 +1,22 @@
 export type NavLink = {
   title: string
   href: string
-  image: string
 }
 
-const images = {
-  training: "/Images/pexels-justyzvidz-5646004.jpg",
-  coaching: "/Images/pexels-franco-monsalvo-252430633-38675822.jpg",
-  tennis: "/Images/pexels-bohdan-hyrovych-796614725-38355572.jpg",
-  science: "/Images/pexels-mart-production-7089032.jpg",
-}
-
-// Pages from docs/brief.md. Routes don't exist yet.
+// Pages from docs/brief.md. Only "/" exists so far.
 export const navLinks: NavLink[] = [
-  { title: "About", href: "/about", image: images.training },
-  { title: "Services", href: "/services", image: images.coaching },
-  { title: "Industries", href: "/industries", image: images.tennis },
-  { title: "Case Studies", href: "/case-studies", image: images.training },
-  { title: "Insights", href: "/insights", image: images.science },
-  { title: "Contact", href: "/contact", image: images.coaching },
+  { title: "Home", href: "/" },
+  { title: "About", href: "/about" },
+  { title: "Services", href: "/services" },
+  { title: "Industries", href: "/industries" },
+  { title: "Case Studies", href: "/case-studies" },
+  { title: "Insights", href: "/insights" },
+  { title: "Careers", href: "/careers" },
+  { title: "Contact", href: "/contact" },
 ]
 
-export const navFooterLinks = [
-  { title: "Careers", href: "/careers" },
-  { title: "Privacy Policy", href: "/privacy" },
-  { title: "Terms", href: "/terms" },
+// PLACEHOLDER contact details — replace with the client's real ones.
+export const navContact = [
+  { label: "+234 800 000 0000", href: "tel:+2348000000000" },
+  { label: "hello@dmpartners.com", href: "mailto:hello@dmpartners.com" },
 ]
