@@ -3,7 +3,10 @@
 import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { motion } from "motion/react"
+
+import { cn } from "@/lib/utils"
 
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { dim, fade, panel, reveal } from "@/components/nav/anim"
@@ -14,6 +17,7 @@ import { navFooterLinks, navLinks } from "@/components/nav/links"
 export function MenuPanel({ onNavigate }: { onNavigate: () => void }) {
   const [hovered, setHovered] = React.useState<number | null>(null)
   const [shown, setShown] = React.useState(0)
+  const pathname = usePathname()
 
   const focus = (index: number) => {
     setHovered(index)
@@ -47,7 +51,13 @@ export function MenuPanel({ onNavigate }: { onNavigate: () => void }) {
                     onMouseEnter={() => focus(index)}
                     onFocus={() => focus(index)}
                     onBlur={() => setHovered(null)}
-                    className="block outline-none focus-visible:text-electric"
+                    aria-current={
+                      pathname.startsWith(link.href) ? "page" : undefined
+                    }
+                    className={cn(
+                      "block outline-none focus-visible:text-electric",
+                      pathname.startsWith(link.href) && "text-electric"
+                    )}
                   >
                     <motion.span
                       variants={dim}

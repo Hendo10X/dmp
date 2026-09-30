@@ -6,14 +6,14 @@ import { AnimatePresence, motion } from "motion/react"
 import { useLenis } from "lenis/react"
 
 import { cn } from "@/lib/utils"
-import { usePreloaderDone } from "@/lib/preloader-store"
+import { useIntroSettled } from "@/lib/preloader-store"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { backdrop, ease } from "@/components/nav/anim"
 import { MenuPanel } from "@/components/nav/menu-panel"
 
 export function Header() {
   const [open, setOpen] = React.useState(false)
-  const ready = usePreloaderDone()
+  const ready = useIntroSettled()
   const lenis = useLenis()
   const close = React.useCallback(() => setOpen(false), [])
   // Shrink once the page moves. The menu opens at whatever width the bar

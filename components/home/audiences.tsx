@@ -6,67 +6,15 @@ import Link from "next/link"
 import { gsap, useGSAP } from "@/lib/gsap"
 import { cn } from "@/lib/utils"
 import { Arrow } from "@/components/ui/arrow"
-import { Eyebrow } from "@/components/home/eyebrow"
-import { Shape, type ShapeName } from "@/components/home/shape"
+import { Shape } from "@/components/ui/shape"
+import { audiences } from "@/lib/content"
+import { SectionHeader } from "@/components/page/section-header"
 
-// "Who We Serve" groups from docs/brief.md. One-line value props are
-// placeholder copy.
-const audiences: {
-  title: string
-  body: string
-  slug: string
-  shape: ShapeName
-  accent: string
-}[] = [
-  {
-    title: "Federations & NGBs",
-    body: "Governance, strategy and performance systems for national governing bodies.",
-    slug: "federations",
-    shape: "circle",
-    accent: "group-hover:text-lime group-focus-visible:text-lime",
-  },
-  {
-    title: "Ministries, Departments & Agencies",
-    body: "Policy, programme design and evaluation for public investment in sport.",
-    slug: "mdas",
-    shape: "square",
-    accent: "group-hover:text-electric group-focus-visible:text-electric",
-  },
-  {
-    title: "Corporates",
-    body: "Sponsorship strategy, activation and measurable return from sport partnerships.",
-    slug: "corporates",
-    shape: "triangle",
-    accent: "group-hover:text-crimson group-focus-visible:text-crimson",
-  },
-  {
-    title: "Investors & Financial Institutions",
-    body: "Due diligence, valuation and market insight for capital entering sport.",
-    slug: "investors",
-    shape: "quarter",
-    accent: "group-hover:text-lime group-focus-visible:text-lime",
-  },
-  {
-    title: "Academic & Research Institutions",
-    body: "Research partnerships, data and applied studies with real-world reach.",
-    slug: "academia",
-    shape: "circle",
-    accent: "group-hover:text-electric group-focus-visible:text-electric",
-  },
-  {
-    title: "SMEs & Intermediaries",
-    body: "Growth strategy and market access for businesses serving the sports economy.",
-    slug: "smes",
-    shape: "square",
-    accent: "group-hover:text-crimson group-focus-visible:text-crimson",
-  },
-  {
-    title: "Professional Associations",
-    body: "Standards, member value and professional development for bodies in sport.",
-    slug: "associations",
-    shape: "triangle",
-    accent: "group-hover:text-lime group-focus-visible:text-lime",
-  },
+// Cards cycle through the accents; every accent reads on Oxford.
+const accents = [
+  "group-hover:text-lime group-focus-visible:text-lime",
+  "group-hover:text-electric group-focus-visible:text-electric",
+  "group-hover:text-crimson group-focus-visible:text-crimson",
 ]
 
 export function Audiences() {
@@ -108,18 +56,12 @@ export function Audiences() {
       ref={section}
       className="relative z-10 flex flex-col justify-center gap-12 overflow-hidden bg-background py-24 md:h-svh md:gap-16 md:py-0"
     >
-      <div className="grid gap-8 px-4 md:grid-cols-12 md:items-end md:gap-6 md:px-7">
-        <div className="md:col-span-7">
-          <Eyebrow className="text-oxford/70">Who we serve</Eyebrow>
-          <h2 className="mt-6 text-[clamp(2.5rem,4.6vw,4.75rem)] leading-[0.95] tracking-[0.01em] text-oxford">
-            Built for everyone who runs sport.
-          </h2>
-        </div>
-        <p className="text-base leading-relaxed text-muted-foreground md:col-span-4 md:col-start-9 md:text-lg">
-          Seven kinds of organisation, one shared goal: a sports economy that is
-          better governed, better funded and better measured.
-        </p>
-      </div>
+      <SectionHeader
+        className="px-4 md:px-7"
+        eyebrow="Who we serve"
+        title="Built for everyone who runs sport."
+        intro="Seven kinds of organisation, one shared goal: a sports economy that is better governed, better funded and better measured."
+      />
 
       <div
         ref={viewport}
@@ -143,7 +85,7 @@ export function Audiences() {
                   name={audience.shape}
                   className={cn(
                     "absolute -right-12 -bottom-12 size-40 text-white/[0.08] transition-[color,rotate,scale] duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-110 group-hover:rotate-45",
-                    audience.accent
+                    accents[index % accents.length]
                   )}
                 />
 

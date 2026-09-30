@@ -9,6 +9,8 @@ import {
 import "lenis/dist/lenis.css"
 import "./globals.css"
 import { Providers } from "@/components/providers"
+import { Header } from "@/components/nav/header"
+import { SiteFooter } from "@/components/site-footer"
 import { cn } from "@/lib/utils"
 
 // Logo + headings
@@ -38,7 +40,10 @@ const fontMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "DMP | Where Sport Meets Technology",
+  title: {
+    default: "DMP | Where Sport Meets Technology",
+    template: "%s | DMP",
+  },
   description:
     "DMP is a consultancy operating at the intersection of sports and technology.",
 }
@@ -60,7 +65,11 @@ export default function RootLayout({
       )}
     >
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          {children}
+          <SiteFooter />
+        </Providers>
       </body>
     </html>
   )

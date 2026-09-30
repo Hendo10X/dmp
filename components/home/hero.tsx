@@ -6,6 +6,7 @@ import Image from "next/image"
 import { gsap, useGSAP } from "@/lib/gsap"
 import { usePreloaderDone } from "@/lib/preloader-store"
 import { ArrowLink } from "@/components/ui/arrow-link"
+import { SplitReveal } from "@/components/motion/split-reveal"
 
 export function Hero() {
   const ready = usePreloaderDone()
@@ -91,9 +92,15 @@ export function Hero() {
           className="grid w-full gap-8 md:grid-cols-12 md:items-end md:gap-6"
         >
           <div className="md:col-span-8">
-            <h1 className="text-[clamp(3.25rem,7.5vw,8rem)] leading-[0.92] tracking-[0.01em]">
+            <SplitReveal
+              as="h1"
+              mode="manual"
+              play={ready}
+              delay={0.1}
+              className="text-[clamp(3.25rem,7.5vw,8rem)] leading-[0.92] tracking-[0.01em]"
+            >
               Strategy for the business of sport.
-            </h1>
+            </SplitReveal>
           </div>
           <div className="flex flex-col items-start gap-7 md:col-span-4">
             <p className="max-w-md text-base leading-relaxed text-white/85 md:text-lg">

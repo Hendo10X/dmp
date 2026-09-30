@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { usePathname } from "next/navigation"
 import { ReactLenis, useLenis, type LenisRef } from "lenis/react"
 
 import { gsap, ScrollTrigger } from "@/lib/gsap"
@@ -30,7 +31,11 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
   if (!enabled) return children
 
   return (
-    <ReactLenis root ref={lenisRef} options={{ autoRaf: false, lerp: 0.1 }}>
+    <ReactLenis
+      root
+      ref={lenisRef}
+      options={{ autoRaf: false, lerp: 0.1, anchors: { offset: -96 } }}
+    >
       <ScrollTriggerSync />
       {children}
     </ReactLenis>
@@ -38,6 +43,24 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
 }
 
 function ScrollTriggerSync() {
-  useLenis(ScrollTrigger.update)
+  const lenis = useLenis(ScrollTrigger.update)
+  const pathname = usePathname()
+
+  // New page: start at the top and let ScrollTrigger re-measure once the
+  // new sections have laid out.
+  React.useEffect(() => {
+    // Honour #anchors (e.g. /who-we-serve#federations), else go to the top.
+    const target = window.location.hash
+      ? document.querySelector(window.location.hash)
+      : null
+    lenis?.scrollTo(target instanceof HTMLElement ? target : 0, {
+      immediate: true,
+      force: true,
+      offset: target ? -96 : 0,
+    })
+    const id = window.setTimeout(() => ScrollTrigger.refresh(), 100)
+    return () => window.clearTimeout(id)
+  }, [pathname, lenis])
+
   return null
 }

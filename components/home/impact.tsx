@@ -7,7 +7,7 @@ import { Arrow } from "@/components/ui/arrow"
 
 import { cn } from "@/lib/utils"
 import { Reveal } from "@/components/motion/reveal"
-import { Eyebrow } from "@/components/home/eyebrow"
+import { SectionHeader } from "@/components/page/section-header"
 
 type Column = {
   id: string
@@ -72,18 +72,11 @@ export function Impact() {
 
   return (
     <section className="relative z-10 bg-background px-4 py-24 md:px-7 md:py-36">
-      <Reveal className="grid gap-8 md:grid-cols-12 md:items-end md:gap-6">
-        <div className="md:col-span-7">
-          <Eyebrow className="text-oxford/70">Client impact</Eyebrow>
-          <h2 className="mt-6 text-[clamp(2.5rem,4.6vw,4.75rem)] leading-[0.95] tracking-[0.01em] text-oxford">
-            Results you can read on a scoreboard.
-          </h2>
-        </div>
-        <p className="text-base leading-relaxed text-muted-foreground md:col-span-4 md:col-start-9 md:text-lg">
-          Good strategy shows up in numbers. Here is what changes when sport is
-          run with evidence, modern systems and a clear commercial plan.
-        </p>
-      </Reveal>
+      <SectionHeader
+        eyebrow="Client impact"
+        title="Results you can read on a scoreboard."
+        intro="Good strategy shows up in numbers. Here is what changes when sport is run with evidence, modern systems and a clear commercial plan."
+      />
 
       <Reveal className="mt-14 flex flex-col gap-2 md:mt-20 md:h-[34rem] md:flex-row md:items-end md:gap-0">
         {columns.map((column) => (
@@ -139,7 +132,7 @@ function CaseColumn() {
             A national federation rebuilds around its data
           </h3>
           <Link
-            href="/case-studies"
+            href="/case-studies/federation-data-rebuild"
             className="group mt-5 inline-flex items-center gap-2 text-[0.7rem] tracking-[0.18em] uppercase"
           >
             Read case study

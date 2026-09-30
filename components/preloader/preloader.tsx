@@ -4,7 +4,11 @@ import * as React from "react"
 import { useLenis } from "lenis/react"
 
 import { gsap, useGSAP } from "@/lib/gsap"
-import { markPreloaderDone } from "@/lib/preloader-store"
+import {
+  getPreloaderStatus,
+  markPreloaderDone,
+  markPreloaderRunning,
+} from "@/lib/preloader-store"
 import { cn } from "@/lib/utils"
 import {
   collapseAnimation,
@@ -15,8 +19,9 @@ import { BRAND_WORD, brandIndex, words } from "@/components/preloader/words"
 
 // Adapted from danielhult/ultra-agency's Loader: a word reel seen through a
 // slit, a progress bar with a riding counter, then a clip-path collapse.
+// Plays once per visit: coming back to Home skips it.
 export function Preloader({ onComplete }: { onComplete?: () => void }) {
-  const [done, setDone] = React.useState(false)
+  const [done, setDone] = React.useState(() => getPreloaderStatus() === "done")
   const lenis = useLenis()
 
   const root = React.useRef<HTMLDivElement>(null)
@@ -25,6 +30,12 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
   const brand = React.useRef<HTMLSpanElement>(null)
   const bar = React.useRef<HTMLDivElement>(null)
   const counter = React.useRef<HTMLSpanElement>(null)
+
+  React.useLayoutEffect(() => {
+    if (!done) markPreloaderRunning()
+    // Only on mount: `done` flips when the animation ends.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // Hold the page still while loading.
   React.useEffect(() => {
@@ -39,6 +50,7 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
 
   useGSAP(
     () => {
+      if (done) return
       const finish = () => {
         setDone(true)
         markPreloaderDone()

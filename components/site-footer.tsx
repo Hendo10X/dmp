@@ -4,6 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import { AnimatePresence, motion } from "motion/react"
 import { Arrow, Tick } from "@/components/ui/arrow"
+import { SplitReveal } from "@/components/motion/split-reveal"
 
 const columns = [
   {
@@ -12,6 +13,7 @@ const columns = [
       { title: "About", href: "/about" },
       { title: "Services", href: "/services" },
       { title: "Industries", href: "/industries" },
+      { title: "Who We Serve", href: "/who-we-serve" },
       { title: "Case Studies", href: "/case-studies" },
     ],
   },
@@ -38,9 +40,9 @@ export function SiteFooter() {
     <footer className="relative z-10 overflow-hidden bg-oxford text-white">
       <div className="grid gap-16 px-4 pt-24 md:grid-cols-12 md:gap-6 md:px-7 md:pt-32">
         <div className="md:col-span-5">
-          <h2 className="text-[clamp(2.25rem,3.6vw,3.5rem)] leading-[1] tracking-[0.01em]">
+          <SplitReveal className="text-[clamp(2.25rem,3.6vw,3.5rem)] leading-[1] tracking-[0.01em]">
             Insights, in your inbox.
-          </h2>
+          </SplitReveal>
           <p className="mt-5 max-w-sm text-base leading-relaxed text-white/70">
             Research, reports and news from DMP. A few times a year, never more.
           </p>

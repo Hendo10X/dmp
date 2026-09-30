@@ -6,7 +6,8 @@ import Image from "next/image"
 import { gsap, useGSAP } from "@/lib/gsap"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { Reveal } from "@/components/motion/reveal"
-import { Eyebrow } from "@/components/home/eyebrow"
+import { SplitReveal } from "@/components/motion/split-reveal"
+import { Eyebrow } from "@/components/ui/eyebrow"
 
 // "Who we are" from docs/brief.md, laid out as photo + stat badge + copy.
 // Copy is placeholder until the client supplies it.
@@ -87,23 +88,30 @@ export function About() {
           </div>
         </div>
 
-        <Reveal className="md:col-span-5 md:col-start-8">
-          <Eyebrow className="text-oxford/70">About DMP</Eyebrow>
-          <h2 className="mt-6 text-[clamp(2.5rem,4.6vw,4.75rem)] leading-[0.95] tracking-[0.01em] text-oxford">
+        <div className="md:col-span-5 md:col-start-8">
+          <Reveal y={16}>
+            <Eyebrow className="text-oxford/70">About DMP</Eyebrow>
+          </Reveal>
+          <SplitReveal className="mt-6 text-[clamp(2.5rem,4.6vw,4.75rem)] leading-[0.95] tracking-[0.01em] text-oxford">
             Talent wins games.{" "}
             <span className="text-oxford/45">Systems win decades.</span>
-          </h2>
-          <p className="mt-8 max-w-xl text-base leading-relaxed text-foreground md:text-lg">
+          </SplitReveal>
+          <SplitReveal
+            as="p"
+            className="mt-8 max-w-xl text-base leading-relaxed text-foreground md:text-lg"
+          >
             DMP is a consultancy working where sport, business and technology
             meet. We help federations, public institutions, investors and brands
             build the strategy, data and digital capability that turn ambition
             into measurable performance. Independent in our thinking, practical
             in our delivery.
-          </p>
-          <ArrowLink href="/about" tone="muted" className="mt-10">
-            Learn about us
-          </ArrowLink>
-        </Reveal>
+          </SplitReveal>
+          <Reveal y={16} className="mt-10">
+            <ArrowLink href="/about" tone="muted">
+              Learn about us
+            </ArrowLink>
+          </Reveal>
+        </div>
       </div>
     </section>
   )

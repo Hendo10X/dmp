@@ -4,8 +4,7 @@ import * as React from "react"
 
 import { gsap, useGSAP } from "@/lib/gsap"
 import { cn } from "@/lib/utils"
-import { Reveal } from "@/components/motion/reveal"
-import { Eyebrow } from "@/components/home/eyebrow"
+import { SectionHeader } from "@/components/page/section-header"
 
 // "How we work" from the Services hub in docs/brief.md, previewed on Home.
 const steps = [
@@ -27,7 +26,7 @@ const steps = [
   },
 ]
 
-export function Process() {
+export function Process({ action }: { action?: React.ReactNode }) {
   const section = React.useRef<HTMLElement>(null)
   const fill = React.useRef<HTMLDivElement>(null)
   const [reached, setReached] = React.useState(0)
@@ -62,18 +61,12 @@ export function Process() {
       ref={section}
       className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36"
     >
-      <Reveal className="grid gap-8 md:grid-cols-12 md:items-end md:gap-6">
-        <div className="md:col-span-7">
-          <Eyebrow className="text-oxford/70">How we work</Eyebrow>
-          <h2 className="mt-6 text-[clamp(2.5rem,4.6vw,4.75rem)] leading-[0.95] tracking-[0.01em] text-oxford">
-            From question to result, in four moves.
-          </h2>
-        </div>
-        <p className="text-base leading-relaxed text-muted-foreground md:col-span-4 md:col-start-9 md:text-lg">
-          The same disciplined sequence on every engagement, whether it is a
-          ten-week review or a five-year programme.
-        </p>
-      </Reveal>
+      <SectionHeader
+        eyebrow="How we work"
+        title="From question to result, in four moves."
+        intro="The same disciplined sequence on every engagement, whether it is a ten-week review or a five-year programme."
+        action={action}
+      />
 
       <div data-steps className="mt-16 md:mt-24">
         {/* Progress track: the fill is the only moving part. */}

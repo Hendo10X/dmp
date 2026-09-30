@@ -1,5 +1,4 @@
 import { Preloader } from "@/components/preloader/preloader"
-import { Header } from "@/components/nav/header"
 import { Hero } from "@/components/home/hero"
 import { About } from "@/components/home/about"
 import { Services } from "@/components/home/services"
@@ -8,8 +7,7 @@ import { Impact } from "@/components/home/impact"
 import { Insights } from "@/components/home/insights"
 import { Process } from "@/components/home/process"
 import { Audiences } from "@/components/home/audiences"
-import { Cta, Quote } from "@/components/home/closing"
-import { SiteFooter } from "@/components/site-footer"
+import { Cta, Quote } from "@/components/page/closing"
 
 // Major sections sit on the white background; the closing run (quote, CTA,
 // footer) switches to accent colours.
@@ -17,7 +15,6 @@ export default function Page() {
   return (
     <>
       <Preloader />
-      <Header />
       <main>
         <Hero />
         <About />
@@ -30,7 +27,6 @@ export default function Page() {
         <Quote />
         <Cta />
       </main>
-      <SiteFooter />
     </>
   )
 }
