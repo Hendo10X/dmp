@@ -38,7 +38,7 @@ const columns = [
 export function SiteFooter() {
   return (
     <footer className="relative z-10 overflow-hidden bg-oxford text-white">
-      <div className="grid gap-16 px-4 pt-24 md:grid-cols-12 md:gap-6 md:px-7 md:pt-32">
+      <div className="grid gap-12 px-4 pt-16 md:grid-cols-12 md:gap-6 md:px-7 md:pt-32">
         <div className="md:col-span-5">
           <SplitReveal className="text-[clamp(2.25rem,3.6vw,3.5rem)] leading-[1] tracking-[0.01em]">
             Insights, in your inbox.
@@ -52,7 +52,7 @@ export function SiteFooter() {
 
         <nav
           aria-label="Footer"
-          className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:col-span-6 md:col-start-7"
+          className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 md:col-span-6 md:col-start-7 md:gap-10"
         >
           {columns.map((column) => (
             <div key={column.title}>
@@ -76,7 +76,7 @@ export function SiteFooter() {
         </nav>
       </div>
 
-      <div className="mt-24 flex flex-wrap justify-between gap-4 px-4 text-[0.7rem] tracking-[0.18em] text-white/50 uppercase md:px-7">
+      <div className="mt-12 flex flex-wrap justify-between gap-x-4 gap-y-2 px-4 text-[0.7rem] tracking-[0.18em] text-white/50 uppercase md:mt-24 md:px-7">
         <span>&copy; {new Date().getFullYear()} DMPartners</span>
         <span>Demonstrating Possibilities</span>
       </div>
@@ -84,7 +84,7 @@ export function SiteFooter() {
       {/* Oversized wordmark bleeding off the bottom edge. */}
       <p
         aria-hidden
-        className="mt-6 -mb-[0.2em] text-center font-logo text-[31vw] leading-[0.8] tracking-tighter text-white/[0.06] select-none"
+        className="mt-4 -mb-[0.18em] text-center font-logo text-[31vw] leading-[0.8] tracking-tighter text-white/10 select-none md:mt-6 md:text-white/[0.06]"
       >
         DMP
       </p>
