@@ -12,7 +12,9 @@ export function ParallaxImage({
   src,
   alt,
   className,
-  sizes = "100vw",
+  // Mobile frames are 4:3 with 120% overscan, so the photo is cropped by
+  // height and needs more width than the viewport.
+  sizes = "(min-width: 768px) 100vw, 160vw",
   priority = false,
   imageClassName,
 }: {

@@ -124,7 +124,7 @@ export function MenuPanel({ onNavigate }: { onNavigate: () => void }) {
                 src={link.image}
                 alt=""
                 fill
-                sizes="400px"
+                sizes="800px"
                 className="object-cover"
               />
             </motion.div>

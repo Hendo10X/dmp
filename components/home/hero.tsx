@@ -74,7 +74,7 @@ export function Hero() {
             fill
             fetchPriority="high"
             loading="eager"
-            sizes="100vw"
+            sizes="(min-width: 768px) 120vw, 300vw"
             className="object-cover object-center"
           />
         </div>

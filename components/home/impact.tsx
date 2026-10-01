@@ -158,7 +158,7 @@ function CaseColumn() {
           src={images.research}
           alt="An analyst presenting performance data to colleagues"
           fill
-          sizes="(min-width: 768px) 30vw, 100vw"
+          sizes="(min-width: 768px) 50vw, 100vw"
           className="object-cover object-top"
         />
       </div>

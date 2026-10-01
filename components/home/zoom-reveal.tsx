@@ -120,7 +120,7 @@ export function ZoomReveal() {
             src={images.engineers}
             alt="A team of engineers in hard hats reviewing construction plans"
             fill
-            sizes="100vw"
+            sizes="(min-width: 768px) 100vw, 300vw"
             className="object-cover"
           />
         </div>

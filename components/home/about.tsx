@@ -67,7 +67,7 @@ export function About() {
                 src={images.site}
                 alt="Two architects in hard hats reviewing blueprints on a building site"
                 fill
-                sizes="(min-width: 768px) 50vw, 100vw"
+                sizes="(min-width: 768px) 100vw, 260vw"
                 className="object-cover object-[62%_40%]"
               />
             </div>
