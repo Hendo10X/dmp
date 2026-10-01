@@ -8,14 +8,15 @@
 import type { ShapeName } from "@/components/ui/shape"
 
 // Photos: Pexels free licence (pexels.com/license). Sources by photo id:
-// stadium 29804436, meeting 30688593, research 9301257, team 38404137,
-// training 8692268, celebrate 29804435.
+// stadium 29804436, meeting 30688593, research 9301257, celebrate 29804435,
+// site 7937367, engineers 37198885, analysis 9301824.
 export const images = {
   stadium: "/Images/nigerian-fans-stadium.jpg",
   meeting: "/Images/lagos-office-meeting.jpg",
   research: "/Images/research-presentation.jpg",
-  team: "/Images/nigerian-football-team.jpg",
-  training: "/Images/athletes-track-training.jpg",
+  site: "/Images/architects-site-review.jpg",
+  engineers: "/Images/engineers-plan-review.jpg",
+  analysis: "/Images/market-data-analysis.jpg",
   celebrate: "/Images/super-falcons-celebrate.jpg",
 }
 
@@ -101,7 +102,7 @@ export const services: Service[] = [
     summary:
       "Long-range plans, structures and policy for federations, leagues and public bodies.",
     shape: "circle",
-    image: images.team,
+    image: images.site,
     what: "We help sports organisations decide where they are going and build the structures to get there: multi-year strategies, governance reviews, operating models and policy that stands up to scrutiny.",
     forWhom: ["federations", "mdas", "associations"],
     approach: [
@@ -263,14 +264,14 @@ export const sectors: Sector[] = [
     title: "Football & Leagues",
     body: "Club and league strategy, rights, academies and matchday economics.",
     shape: "circle",
-    image: images.team,
+    image: images.stadium,
   },
   {
     slug: "olympic-sport",
     title: "Olympic & Grassroots Sport",
     body: "Funding cases, athlete pathways and participation growth.",
     shape: "square",
-    image: images.training,
+    image: images.celebrate,
   },
   {
     slug: "media",
@@ -291,7 +292,7 @@ export const sectors: Sector[] = [
     title: "Venues & Real Estate",
     body: "Feasibility, financing and operating models for venues and mixed-use sites.",
     shape: "circle",
-    image: images.training,
+    image: images.engineers,
   },
   {
     slug: "health-wellness",
@@ -350,7 +351,7 @@ export const caseStudies: CaseStudy[] = [
     client: "Professional sports league",
     service: "commercial-advisory",
     sector: "football",
-    image: images.team,
+    image: images.stadium,
     summary:
       "From one-off deals to a tiered partnership programme with measurable value.",
     challenge:
@@ -370,7 +371,7 @@ export const caseStudies: CaseStudy[] = [
     client: "Government sports agency",
     service: "research-insight",
     sector: "olympic-sport",
-    image: images.training,
+    image: images.analysis,
     summary:
       "A three-year evidence base for where talent funding goes furthest.",
     challenge:
@@ -446,7 +447,7 @@ export const insights: Insight[] = [
     type: "Perspective",
     topic: "Technology",
     date: "2025-11-20",
-    image: images.training,
+    image: images.analysis,
     excerpt:
       "Who owns an athlete's data, and what should federations do about it?",
   },
@@ -456,7 +457,7 @@ export const insights: Insight[] = [
     type: "Report",
     topic: "Performance",
     date: "2025-09-08",
-    image: images.team,
+    image: images.celebrate,
     excerpt:
       "A practical framework for tracking athlete progression across a system.",
   },

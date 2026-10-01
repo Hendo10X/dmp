@@ -8,12 +8,12 @@ export type NavLink = {
 
 // Pages from docs/brief.md. Routes don't exist yet.
 export const navLinks: NavLink[] = [
-  { title: "About", href: "/about", image: images.team },
+  { title: "About", href: "/about", image: images.site },
   { title: "Services", href: "/services", image: images.meeting },
   { title: "Industries", href: "/industries", image: images.stadium },
   { title: "Case Studies", href: "/case-studies", image: images.celebrate },
   { title: "Insights", href: "/insights", image: images.research },
-  { title: "Contact", href: "/contact", image: images.training },
+  { title: "Contact", href: "/contact", image: images.analysis },
 ]
 
 export const navFooterLinks = [

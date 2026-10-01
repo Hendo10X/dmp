@@ -64,11 +64,11 @@ export function About() {
           <div className="relative aspect-[4/5] overflow-hidden bg-oxford md:aspect-[5/6]">
             <div ref={photo} className="absolute inset-x-0 -inset-y-[10%]">
               <Image
-                src={images.team}
-                alt="Three Nigerian football players standing together on a training pitch"
+                src={images.site}
+                alt="Two architects in hard hats reviewing blueprints on a building site"
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"
-                className="object-cover object-[center_40%]"
+                className="object-cover object-[62%_40%]"
               />
             </div>
           </div>

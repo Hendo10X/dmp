@@ -117,8 +117,8 @@ export function ZoomReveal() {
       >
         <div data-zoom-image className="absolute inset-0">
           <Image
-            src={images.training}
-            alt="Two athletes training together on a running track"
+            src={images.engineers}
+            alt="A team of engineers in hard hats reviewing construction plans"
             fill
             sizes="100vw"
             className="object-cover"

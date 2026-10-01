@@ -42,8 +42,8 @@ export default function CareersPage() {
         eyebrow="DMP Careers"
         title="Do the best work of your career in sport."
         intro="We hire curious, rigorous people who believe in what sport can do for Nigeria and the continent, and want to prove it."
-        image={images.training}
-        imageAlt="Two athletes training together on a running track"
+        image={images.engineers}
+        imageAlt="A team of engineers in hard hats reviewing construction plans"
       />
 
       {/* Culture */}
