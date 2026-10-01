@@ -15,6 +15,7 @@ import { PageHero } from "@/components/page/page-hero"
 import { SectionHeader } from "@/components/page/section-header"
 import { CaseStudyCard } from "@/components/page/case-study-card"
 import { Cta, Quote } from "@/components/page/closing"
+import { CountUp } from "@/components/motion/count-up"
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -132,7 +133,7 @@ export default async function CaseStudyPage({ params }: Props) {
               )}
             >
               <span className="font-heading text-[clamp(3.5rem,6vw,5.5rem)] leading-none">
-                {stat.value}
+                <CountUp value={stat.value} />
               </span>
               <span className="max-w-[16rem] text-[0.7rem] leading-snug tracking-[0.14em] uppercase">
                 {stat.label}

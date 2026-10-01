@@ -8,6 +8,8 @@ import { Arrow } from "@/components/ui/arrow"
 import { cn } from "@/lib/utils"
 import { Reveal } from "@/components/motion/reveal"
 import { SectionHeader } from "@/components/page/section-header"
+import { images } from "@/lib/content"
+import { CountUp } from "@/components/motion/count-up"
 
 type Column = {
   id: string
@@ -111,7 +113,7 @@ function StatColumn({ stat }: { stat: { value: string; label: string } }) {
   return (
     <div className="flex h-full min-h-44 flex-col justify-between gap-10 p-5 md:p-6">
       <span className="font-display text-[clamp(2.25rem,3.4vw,3.5rem)] leading-none whitespace-nowrap">
-        {stat.value}
+        <CountUp value={stat.value} />
       </span>
       <span className="max-w-[14rem] text-[0.7rem] leading-snug tracking-[0.14em] uppercase">
         {stat.label}
@@ -144,7 +146,7 @@ function CaseColumn() {
         </div>
         <div>
           <span className="block font-display text-[clamp(3rem,5vw,5rem)] leading-none">
-            {stats.hero.value}
+            <CountUp value={stats.hero.value} />
           </span>
           <span className="mt-3 block max-w-[16rem] text-[0.7rem] leading-snug tracking-[0.14em] uppercase">
             {stats.hero.label}
@@ -153,8 +155,8 @@ function CaseColumn() {
       </div>
       <div className="relative aspect-[4/3] min-w-0 flex-1 overflow-hidden md:aspect-auto">
         <Image
-          src="/Images/pexels-mart-production-7089032.jpg"
-          alt="A sports scientist reviewing results beside a scanner"
+          src={images.research}
+          alt="An analyst presenting performance data to colleagues"
           fill
           sizes="(min-width: 768px) 30vw, 100vw"
           className="object-cover object-top"

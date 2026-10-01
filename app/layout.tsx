@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import {
   Geist_Mono,
-  Hedvig_Letters_Sans,
+  Instrument_Sans,
   Special_Gothic_Expanded_One,
   Staatliches,
 } from "next/font/google"
@@ -28,9 +28,8 @@ const fontDisplay = Staatliches({
 })
 
 // Body, subtext, UI
-const fontSans = Hedvig_Letters_Sans({
+const fontSans = Instrument_Sans({
   subsets: ["latin"],
-  weight: "400",
   variable: "--font-sans",
 })
 

@@ -8,6 +8,7 @@ import { Insights } from "@/components/home/insights"
 import { Process } from "@/components/home/process"
 import { Audiences } from "@/components/home/audiences"
 import { Cta, Quote } from "@/components/page/closing"
+import { MarketsSection } from "@/components/page/markets-section"
 
 // Major sections sit on the white background; the closing run (quote, CTA,
 // footer) switches to accent colours.
@@ -23,6 +24,7 @@ export default function Page() {
         <ZoomReveal />
         <Impact />
         <Audiences />
+        <MarketsSection />
         <Insights />
         <Quote />
         <Cta />

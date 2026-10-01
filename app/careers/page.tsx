@@ -43,7 +43,7 @@ export default function CareersPage() {
         title="Do the best work of your career in sport."
         intro="We hire curious, rigorous people who believe in what sport can do for Nigeria and the continent, and want to prove it."
         image={images.training}
-        imageAlt="Two athletes training together"
+        imageAlt="Two athletes training together on a running track"
       />
 
       {/* Culture */}

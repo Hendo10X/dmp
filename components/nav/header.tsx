@@ -89,7 +89,7 @@ export function Header() {
               aria-expanded={open}
               aria-controls="site-menu"
               onClick={() => setOpen((value) => !value)}
-              className="flex h-full items-center gap-3 justify-self-end px-4 text-[0.7rem] tracking-[0.18em] uppercase outline-none focus-visible:text-electric @xl:justify-self-center"
+              className="flex h-full items-center gap-3 justify-self-end px-4 text-sm font-semibold tracking-[0.14em] uppercase outline-none focus-visible:text-electric @xl:justify-self-center"
             >
               <Burger open={open} />
               <span className="grid">
@@ -146,7 +146,7 @@ function useScrolledPast(threshold: number) {
 
 function Burger({ open }: { open: boolean }) {
   const line =
-    "absolute left-0 h-px w-full bg-current transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
+    "absolute left-0 h-[1.5px] w-full bg-current transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
   return (
     <span aria-hidden className="relative block h-2.5 w-6">
       <span

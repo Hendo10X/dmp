@@ -10,6 +10,7 @@ import { PageHero } from "@/components/page/page-hero"
 import { SectionHeader } from "@/components/page/section-header"
 import { Process } from "@/components/home/process"
 import { Cta, Quote } from "@/components/page/closing"
+import { MarketsSection } from "@/components/page/markets-section"
 
 export const metadata: Metadata = {
   title: "About",
@@ -24,8 +25,8 @@ export default function AboutPage() {
         eyebrow="About DMPartners"
         title="Purpose, people, performance."
         intro="Guided by our tagline, Demonstrating Possibilities, we show what is achievable in Nigeria and across the African continent through sport and the markets around it."
-        image={images.consult}
-        imageAlt="A DMP consultant in conversation with an athlete"
+        image={images.meeting}
+        imageAlt="A business meeting in a Lagos office"
       />
 
       {/* Purpose: mission, positioning, values */}
@@ -123,6 +124,11 @@ export default function AboutPage() {
             See what we do
           </ArrowLink>
         }
+      />
+
+      <MarketsSection
+        title="Nigeria first. The continent in view."
+        intro="We start from what is achievable at home and carry it across borders. Drag the globe, or pick a market."
       />
 
       {/* Note from the Founders */}

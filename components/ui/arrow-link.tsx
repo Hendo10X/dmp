@@ -45,7 +45,7 @@ export function ArrowLink({
     >
       <span
         className={cn(
-          "flex items-center px-5 text-[0.7rem] tracking-[0.18em] whitespace-nowrap uppercase",
+          "flex items-center px-5 text-xs font-semibold tracking-[0.16em] whitespace-nowrap uppercase",
           tones[tone].label
         )}
       >

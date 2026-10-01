@@ -8,6 +8,7 @@ import { ArrowLink } from "@/components/ui/arrow-link"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 import { Eyebrow } from "@/components/ui/eyebrow"
+import { images } from "@/lib/content"
 
 // "Who we are" from docs/brief.md, laid out as photo + stat badge + copy.
 // Copy is placeholder until the client supplies it.
@@ -63,8 +64,8 @@ export function About() {
           <div className="relative aspect-[4/5] overflow-hidden bg-oxford md:aspect-[5/6]">
             <div ref={photo} className="absolute inset-x-0 -inset-y-[10%]">
               <Image
-                src="/Images/pexels-franco-monsalvo-252430633-38675822.jpg"
-                alt="A coach walking alongside an athlete at a training ground"
+                src={images.team}
+                alt="Three Nigerian football players standing together on a training pitch"
                 fill
                 sizes="(min-width: 768px) 50vw, 100vw"
                 className="object-cover object-[center_40%]"

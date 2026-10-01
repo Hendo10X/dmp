@@ -7,6 +7,7 @@ import { gsap, useGSAP } from "@/lib/gsap"
 import { usePreloaderDone } from "@/lib/preloader-store"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { SplitReveal } from "@/components/motion/split-reveal"
+import { images } from "@/lib/content"
 
 export function Hero() {
   const ready = usePreloaderDone()
@@ -68,13 +69,13 @@ export function Hero() {
       <div ref={media} className="absolute inset-0 will-change-transform">
         <div data-hero-image className="absolute inset-0">
           <Image
-            src="/Images/homepage.jpg"
-            alt="A DMP consultant in conversation with an athlete on an indoor court"
+            src={images.stadium}
+            alt="Nigerian football fans in green cheering in a stadium"
             fill
             fetchPriority="high"
             loading="eager"
             sizes="100vw"
-            className="object-cover object-[72%_center] md:object-center"
+            className="object-cover object-center"
           />
         </div>
         {/* Oxford tint, deepening toward the copy for legibility. */}

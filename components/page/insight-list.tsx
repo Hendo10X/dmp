@@ -3,37 +3,20 @@
 import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { motion, useMotionValue, useSpring } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { formatDate, type Insight } from "@/lib/content"
 import { Reveal } from "@/components/motion/reveal"
 
-// Table-style list of insights. Desktop: title / type / year columns with a
-// photo that trails the pointer. Mobile: thumbnail + title + meta line.
+// Table-style list of insights. Desktop: title / type / year columns; the
+// hovered row stays strong while the rest dim. Mobile: thumbnail + title +
+// meta line.
 export function InsightList({ items }: { items: Insight[] }) {
   const [active, setActive] = React.useState<number | null>(null)
-  const box = React.useRef<HTMLDivElement>(null)
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-  const springX = useSpring(x, { stiffness: 180, damping: 22, mass: 0.6 })
-  const springY = useSpring(y, { stiffness: 180, damping: 22, mass: 0.6 })
-
-  const onMove = (event: React.PointerEvent) => {
-    const rect = box.current?.getBoundingClientRect()
-    if (!rect) return
-    x.set(event.clientX - rect.left)
-    y.set(event.clientY - rect.top)
-  }
 
   return (
     <Reveal>
-      <div
-        ref={box}
-        onPointerMove={onMove}
-        onPointerLeave={() => setActive(null)}
-        className="relative"
-      >
+      <div onPointerLeave={() => setActive(null)}>
         <ul>
           {items.map((item, index) => (
             <li key={item.slug}>
@@ -83,37 +66,6 @@ export function InsightList({ items }: { items: Insight[] }) {
             </li>
           ))}
         </ul>
-
-        {/* Photo that trails the pointer; mouse devices only. */}
-        <motion.div
-          aria-hidden
-          style={{ x: springX, y: springY }}
-          className="pointer-events-none absolute top-0 left-0 hidden [@media(hover:hover)]:md:block"
-        >
-          <motion.div
-            initial={false}
-            animate={{
-              scale: active === null ? 0 : 1,
-              opacity: active === null ? 0 : 1,
-            }}
-            transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
-            className="relative -mt-28 -ml-24 h-56 w-48 overflow-hidden bg-oxford"
-          >
-            {items.map((item, index) => (
-              <Image
-                key={item.slug}
-                src={item.image}
-                alt=""
-                fill
-                sizes="192px"
-                className={cn(
-                  "object-cover transition-opacity duration-500",
-                  active === index ? "opacity-100" : "opacity-0"
-                )}
-              />
-            ))}
-          </motion.div>
-        </motion.div>
       </div>
     </Reveal>
   )

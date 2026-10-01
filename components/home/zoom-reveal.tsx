@@ -4,6 +4,7 @@ import * as React from "react"
 import Image from "next/image"
 
 import { gsap, useGSAP } from "@/lib/gsap"
+import { images } from "@/lib/content"
 
 // Pinned scene: a small photo between two words grows until it fills the
 // screen, then a caption settles over it.
@@ -116,8 +117,8 @@ export function ZoomReveal() {
       >
         <div data-zoom-image className="absolute inset-0">
           <Image
-            src="/Images/pexels-justyzvidz-5646004.jpg"
-            alt="A performance coach guiding an athlete through a drill"
+            src={images.training}
+            alt="Two athletes training together on a running track"
             fill
             sizes="100vw"
             className="object-cover"

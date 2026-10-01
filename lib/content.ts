@@ -7,12 +7,16 @@
 
 import type { ShapeName } from "@/components/ui/shape"
 
+// Photos: Pexels free licence (pexels.com/license). Sources by photo id:
+// stadium 29804436, meeting 30688593, research 9301257, team 38404137,
+// training 8692268, celebrate 29804435.
 export const images = {
-  consult: "/Images/homepage.jpg",
-  training: "/Images/pexels-justyzvidz-5646004.jpg",
-  coaching: "/Images/pexels-franco-monsalvo-252430633-38675822.jpg",
-  tennis: "/Images/pexels-bohdan-hyrovych-796614725-38355572.jpg",
-  science: "/Images/pexels-mart-production-7089032.jpg",
+  stadium: "/Images/nigerian-fans-stadium.jpg",
+  meeting: "/Images/lagos-office-meeting.jpg",
+  research: "/Images/research-presentation.jpg",
+  team: "/Images/nigerian-football-team.jpg",
+  training: "/Images/athletes-track-training.jpg",
+  celebrate: "/Images/super-falcons-celebrate.jpg",
 }
 
 // ---------------------------------------------------------------- Services
@@ -37,7 +41,7 @@ export const services: Service[] = [
     summary:
       "Revenue models, sponsorship, media and partnerships that make sport commercially sustainable.",
     shape: "triangle",
-    image: images.tennis,
+    image: images.celebrate,
     what: "We build the commercial case for sport and the markets around it: sponsorship and media strategy, revenue diversification, pricing and the partnerships that turn audiences into lasting income.",
     forWhom: ["federations", "corporates", "smes"],
     approach: [
@@ -67,7 +71,7 @@ export const services: Service[] = [
     summary:
       "Due diligence, valuation and investment cases for capital entering sport and adjacent markets.",
     shape: "quarter",
-    image: images.consult,
+    image: images.meeting,
     what: "We help investors, financial institutions and governments put capital to work in sport with confidence: market entry studies, commercial due diligence, feasibility and the investment cases that show what is possible.",
     forWhom: ["investors", "mdas", "corporates"],
     approach: [
@@ -97,7 +101,7 @@ export const services: Service[] = [
     summary:
       "Long-range plans, structures and policy for federations, leagues and public bodies.",
     shape: "circle",
-    image: images.coaching,
+    image: images.team,
     what: "We help sports organisations decide where they are going and build the structures to get there: multi-year strategies, governance reviews, operating models and policy that stands up to scrutiny.",
     forWhom: ["federations", "mdas", "associations"],
     approach: [
@@ -127,7 +131,7 @@ export const services: Service[] = [
     summary:
       "Evidence and market studies on the sports economy that inform decisions and shape policy.",
     shape: "square",
-    image: images.science,
+    image: images.research,
     what: "Independent research on the size, growth and potential of the sports economy in Nigeria and across Africa, designed to be used: by ministries setting policy, investors weighing markets and federations planning ahead.",
     forWhom: ["mdas", "academia", "investors"],
     approach: [
@@ -259,7 +263,7 @@ export const sectors: Sector[] = [
     title: "Football & Leagues",
     body: "Club and league strategy, rights, academies and matchday economics.",
     shape: "circle",
-    image: images.coaching,
+    image: images.team,
   },
   {
     slug: "olympic-sport",
@@ -273,14 +277,14 @@ export const sectors: Sector[] = [
     title: "Media & Entertainment",
     body: "Broadcast, streaming and content models built around sport audiences.",
     shape: "triangle",
-    image: images.tennis,
+    image: images.celebrate,
   },
   {
     slug: "tourism-events",
     title: "Sports Tourism & Events",
     body: "Event bidding, hosting economics and the visitor economy around sport.",
     shape: "quarter",
-    image: images.consult,
+    image: images.meeting,
   },
   {
     slug: "infrastructure",
@@ -294,7 +298,7 @@ export const sectors: Sector[] = [
     title: "Health, Wellness & Science",
     body: "Sports medicine, wellness markets and applied research.",
     shape: "square",
-    image: images.science,
+    image: images.research,
   },
 ]
 
@@ -322,7 +326,7 @@ export const caseStudies: CaseStudy[] = [
     client: "National sports federation",
     service: "strategy-governance",
     sector: "olympic-sport",
-    image: images.science,
+    image: images.research,
     summary:
       "One platform for athletes, clubs and competitions, and a board that reports in days, not months.",
     challenge:
@@ -346,7 +350,7 @@ export const caseStudies: CaseStudy[] = [
     client: "Professional sports league",
     service: "commercial-advisory",
     sector: "football",
-    image: images.coaching,
+    image: images.team,
     summary:
       "From one-off deals to a tiered partnership programme with measurable value.",
     challenge:
@@ -386,7 +390,7 @@ export const caseStudies: CaseStudy[] = [
     client: "Multi-sport club",
     service: "strategy-governance",
     sector: "football",
-    image: images.consult,
+    image: images.meeting,
     summary: "A new board structure and constitution approved by members.",
     challenge:
       "An outdated constitution and an oversized board slowed every decision.",
@@ -421,7 +425,7 @@ export const insights: Insight[] = [
     type: "Report",
     topic: "Governance",
     date: "2026-08-12",
-    image: images.science,
+    image: images.research,
     excerpt:
       "Infrastructure gets the headlines. Data decides whether it pays off.",
     featured: true,
@@ -432,7 +436,7 @@ export const insights: Insight[] = [
     type: "Insight",
     topic: "Investment",
     date: "2026-06-03",
-    image: images.tennis,
+    image: images.celebrate,
     excerpt:
       "Five signals investors check before they commit to a league or club.",
   },
@@ -452,7 +456,7 @@ export const insights: Insight[] = [
     type: "Report",
     topic: "Performance",
     date: "2025-09-08",
-    image: images.coaching,
+    image: images.team,
     excerpt:
       "A practical framework for tracking athlete progression across a system.",
   },
@@ -462,7 +466,7 @@ export const insights: Insight[] = [
     type: "News",
     topic: "Research",
     date: "2025-07-15",
-    image: images.consult,
+    image: images.meeting,
     excerpt:
       "A new collaboration to measure the size and growth of the sports economy.",
   },
@@ -543,3 +547,25 @@ export const formatDate = (iso: string) =>
     month: "short",
     year: "numeric",
   })
+
+// ------------------------------------------------------------------ Markets
+
+// Globe markers. Nigeria is home; the others are PLACEHOLDER key markets
+// until the client confirms where they work.
+export type Market = {
+  city: string
+  country: string
+  location: [number, number] // [lat, lng]
+  home?: boolean
+}
+
+export const markets: Market[] = [
+  { city: "Lagos", country: "Nigeria", location: [6.52, 3.38], home: true },
+  { city: "Abuja", country: "Nigeria", location: [9.08, 7.4], home: true },
+  { city: "Accra", country: "Ghana", location: [5.6, -0.19] },
+  { city: "Dakar", country: "Senegal", location: [14.72, -17.47] },
+  { city: "Cairo", country: "Egypt", location: [30.04, 31.24] },
+  { city: "Nairobi", country: "Kenya", location: [-1.29, 36.82] },
+  { city: "Kigali", country: "Rwanda", location: [-1.95, 30.06] },
+  { city: "Johannesburg", country: "South Africa", location: [-26.2, 28.05] },
+]
