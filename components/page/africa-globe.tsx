@@ -12,9 +12,11 @@ const OXFORD: [number, number, number] = [0, 0.125, 0.282]
 const LIME: [number, number, number] = [0.725, 0.886, 0.004]
 const ELECTRIC: [number, number, number] = [0.478, 0.949, 0.969]
 
-// cobe's camera: phi spins around the poles, theta tilts.
+// cobe's camera: phi spins around the poles, theta tilts. Derived from
+// cobe's projection: a point at [lat, lng] sits dead centre when
+// phi = 3π/2 - lng and theta = lat (both in radians).
 const toAngles = ([lat, lng]: [number, number]) => ({
-  phi: -(lng * Math.PI) / 180,
+  phi: (3 * Math.PI) / 2 - (lng * Math.PI) / 180,
   theta: (lat * Math.PI) / 180,
 })
 
@@ -63,8 +65,9 @@ export function AfricaGlobe({
 
     const create = () => {
       globe = createGlobe(el, {
-        width: size * dpr,
-        height: size * dpr,
+        // cobe multiplies width/height by devicePixelRatio itself.
+        width: size,
+        height: size,
         devicePixelRatio: dpr,
         phi,
         theta,
@@ -100,13 +103,13 @@ export function AfricaGlobe({
       const sway =
         reduceMotion || focused.current || drag.current
           ? 0
-          : Math.sin(time * 0.25) * 0.5
+          : Math.sin(time * 0.25) * 0.35
       const goalPhi = target.current.phi + sway + dragPhi.current
       phi += (goalPhi - phi) * 0.05
-      theta += (target.current.theta * 0.6 + 0.1 - theta) * 0.05
+      theta += (target.current.theta - theta) * 0.05
       // Ease drag offset back to zero once released.
       if (!drag.current) dragPhi.current *= 0.96
-      globe.update({ phi, theta, width: size * dpr, height: size * dpr })
+      globe.update({ phi, theta, width: size, height: size })
     }
 
     create()
