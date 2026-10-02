@@ -13,6 +13,7 @@ import { backdrop, ease } from "@/components/nav/anim"
 import { MenuPanel } from "@/components/nav/menu-panel"
 import { MegaMenu, type MegaKey } from "@/components/nav/mega-menu"
 
+// Sits over the top of each page and scrolls away with it (not fixed).
 // Desktop top-level nav, after the client's PwC reference. Services and
 // Solutions open dropdown panels; the rest are plain links.
 const primary: { title: string; href: string; mega?: MegaKey }[] = [
@@ -28,7 +29,6 @@ export function Header() {
   const pathname = usePathname()
   const ready = useIntroSettled()
   const lenis = useLenis()
-  const compact = useScrolledPast(48)
 
   // Mobile/tablet full-screen menu.
   const [open, setOpen] = React.useState(false)
@@ -102,7 +102,7 @@ export function Header() {
         initial={{ y: "-130%" }}
         animate={{ y: ready ? 0 : "-130%" }}
         transition={{ duration: 1, ease }}
-        className="fixed inset-x-0 top-0 z-50 p-3 md:p-4"
+        className="absolute inset-x-0 top-0 z-50 p-3 md:p-4"
       >
         <nav
           aria-label="Main"
@@ -112,21 +112,11 @@ export function Header() {
           }
           className="@container bg-oxford text-white"
         >
-          <div
-            className={cn(
-              "flex items-center justify-between transition-[height] duration-700",
-              SHRINK_EASE,
-              compact ? "h-12" : "h-14 md:h-16"
-            )}
-          >
+          <div className="flex h-14 items-center justify-between md:h-16">
             <Link
               href="/"
               onClick={closeAll}
-              className={cn(
-                "pl-4 font-logo tracking-tight transition-[font-size] duration-700 md:pl-6",
-                SHRINK_EASE,
-                compact ? "text-lg" : "text-xl md:text-2xl"
-              )}
+              className="pl-4 font-logo text-xl tracking-tight md:pl-6 md:text-2xl"
             >
               DMP
             </Link>
@@ -251,17 +241,6 @@ export function Header() {
 }
 
 const SHRINK_EASE = "ease-[cubic-bezier(0.76,0,0.24,1)]"
-
-function useScrolledPast(threshold: number) {
-  const [past, setPast] = React.useState(false)
-  React.useEffect(() => {
-    const update = () => setPast(window.scrollY > threshold)
-    update()
-    window.addEventListener("scroll", update, { passive: true })
-    return () => window.removeEventListener("scroll", update)
-  }, [threshold])
-  return past
-}
 
 // Sharp-cornered chevron to match the arrows.
 function Chevron({ open }: { open: boolean }) {

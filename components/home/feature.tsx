@@ -11,7 +11,7 @@ export function Feature({ slug = "sports-power-index" }: { slug?: string }) {
   if (!solution) return null
 
   return (
-    <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
+    <section className="relative z-10 bg-background px-4 py-24 md:px-7 md:py-36">
       <div className="grid md:grid-cols-12">
         <ParallaxImage
           src={solution.image}
