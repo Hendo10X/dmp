@@ -14,20 +14,22 @@ const accents: Record<ShapeName, string> = {
   square: "group-hover:text-electric group-focus-visible:text-electric",
   triangle: "group-hover:text-crimson group-focus-visible:text-crimson",
   quarter: "group-hover:text-white group-focus-visible:text-white",
+  diamond: "group-hover:text-electric group-focus-visible:text-electric",
+  ring: "group-hover:text-lime group-focus-visible:text-lime",
 }
 
-// The four service pillars as fill-on-hover cards. Used on Home and the
+// The six services as fill-on-hover cards. Used on Home and the
 // Services hub.
 export function ServiceCards({ className }: { className?: string }) {
   return (
     <Reveal
-      className={cn("grid gap-2 sm:grid-cols-2 lg:grid-cols-4", className)}
+      className={cn("grid gap-2 sm:grid-cols-2 lg:grid-cols-3", className)}
     >
       {services.map((service, index) => (
         <Link
           key={service.slug}
           href={`/services/${service.slug}`}
-          className="group relative flex min-h-[20rem] flex-col justify-between overflow-hidden bg-secondary p-6 text-oxford outline-none focus-visible:ring-2 focus-visible:ring-electric md:min-h-[28rem] md:p-7"
+          className="group relative flex min-h-[20rem] flex-col justify-between overflow-hidden bg-secondary p-6 text-oxford outline-none focus-visible:ring-2 focus-visible:ring-electric md:min-h-[24rem] md:p-7"
         >
           {/* Oxford fill rising from the bottom on hover/focus. */}
           <span

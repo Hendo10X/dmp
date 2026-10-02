@@ -7,8 +7,8 @@ export function Services() {
     <section className="relative z-10 bg-background px-4 pt-8 pb-24 md:px-7 md:pb-36">
       <SectionHeader
         eyebrow="What we do"
-        title="Four ways we move sport forward."
-        intro="Each pillar stands on its own, and they work best together: commercial and investment cases built on evidence, backed by strategy and structures that last."
+        title="Six practices. One ambition."
+        intro="From strategy and transformation to transactions, policy, research and sustainability: advisory built for the business of sport and the markets around it."
         action={
           <ArrowLink href="/services" tone="muted">
             All services

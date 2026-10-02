@@ -37,43 +37,73 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    slug: "commercial-advisory",
-    title: "Commercial Advisory",
+    slug: "strategy-growth",
+    title: "Strategy & Growth Advisory",
     summary:
-      "Revenue models, sponsorship, media and partnerships that make sport commercially sustainable.",
-    shape: "triangle",
-    image: images.celebrate,
-    what: "We build the commercial case for sport and the markets around it: sponsorship and media strategy, revenue diversification, pricing and the partnerships that turn audiences into lasting income.",
+      "Clear strategies and growth plans for sports organisations, brands and the businesses around them.",
+    shape: "circle",
+    image: images.meeting,
+    what: "We help leadership teams decide where to play and how to win: corporate and commercial strategy, market entry, revenue diversification, partnerships and growth plans grounded in the realities of Nigerian and African markets.",
     forWhom: ["federations", "corporates", "smes"],
     approach: [
       {
-        title: "Size the market",
-        body: "Audiences, rights, comparables and realistic revenue ranges across Nigeria and the continent.",
+        title: "Assess the position",
+        body: "Market, competitors, capabilities and the economics that matter.",
       },
       {
-        title: "Model the options",
-        body: "Scenarios and sensitivities that show what really drives value.",
+        title: "Find the growth",
+        body: "Size the opportunities in sport and adjacent markets, then prioritise.",
       },
       {
-        title: "Package the offer",
-        body: "Clear, evidence-led propositions for partners, sponsors and broadcasters.",
+        title: "Set the plan",
+        body: "A strategy with targets, owners, funding and a realistic timeline.",
       },
       {
-        title: "Close and deliver",
-        body: "Negotiation support and partner onboarding through to signature and activation.",
+        title: "Back it to delivery",
+        body: "Support through the first milestones so the plan becomes results.",
       },
     ],
     caseStudy: "league-sponsorship-reset",
     insight: "investable-league",
   },
   {
-    slug: "investment-advisory",
-    title: "Investment Advisory",
+    slug: "business-transformation",
+    title: "Business Transformation & Performance",
     summary:
-      "Due diligence, valuation and investment cases for capital entering sport and adjacent markets.",
-    shape: "quarter",
-    image: images.meeting,
-    what: "We help investors, financial institutions and governments put capital to work in sport with confidence: market entry studies, commercial due diligence, feasibility and the investment cases that show what is possible.",
+      "Operating models, governance and systems that make organisations perform, and keep performing.",
+    shape: "square",
+    image: images.engineers,
+    what: "We redesign how organisations work: governance, structure, processes, people and technology. The goal is measurable performance, from faster decisions to stronger finances, with change that sticks after we leave.",
+    forWhom: ["federations", "associations", "corporates"],
+    approach: [
+      {
+        title: "Diagnose",
+        body: "Benchmark performance, governance and operations against peers.",
+      },
+      {
+        title: "Design",
+        body: "The target operating model, structures and controls.",
+      },
+      {
+        title: "Implement",
+        body: "Phased change alongside your team, with clear milestones.",
+      },
+      {
+        title: "Sustain",
+        body: "Scorecards, capability building and a performance rhythm.",
+      },
+    ],
+    caseStudy: "federation-data-rebuild",
+    insight: "federation-data-strategy",
+  },
+  {
+    slug: "transaction-investment",
+    title: "Transaction & Investment Advisory",
+    summary:
+      "Due diligence, valuation, deal support and investment cases for capital entering sport.",
+    shape: "triangle",
+    image: images.analysis,
+    what: "We help investors, financial institutions and governments put capital to work in sport and adjacent markets with confidence: commercial due diligence, valuation, feasibility, transaction support and the investment cases that show what is possible.",
     forWhom: ["investors", "mdas", "corporates"],
     approach: [
       {
@@ -89,52 +119,52 @@ export const services: Service[] = [
         body: "Transparent models, benchmarks and downside cases.",
       },
       {
-        title: "Support the decision",
-        body: "Investment papers, board briefings and support through to close.",
+        title: "Support the deal",
+        body: "Investment papers, negotiation support and help through to close.",
       },
     ],
-    caseStudy: "talent-pathway-review",
+    caseStudy: "league-sponsorship-reset",
     insight: "investable-league",
   },
   {
-    slug: "strategy-governance",
-    title: "Strategy & Governance",
+    slug: "policy-ecosystem",
+    title: "Policy & Ecosystem Advisory",
     summary:
-      "Long-range plans, structures and policy for federations, leagues and public bodies.",
-    shape: "circle",
-    image: images.site,
-    what: "We help sports organisations decide where they are going and build the structures to get there: multi-year strategies, governance reviews, operating models and policy that stands up to scrutiny.",
-    forWhom: ["federations", "mdas", "associations"],
+      "Policy, regulation and programmes that help a whole sports economy grow.",
+    shape: "quarter",
+    image: images.research,
+    what: "We work with governments, regulators and development partners on the conditions that let sport become an industry: national sports policy, regulatory frameworks, public-private partnerships, infrastructure programmes and the ecosystems around them.",
+    forWhom: ["mdas", "federations", "associations"],
     approach: [
       {
-        title: "Listen widely",
-        body: "Interviews, surveys and workshops with athletes, officials, members and funders.",
+        title: "Map the ecosystem",
+        body: "Who holds the levers, where value is lost and what blocks growth.",
       },
       {
-        title: "Benchmark honestly",
-        body: "Compare structures and results against peers at home and abroad.",
+        title: "Shape the policy",
+        body: "Evidence-based options, consultation and drafting.",
       },
       {
-        title: "Decide together",
-        body: "Facilitated sessions that turn options into a strategy the board owns.",
+        title: "Design programmes",
+        body: "Funding models, PPP structures and delivery vehicles.",
       },
       {
-        title: "Embed it",
-        body: "Scorecards, operating models and a delivery rhythm that outlast the engagement.",
+        title: "Evaluate impact",
+        body: "Frameworks that show what public investment achieved.",
       },
     ],
-    caseStudy: "federation-data-rebuild",
-    insight: "federation-data-strategy",
+    caseStudy: "talent-pathway-review",
+    insight: "dmp-research-partnership",
   },
   {
-    slug: "research-insight",
-    title: "Research & Insight",
+    slug: "research-market-intelligence",
+    title: "Research & Market Intelligence",
     summary:
-      "Evidence and market studies on the sports economy that inform decisions and shape policy.",
-    shape: "square",
-    image: images.research,
-    what: "Independent research on the size, growth and potential of the sports economy in Nigeria and across Africa, designed to be used: by ministries setting policy, investors weighing markets and federations planning ahead.",
-    forWhom: ["mdas", "academia", "investors"],
+      "Evidence, indices and market studies on the sports economy in Nigeria and across Africa.",
+    shape: "diamond",
+    image: images.analysis,
+    what: "Independent research on the size, growth and potential of the sports economy, designed to be used: market sizing, audience and fan research, sector studies and the proprietary indices behind our solutions.",
+    forWhom: ["investors", "academia", "mdas"],
     approach: [
       {
         title: "Frame the question",
@@ -155,6 +185,169 @@ export const services: Service[] = [
     ],
     caseStudy: "talent-pathway-review",
     insight: "talent-pathway",
+  },
+  {
+    slug: "sustainability",
+    title: "Sustainability",
+    summary:
+      "Environmental, social and governance strategy that makes sport last, and makes it count.",
+    shape: "ring",
+    image: images.site,
+    what: "We help sports organisations, venues and investors build sustainability into strategy and operations: ESG frameworks, sustainable venue and event planning, community impact and the reporting that funders and partners now expect.",
+    forWhom: ["corporates", "investors", "federations"],
+    approach: [
+      {
+        title: "Baseline",
+        body: "Measure environmental, social and governance performance today.",
+      },
+      {
+        title: "Prioritise",
+        body: "Focus on the issues that matter most to your stakeholders.",
+      },
+      {
+        title: "Plan and integrate",
+        body: "Targets, initiatives and ownership built into operations.",
+      },
+      {
+        title: "Report",
+        body: "Credible disclosure and impact reporting for partners and funders.",
+      },
+    ],
+    caseStudy: "club-governance-review",
+    insight: "wearables-welfare",
+  },
+]
+
+// --------------------------------------------------------------- Solutions
+
+// DMPartners' proprietary solutions. Descriptions are PLACEHOLDER
+// interpretations of the names: confirm scope and method with the client.
+export type Solution = {
+  slug: string
+  title: string
+  kicker: string
+  summary: string
+  image: string
+  shape: ShapeName
+  what: string
+  outcomes: string[]
+  how: { title: string; body: string }[]
+  forWhom: string[]
+  services: string[]
+}
+
+export const solutions: Solution[] = [
+  {
+    slug: "federation-business-transformation",
+    title: "Federation Business Transformation",
+    kicker: "Programme",
+    summary:
+      "An end-to-end programme that turns national federations into well-governed, commercially sustainable organisations.",
+    image: images.engineers,
+    shape: "square",
+    what: "Federations sit at the heart of every sport, yet many run on volunteer structures and a single funding source. Our transformation programme rebuilds them as modern organisations: governance that earns trust, commercial models that diversify income, operations that deliver, and data that proves progress.",
+    outcomes: [
+      "Governance aligned to international best practice",
+      "Diversified, recurring commercial revenue",
+      "A professional operating model and team",
+      "Performance data the board and funders trust",
+    ],
+    how: [
+      {
+        title: "Federation health check",
+        body: "A structured diagnostic across governance, finance, commercial, operations and athletes.",
+      },
+      {
+        title: "Transformation blueprint",
+        body: "A prioritised plan with funding, owners and milestones.",
+      },
+      {
+        title: "Delivery and change",
+        body: "Hands-on support to implement, from constitutions to commercial deals.",
+      },
+      {
+        title: "Measure and report",
+        body: "A scorecard that tracks progress for the board, members and funders.",
+      },
+    ],
+    forWhom: ["federations", "mdas", "associations"],
+    services: [
+      "business-transformation",
+      "strategy-growth",
+      "policy-ecosystem",
+    ],
+  },
+  {
+    slug: "street-credibility-index",
+    title: "Street Credibility Index",
+    kicker: "Index",
+    summary:
+      "A measure of how credible and relevant brands, clubs and athletes are with fans and communities.",
+    image: images.stadium,
+    shape: "circle",
+    what: "Reach is easy to buy. Credibility is earned on the street, in communities and among fans. The Street Credibility Index measures it: how trusted, authentic and culturally relevant a brand, club or athlete is with the audiences that matter, and how that compares with peers.",
+    outcomes: [
+      "A credibility score benchmarked against peers",
+      "The drivers of trust and relevance, by audience",
+      "Clear actions to strengthen standing with fans",
+      "Evidence for sponsors, partners and investors",
+    ],
+    how: [
+      {
+        title: "Listen at scale",
+        body: "Fan and community research, social listening and on-the-ground panels.",
+      },
+      {
+        title: "Score",
+        body: "A consistent index across trust, authenticity, relevance and advocacy.",
+      },
+      {
+        title: "Benchmark",
+        body: "Compare against peers, categories and over time.",
+      },
+      {
+        title: "Act",
+        body: "Recommendations for partnerships, campaigns and community investment.",
+      },
+    ],
+    forWhom: ["corporates", "federations", "smes"],
+    services: ["research-market-intelligence", "strategy-growth"],
+  },
+  {
+    slug: "sports-power-index",
+    title: "Sports Power Index",
+    kicker: "Index",
+    summary:
+      "A ranking of the commercial and institutional strength of sports, properties and markets across Africa.",
+    image: images.celebrate,
+    shape: "triangle",
+    what: "Where should capital, sponsorship and policy attention go? The Sports Power Index ranks sports, properties and markets on the factors that create value: audience, commercial maturity, governance, infrastructure and investment readiness. It turns a crowded field into a clear map of possibility.",
+    outcomes: [
+      "A transparent ranking of sports, properties and markets",
+      "Scores across five pillars of sporting power",
+      "Investment-ready shortlists and opportunity maps",
+      "Annual tracking of who is rising and why",
+    ],
+    how: [
+      {
+        title: "Define the pillars",
+        body: "Audience, commercial, governance, infrastructure and investment readiness.",
+      },
+      {
+        title: "Collect the data",
+        body: "Primary research, partner data and public sources across markets.",
+      },
+      {
+        title: "Rank and publish",
+        body: "Weighted scores, peer comparisons and an annual report.",
+      },
+      {
+        title: "Advise",
+        body: "Bespoke cuts for investors, sponsors and governments.",
+      },
+    ],
+    forWhom: ["investors", "mdas", "corporates"],
+    services: ["research-market-intelligence", "transaction-investment"],
   },
 ]
 
@@ -325,7 +518,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "federation-data-rebuild",
     title: "A national federation rebuilds around its data",
     client: "National sports federation",
-    service: "strategy-governance",
+    service: "business-transformation",
     sector: "olympic-sport",
     image: images.research,
     summary:
@@ -349,7 +542,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "league-sponsorship-reset",
     title: "A professional league resets its sponsorship model",
     client: "Professional sports league",
-    service: "commercial-advisory",
+    service: "strategy-growth",
     sector: "football",
     image: images.stadium,
     summary:
@@ -369,7 +562,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "talent-pathway-review",
     title: "Measuring a national talent pathway",
     client: "Government sports agency",
-    service: "research-insight",
+    service: "research-market-intelligence",
     sector: "olympic-sport",
     image: images.analysis,
     summary:
@@ -389,7 +582,7 @@ export const caseStudies: CaseStudy[] = [
     slug: "club-governance-review",
     title: "Modernising governance at a heritage club",
     client: "Multi-sport club",
-    service: "strategy-governance",
+    service: "business-transformation",
     sector: "football",
     image: images.meeting,
     summary: "A new board structure and constitution approved by members.",
@@ -512,19 +705,19 @@ export const team = [
 export const openings = [
   {
     title: "Senior Consultant, Strategy",
-    team: "Strategy & Governance",
+    team: "Strategy & Growth Advisory",
     type: "Full-time",
     location: "Hybrid",
   },
   {
     title: "Investment Analyst",
-    team: "Investment Advisory",
+    team: "Transaction & Investment Advisory",
     type: "Full-time",
     location: "Hybrid",
   },
   {
     title: "Research Analyst",
-    team: "Research & Insight",
+    team: "Research & Market Intelligence",
     type: "Full-time",
     location: "On-site",
   },
@@ -532,6 +725,8 @@ export const openings = [
 
 // ------------------------------------------------------------------ Helpers
 
+export const findSolution = (slug: string) =>
+  solutions.find((s) => s.slug === slug)
 export const findService = (slug: string) =>
   services.find((s) => s.slug === slug)
 export const findAudience = (slug: string) =>
