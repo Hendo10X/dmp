@@ -15,8 +15,8 @@ import { navFooterLinks, navLinks } from "@/components/nav/links"
 const ease = [0.76, 0, 0.24, 1] as const
 
 const panel: Variants = {
-  closed: { x: "100%", transition: { duration: 0.75, delay: 0.35, ease } },
-  open: { x: 0, transition: { duration: 0.75, ease } },
+  closed: { x: "100%", transition: { duration: 0.45, delay: 0.12, ease } },
+  open: { x: 0, transition: { duration: 0.45, ease } },
 }
 
 const perspective: Variants = {
@@ -27,13 +27,13 @@ const perspective: Variants = {
     y: 0,
     x: 0,
     transition: {
-      duration: 0.65,
-      delay: 0.45,
+      duration: 0.5,
+      delay: 0.2,
       ease: [0.215, 0.61, 0.355, 1],
-      opacity: { duration: 0.35, delay: 0.45 },
+      opacity: { duration: 0.25, delay: 0.2 },
     },
   },
-  exit: { opacity: 0, transition: { duration: 0.4, ease } },
+  exit: { opacity: 0, transition: { duration: 0.15, ease } },
 }
 
 const slideIn: Variants = {
@@ -41,9 +41,9 @@ const slideIn: Variants = {
   enter: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, delay: 0.7, ease: [0.215, 0.61, 0.355, 1] },
+    transition: { duration: 0.4, delay: 0.3, ease: [0.215, 0.61, 0.355, 1] },
   },
-  exit: { opacity: 0, transition: { duration: 0.4, ease: "easeInOut" } },
+  exit: { opacity: 0, transition: { duration: 0.15, ease: "easeInOut" } },
 }
 
 export function SideMenu({
@@ -78,10 +78,10 @@ export function SideMenu({
             key="backdrop"
             aria-hidden
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 0.5, ease } }}
+            animate={{ opacity: 1, transition: { duration: 0.3, ease } }}
             exit={{
               opacity: 0,
-              transition: { duration: 0.5, delay: 0.35, ease },
+              transition: { duration: 0.3, delay: 0.12, ease },
             }}
             onClick={onClose}
             className="fixed inset-0 z-40 bg-oxford/25 lg:hidden"
@@ -175,13 +175,13 @@ export function Burger({ open }: { open: boolean }) {
         className={cn(line, "top-0")}
         initial={false}
         animate={open ? { y: 5.25, rotate: 45 } : { y: 0, rotate: 0 }}
-        transition={{ duration: 0.5, ease }}
+        transition={{ duration: 0.35, ease }}
       />
       <motion.span
         className={cn(line, "bottom-0")}
         initial={false}
         animate={open ? { y: -5.25, rotate: -45 } : { y: 0, rotate: 0 }}
-        transition={{ duration: 0.5, ease }}
+        transition={{ duration: 0.35, ease }}
       />
     </span>
   )
