@@ -29,24 +29,26 @@ const tiles: { title: string; body: string; href: string; shape: ShapeName }[] =
 // Closing link tiles (after PwC's Careers / Press room / Offices row).
 export function Explore() {
   return (
-    <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
-      <Reveal className="grid gap-2 md:grid-cols-3">
+    <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-28">
+      <Reveal className="grid gap-3 md:grid-cols-3">
         {tiles.map((tile) => (
           <Link
             key={tile.href}
             href={tile.href}
-            className="group flex min-h-48 flex-col justify-between gap-8 bg-secondary p-6 text-oxford transition-colors duration-500 hover:bg-oxford hover:text-white md:p-7"
+            className="group flex min-h-48 flex-col justify-between gap-8 rounded-xl border border-border bg-background p-6 text-oxford transition-colors duration-300 hover:bg-surface md:p-8"
           >
             <Shape
               name={tile.shape}
-              className="size-7 transition-[rotate,color] duration-700 group-hover:rotate-90 group-hover:text-lime"
+              className="size-7 text-oxford/20 transition-[rotate,color] duration-500 group-hover:rotate-90 group-hover:text-oxford"
             />
             <span className="flex items-end justify-between gap-6">
               <span className="flex flex-col gap-2">
-                <span className="font-heading text-4xl leading-none">
+                <span className="font-heading text-2xl leading-tight">
                   {tile.title}
                 </span>
-                <span className="text-sm opacity-75">{tile.body}</span>
+                <span className="text-sm text-muted-foreground">
+                  {tile.body}
+                </span>
               </span>
               <Arrow className="shrink-0 transition-transform duration-500 group-hover:translate-x-1" />
             </span>

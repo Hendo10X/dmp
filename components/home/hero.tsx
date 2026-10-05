@@ -1,115 +1,76 @@
 "use client"
 
-import * as React from "react"
-import Image from "next/image"
-
-import { gsap, useGSAP } from "@/lib/gsap"
+import { markets } from "@/lib/content"
 import { usePreloaderDone } from "@/lib/preloader-store"
+import { StatusPill } from "@/components/ui/eyebrow"
 import { ArrowLink } from "@/components/ui/arrow-link"
+import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
-import { images } from "@/lib/content"
+import { AfricaGlobe } from "@/components/page/africa-globe"
 
+// Split hero from the Crowdline template, on white: copy on the left, the
+// Africa globe with market pills on the right.
 export function Hero() {
   const ready = usePreloaderDone()
-  const section = React.useRef<HTMLElement>(null)
-  const media = React.useRef<HTMLDivElement>(null)
-  const shade = React.useRef<HTMLDivElement>(null)
-  const content = React.useRef<HTMLDivElement>(null)
-  const entrance = React.useRef<gsap.core.Timeline | null>(null)
-
-  useGSAP(
-    () => {
-      const mm = gsap.matchMedia()
-
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        // Entrance, held until the preloader hands over. Everything in the
-        // copy block moves as one, no stagger.
-        entrance.current = gsap
-          .timeline({ paused: true })
-          .fromTo(
-            "[data-hero-image]",
-            { scale: 1.15 },
-            { scale: 1, duration: 2.2, ease: "expo.out" }
-          )
-          .fromTo(
-            "[data-hero-copy]",
-            { y: 48, autoAlpha: 0 },
-            { y: 0, autoAlpha: 1, duration: 1.4, ease: "expo.out" },
-            0.1
-          )
-
-        // Parallax: the photo drifts at a fraction of scroll speed and dims
-        // while the next section slides up over it.
-        gsap
-          .timeline({
-            scrollTrigger: {
-              trigger: section.current,
-              start: "top top",
-              end: "bottom top",
-              scrub: true,
-            },
-          })
-          .to(media.current, { yPercent: 30, ease: "none" }, 0)
-          .to(content.current, { yPercent: -40, ease: "none" }, 0)
-          .to(shade.current, { opacity: 0.7, ease: "none" }, 0)
-      })
-    },
-    { scope: section }
-  )
-
-  React.useEffect(() => {
-    if (ready) entrance.current?.play()
-  }, [ready])
 
   return (
-    <section
-      ref={section}
-      className="relative h-svh min-h-[36rem] overflow-hidden bg-oxford text-white"
-    >
-      <div ref={media} className="absolute inset-0 will-change-transform">
-        <div data-hero-image className="absolute inset-0">
-          <Image
-            src={images.stadium}
-            alt="Nigerian football fans in green cheering in a stadium"
-            fill
-            fetchPriority="high"
-            loading="eager"
-            sizes="(min-width: 768px) 120vw, 300vw"
-            className="object-cover object-center"
-          />
-        </div>
-        {/* Oxford tint, deepening toward the copy for legibility. */}
-        <div className="absolute inset-0 bg-oxford/35 mix-blend-multiply" />
-        <div className="absolute inset-0 bg-linear-to-t from-oxford/90 via-oxford/30 to-oxford/10" />
-      </div>
-      <div ref={shade} className="absolute inset-0 bg-oxford opacity-0" />
+    <section className="relative z-10 mx-auto flex min-h-svh max-w-6xl items-center overflow-hidden bg-background px-6 pt-14">
+      <div className="flex w-full flex-col md:flex-row md:items-center md:gap-8 lg:gap-12">
+        <div className="relative z-10 flex flex-col pt-16 pb-4 text-center md:w-[52%] md:py-0 md:text-left lg:w-[50%]">
+          <Reveal y={12} className="mx-auto mb-8 md:mx-0">
+            <StatusPill>Commercial &amp; investment advisory</StatusPill>
+          </Reveal>
 
-      <div
-        ref={content}
-        className="relative flex h-full items-end px-4 pb-10 md:px-7 md:pb-14"
-      >
-        <div
-          data-hero-copy
-          className="grid w-full gap-8 md:grid-cols-12 md:items-end md:gap-6"
-        >
-          <div className="md:col-span-8">
-            <SplitReveal
-              as="h1"
-              mode="manual"
-              play={ready}
-              delay={0.1}
-              className="text-[clamp(3.25rem,7.5vw,8rem)] leading-[0.92] tracking-[0.01em]"
-            >
-              Demonstrating possibilities.
-            </SplitReveal>
-          </div>
-          <div className="flex flex-col items-start gap-7 md:col-span-4">
-            <p className="max-w-md text-base leading-relaxed text-white/85 md:text-lg">
-              Commercial and investment advisory at the intersection of sport
-              and adjacent markets, across Nigeria and the wider African
-              continent.
+          <SplitReveal
+            as="h1"
+            mode="manual"
+            play={ready}
+            className="mb-6 text-[clamp(2.5rem,4.8vw,4rem)] leading-[1.05]"
+          >
+            <span className="text-onyx">Demonstrating</span>{" "}
+            <span className="bg-[linear-gradient(transparent_64%,var(--lime)_64%,var(--lime)_92%,transparent_92%)] text-oxford">
+              possibilities.
+            </span>
+          </SplitReveal>
+
+          <Reveal y={12}>
+            <p className="mx-auto mb-10 max-w-sm text-sm leading-relaxed text-muted-foreground md:mx-0 md:max-w-md md:text-base">
+              Commercial and investment advisory where the{" "}
+              <span className="text-onyx">
+                sports industry meets adjacent markets
+              </span>
+              , across Nigeria and the wider African continent.
             </p>
-            <ArrowLink href="/services">Explore our services</ArrowLink>
+          </Reveal>
+
+          <Reveal
+            y={12}
+            className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center md:justify-start"
+          >
+            <ArrowLink
+              href="/services"
+              className="w-full justify-center sm:w-auto"
+            >
+              Our services
+            </ArrowLink>
+            <ArrowLink
+              href="/solutions"
+              tone="muted"
+              className="w-full justify-center sm:w-auto"
+            >
+              Our solutions
+            </ArrowLink>
+          </Reveal>
+        </div>
+
+        <div className="flex flex-1 items-center justify-center py-8 md:py-0">
+          <div className="relative w-full max-w-[340px] sm:max-w-[420px] md:max-w-none">
+            {/* Soft electric halo behind the globe. */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 scale-75 rounded-full bg-electric opacity-30 blur-3xl"
+            />
+            <AfricaGlobe markets={markets} />
           </div>
         </div>
       </div>

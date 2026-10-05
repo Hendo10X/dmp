@@ -33,7 +33,7 @@ export function InsightList({ items }: { items: Insight[] }) {
                 )}
               >
                 {/* Mobile thumbnail */}
-                <span className="relative aspect-square overflow-hidden bg-oxford md:hidden">
+                <span className="relative aspect-square overflow-hidden rounded-lg bg-oxford md:hidden">
                   <Image
                     src={item.image}
                     alt=""
@@ -54,7 +54,7 @@ export function InsightList({ items }: { items: Insight[] }) {
                     />
                     {item.title}
                   </span>
-                  <span className="flex gap-3 text-xs tracking-[0.14em] text-muted-foreground uppercase md:col-span-3 md:col-start-9 md:text-base md:tracking-normal md:normal-case">
+                  <span className="flex gap-3 font-mono text-[11px] tracking-wider text-muted-foreground uppercase md:col-span-3 md:col-start-9 md:text-base md:tracking-normal md:normal-case">
                     {item.type}
                     <span className="md:hidden">{formatDate(item.date)}</span>
                   </span>

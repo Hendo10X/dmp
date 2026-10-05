@@ -1,8 +1,8 @@
 import { Preloader } from "@/components/preloader/preloader"
 import { Hero } from "@/components/home/hero"
 import { Statement } from "@/components/home/statement"
+import { Process } from "@/components/home/process"
 import { Services } from "@/components/home/services"
-import { ZoomReveal } from "@/components/home/zoom-reveal"
 import { Feature } from "@/components/home/feature"
 import { Stories } from "@/components/home/stories"
 import { Impact } from "@/components/home/impact"
@@ -12,14 +12,12 @@ import { Insights } from "@/components/home/insights"
 import { Explore } from "@/components/home/explore"
 import { SectionHeader } from "@/components/page/section-header"
 import { SolutionTiles } from "@/components/page/solution-tiles"
-import { MarketsSection } from "@/components/page/markets-section"
 import { Cta, Quote } from "@/components/page/closing"
 import { ArrowLink } from "@/components/ui/arrow-link"
 
-// Layout follows the client's PwC reference: statement, three featured
-// solutions, services, a feature banner, client stories, insights and
-// closing link tiles. Major sections stay white; the closing run (quote,
-// CTA, footer) switches to accent colours.
+// Layout follows the client's Crowdline template on white: split globe
+// hero, statement, how we work, solutions, services, a feature band,
+// stories, impact, about, who we serve, insights, then the closing run.
 export default function Page() {
   return (
     <>
@@ -27,7 +25,8 @@ export default function Page() {
       <main>
         <Hero />
         <Statement />
-        <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
+        <Process />
+        <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 py-24 md:py-28">
           <SectionHeader
             eyebrow="Our solutions"
             title="Three ways we demonstrate possibility."
@@ -38,16 +37,14 @@ export default function Page() {
               </ArrowLink>
             }
           />
-          <SolutionTiles className="mt-14 md:mt-20" />
+          <SolutionTiles className="mt-14 md:mt-16" />
         </section>
         <Services />
-        <ZoomReveal />
         <Feature />
         <Stories />
         <Impact />
         <About />
         <Audiences />
-        <MarketsSection />
         <Insights />
         <Explore />
         <Quote />

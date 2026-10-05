@@ -20,7 +20,7 @@ export function FilterChips({
 }) {
   return (
     <div className="flex min-w-0 flex-col gap-3">
-      <span className="text-[0.7rem] tracking-[0.18em] text-muted-foreground uppercase">
+      <span className="font-mono text-xs tracking-wider text-muted-foreground uppercase">
         {label}
       </span>
       <div
@@ -38,7 +38,7 @@ export function FilterChips({
               aria-checked={active}
               onClick={() => onChange(option.value)}
               className={cn(
-                "relative shrink-0 bg-secondary px-4 py-2.5 text-sm whitespace-nowrap transition-colors duration-300 outline-none focus-visible:ring-2 focus-visible:ring-electric",
+                "relative shrink-0 rounded-full bg-secondary px-4 py-2 font-mono text-xs whitespace-nowrap transition-colors duration-300 outline-none focus-visible:ring-2 focus-visible:ring-electric",
                 active ? "text-white" : "text-oxford hover:bg-oxford/10"
               )}
             >
@@ -46,7 +46,7 @@ export function FilterChips({
                 <motion.span
                   layoutId={`chip-${id}`}
                   transition={{ type: "spring", stiffness: 420, damping: 38 }}
-                  className="absolute inset-0 bg-oxford"
+                  className="absolute inset-0 rounded-full bg-oxford"
                 />
               )}
               <span className="relative">{option.label}</span>

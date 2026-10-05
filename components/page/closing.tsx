@@ -1,9 +1,10 @@
 import { ArrowLink } from "@/components/ui/arrow-link"
-import { Reveal } from "@/components/motion/reveal"
 import { Eyebrow } from "@/components/ui/eyebrow"
+import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 
-// Partner or client quote on Electric Blue. Default copy is placeholder.
+// Partner or client quote: centred pull quote on the light surface band.
+// Default copy is placeholder.
 export function Quote({
   eyebrow = "From our partners",
   text = "The opportunities in African sport are not aspiration. They are possibilities already within reach. Our work is to demonstrate them.",
@@ -14,57 +15,68 @@ export function Quote({
   by?: string
 }) {
   return (
-    <section className="relative z-10 overflow-hidden bg-electric text-oxford">
-      <div className="grid gap-10 px-4 py-24 md:grid-cols-12 md:gap-6 md:px-7 md:py-32">
-        <Reveal y={16} className="md:col-span-3">
-          <Eyebrow marker="bg-oxford">{eyebrow}</Eyebrow>
+    <section className="relative z-10 border-t border-border bg-surface">
+      <figure className="mx-auto max-w-4xl px-6 py-24 text-center md:py-28">
+        <Reveal y={12} className="flex justify-center">
+          <Eyebrow>{eyebrow}</Eyebrow>
         </Reveal>
-        <figure className="md:col-span-9">
-          <SplitReveal
-            as="blockquote"
-            className="text-[clamp(1.6rem,3.4vw,3.25rem)] leading-[1.15] tracking-tight"
-          >
-            &ldquo;{text}&rdquo;
-          </SplitReveal>
-          <Reveal y={16}>
-            <figcaption className="mt-10 text-[0.7rem] tracking-[0.18em] uppercase">
-              {by}
-            </figcaption>
-          </Reveal>
-        </figure>
-      </div>
+        <SplitReveal
+          as="blockquote"
+          className="mt-6 font-heading text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.2] text-oxford"
+        >
+          &ldquo;{text}&rdquo;
+        </SplitReveal>
+        <Reveal y={12}>
+          <figcaption className="mt-8 font-mono text-xs tracking-wider text-muted-foreground uppercase">
+            {by}
+          </figcaption>
+        </Reveal>
+      </figure>
     </section>
   )
 }
 
-// "Talk to us" CTA from the brief. Closes every page, on lime.
+// "Talk to us" CTA (Crowdline's closing CTA) on Oxford. `highlight` is shown
+// on a second line in lime.
 export function Cta({
-  title = "Got a challenge in sport? Let’s talk.",
+  title = "Got a challenge in sport?",
+  highlight = "Let’s talk.",
   body = "Tell us where you are and where you want to be. We will take it from there.",
   href = "/contact",
   label = "Talk to us",
 }: {
   title?: string
+  highlight?: string
   body?: string
   href?: string
   label?: string
 }) {
   return (
-    <section className="relative z-10 bg-lime px-4 py-24 text-oxford md:px-7 md:py-36">
-      <div className="grid gap-12 md:grid-cols-12 md:items-end md:gap-6">
-        <SplitReveal className="text-[clamp(2.75rem,6.5vw,7rem)] leading-[0.95] tracking-[0.01em] md:col-span-9">
+    <section className="relative z-10 bg-oxford text-white">
+      <div className="mx-auto max-w-6xl px-6 py-24 text-center md:py-28">
+        <Reveal y={12} className="flex justify-center">
+          <Eyebrow className="text-electric">Get started</Eyebrow>
+        </Reveal>
+        <SplitReveal className="mx-auto mt-4 mb-6 max-w-3xl text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.05]">
           {title}
+          {highlight && (
+            <>
+              <br />
+              <span className="text-lime">{highlight}</span>
+            </>
+          )}
         </SplitReveal>
-        <div className="flex flex-col items-start gap-6 md:col-span-3">
-          <SplitReveal as="p" className="text-base leading-relaxed">
-            {body}
-          </SplitReveal>
-          <Reveal y={16}>
-            <ArrowLink href={href} tone="dark">
-              {label}
-            </ArrowLink>
-          </Reveal>
-        </div>
+        <SplitReveal
+          as="p"
+          className="mx-auto mb-10 max-w-md text-sm leading-relaxed text-white/70 md:text-base"
+        >
+          {body}
+        </SplitReveal>
+        <Reveal y={12}>
+          <ArrowLink href={href} tone="lime">
+            {label}
+          </ArrowLink>
+        </Reveal>
       </div>
     </section>
   )

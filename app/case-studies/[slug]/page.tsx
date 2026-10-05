@@ -69,7 +69,7 @@ export default async function CaseStudyPage({ params }: Props) {
           <dl className="grid gap-4">
             {facts.map((fact) => (
               <div key={fact.label} className="flex gap-4">
-                <dt className="w-20 shrink-0 text-[0.7rem] tracking-[0.18em] text-muted-foreground uppercase">
+                <dt className="w-20 shrink-0 font-mono text-xs tracking-wider text-muted-foreground uppercase">
                   {fact.label}
                 </dt>
                 <dd className="text-oxford">
@@ -91,7 +91,7 @@ export default async function CaseStudyPage({ params }: Props) {
       </PageHero>
 
       {/* Challenge → Approach → Impact */}
-      <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
         <ol>
           {[
             { label: "The challenge", text: study.challenge },
@@ -135,7 +135,7 @@ export default async function CaseStudyPage({ params }: Props) {
               <span className="font-heading text-[clamp(3.5rem,6vw,5.5rem)] leading-none">
                 <CountUp value={stat.value} />
               </span>
-              <span className="max-w-[16rem] text-[0.7rem] leading-snug tracking-[0.14em] uppercase">
+              <span className="max-w-[16rem] font-mono text-[11px] leading-snug tracking-wider uppercase">
                 {stat.label}
               </span>
             </div>
@@ -143,7 +143,7 @@ export default async function CaseStudyPage({ params }: Props) {
         </Reveal>
       </section>
 
-      <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
         <SectionHeader eyebrow="More work" title="Other case studies." />
         <Reveal className="mt-14 grid gap-12 md:mt-20 md:grid-cols-2 md:gap-6">
           {more.map((other) => (

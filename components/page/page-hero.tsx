@@ -1,11 +1,11 @@
 import { cn } from "@/lib/utils"
-import { Eyebrow } from "@/components/ui/eyebrow"
+import { StatusPill } from "@/components/ui/eyebrow"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 import { ParallaxImage } from "@/components/page/parallax-image"
 
-// Opening block for every inner page: oversized title, intro, optional
-// full-bleed photo. White, like every major section.
+// Opening block for every inner page (Crowdline template): status pill,
+// large Cal Sans title, muted intro, optional rounded image below.
 export function PageHero({
   eyebrow,
   title,
@@ -25,18 +25,18 @@ export function PageHero({
   compact?: boolean
 }) {
   return (
-    <section className="relative z-10 bg-background px-4 pt-36 pb-16 md:px-7 md:pt-48 md:pb-24">
-      <Reveal y={16}>
-        <Eyebrow className="text-oxford/70">{eyebrow}</Eyebrow>
+    <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pt-32 pb-16 md:pt-40 md:pb-24">
+      <Reveal y={12}>
+        <StatusPill>{eyebrow}</StatusPill>
       </Reveal>
-      <div className="mt-6 grid gap-10 md:grid-cols-12 md:items-end md:gap-6">
+      <div className="mt-8 grid gap-10 md:grid-cols-12 md:items-end md:gap-8">
         <SplitReveal
           as="h1"
           className={cn(
-            "tracking-[0.01em] text-oxford md:col-span-8",
+            "text-oxford md:col-span-8",
             compact
-              ? "text-[clamp(2.75rem,6vw,6.25rem)] leading-[0.92]"
-              : "text-[clamp(3.25rem,9vw,9.5rem)] leading-[0.88]"
+              ? "text-[clamp(2.25rem,4.6vw,3.75rem)] leading-[1.05]"
+              : "text-[clamp(2.75rem,6vw,4.75rem)] leading-[1.02]"
           )}
         >
           {title}
@@ -46,7 +46,7 @@ export function PageHero({
             {intro && (
               <SplitReveal
                 as="p"
-                className="text-base leading-relaxed text-muted-foreground md:text-lg"
+                className="text-sm leading-relaxed text-muted-foreground md:text-base"
               >
                 {intro}
               </SplitReveal>
@@ -60,7 +60,8 @@ export function PageHero({
           src={image}
           alt={imageAlt}
           priority
-          className="mt-14 aspect-[4/3] md:mt-20 md:aspect-[21/9]"
+          sizes="(min-width: 1152px) 1152px, (min-width: 768px) 100vw, 160vw"
+          className="mt-14 aspect-[4/3] rounded-2xl md:mt-16 md:aspect-[21/9]"
         />
       )}
     </section>

@@ -8,7 +8,7 @@ import { InsightCard } from "@/components/page/insight-card"
 // cards. The full filterable list lives on /insights.
 export function Insights() {
   return (
-    <section className="relative z-10 bg-background px-4 py-24 md:px-7 md:py-36">
+    <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 py-24 md:py-28">
       <SectionHeader
         eyebrow="Insights"
         title="Sharp takes on what&rsquo;s next."

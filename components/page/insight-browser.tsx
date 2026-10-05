@@ -57,7 +57,7 @@ export function InsightBrowser() {
         // Keyed on the filters so the list re-enters as one block.
         <InsightList key={`${type}-${topic}`} items={results} />
       ) : (
-        <div className="bg-secondary p-8 text-oxford">
+        <div className="rounded-xl bg-secondary p-8 text-oxford">
           <p className="font-heading text-3xl leading-none">
             Nothing matches yet.
           </p>

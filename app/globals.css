@@ -21,6 +21,8 @@
   --color-electric: var(--electric);
   --color-lime: var(--lime);
   --color-crimson: var(--crimson);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
 
   /* shadcn semantic tokens */
   --color-background: var(--background);
@@ -79,15 +81,19 @@
   --popover-foreground: var(--onyx);
   --primary: var(--oxford);
   --primary-foreground: var(--paper);
-  --secondary: color-mix(in oklab, var(--oxford) 6%, var(--paper));
+  /* Crowdline-style light surfaces: white tinted with Oxford. */
+  --surface: color-mix(in oklab, var(--oxford) 3%, var(--paper));
+  --surface-2: color-mix(in oklab, var(--oxford) 6%, var(--paper));
+  --secondary: var(--surface-2);
   --secondary-foreground: var(--oxford);
   --muted: color-mix(in oklab, var(--charcoal) 6%, var(--paper));
-  --muted-foreground: var(--charcoal);
+  --muted-foreground: color-mix(in oklab, var(--onyx) 72%, var(--paper));
   --accent: var(--electric);
   --accent-foreground: var(--oxford);
   --destructive: var(--crimson);
-  --border: color-mix(in oklab, var(--charcoal) 16%, transparent);
-  --input: color-mix(in oklab, var(--charcoal) 16%, transparent);
+  /* Hairlines (Crowdline template). */
+  --border: color-mix(in oklab, var(--oxford) 11%, transparent);
+  --input: color-mix(in oklab, var(--oxford) 14%, transparent);
   --ring: var(--electric);
 
   --chart-1: var(--lime);
@@ -96,7 +102,7 @@
   --chart-4: var(--crimson);
   --chart-5: var(--charcoal);
 
-  --radius: 0.625rem;
+  --radius: 0.75rem;
 }
 
 @layer base {
@@ -111,6 +117,10 @@
   body {
     @apply bg-background text-foreground;
   }
+  body {
+    letter-spacing: -0.02em;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
   h1,
   h2,
   h3,
@@ -119,4 +129,27 @@
   h6 {
     @apply font-heading;
   }
+  /* Cal Sans is variable; headings sit at bold like the template. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .font-heading,
+  .font-display {
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+}
+
+/* Subtle grain over everything (from the Crowdline template). */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.5;
 }

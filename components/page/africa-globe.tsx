@@ -23,18 +23,38 @@ const toAngles = ([lat, lng]: [number, number]) => ({
 // Africa's centre of mass, tilted slightly north so the Sahel sits mid-globe.
 const AFRICA = toAngles([4, 19])
 
-// A WebGL globe that sways gently around Africa, can be dragged to spin,
-// and swings to a market when `focus` is set. Rendering pauses off-screen.
+// cobe's own maths (dist/index.esm.js): location -> unit vector, then the
+// camera rotation. Globe radius on screen is 0.8 of the half-size.
+function project([lat, lng]: [number, number], phi: number, theta: number) {
+  const r = (lat * Math.PI) / 180
+  const a = (lng * Math.PI) / 180 - Math.PI
+  const t = [-Math.cos(r) * Math.cos(a), Math.sin(r), Math.cos(r) * Math.sin(a)]
+  const cp = Math.cos(phi)
+  const sp = Math.sin(phi)
+  const ct = Math.cos(theta)
+  const st = Math.sin(theta)
+  const x = cp * t[0] + sp * t[2]
+  const y = sp * st * t[0] + ct * t[1] - cp * st * t[2]
+  const z = -sp * ct * t[0] + st * t[1] + cp * ct * t[2]
+  return { sx: (x * 0.8 + 1) / 2, sy: (-y * 0.8 + 1) / 2, front: z > 0.15 }
+}
+
+// Light WebGL globe (Crowdline template, on white): sways gently around
+// Africa, drag to spin, swings to a market when `focus` is set, and floats
+// small city pills over the markets. Rendering pauses off-screen.
 export function AfricaGlobe({
   markets,
   focus,
+  labels = true,
   className,
 }: {
   markets: Market[]
   focus?: [number, number] | null
+  labels?: boolean
   className?: string
 }) {
   const canvas = React.useRef<HTMLCanvasElement>(null)
+  const overlay = React.useRef<HTMLDivElement>(null)
   const target = React.useRef(AFRICA)
   const drag = React.useRef<{ x: number; phi: number } | null>(null)
   const dragPhi = React.useRef(0)
@@ -59,45 +79,45 @@ export function AfricaGlobe({
     let theta = AFRICA.theta
     let time = 0
     let visible = false
-    let globe: Globe | null = null
 
     const home = markets.find((m) => m.home)
 
-    const create = () => {
-      globe = createGlobe(el, {
-        // cobe multiplies width/height by devicePixelRatio itself.
-        width: size,
-        height: size,
-        devicePixelRatio: dpr,
-        phi,
-        theta,
-        dark: 1,
-        diffuse: 1.4,
-        mapSamples: 32000,
-        mapBrightness: 9,
-        mapBaseBrightness: 0,
-        baseColor: OXFORD,
-        markerColor: LIME,
-        glowColor: [0.92, 0.94, 0.97],
-        markers: markets.map((m) => ({
-          location: m.location,
-          size: m.home ? 0.07 : 0.045,
-          color: m.home ? LIME : ELECTRIC,
-        })),
-        arcs: home
-          ? markets
-              .filter((m) => !m.home)
-              .map((m) => ({ from: home.location, to: m.location }))
-          : [],
-        arcColor: ELECTRIC,
-        arcWidth: 0.6,
-        arcHeight: 0.25,
-        markerElevation: 0.02,
-      })
-    }
+    const globe: Globe = createGlobe(el, {
+      // cobe multiplies width/height by devicePixelRatio itself.
+      width: size,
+      height: size,
+      devicePixelRatio: dpr,
+      phi,
+      theta,
+      dark: 0,
+      diffuse: 1.2,
+      mapSamples: 24000,
+      mapBrightness: 2,
+      mapBaseBrightness: 0.04,
+      baseColor: [1, 1, 1],
+      markerColor: OXFORD,
+      glowColor: [0.93, 0.95, 0.98],
+      markers: markets.map((m) => ({
+        location: m.location,
+        size: m.home ? 0.06 : 0.035,
+        color: m.home ? LIME : OXFORD,
+      })),
+      arcs: home
+        ? markets
+            .filter((m) => !m.home)
+            .map((m) => ({ from: home.location, to: m.location }))
+        : [],
+      arcColor: ELECTRIC,
+      arcWidth: 0.6,
+      arcHeight: 0.25,
+      markerElevation: 0.02,
+    })
+
+    const pills = () =>
+      overlay.current?.querySelectorAll<HTMLElement>("[data-market]") ?? []
 
     const tick = (_t: number, deltaMs: number) => {
-      if (!globe || !visible) return
+      if (!visible) return
       time += deltaMs / 1000
       // Idle sway: a slow back-and-forth revolve centred on the target.
       const sway =
@@ -107,12 +127,19 @@ export function AfricaGlobe({
       const goalPhi = target.current.phi + sway + dragPhi.current
       phi += (goalPhi - phi) * 0.05
       theta += (target.current.theta - theta) * 0.05
-      // Ease drag offset back to zero once released.
       if (!drag.current) dragPhi.current *= 0.96
       globe.update({ phi, theta, width: size, height: size })
+
+      pills().forEach((pill, index) => {
+        const market = markets[index]
+        if (!market) return
+        const { sx, sy, front } = project(market.location, phi, theta)
+        pill.style.left = `${sx * 100}%`
+        pill.style.top = `${sy * 100}%`
+        pill.style.opacity = front ? "1" : "0"
+      })
     }
 
-    create()
     gsap.ticker.add(tick)
 
     const io = new IntersectionObserver(([entry]) => {
@@ -129,10 +156,8 @@ export function AfricaGlobe({
       gsap.ticker.remove(tick)
       io.disconnect()
       ro.disconnect()
-      globe?.destroy()
+      globe.destroy()
     }
-    // Recreate only when the marker set changes; focus is read via ref.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [markets])
 
   return (
@@ -158,6 +183,37 @@ export function AfricaGlobe({
         }}
         className="size-full cursor-grab touch-pan-y active:cursor-grabbing"
       />
+
+      {labels && (
+        <div
+          ref={overlay}
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+        >
+          {markets.map((market) => (
+            <div
+              key={market.city}
+              data-market
+              className="absolute -translate-x-1/2 -translate-y-[140%] opacity-0 transition-opacity duration-300"
+            >
+              <span className="flex items-center gap-1.5 rounded-full border border-border bg-white/90 px-2 py-0.5 backdrop-blur-sm">
+                <span
+                  className={cn(
+                    "size-1.5 rounded-full",
+                    market.home ? "bg-lime" : "bg-oxford"
+                  )}
+                />
+                <span className="font-mono text-[9px] leading-none text-oxford">
+                  {market.city}
+                </span>
+                <span className="font-mono text-[9px] leading-none font-semibold text-muted-foreground">
+                  {market.code}
+                </span>
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }

@@ -25,13 +25,13 @@ export default function ServicesPage() {
         intro="Six practices, each built for the business of sport and the markets around it. Start with the one closest to your challenge, or explore our solutions."
       />
 
-      <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
         <ServiceCards />
       </section>
 
       <Process />
 
-      <section className="relative z-10 bg-background px-4 py-24 md:px-7 md:py-36">
+      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 py-24 md:py-36">
         <SectionHeader
           eyebrow="In practice"
           title="See the pillars at work."

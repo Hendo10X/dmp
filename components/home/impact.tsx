@@ -73,14 +73,14 @@ export function Impact() {
   }
 
   return (
-    <section className="relative z-10 bg-background px-4 py-24 md:px-7 md:py-36">
+    <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 py-24 md:py-28">
       <SectionHeader
         eyebrow="Client impact"
         title="Results you can read on a scoreboard."
         intro="Good strategy shows up in numbers. Here is what changes when sport is run with evidence, modern systems and a clear commercial plan."
       />
 
-      <Reveal className="mt-14 flex flex-col gap-2 md:mt-20 md:h-[34rem] md:flex-row md:items-end md:gap-0">
+      <Reveal className="mt-14 flex flex-col gap-3 md:mt-16 md:h-[34rem] md:flex-row md:items-end md:gap-2">
         {columns.map((column) => (
           <div
             key={column.id}
@@ -90,7 +90,7 @@ export function Impact() {
             onBlur={() => setActive(null)}
             style={{ "--grow": growFor(column) } as React.CSSProperties}
             className={cn(
-              "relative min-w-0 overflow-hidden transition-[flex-grow,height] duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] md:grow-(--grow) md:basis-0",
+              "relative min-w-0 overflow-hidden rounded-xl transition-[flex-grow,height] duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] md:grow-(--grow) md:basis-0",
               column.tone,
               column.height,
               active === column.id && "md:h-full",
@@ -115,7 +115,7 @@ function StatColumn({ stat }: { stat: { value: string; label: string } }) {
       <span className="font-display text-[clamp(2.25rem,3.4vw,3.5rem)] leading-none whitespace-nowrap">
         <CountUp value={stat.value} />
       </span>
-      <span className="max-w-[14rem] text-[0.7rem] leading-snug tracking-[0.14em] uppercase">
+      <span className="max-w-[14rem] font-mono text-[11px] leading-snug tracking-wider uppercase">
         {stat.label}
       </span>
     </div>
@@ -127,7 +127,7 @@ function CaseColumn() {
     <div className="flex h-full flex-col gap-6 p-5 md:flex-row md:p-6">
       <div className="flex min-w-[15rem] flex-1 flex-col justify-between gap-10">
         <div>
-          <p className="text-[0.7rem] tracking-[0.18em] uppercase opacity-70">
+          <p className="font-mono text-xs tracking-wider uppercase opacity-70">
             Case study
           </p>
           <h3 className="mt-3 max-w-xs font-display text-xl leading-[1.15] md:text-2xl">
@@ -135,7 +135,7 @@ function CaseColumn() {
           </h3>
           <Link
             href="/case-studies/federation-data-rebuild"
-            className="group mt-5 inline-flex items-center gap-2 text-[0.7rem] tracking-[0.18em] uppercase"
+            className="group mt-5 inline-flex items-center gap-2 font-mono text-xs tracking-wider uppercase"
           >
             Read case study
             <Arrow
@@ -148,7 +148,7 @@ function CaseColumn() {
           <span className="block font-display text-[clamp(3rem,5vw,5rem)] leading-none">
             <CountUp value={stats.hero.value} />
           </span>
-          <span className="mt-3 block max-w-[16rem] text-[0.7rem] leading-snug tracking-[0.14em] uppercase">
+          <span className="mt-3 block max-w-[16rem] font-mono text-[11px] leading-snug tracking-wider uppercase">
             {stats.hero.label}
           </span>
         </div>

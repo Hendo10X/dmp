@@ -1,10 +1,10 @@
 import type { Metadata } from "next"
 import {
-  Geist_Mono,
-  Instrument_Sans,
+  IBM_Plex_Mono,
+  Inter,
   Special_Gothic_Expanded_One,
-  Staatliches,
 } from "next/font/google"
+import localFont from "next/font/local"
 
 import "lenis/dist/lenis.css"
 import "./globals.css"
@@ -13,29 +13,31 @@ import { Header } from "@/components/nav/header"
 import { SiteFooter } from "@/components/site-footer"
 import { cn } from "@/lib/utils"
 
-// Logo + headings
-// DMP wordmark only (header + footer)
-const fontLogo = Special_Gothic_Expanded_One({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-logo",
-})
-
-const fontDisplay = Staatliches({
-  subsets: ["latin"],
-  weight: "400",
+// Type system from the Crowdline template: Cal Sans headings, Inter body,
+// IBM Plex Mono for labels, nav and buttons.
+const fontDisplay = localFont({
+  src: "./fonts/CalSansUI.wght.GEOM.ttf",
+  weight: "100 900",
   variable: "--font-display",
+  display: "swap",
 })
 
-// Body, subtext, UI
-const fontSans = Instrument_Sans({
+const fontSans = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
 })
 
-const fontMono = Geist_Mono({
+const fontMono = IBM_Plex_Mono({
   subsets: ["latin"],
+  weight: ["400", "500", "600"],
   variable: "--font-mono",
+})
+
+// DMP wordmark only (header + footer).
+const fontLogo = Special_Gothic_Expanded_One({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-logo",
 })
 
 export const metadata: Metadata = {

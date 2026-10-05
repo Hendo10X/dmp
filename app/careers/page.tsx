@@ -47,7 +47,7 @@ export default function CareersPage() {
       />
 
       {/* Culture */}
-      <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
         <SectionHeader
           eyebrow="Culture"
           title="How we work together."
@@ -57,7 +57,7 @@ export default function CareersPage() {
           {values.map((value) => (
             <div
               key={value.title}
-              className="flex min-h-56 flex-col justify-between gap-10 bg-secondary p-6 md:p-7"
+              className="flex min-h-56 flex-col justify-between gap-10 rounded-xl bg-secondary p-6 md:p-7"
             >
               <Shape name={value.shape} className="size-10 text-oxford" />
               <div className="flex flex-col gap-3">
@@ -76,7 +76,7 @@ export default function CareersPage() {
       {/* Current openings */}
       <section
         id="openings"
-        className="relative z-10 scroll-mt-28 bg-background px-4 pb-24 md:px-7 md:pb-36"
+        className="relative z-10 mx-auto max-w-6xl scroll-mt-28 bg-background px-6 pb-24 md:pb-36"
       >
         <SectionHeader
           eyebrow="Current openings"
@@ -101,7 +101,7 @@ export default function CareersPage() {
                     <span>{role.type}</span>
                     <span>{role.location}</span>
                   </span>
-                  <span className="flex items-center gap-2 text-[0.7rem] tracking-[0.18em] uppercase md:col-span-1 md:justify-end">
+                  <span className="flex items-center gap-2 font-mono text-xs tracking-wider uppercase md:col-span-1 md:justify-end">
                     <span className="md:sr-only">Apply</span>
                     <Arrow className="transition-transform duration-500 group-hover:translate-x-1" />
                   </span>
@@ -124,7 +124,7 @@ export default function CareersPage() {
       </section>
 
       {/* Application process */}
-      <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
         <SectionHeader
           eyebrow="Application process"
           title="Four steps, no surprises."

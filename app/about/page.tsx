@@ -30,7 +30,7 @@ export default function AboutPage() {
       />
 
       {/* Purpose: mission, positioning, values */}
-      <section className="relative z-10 bg-background px-4 py-24 md:px-7 md:py-36">
+      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 py-24 md:py-36">
         <SectionHeader
           eyebrow="Purpose"
           title="Why we exist."
@@ -50,7 +50,7 @@ export default function AboutPage() {
           ].map((item) => (
             <div key={item.label} className="flex flex-col gap-5">
               <Reveal y={16}>
-                <span className="text-[0.7rem] tracking-[0.18em] text-muted-foreground uppercase">
+                <span className="font-mono text-xs tracking-wider text-muted-foreground uppercase">
                   {item.label}
                 </span>
               </Reveal>
@@ -68,7 +68,7 @@ export default function AboutPage() {
           {values.map((value) => (
             <div
               key={value.title}
-              className="flex min-h-64 flex-col justify-between gap-10 bg-secondary p-6 md:p-7"
+              className="flex min-h-64 flex-col justify-between gap-10 rounded-xl bg-secondary p-6 md:p-7"
             >
               <Shape name={value.shape} className="size-10 text-oxford" />
               <div className="flex flex-col gap-3">
@@ -85,7 +85,7 @@ export default function AboutPage() {
       </section>
 
       {/* People */}
-      <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
         <SectionHeader
           eyebrow="People"
           title="The team behind the work."
@@ -95,7 +95,7 @@ export default function AboutPage() {
           {team.map((person, index) => (
             <figure key={index} className="flex flex-col gap-4">
               {/* Photo placeholder: initials on Oxford until portraits arrive. */}
-              <div className="relative flex aspect-[4/5] items-end overflow-hidden bg-oxford p-5">
+              <div className="relative flex aspect-[4/5] items-end overflow-hidden rounded-xl bg-oxford p-5">
                 <span className="font-heading text-[clamp(4rem,12vw,9rem)] leading-none text-white/10">
                   {person.initials}
                 </span>
@@ -132,7 +132,7 @@ export default function AboutPage() {
       />
 
       {/* Note from the Founders */}
-      <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
         <div className="grid gap-10 md:grid-cols-12 md:gap-6">
           <Reveal y={16} className="md:col-span-3">
             <Eyebrow className="text-oxford/70">

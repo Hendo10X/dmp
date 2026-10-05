@@ -751,17 +751,35 @@ export const formatDate = (iso: string) =>
 export type Market = {
   city: string
   country: string
+  code: string // ISO country code, shown on globe pills
   location: [number, number] // [lat, lng]
   home?: boolean
 }
 
 export const markets: Market[] = [
-  { city: "Lagos", country: "Nigeria", location: [6.52, 3.38], home: true },
-  { city: "Abuja", country: "Nigeria", location: [9.08, 7.4], home: true },
-  { city: "Accra", country: "Ghana", location: [5.6, -0.19] },
-  { city: "Dakar", country: "Senegal", location: [14.72, -17.47] },
-  { city: "Cairo", country: "Egypt", location: [30.04, 31.24] },
-  { city: "Nairobi", country: "Kenya", location: [-1.29, 36.82] },
-  { city: "Kigali", country: "Rwanda", location: [-1.95, 30.06] },
-  { city: "Johannesburg", country: "South Africa", location: [-26.2, 28.05] },
+  {
+    city: "Lagos",
+    country: "Nigeria",
+    code: "NG",
+    location: [6.52, 3.38],
+    home: true,
+  },
+  {
+    city: "Abuja",
+    country: "Nigeria",
+    code: "NG",
+    location: [9.08, 7.4],
+    home: true,
+  },
+  { city: "Accra", country: "Ghana", code: "GH", location: [5.6, -0.19] },
+  { city: "Dakar", country: "Senegal", code: "SN", location: [14.72, -17.47] },
+  { city: "Cairo", country: "Egypt", code: "EG", location: [30.04, 31.24] },
+  { city: "Nairobi", country: "Kenya", code: "KE", location: [-1.29, 36.82] },
+  { city: "Kigali", country: "Rwanda", code: "RW", location: [-1.95, 30.06] },
+  {
+    city: "Johannesburg",
+    country: "South Africa",
+    code: "ZA",
+    location: [-26.2, 28.05],
+  },
 ]

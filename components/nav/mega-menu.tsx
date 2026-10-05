@@ -9,7 +9,6 @@ import { cn } from "@/lib/utils"
 import { Arrow } from "@/components/ui/arrow"
 import { Shape, type ShapeName } from "@/components/ui/shape"
 import { ArrowLink } from "@/components/ui/arrow-link"
-import { fade, panel } from "@/components/nav/anim"
 
 export type MegaKey = "services" | "solutions"
 
@@ -17,7 +16,7 @@ const accent: Record<ShapeName, string> = {
   circle: "group-hover:text-lime",
   square: "group-hover:text-electric",
   triangle: "group-hover:text-crimson",
-  quarter: "group-hover:text-lime",
+  quarter: "group-hover:text-oxford",
   diamond: "group-hover:text-electric",
   ring: "group-hover:text-lime",
 }
@@ -40,8 +39,7 @@ const intro: Record<
   },
 }
 
-// PwC-style dropdown that grows out of the nav bar (desktop only): an intro
-// column plus the services grid or the solution cards.
+// Light dropdown that drops from the fixed nav bar (desktop only).
 export function MegaMenu({
   menu,
   onNavigate,
@@ -54,45 +52,46 @@ export function MegaMenu({
   return (
     <motion.div
       id="mega-menu"
-      variants={panel}
-      initial="closed"
-      animate="open"
-      exit="closed"
-      className="overflow-hidden"
+      initial={{ opacity: 0, y: -8 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+      className="absolute inset-x-0 top-full border-b border-border bg-background/95 backdrop-blur-md"
     >
-      <motion.div
+      <div
         key={menu}
-        variants={fade}
-        className="grid grid-cols-12 gap-6 px-6 pt-8 pb-8"
+        className="mx-auto grid max-w-6xl grid-cols-12 gap-8 px-6 py-8"
       >
-        <div className="col-span-3 flex flex-col items-start gap-5 pr-6">
-          <p className="font-heading text-5xl leading-none">{copy.title}</p>
-          <p className="text-sm leading-relaxed text-white/70">{copy.body}</p>
+        <div className="col-span-3 flex flex-col items-start gap-4">
+          <p className="font-heading text-2xl text-oxford">{copy.title}</p>
+          <p className="text-sm leading-relaxed text-muted-foreground">
+            {copy.body}
+          </p>
           <ArrowLink href={copy.href} onClick={onNavigate} className="mt-2">
             {copy.cta}
           </ArrowLink>
         </div>
 
         {menu === "services" ? (
-          <ul className="col-span-9 grid grid-cols-3 gap-1">
+          <ul className="col-span-9 grid grid-cols-3 gap-2">
             {services.map((service) => (
               <li key={service.slug}>
                 <Link
                   href={`/services/${service.slug}`}
                   onClick={onNavigate}
-                  className="group flex h-full flex-col gap-4 bg-white/5 p-5 transition-colors duration-300 outline-none hover:bg-white/10 focus-visible:bg-white/10"
+                  className="group flex h-full flex-col gap-3 rounded-lg p-4 transition-colors duration-200 outline-none hover:bg-surface focus-visible:bg-surface"
                 >
                   <Shape
                     name={service.shape}
                     className={cn(
-                      "size-6 text-white/40 transition-[color,rotate] duration-500 group-hover:rotate-90",
+                      "size-5 text-oxford/25 transition-[color,rotate] duration-300 group-hover:rotate-90",
                       accent[service.shape]
                     )}
                   />
-                  <span className="font-heading text-2xl leading-[0.95]">
+                  <span className="font-heading text-base leading-tight text-oxford">
                     {service.title}
                   </span>
-                  <span className="text-sm leading-snug text-white/60">
+                  <span className="text-xs leading-snug text-muted-foreground">
                     {service.summary}
                   </span>
                 </Link>
@@ -100,34 +99,34 @@ export function MegaMenu({
             ))}
           </ul>
         ) : (
-          <ul className="col-span-9 grid grid-cols-3 gap-1">
+          <ul className="col-span-9 grid grid-cols-3 gap-3">
             {solutions.map((solution) => (
               <li key={solution.slug}>
                 <Link
                   href={`/solutions/${solution.slug}`}
                   onClick={onNavigate}
-                  className="group flex h-full flex-col bg-white/5 transition-colors duration-300 outline-none hover:bg-white/10 focus-visible:bg-white/10"
+                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-border transition-colors duration-200 outline-none hover:bg-surface focus-visible:bg-surface"
                 >
-                  <span className="relative block aspect-[16/9] overflow-hidden">
+                  <span className="relative block aspect-[16/9] overflow-hidden bg-oxford">
                     <Image
                       src={solution.image}
                       alt=""
                       fill
                       sizes="600px"
-                      className="object-cover transition-[scale] duration-700 group-hover:scale-105"
+                      className="object-cover transition-[scale] duration-500 group-hover:scale-105"
                     />
                   </span>
-                  <span className="flex flex-1 flex-col gap-3 p-5">
-                    <span className="text-[0.7rem] font-semibold tracking-[0.18em] text-lime uppercase">
+                  <span className="flex flex-1 flex-col gap-2 p-4">
+                    <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">
                       {solution.kicker}
                     </span>
                     <span className="flex items-end justify-between gap-4">
-                      <span className="font-heading text-2xl leading-[0.95]">
+                      <span className="font-heading text-base leading-tight text-oxford">
                         {solution.title}
                       </span>
                       <Arrow
-                        size={18}
-                        className="transition-transform duration-500 group-hover:translate-x-1"
+                        size={14}
+                        className="shrink-0 text-oxford transition-transform duration-300 group-hover:translate-x-1"
                       />
                     </span>
                   </span>
@@ -136,7 +135,7 @@ export function MegaMenu({
             ))}
           </ul>
         )}
-      </motion.div>
+      </div>
     </motion.div>
   )
 }

@@ -1,12 +1,8 @@
-"use client"
-
-import * as React from "react"
-
-import { gsap, useGSAP } from "@/lib/gsap"
-import { cn } from "@/lib/utils"
 import { SectionHeader } from "@/components/page/section-header"
+import { Reveal } from "@/components/motion/reveal"
 
-// "How we work" from the Services hub in docs/brief.md, previewed on Home.
+// "How we work": numbered steps in a hairline grid (Crowdline's "How it
+// works"). Used on Home, Services and About.
 const steps = [
   {
     title: "Diagnose",
@@ -27,79 +23,30 @@ const steps = [
 ]
 
 export function Process({ action }: { action?: React.ReactNode }) {
-  const section = React.useRef<HTMLElement>(null)
-  const fill = React.useRef<HTMLDivElement>(null)
-  const [reached, setReached] = React.useState(0)
-
-  useGSAP(
-    () => {
-      // The track fills with scroll; each step lights up as the fill reaches it.
-      gsap.fromTo(
-        fill.current,
-        { scaleX: 0 },
-        {
-          scaleX: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: "[data-steps]",
-            start: "top 75%",
-            end: "bottom 45%",
-            scrub: true,
-            onUpdate: (self) =>
-              setReached(
-                Math.floor(self.progress * (steps.length - 1) + 0.05) + 1
-              ),
-          },
-        }
-      )
-    },
-    { scope: section }
-  )
-
   return (
-    <section
-      ref={section}
-      className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36"
-    >
+    <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 py-24 md:py-28">
       <SectionHeader
         eyebrow="How we work"
         title="From question to result, in four moves."
         intro="The same disciplined sequence on every engagement, whether it is a ten-week review or a five-year programme."
         action={action}
       />
-
-      <div data-steps className="mt-16 md:mt-24">
-        {/* Progress track: the fill is the only moving part. */}
-        <div aria-hidden className="relative hidden h-1 bg-secondary md:block">
+      <Reveal className="mt-14 grid gap-px overflow-hidden rounded-xl border border-border bg-border md:mt-16 md:grid-cols-2 lg:grid-cols-4">
+        {steps.map((step, index) => (
           <div
-            ref={fill}
-            className="absolute inset-0 origin-left bg-oxford"
-            style={{ transform: "scaleX(0)" }}
-          />
-        </div>
-
-        <ol className="grid gap-12 md:mt-10 md:grid-cols-4 md:gap-6">
-          {steps.map((step, index) => {
-            const lit = index < reached
-            return (
-              <li key={step.title} className="flex flex-col gap-5">
-                <span
-                  className={cn(
-                    "font-heading text-[clamp(4.5rem,8vw,8rem)] leading-[0.8] transition-colors duration-700",
-                    lit ? "text-oxford" : "text-oxford/10"
-                  )}
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <h3 className="text-3xl text-oxford">{step.title}</h3>
-                <p className="max-w-xs text-base leading-relaxed text-muted-foreground">
-                  {step.body}
-                </p>
-              </li>
-            )
-          })}
-        </ol>
-      </div>
+            key={step.title}
+            className="group bg-background p-8 transition-colors duration-300 hover:bg-surface"
+          >
+            <div className="mb-6 font-mono text-5xl font-light text-oxford/15 transition-colors duration-300 group-hover:text-oxford/40">
+              {String(index + 1).padStart(2, "0")}
+            </div>
+            <h3 className="mb-3 text-lg text-oxford">{step.title}</h3>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              {step.body}
+            </p>
+          </div>
+        ))}
+      </Reveal>
     </section>
   )
 }

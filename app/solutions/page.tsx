@@ -22,11 +22,11 @@ export default function SolutionsPage() {
         intro="Our proprietary programmes and indices package what we know about African sport into tools leaders can act on."
       />
 
-      <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
         <SolutionTiles />
       </section>
 
-      <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
         <SectionHeader
           eyebrow="Behind the solutions"
           title="Powered by six practices."

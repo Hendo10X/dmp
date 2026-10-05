@@ -54,14 +54,14 @@ export function About() {
   return (
     <section
       ref={section}
-      className="relative z-10 bg-background px-4 py-24 md:px-7 md:py-36"
+      className="relative z-10 mx-auto max-w-6xl bg-background px-6 py-24 md:py-28"
     >
       <div className="grid items-center gap-14 md:grid-cols-12 md:gap-6">
         <div
           ref={frame}
           className="relative [clip-path:inset(0%_0%_0%_0%)] md:col-span-6"
         >
-          <div className="relative aspect-[4/5] overflow-hidden bg-oxford md:aspect-[5/6]">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-oxford md:aspect-[5/6]">
             <div ref={photo} className="absolute inset-x-0 -inset-y-[10%]">
               <Image
                 src={images.site}
@@ -75,9 +75,9 @@ export function About() {
 
           <div
             aria-hidden
-            className="absolute top-0 left-0 size-12 bg-lime md:size-16"
+            className="absolute top-4 left-4 size-10 rounded-full bg-lime md:size-12"
           />
-          <div className="absolute top-12 left-12 flex items-center gap-4 bg-oxford px-5 py-4 text-white md:top-16 md:left-16 md:px-6 md:py-5">
+          <div className="absolute top-10 left-10 flex items-center gap-4 rounded-xl bg-oxford px-5 py-4 text-white md:top-12 md:left-12 md:px-6 md:py-5">
             <span className="font-display text-5xl leading-none md:text-6xl">
               7
             </span>
@@ -93,7 +93,7 @@ export function About() {
           <Reveal y={16}>
             <Eyebrow className="text-oxford/70">About DMPartners</Eyebrow>
           </Reveal>
-          <SplitReveal className="mt-6 text-[clamp(2.5rem,4.6vw,4.75rem)] leading-[0.95] tracking-[0.01em] text-oxford">
+          <SplitReveal className="mt-6 text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08] text-oxford">
             Not aspiration.{" "}
             <span className="text-oxford/45">Possibilities within reach.</span>
           </SplitReveal>

@@ -4,7 +4,7 @@ import { ServiceCards } from "@/components/page/service-cards"
 
 export function Services() {
   return (
-    <section className="relative z-10 bg-background px-4 pt-8 pb-24 md:px-7 md:pb-36">
+    <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 py-24 md:py-28">
       <SectionHeader
         eyebrow="What we do"
         title="Six practices. One ambition."

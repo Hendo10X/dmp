@@ -36,14 +36,14 @@ export default async function InsightPage({ params }: Props) {
         compact
       >
         <Reveal y={16}>
-          <p className="text-[0.7rem] tracking-[0.18em] text-muted-foreground uppercase">
+          <p className="font-mono text-xs tracking-wider text-muted-foreground uppercase">
             Published {formatDate(insight.date)}
           </p>
         </Reveal>
       </PageHero>
 
       {/* Article body. PLACEHOLDER text until the real piece is supplied. */}
-      <article className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
+      <article className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
         <div className="grid gap-10 md:grid-cols-12 md:gap-6">
           <div className="flex flex-col gap-6 text-lg leading-relaxed text-foreground md:col-span-7 md:col-start-4">
             <SplitReveal
@@ -62,7 +62,7 @@ export default async function InsightPage({ params }: Props) {
             </SplitReveal>
             <SplitReveal
               as="h2"
-              className="mt-8 text-4xl leading-none tracking-[0.01em] text-oxford"
+              className="mt-8 text-4xl leading-none text-oxford"
             >
               What the evidence says
             </SplitReveal>
@@ -75,7 +75,7 @@ export default async function InsightPage({ params }: Props) {
             </SplitReveal>
             <SplitReveal
               as="h2"
-              className="mt-8 text-4xl leading-none tracking-[0.01em] text-oxford"
+              className="mt-8 text-4xl leading-none text-oxford"
             >
               What to do next
             </SplitReveal>
@@ -89,7 +89,7 @@ export default async function InsightPage({ params }: Props) {
         </div>
       </article>
 
-      <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
         <SectionHeader eyebrow="Keep reading" title="Related insights." />
         <div className="mt-12 md:mt-16">
           <InsightList items={related} />

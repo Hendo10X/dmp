@@ -26,13 +26,13 @@ export default function InsightsPage() {
       />
 
       {/* Featured / pinned piece */}
-      <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
         <Reveal>
           <InsightCard insight={featured} size="large" />
         </Reveal>
       </section>
 
-      <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
         <SectionHeader eyebrow="Library" title="Everything we publish." />
         <div className="mt-12 md:mt-16">
           <InsightBrowser />

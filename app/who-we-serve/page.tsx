@@ -26,7 +26,7 @@ export default function WhoWeServePage() {
       {/* Jump links */}
       <nav
         aria-label="Client groups"
-        className="relative z-10 bg-background px-4 pb-16 md:px-7 md:pb-24"
+        className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-16 md:pb-24"
       >
         <Reveal>
           <ul className="flex flex-wrap gap-1">
@@ -34,7 +34,7 @@ export default function WhoWeServePage() {
               <li key={audience.slug}>
                 <a
                   href={`#${audience.slug}`}
-                  className="flex items-center gap-2 bg-secondary px-4 py-2.5 text-sm text-oxford transition-colors duration-300 hover:bg-oxford hover:text-white"
+                  className="flex items-center gap-2 rounded-full bg-secondary px-4 py-2.5 text-sm text-oxford transition-colors duration-300 hover:bg-oxford hover:text-white"
                 >
                   <Shape name={audience.shape} className="size-3" />
                   {audience.title}
@@ -45,7 +45,7 @@ export default function WhoWeServePage() {
         </Reveal>
       </nav>
 
-      <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
         <ol>
           {audiences.map((audience, index) => {
             const relevant = services.filter((s) =>
@@ -65,7 +65,7 @@ export default function WhoWeServePage() {
                 </Reveal>
 
                 <div className="flex flex-col gap-6 md:col-span-5">
-                  <SplitReveal className="text-[clamp(2.25rem,4vw,4rem)] leading-[0.95] tracking-[0.01em] text-oxford">
+                  <SplitReveal className="text-[clamp(2.25rem,4vw,4rem)] leading-[1.05] text-oxford">
                     {audience.title}
                   </SplitReveal>
                   <SplitReveal
@@ -78,7 +78,7 @@ export default function WhoWeServePage() {
 
                 <Reveal className="flex flex-col gap-8 md:col-span-4 md:col-start-9">
                   <div>
-                    <p className="text-[0.7rem] tracking-[0.18em] text-muted-foreground uppercase">
+                    <p className="font-mono text-xs tracking-wider text-muted-foreground uppercase">
                       Typical work
                     </p>
                     <ul className="mt-4 flex flex-col gap-2">
@@ -95,7 +95,7 @@ export default function WhoWeServePage() {
                   </div>
                   {relevant.length > 0 && (
                     <div>
-                      <p className="text-[0.7rem] tracking-[0.18em] text-muted-foreground uppercase">
+                      <p className="font-mono text-xs tracking-wider text-muted-foreground uppercase">
                         Most relevant services
                       </p>
                       <ul className="mt-4 flex flex-wrap gap-1">
@@ -103,7 +103,7 @@ export default function WhoWeServePage() {
                           <li key={service.slug}>
                             <a
                               href={`/services/${service.slug}`}
-                              className="block bg-secondary px-3 py-2 text-sm text-oxford transition-colors duration-300 hover:bg-oxford hover:text-white"
+                              className="block rounded-full bg-secondary px-3 py-2 text-sm text-oxford transition-colors duration-300 hover:bg-oxford hover:text-white"
                             >
                               {service.title}
                             </a>

@@ -2,28 +2,33 @@
 
 import Link from "next/link"
 import { motion } from "motion/react"
-import { Arrow } from "@/components/ui/arrow"
 
 import { cn } from "@/lib/utils"
+import { Arrow } from "@/components/ui/arrow"
 
 const MotionLink = motion.create(Link)
 
+// Pill buttons from the Crowdline template.
 const tones = {
-  // White label + lime arrow: on dark or photographic backgrounds.
-  light: { label: "bg-white text-oxford", arrow: "bg-lime text-oxford" },
-  // Soft label + lime arrow: on white sections.
-  muted: { label: "bg-secondary text-oxford", arrow: "bg-lime text-oxford" },
-  // Oxford label + white arrow: on lime or electric backgrounds.
-  dark: { label: "bg-oxford text-white", arrow: "bg-white text-oxford" },
+  // Primary: Oxford pill (on white).
+  primary: "bg-oxford text-white hover:bg-oxford/90",
+  // Outline: hairline pill (on white).
+  muted:
+    "border border-oxford/20 bg-transparent text-oxford hover:border-oxford/40 hover:bg-surface",
+  // White pill: on Oxford or photographic backgrounds.
+  light: "bg-white text-oxford hover:bg-white/90",
+  // Lime pill: secondary highlight on Oxford.
+  lime: "bg-lime text-oxford hover:bg-lime/90",
+  // Oxford pill used on electric/lime backgrounds.
+  dark: "bg-oxford text-white hover:bg-oxford/90",
 }
 
-// Rectangular CTA: a text block with an arrow square flush to its right.
 export function ArrowLink({
   href,
   children,
   className,
   onClick,
-  tone = "light",
+  tone = "primary",
 }: {
   href: string
   children: React.ReactNode
@@ -39,32 +44,19 @@ export function ArrowLink({
       whileHover="hover"
       whileTap={{ scale: 0.98 }}
       className={cn(
-        "inline-flex h-12 items-stretch outline-offset-4 focus-visible:outline-2 focus-visible:outline-electric",
+        "inline-flex h-10 items-center gap-2 rounded-full px-6 font-mono text-xs font-semibold tracking-wider whitespace-nowrap uppercase outline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-electric",
+        tones[tone],
         className
       )}
     >
-      <span
-        className={cn(
-          "flex items-center px-5 text-xs font-semibold tracking-[0.16em] whitespace-nowrap uppercase",
-          tones[tone].label
-        )}
+      {children}
+      <motion.span
+        variants={{ rest: { x: 0 }, hover: { x: 3 } }}
+        transition={{ type: "spring", stiffness: 400, damping: 25 }}
+        className="flex"
       >
-        {children}
-      </span>
-      <span
-        className={cn(
-          "flex aspect-square h-full items-center justify-center",
-          tones[tone].arrow
-        )}
-      >
-        <motion.span
-          variants={{ rest: { x: 0 }, hover: { x: 4 } }}
-          transition={{ type: "spring", stiffness: 400, damping: 25 }}
-          className="flex"
-        >
-          <Arrow size={20} />
-        </motion.span>
-      </span>
+        <Arrow size={14} />
+      </motion.span>
     </MotionLink>
   )
 }

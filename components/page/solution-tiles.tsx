@@ -12,12 +12,12 @@ import { Reveal } from "@/components/motion/reveal"
 // lifts on hover.
 export function SolutionTiles({ className }: { className?: string }) {
   return (
-    <Reveal className={cn("grid gap-2 md:grid-cols-3", className)}>
+    <Reveal className={cn("grid gap-3 md:grid-cols-3", className)}>
       {solutions.map((solution) => (
         <Link
           key={solution.slug}
           href={`/solutions/${solution.slug}`}
-          className="group relative flex min-h-[26rem] flex-col justify-between overflow-hidden bg-oxford p-6 text-white outline-none focus-visible:ring-2 focus-visible:ring-electric md:min-h-[34rem] md:p-7"
+          className="group relative flex min-h-[26rem] flex-col justify-between overflow-hidden rounded-xl bg-oxford p-6 text-white outline-none focus-visible:ring-2 focus-visible:ring-electric md:min-h-[34rem] md:p-7"
         >
           <Image
             src={solution.image}
@@ -37,7 +37,7 @@ export function SolutionTiles({ className }: { className?: string }) {
           />
 
           <span className="relative flex items-center justify-between">
-            <span className="text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
+            <span className="font-mono text-[10px] tracking-widest uppercase">
               {solution.kicker}
             </span>
             <Shape
@@ -47,13 +47,13 @@ export function SolutionTiles({ className }: { className?: string }) {
           </span>
 
           <span className="relative flex flex-col gap-4">
-            <span className="font-heading text-[clamp(2.25rem,3.2vw,3rem)] leading-[0.92]">
+            <span className="font-heading text-[clamp(1.75rem,2.4vw,2.25rem)] leading-[1.05]">
               {solution.title}
             </span>
             <span className="max-w-sm text-sm leading-relaxed text-white/80 md:text-base">
               {solution.summary}
             </span>
-            <span className="mt-2 flex items-center gap-2 text-[0.7rem] font-semibold tracking-[0.18em] uppercase">
+            <span className="mt-2 flex items-center gap-2 font-mono text-xs tracking-wider uppercase">
               Explore {solution.kicker.toLowerCase()}
               <Arrow
                 size={16}

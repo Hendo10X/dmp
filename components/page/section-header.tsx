@@ -3,8 +3,8 @@ import { Eyebrow } from "@/components/ui/eyebrow"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 
-// The standard section opener used on every page: eyebrow + title on the
-// left, a short intro and optional action on the right.
+// Section opener (Crowdline template): mono eyebrow, bold Cal Sans title,
+// optional intro underneath, optional action to the right.
 export function SectionHeader({
   eyebrow,
   title,
@@ -24,43 +24,40 @@ export function SectionHeader({
   return (
     <div
       className={cn(
-        "grid gap-8 md:grid-cols-12 md:items-end md:gap-6",
+        "flex flex-col gap-8 md:flex-row md:items-end md:justify-between md:gap-12",
         className
       )}
     >
-      <div className="md:col-span-7">
-        <Reveal y={16}>
-          <Eyebrow
-            marker={dark ? "bg-white" : "bg-oxford"}
-            className={dark ? "text-white/70" : "text-oxford/70"}
-          >
+      <div className="max-w-2xl">
+        <Reveal y={12}>
+          <Eyebrow className={dark ? "text-electric" : undefined}>
             {eyebrow}
           </Eyebrow>
         </Reveal>
         <SplitReveal
           className={cn(
-            "mt-6 text-[clamp(2.5rem,4.6vw,4.75rem)] leading-[0.95] tracking-[0.01em]",
+            "mt-3 text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08]",
             dark ? "text-white" : "text-oxford"
           )}
         >
           {title}
         </SplitReveal>
+        {intro && (
+          <SplitReveal
+            as="p"
+            className={cn(
+              "mt-5 max-w-xl text-sm leading-relaxed md:text-base",
+              dark ? "text-white/70" : "text-muted-foreground"
+            )}
+          >
+            {intro}
+          </SplitReveal>
+        )}
       </div>
-      {(intro || action) && (
-        <div className="flex flex-col items-start gap-8 md:col-span-4 md:col-start-9">
-          {intro && (
-            <SplitReveal
-              as="p"
-              className={cn(
-                "text-base leading-relaxed md:text-lg",
-                dark ? "text-white/75" : "text-muted-foreground"
-              )}
-            >
-              {intro}
-            </SplitReveal>
-          )}
-          {action && <Reveal y={16}>{action}</Reveal>}
-        </div>
+      {action && (
+        <Reveal y={12} className="shrink-0">
+          {action}
+        </Reveal>
       )}
     </div>
   )

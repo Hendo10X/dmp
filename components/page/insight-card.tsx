@@ -22,7 +22,7 @@ export function InsightCard({
     >
       <span
         className={cn(
-          "relative block overflow-hidden bg-oxford",
+          "relative block overflow-hidden rounded-xl bg-oxford",
           size === "large" ? "aspect-[4/3] md:aspect-[16/10]" : "aspect-[4/3]"
         )}
       >
@@ -37,18 +37,18 @@ export function InsightCard({
           }
           className="object-cover transition-transform duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-105"
         />
-        <span className="absolute top-0 left-0 bg-electric px-4 py-2 text-[0.7rem] tracking-[0.16em] uppercase">
+        <span className="absolute top-3 left-3 rounded-full bg-white/90 px-3 py-1 font-mono text-[10px] tracking-widest text-oxford uppercase">
           {insight.type}
         </span>
       </span>
-      <span className="flex gap-4 text-[0.7rem] tracking-[0.16em] text-muted-foreground uppercase">
+      <span className="flex gap-4 font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
         <span>{formatDate(insight.date)}</span>
         <span>{insight.topic}</span>
       </span>
       <span
         className={cn(
-          "font-heading leading-[0.95]",
-          size === "large" ? "text-[clamp(2rem,3.6vw,3.5rem)]" : "text-[1.9rem]"
+          "font-heading leading-[1.05]",
+          size === "large" ? "text-[clamp(1.5rem,2.4vw,2rem)]" : "text-xl"
         )}
       >
         {insight.title}
@@ -58,7 +58,7 @@ export function InsightCard({
           {insight.excerpt}
         </span>
       )}
-      <span className="flex items-center gap-2 text-[0.7rem] tracking-[0.18em] uppercase">
+      <span className="flex items-center gap-2 font-mono text-xs tracking-wider uppercase">
         Read {insight.type.toLowerCase()}
         <Arrow
           size={16}

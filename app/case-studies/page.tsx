@@ -19,7 +19,7 @@ export default function CaseStudiesPage() {
         title="Impact, with evidence."
         intro="Each case study follows the same format: the challenge, what we did, and what changed. Filter by service or sector."
       />
-      <section className="relative z-10 bg-background px-4 pb-24 md:px-7 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
         <Suspense>
           <CaseStudyBrowser />
         </Suspense>

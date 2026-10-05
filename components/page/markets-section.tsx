@@ -21,13 +21,13 @@ export function MarketsSection({
   const [active, setActive] = React.useState<number | null>(null)
 
   return (
-    <section className="relative z-10 overflow-hidden bg-background px-4 py-24 md:px-7 md:py-36">
+    <section className="relative z-10 mx-auto max-w-6xl overflow-hidden bg-background px-6 py-24 md:py-36">
       <div className="grid items-center gap-12 md:grid-cols-12 md:gap-6">
         <div className="md:col-span-5">
           <Reveal y={16}>
             <Eyebrow className="text-oxford/70">Across the continent</Eyebrow>
           </Reveal>
-          <SplitReveal className="mt-6 text-[clamp(2.5rem,4.6vw,4.75rem)] leading-[0.95] tracking-[0.01em] text-oxford">
+          <SplitReveal className="mt-6 text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08] text-oxford">
             {title}
           </SplitReveal>
           <SplitReveal
@@ -54,7 +54,7 @@ export function MarketsSection({
                     }
                     aria-pressed={active === index}
                     className={cn(
-                      "flex w-full items-center gap-3 px-4 py-3 text-left transition-colors duration-300 outline-none focus-visible:ring-2 focus-visible:ring-electric",
+                      "flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left transition-colors duration-300 outline-none focus-visible:ring-2 focus-visible:ring-electric",
                       active === index
                         ? "bg-oxford text-white"
                         : "bg-secondary text-oxford"
