@@ -4,13 +4,12 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { AnimatePresence, motion } from "motion/react"
-import { useLenis } from "lenis/react"
 
 import { cn } from "@/lib/utils"
 import { useIntroSettled } from "@/lib/preloader-store"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { MegaMenu, type MegaKey } from "@/components/nav/mega-menu"
-import { MobileDrawer } from "@/components/nav/mobile-drawer"
+import { SideMenu } from "@/components/nav/side-menu"
 
 // Desktop top-level links. Services and Solutions open dropdowns.
 const primary: { title: string; href: string; mega?: MegaKey }[] = [
@@ -26,14 +25,11 @@ const primary: { title: string; href: string; mega?: MegaKey }[] = [
 export function Header() {
   const pathname = usePathname()
   const ready = useIntroSettled()
-  const lenis = useLenis()
 
-  const [drawer, setDrawer] = React.useState(false)
   const [mega, setMega] = React.useState<MegaKey | null>(null)
   const closeTimer = React.useRef<number | null>(null)
 
   const closeAll = React.useCallback(() => {
-    setDrawer(false)
     setMega(null)
   }, [])
 
@@ -54,19 +50,15 @@ export function Header() {
     closeAll()
   }, [pathname, closeAll])
 
-  // Freeze the page behind the drawer; Escape closes either menu.
+  // Escape closes the dropdown.
   React.useEffect(() => {
-    if (!drawer && !mega) return
-    if (drawer) lenis?.stop()
+    if (!mega) return
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") closeAll()
     }
     window.addEventListener("keydown", onKeyDown)
-    return () => {
-      if (drawer) lenis?.start()
-      window.removeEventListener("keydown", onKeyDown)
-    }
-  }, [drawer, mega, lenis, closeAll])
+    return () => window.removeEventListener("keydown", onKeyDown)
+  }, [mega, closeAll])
 
   // Scrolling the page dismisses an open dropdown.
   React.useEffect(() => {
@@ -147,29 +139,8 @@ export function Header() {
             </ArrowLink>
           </div>
 
-          <button
-            type="button"
-            aria-label="Open menu"
-            aria-expanded={drawer}
-            aria-controls="site-drawer"
-            onClick={() => {
-              setMega(null)
-              setDrawer(true)
-            }}
-            className="flex size-9 items-center justify-center rounded-md text-oxford transition-colors hover:bg-surface lg:hidden"
-          >
-            <svg
-              aria-hidden
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={1.5}
-              strokeLinecap="square"
-              className="size-5"
-            >
-              <path d="M4 7h16M4 12h16M4 17h16" />
-            </svg>
-          </button>
+          {/* Mobile: the side-menu pill sits here (rendered fixed below). */}
+          <span aria-hidden className="h-10 w-[100px] lg:hidden" />
         </nav>
 
         <div className="hidden lg:block">
@@ -179,7 +150,7 @@ export function Header() {
         </div>
       </motion.header>
 
-      <MobileDrawer open={drawer} onClose={closeAll} />
+      <SideMenu />
     </>
   )
 }
