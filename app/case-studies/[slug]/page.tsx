@@ -100,7 +100,7 @@ export default async function CaseStudyPage({ params }: Props) {
           ].map((block, index) => (
             <li
               key={block.label}
-              className="grid gap-6 border-t border-oxford/15 py-12 md:grid-cols-12 md:gap-6 md:py-16"
+              className="grid gap-6 border-t border-border py-12 md:grid-cols-12 md:gap-6 md:py-16"
             >
               <Reveal
                 y={16}

@@ -70,29 +70,30 @@ export default async function ServicePage({ params }: Props) {
       <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
         <SectionHeader eyebrow="Who it&rsquo;s for" title="Built for." />
         <Reveal className="mt-12 md:mt-16">
-          <ul>
+          <ul className="border-t border-border">
             {service.forWhom.map((slug) => {
               const audience = findAudience(slug)
               if (!audience) return null
               return (
                 <li key={slug}>
+                  {/* Fixed columns so every row lines up: shape, title,
+                      description, arrow. Description drops under the
+                      title on mobile. */}
                   <Link
                     href={`/who-we-serve#${slug}`}
-                    className="group grid grid-cols-[auto_1fr_auto] items-center gap-5 border-b border-oxford/15 py-6 text-oxford md:gap-8 md:py-8"
+                    className="group grid grid-cols-[1.25rem_minmax(0,1fr)_1.25rem] items-start gap-x-5 gap-y-2 border-b border-border py-6 text-oxford md:grid-cols-[1.5rem_minmax(0,5fr)_minmax(0,7fr)_1.25rem] md:items-center md:gap-x-8 md:py-7"
                   >
                     <Shape
                       name={audience.shape}
-                      className="size-6 text-oxford transition-transform duration-700 group-hover:rotate-90 md:size-8"
+                      className="col-start-1 row-start-1 mt-1 size-5 text-oxford transition-transform duration-700 group-hover:rotate-90 md:mt-0 md:size-6"
                     />
-                    <span className="flex flex-col gap-1 md:flex-row md:items-baseline md:gap-8">
-                      <span className="font-heading text-[clamp(1.75rem,3.2vw,3rem)] leading-none">
-                        {audience.title}
-                      </span>
-                      <span className="text-sm text-muted-foreground md:text-base">
-                        {audience.body}
-                      </span>
+                    <span className="col-start-2 row-start-1 font-heading text-[clamp(1.25rem,2vw,1.75rem)] leading-tight">
+                      {audience.title}
                     </span>
-                    <Arrow className="transition-transform duration-500 group-hover:translate-x-1" />
+                    <span className="col-start-2 row-start-2 text-sm leading-relaxed text-muted-foreground md:col-start-3 md:row-start-1 md:text-base">
+                      {audience.body}
+                    </span>
+                    <Arrow className="col-start-3 row-start-1 mt-1 transition-transform duration-500 group-hover:translate-x-1 md:col-start-4 md:mt-0" />
                   </Link>
                 </li>
               )

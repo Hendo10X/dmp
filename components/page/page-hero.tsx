@@ -1,13 +1,11 @@
 import { cn } from "@/lib/utils"
-import { StatusPill } from "@/components/ui/eyebrow"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 import { ParallaxImage } from "@/components/page/parallax-image"
 
-// Opening block for every inner page (Crowdline template): status pill,
-// large Cal Sans title, muted intro, optional rounded image below.
+// Opening block for every inner page (Crowdline template): large Cal Sans
+// title, muted intro, optional rounded image below.
 export function PageHero({
-  eyebrow,
   title,
   intro,
   image,
@@ -15,7 +13,8 @@ export function PageHero({
   children,
   compact = false,
 }: {
-  eyebrow: string
+  // Kept for page metadata/readability; no longer rendered as a badge.
+  eyebrow?: string
   title: string
   intro?: string
   image?: string
@@ -26,10 +25,7 @@ export function PageHero({
 }) {
   return (
     <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pt-32 pb-16 md:pt-40 md:pb-24">
-      <Reveal y={12}>
-        <StatusPill>{eyebrow}</StatusPill>
-      </Reveal>
-      <div className="mt-8 grid gap-10 md:grid-cols-12 md:items-end md:gap-8">
+      <div className="grid gap-10 md:grid-cols-12 md:items-end md:gap-8">
         <SplitReveal
           as="h1"
           className={cn(

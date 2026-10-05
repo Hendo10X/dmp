@@ -2,7 +2,6 @@
 
 import { markets } from "@/lib/content"
 import { usePreloaderDone } from "@/lib/preloader-store"
-import { StatusPill } from "@/components/ui/eyebrow"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
@@ -17,10 +16,6 @@ export function Hero() {
     <section className="relative z-10 mx-auto flex min-h-svh max-w-6xl items-center overflow-hidden bg-background px-6 pt-14">
       <div className="flex w-full flex-col md:flex-row md:items-center md:gap-8 lg:gap-12">
         <div className="relative z-10 flex flex-col pt-16 pb-4 text-center md:w-[52%] md:py-0 md:text-left lg:w-[50%]">
-          <Reveal y={12} className="mx-auto mb-8 md:mx-0">
-            <StatusPill>Commercial &amp; investment advisory</StatusPill>
-          </Reveal>
-
           <SplitReveal
             as="h1"
             mode="manual"

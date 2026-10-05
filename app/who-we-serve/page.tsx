@@ -55,7 +55,7 @@ export default function WhoWeServePage() {
               <li
                 key={audience.slug}
                 id={audience.slug}
-                className="grid scroll-mt-28 gap-8 border-t border-oxford/15 py-14 md:grid-cols-12 md:gap-6 md:py-20"
+                className="grid scroll-mt-28 gap-8 border-t border-border py-14 md:grid-cols-12 md:gap-6 md:py-20"
               >
                 <Reveal y={16} className="flex items-start gap-4 md:col-span-2">
                   <span className="font-heading text-lg text-oxford/40">

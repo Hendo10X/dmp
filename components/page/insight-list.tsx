@@ -28,7 +28,7 @@ export function InsightList({ items }: { items: Insight[] }) {
                 onFocus={() => setActive(index)}
                 onBlur={() => setActive(null)}
                 className={cn(
-                  "grid grid-cols-[4.5rem_1fr] items-center gap-x-4 border-b border-oxford/15 py-5 text-oxford transition-colors duration-500 outline-none sm:grid-cols-[6rem_1fr] md:grid-cols-12 md:items-baseline md:gap-x-6 md:py-7",
+                  "grid grid-cols-[4.5rem_1fr] items-center gap-x-4 border-b border-border py-5 text-oxford transition-colors duration-500 outline-none sm:grid-cols-[6rem_1fr] md:grid-cols-12 md:items-baseline md:gap-x-6 md:py-7",
                   active !== null && active !== index && "md:text-oxford/35"
                 )}
               >

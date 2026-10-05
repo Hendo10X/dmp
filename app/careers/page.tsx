@@ -89,7 +89,7 @@ export default function CareersPage() {
               <li key={role.title}>
                 <Link
                   href={`/contact?topic=careers&role=${encodeURIComponent(role.title)}`}
-                  className="group grid gap-3 border-b border-oxford/15 py-6 text-oxford md:grid-cols-12 md:items-center md:gap-6 md:py-8"
+                  className="group grid gap-3 border-b border-border py-6 text-oxford md:grid-cols-12 md:items-center md:gap-6 md:py-8"
                 >
                   <span className="font-heading text-[clamp(1.75rem,3vw,2.75rem)] leading-none md:col-span-5">
                     {role.title}

@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils"
 import { findSector, findService, type CaseStudy } from "@/lib/content"
 import { Arrow } from "@/components/ui/arrow"
 
-// Photo card for a case study: image zooms gently on hover, the lead stat
-// sits on a lime tag.
+// Photo card for a case study: image zooms gently on hover; the lead stat
+// sits in its own row under the title, aligned with the text.
 export function CaseStudyCard({
   study,
   className,
@@ -45,20 +45,9 @@ export function CaseStudyCard({
           }
           className="object-cover transition-transform duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-105"
         />
-        {lead && (
-          <span className="absolute bottom-3 left-3 flex items-baseline gap-3 rounded-lg bg-lime px-3 py-2">
-            <span className="font-heading text-3xl leading-none">
-              {lead.value}
-            </span>
-            <span className="max-w-[10rem] font-mono text-[10px] leading-tight tracking-wider uppercase">
-              {lead.label}
-            </span>
-          </span>
-        )}
       </span>
-      <span className="flex flex-wrap gap-x-4 gap-y-1 font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
-        {service && <span>{service.title}</span>}
-        {sector && <span>{sector.title}</span>}
+      <span className="text-xs text-muted-foreground">
+        {[service?.title, sector?.title].filter(Boolean).join(" · ")}
       </span>
       <span
         className={cn(
@@ -68,6 +57,14 @@ export function CaseStudyCard({
       >
         {study.title}
       </span>
+      {lead && (
+        <span className="flex items-baseline gap-3 border-t border-border pt-4">
+          <span className="font-heading text-2xl leading-none text-oxford">
+            {lead.value}
+          </span>
+          <span className="text-sm text-muted-foreground">{lead.label}</span>
+        </span>
+      )}
       <span className="flex items-center gap-2 font-mono text-xs tracking-wider uppercase">
         Read case study
         <Arrow

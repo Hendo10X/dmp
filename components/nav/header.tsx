@@ -22,7 +22,7 @@ const primary: { title: string; href: string; mega?: MegaKey }[] = [
   { title: "Careers", href: "/careers" },
 ]
 
-// Fixed, blurred, hairline nav bar from the Crowdline template, on white.
+// Fixed nav bar (Crowdline layout) on solid white, no border.
 export function Header() {
   const pathname = usePathname()
   const ready = useIntroSettled()
@@ -86,7 +86,7 @@ export function Header() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         onMouseLeave={scheduleClose}
         onMouseEnter={cancelClose}
-        className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md"
+        className="fixed inset-x-0 top-0 z-50 bg-background"
       >
         <nav
           aria-label="Main"
@@ -100,13 +100,13 @@ export function Header() {
             DMP
           </Link>
 
-          <div className="hidden items-center gap-6 lg:flex">
-            <ul className="flex items-center gap-6">
+          <div className="hidden items-center gap-8 lg:flex">
+            <ul className="flex items-center gap-5">
               {primary.map((item) => {
                 const active = isActive(item.href)
                 const expanded = Boolean(item.mega && mega === item.mega)
                 const itemClass = cn(
-                  "flex items-center gap-1.5 font-mono text-xs tracking-widest uppercase transition-colors outline-none hover:text-oxford focus-visible:text-oxford",
+                  "flex items-center gap-1 text-[13px] font-medium transition-colors outline-none hover:text-oxford focus-visible:text-oxford",
                   active || expanded ? "text-oxford" : "text-muted-foreground"
                 )
                 return (

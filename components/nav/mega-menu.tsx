@@ -56,7 +56,7 @@ export function MegaMenu({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-      className="absolute inset-x-0 top-full border-b border-border bg-background/95 backdrop-blur-md"
+      className="absolute inset-x-0 top-full bg-surface"
     >
       <div
         key={menu}

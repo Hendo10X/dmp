@@ -107,7 +107,7 @@ export default async function SolutionPage({ params }: Props) {
                     <li key={slug}>
                       <Link
                         href={`/who-we-serve#${slug}`}
-                        className="group flex items-center justify-between gap-6 border-b border-oxford/15 py-5 text-oxford"
+                        className="group flex items-center justify-between gap-6 border-b border-border py-5 text-oxford"
                       >
                         <span className="font-heading text-[clamp(1.5rem,2.4vw,2.25rem)] leading-none">
                           {audience.title}

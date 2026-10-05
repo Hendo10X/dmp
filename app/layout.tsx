@@ -1,9 +1,5 @@
 import type { Metadata } from "next"
-import {
-  IBM_Plex_Mono,
-  Inter,
-  Special_Gothic_Expanded_One,
-} from "next/font/google"
+import { Geist, Inter, Special_Gothic_Expanded_One } from "next/font/google"
 import localFont from "next/font/local"
 
 import "lenis/dist/lenis.css"
@@ -14,7 +10,7 @@ import { SiteFooter } from "@/components/site-footer"
 import { cn } from "@/lib/utils"
 
 // Type system from the Crowdline template: Cal Sans headings, Inter body,
-// IBM Plex Mono for labels, nav and buttons.
+// Geist (in the --font-mono slot) for labels, nav and buttons.
 const fontDisplay = localFont({
   src: "./fonts/CalSansUI.wght.GEOM.ttf",
   weight: "100 900",
@@ -27,9 +23,8 @@ const fontSans = Inter({
   variable: "--font-sans",
 })
 
-const fontMono = IBM_Plex_Mono({
+const fontMono = Geist({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
   variable: "--font-mono",
 })
 
