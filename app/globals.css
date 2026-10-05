@@ -153,36 +153,3 @@ body::before {
   z-index: 9999;
   opacity: 0.5;
 }
-
-/* Side-menu button text (after olivierlarose/awwwards-side-menu): on hover
-   the label tips back in 3D and a copy rolls up from below. */
-.perspective-text {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transform-style: preserve-3d;
-  transition: transform 0.75s cubic-bezier(0.76, 0, 0.24, 1);
-}
-.perspective-text > span {
-  pointer-events: none;
-  transition: all 0.75s cubic-bezier(0.76, 0, 0.24, 1);
-}
-.perspective-text > span:nth-of-type(2) {
-  position: absolute;
-  transform-origin: bottom center;
-  transform: rotateX(-90deg) translateY(9px);
-  opacity: 0;
-}
-.perspective-hover:hover .perspective-text {
-  transform: rotateX(90deg);
-}
-.perspective-hover:hover .perspective-text > span:nth-of-type(1) {
-  transform: translateY(-100%);
-  opacity: 0;
-}
-.perspective-hover:hover .perspective-text > span:nth-of-type(2) {
-  opacity: 1;
-}

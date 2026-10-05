@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils"
 import { useIntroSettled } from "@/lib/preloader-store"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { MegaMenu, type MegaKey } from "@/components/nav/mega-menu"
-import { SideMenu } from "@/components/nav/side-menu"
+import { Burger, SideMenu } from "@/components/nav/side-menu"
 
 // Desktop top-level links. Services and Solutions open dropdowns.
 const primary: { title: string; href: string; mega?: MegaKey }[] = [
@@ -27,11 +27,14 @@ export function Header() {
   const ready = useIntroSettled()
 
   const [mega, setMega] = React.useState<MegaKey | null>(null)
+  const [menu, setMenu] = React.useState(false)
   const closeTimer = React.useRef<number | null>(null)
 
   const closeAll = React.useCallback(() => {
     setMega(null)
+    setMenu(false)
   }, [])
+  const closeMenu = React.useCallback(() => setMenu(false), [])
 
   const openMega = (key: MegaKey) => {
     if (closeTimer.current) window.clearTimeout(closeTimer.current)
@@ -139,8 +142,18 @@ export function Header() {
             </ArrowLink>
           </div>
 
-          {/* Mobile: the side-menu pill sits here (rendered fixed below). */}
-          <span aria-hidden className="h-10 w-[100px] lg:hidden" />
+          {/* Mobile: hamburger that morphs to an X; the header stays above
+              the side panel so it remains visible while open. */}
+          <button
+            type="button"
+            aria-label={menu ? "Close menu" : "Open menu"}
+            aria-expanded={menu}
+            aria-controls="site-menu"
+            onClick={() => setMenu((value) => !value)}
+            className="-mr-2 flex size-10 items-center justify-center text-oxford outline-none focus-visible:ring-2 focus-visible:ring-electric lg:hidden"
+          >
+            <Burger open={menu} />
+          </button>
         </nav>
 
         <div className="hidden lg:block">
@@ -150,7 +163,7 @@ export function Header() {
         </div>
       </motion.header>
 
-      <SideMenu />
+      <SideMenu open={menu} onClose={closeMenu} />
     </>
   )
 }
