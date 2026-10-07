@@ -14,25 +14,27 @@ const preview = [
 ]
 
 // Feature band (Crowdline's "For publishers" section): copy and outcome
-// bullets beside a window-style preview of the index. Full-width surface
-// band with hairlines top and bottom.
+// bullets beside a window-style preview of the index. Full-width Oxford
+// band: the one dark break in the white run of the home page.
 export function Feature({ slug = "sports-power-index" }: { slug?: string }) {
   const solution = findSolution(slug)
   if (!solution) return null
 
   return (
-    <section className="relative z-10 border-y border-border bg-surface">
+    <section className="relative z-10 bg-oxford text-white">
       <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 py-24 md:grid-cols-2 md:py-28">
         <div>
           <Reveal y={12}>
-            <Eyebrow>Featured {solution.kicker.toLowerCase()}</Eyebrow>
+            <Eyebrow className="text-electric">
+              Featured {solution.kicker.toLowerCase()}
+            </Eyebrow>
           </Reveal>
-          <SplitReveal className="mt-3 mb-6 text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08] text-oxford">
+          <SplitReveal className="mt-3 mb-6 text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08]">
             {solution.title}
           </SplitReveal>
           <SplitReveal
             as="p"
-            className="mb-8 text-sm leading-relaxed text-muted-foreground md:text-base"
+            className="mb-8 text-sm leading-relaxed text-white/70 md:text-base"
           >
             {solution.what}
           </SplitReveal>
@@ -41,21 +43,21 @@ export function Feature({ slug = "sports-power-index" }: { slug?: string }) {
               {solution.outcomes.map((outcome) => (
                 <li
                   key={outcome}
-                  className="flex items-start gap-3 text-sm text-onyx"
+                  className="flex items-start gap-3 text-sm text-white"
                 >
-                  <span className="mt-[6px] size-1.5 shrink-0 rounded-full bg-oxford" />
+                  <span className="mt-[6px] size-1.5 shrink-0 rounded-full bg-lime" />
                   {outcome}
                 </li>
               ))}
             </ul>
-            <ArrowLink href={`/solutions/${solution.slug}`}>
+            <ArrowLink href={`/solutions/${solution.slug}`} tone="lime">
               Explore the index
             </ArrowLink>
           </Reveal>
         </div>
 
         {/* Window-style preview, after Crowdline's code snippet card. */}
-        <Reveal className="overflow-hidden rounded-xl border border-border bg-background">
+        <Reveal className="overflow-hidden rounded-xl bg-background">
           <div className="flex items-center gap-2 border-b border-border px-4 py-3">
             <span className="size-2.5 rounded-full bg-crimson" />
             <span className="size-2.5 rounded-full bg-lime" />

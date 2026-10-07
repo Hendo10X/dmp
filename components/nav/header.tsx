@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { AnimatePresence, motion } from "motion/react"
@@ -21,7 +22,8 @@ const primary: { title: string; href: string; mega?: MegaKey }[] = [
   { title: "Careers", href: "/careers" },
 ]
 
-// Fixed nav bar (Crowdline layout) on solid white, no border.
+// Fixed nav bar (Crowdline layout) on solid white, no border, carrying the
+// dmpartners logo (public/brand) so its blue sits on a clean background.
 export function Header() {
   const pathname = usePathname()
   const ready = useIntroSettled()
@@ -90,9 +92,29 @@ export function Header() {
           <Link
             href="/"
             onClick={closeAll}
-            className="font-logo text-lg tracking-tight text-oxford"
+            aria-label="DMPartners home"
+            className="flex shrink-0 items-center"
           >
-            DMP
+            {/* Short dmp mark on mobile, full wordmark from md. Both are
+                pre-sized high-res exports, served as-is so edges stay crisp. */}
+            <Image
+              src="/brand/dmp.png"
+              alt="DMPartners"
+              width={576}
+              height={256}
+              priority
+              unoptimized
+              className="h-7 w-auto md:hidden"
+            />
+            <Image
+              src="/brand/dmpartners.png"
+              alt="DMPartners"
+              width={951}
+              height={168}
+              priority
+              unoptimized
+              className="hidden h-6 w-auto md:block"
+            />
           </Link>
 
           <div className="hidden items-center gap-8 lg:flex">
@@ -101,8 +123,8 @@ export function Header() {
                 const active = isActive(item.href)
                 const expanded = Boolean(item.mega && mega === item.mega)
                 const itemClass = cn(
-                  "flex items-center gap-1 text-[13px] font-medium transition-colors outline-none hover:text-oxford focus-visible:text-oxford",
-                  active || expanded ? "text-oxford" : "text-muted-foreground"
+                  "flex items-center gap-1 text-[13px] font-medium transition-colors outline-none hover:text-brand focus-visible:text-brand",
+                  active || expanded ? "text-brand" : "text-muted-foreground"
                 )
                 return (
                   <li key={item.href}>
@@ -137,7 +159,12 @@ export function Header() {
                 )
               })}
             </ul>
-            <ArrowLink href="/contact" onClick={closeAll} className="h-8 px-4">
+            <ArrowLink
+              href="/contact"
+              onClick={closeAll}
+              tone="brand"
+              className="h-8 px-4"
+            >
               Talk to us
             </ArrowLink>
           </div>

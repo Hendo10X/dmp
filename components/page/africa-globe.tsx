@@ -46,11 +46,14 @@ export function AfricaGlobe({
   markets,
   focus,
   labels = true,
+  tone = "light",
   className,
 }: {
   markets: Market[]
   focus?: [number, number] | null
   labels?: boolean
+  // "dark" renders a night globe for Oxford backgrounds.
+  tone?: "light" | "dark"
   className?: string
 }) {
   const canvas = React.useRef<HTMLCanvasElement>(null)
@@ -81,6 +84,7 @@ export function AfricaGlobe({
     let visible = false
 
     const home = markets.find((m) => m.home)
+    const dark = tone === "dark"
 
     const globe: Globe = createGlobe(el, {
       // cobe multiplies width/height by devicePixelRatio itself.
@@ -89,18 +93,18 @@ export function AfricaGlobe({
       devicePixelRatio: dpr,
       phi,
       theta,
-      dark: 0,
+      dark: dark ? 1 : 0,
       diffuse: 1.2,
       mapSamples: 24000,
-      mapBrightness: 2,
+      mapBrightness: dark ? 5 : 2,
       mapBaseBrightness: 0.04,
-      baseColor: [1, 1, 1],
-      markerColor: OXFORD,
-      glowColor: [0.93, 0.95, 0.98],
+      baseColor: dark ? [0.16, 0.26, 0.42] : [1, 1, 1],
+      markerColor: dark ? ELECTRIC : OXFORD,
+      glowColor: dark ? [0.12, 0.32, 0.48] : [0.93, 0.95, 0.98],
       markers: markets.map((m) => ({
         location: m.location,
         size: m.home ? 0.06 : 0.035,
-        color: m.home ? LIME : OXFORD,
+        color: m.home ? LIME : dark ? ELECTRIC : OXFORD,
       })),
       arcs: home
         ? markets
@@ -158,7 +162,7 @@ export function AfricaGlobe({
       ro.disconnect()
       globe.destroy()
     }
-  }, [markets])
+  }, [markets, tone])
 
   return (
     <div className={cn("relative aspect-square w-full", className)}>

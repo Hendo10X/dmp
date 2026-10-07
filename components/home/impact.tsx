@@ -91,6 +91,9 @@ export function Impact() {
             style={{ "--grow": growFor(column) } as React.CSSProperties}
             className={cn(
               "relative min-w-0 overflow-hidden rounded-xl transition-[flex-grow,height] duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] md:grow-(--grow) md:basis-0",
+              // No column squeezes narrower than its content, so figures and
+              // the case copy stay whole while a neighbour is open.
+              "md:min-w-min",
               column.tone,
               column.height,
               active === column.id && "md:h-full",

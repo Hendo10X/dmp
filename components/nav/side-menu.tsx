@@ -9,41 +9,35 @@ import { useLenis } from "lenis/react"
 import { cn } from "@/lib/utils"
 import { navFooterLinks, navLinks } from "@/components/nav/links"
 
-// Mobile menu using the animation style of olivierlarose/awwwards-side-menu
-// (its curve, 3D link reveal and close sequencing), as a panel that slides
-// in from the right edge under the header. Links move together (no stagger).
+// Mobile menu: a full-screen Oxford panel that opens as a circle growing out
+// of the hamburger, on a hard in-out curve. Links rise together (no stagger)
+// once the circle has mostly opened, and drop away before it closes.
 const ease = [0.76, 0, 0.24, 1] as const
+const easeOut = [0.22, 1, 0.36, 1] as const
+
+// Circle centre = the burger's centre (nav px-6, button size-10 with -mr-2,
+// bar h-14).
+const origin = "at calc(100% - 2.25rem) 1.75rem"
 
 const panel: Variants = {
-  closed: { x: "100%", transition: { duration: 0.45, delay: 0.12, ease } },
-  open: { x: 0, transition: { duration: 0.45, ease } },
-}
-
-const perspective: Variants = {
-  initial: { opacity: 0, rotateX: 90, y: 80, x: -20 },
-  enter: {
-    opacity: 1,
-    rotateX: 0,
-    y: 0,
-    x: 0,
-    transition: {
-      duration: 0.5,
-      delay: 0.2,
-      ease: [0.215, 0.61, 0.355, 1],
-      opacity: { duration: 0.25, delay: 0.2 },
-    },
+  closed: {
+    clipPath: `circle(0% ${origin})`,
+    transition: { duration: 0.6, delay: 0.1, ease },
   },
-  exit: { opacity: 0, transition: { duration: 0.15, ease } },
+  open: {
+    clipPath: `circle(150% ${origin})`,
+    transition: { duration: 0.75, ease },
+  },
 }
 
-const slideIn: Variants = {
-  initial: { opacity: 0, y: 20 },
+const rise: Variants = {
+  initial: { opacity: 0, y: 48 },
   enter: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, delay: 0.3, ease: [0.215, 0.61, 0.355, 1] },
+    transition: { duration: 0.7, delay: 0.3, ease: easeOut },
   },
-  exit: { opacity: 0, transition: { duration: 0.15, ease: "easeInOut" } },
+  exit: { opacity: 0, y: 16, transition: { duration: 0.2, ease } },
 }
 
 export function SideMenu({
@@ -71,98 +65,66 @@ export function SideMenu({
   }, [open, lenis, onClose])
 
   return (
-    <>
+    <motion.aside
+      id="site-menu"
+      aria-label="Menu"
+      aria-hidden={!open}
+      inert={!open}
+      variants={panel}
+      initial={false}
+      animate={open ? "open" : "closed"}
+      className={cn(
+        "fixed inset-0 z-40 bg-oxford text-white lg:hidden",
+        !open && "pointer-events-none"
+      )}
+    >
       <AnimatePresence>
         {open && (
           <motion.div
-            key="backdrop"
-            aria-hidden
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 0.3, ease } }}
-            exit={{
-              opacity: 0,
-              transition: { duration: 0.3, delay: 0.12, ease },
-            }}
-            onClick={onClose}
-            className="fixed inset-0 z-40 bg-oxford/25 lg:hidden"
-          />
-        )}
-      </AnimatePresence>
-
-      <motion.aside
-        id="site-menu"
-        aria-label="Menu"
-        aria-hidden={!open}
-        variants={panel}
-        initial={false}
-        animate={open ? "open" : "closed"}
-        className="fixed top-0 right-0 bottom-0 z-40 w-[min(26rem,100vw)] bg-background lg:hidden"
-      >
-        <AnimatePresence>
-          {open && (
-            <div
-              key="nav"
-              data-lenis-prevent
-              className="flex h-full flex-col justify-between overflow-y-auto px-6 pt-24 pb-10"
-            >
-              <nav className="flex flex-col gap-1">
-                {navLinks.map((link) => {
-                  const active = pathname.startsWith(link.href)
-                  return (
-                    <div
-                      key={link.href}
-                      className="[perspective-origin:bottom] [perspective:120px]"
-                    >
-                      <motion.div
-                        variants={perspective}
-                        initial="initial"
-                        animate="enter"
-                        exit="exit"
-                      >
-                        <Link
-                          href={link.href}
-                          onClick={onClose}
-                          aria-current={active ? "page" : undefined}
-                          className="flex items-center gap-3 font-heading text-[clamp(2rem,9vw,2.75rem)] leading-tight text-oxford"
-                        >
-                          <span
-                            aria-hidden
-                            className={cn(
-                              "size-2 shrink-0 rounded-full bg-lime",
-                              active ? "opacity-100" : "opacity-0"
-                            )}
-                          />
-                          {link.title}
-                        </Link>
-                      </motion.div>
-                    </div>
-                  )
-                })}
-              </nav>
-
-              <motion.div
-                variants={slideIn}
-                initial="initial"
-                animate="enter"
-                exit="exit"
-                className="mt-10 grid grid-cols-2 gap-y-2"
-              >
-                {navFooterLinks.map((link) => (
+            key="nav"
+            variants={rise}
+            initial="initial"
+            animate="enter"
+            exit="exit"
+            data-lenis-prevent
+            className="flex h-full flex-col justify-between overflow-y-auto px-6 pt-24 pb-10"
+          >
+            <nav className="flex flex-col gap-1">
+              {navLinks.map((link) => {
+                const active = pathname.startsWith(link.href)
+                return (
                   <Link
                     key={link.href}
                     href={link.href}
                     onClick={onClose}
-                    className="text-sm text-muted-foreground hover:text-oxford"
+                    aria-current={active ? "page" : undefined}
+                    className={cn(
+                      "group flex items-center gap-3 font-heading text-[clamp(2.25rem,10vw,3rem)] leading-tight transition-colors",
+                      active ? "text-lime" : "text-white hover:text-electric"
+                    )}
                   >
                     {link.title}
                   </Link>
-                ))}
-              </motion.div>
+                )
+              })}
+            </nav>
+
+            <div className="mt-10 grid grid-cols-2 gap-y-2 border-t border-white/15 pt-6">
+              {navFooterLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={onClose}
+                  className="text-sm text-white/60 transition-colors hover:text-white"
+                >
+                  {link.title}
+                </Link>
+              ))}
             </div>
-          )}
-        </AnimatePresence>
-      </motion.aside>
-    </>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.aside>
   )
 }
 

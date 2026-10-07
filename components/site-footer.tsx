@@ -38,7 +38,7 @@ const columns = [
 
 export function SiteFooter() {
   return (
-    <footer className="relative z-10 overflow-hidden bg-oxford text-white">
+    <footer className="relative z-10 overflow-hidden border-t border-white/10 bg-oxford text-white">
       <div className="mx-auto grid max-w-6xl gap-12 px-6 pt-16 md:grid-cols-12 md:gap-6 md:pt-28">
         <div className="md:col-span-5">
           <SplitReveal className="text-[clamp(2.25rem,3.6vw,3.5rem)] leading-[1.05]">

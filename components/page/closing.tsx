@@ -3,7 +3,7 @@ import { Eyebrow } from "@/components/ui/eyebrow"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 
-// Partner or client quote: centred pull quote on the light surface band.
+// Partner or client quote: centred pull quote on an electric band.
 // Default copy is placeholder.
 export function Quote({
   eyebrow = "From our partners",
@@ -15,10 +15,10 @@ export function Quote({
   by?: string
 }) {
   return (
-    <section className="relative z-10 border-t border-border bg-surface">
+    <section className="relative z-10 bg-electric">
       <figure className="mx-auto max-w-4xl px-6 py-24 text-center md:py-28">
         <Reveal y={12} className="flex justify-center">
-          <Eyebrow>{eyebrow}</Eyebrow>
+          <Eyebrow className="text-oxford/70">{eyebrow}</Eyebrow>
         </Reveal>
         <SplitReveal
           as="blockquote"
@@ -27,7 +27,7 @@ export function Quote({
           &ldquo;{text}&rdquo;
         </SplitReveal>
         <Reveal y={12}>
-          <figcaption className="mt-8 font-mono text-xs tracking-wider text-muted-foreground uppercase">
+          <figcaption className="mt-8 font-mono text-xs tracking-wider text-oxford/70 uppercase">
             {by}
           </figcaption>
         </Reveal>

@@ -15,6 +15,11 @@ const tones = {
   // Outline: hairline pill (on white).
   muted:
     "border border-oxford/20 bg-transparent text-oxford hover:border-oxford/40 hover:bg-surface",
+  // Logo-blue pill: the nav CTA beside the wordmark.
+  brand: "bg-brand text-white hover:bg-brand/90",
+  // Outline pill on Oxford.
+  outline:
+    "border border-white/25 bg-transparent text-white hover:border-white/50 hover:bg-white/5",
   // White pill: on Oxford or photographic backgrounds.
   light: "bg-white text-oxford hover:bg-white/90",
   // Lime pill: secondary highlight on Oxford.

@@ -21,6 +21,8 @@
   --color-electric: var(--electric);
   --color-lime: var(--lime);
   --color-crimson: var(--crimson);
+  --color-brand: var(--brand);
+  --color-mint: var(--mint);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
 
@@ -68,6 +70,9 @@
   --electric: #7af2f7;
   --lime: #b9e201;
   --crimson: #c70132;
+  /* Logo colours (public/brand): the wordmark blue and the mint rays. */
+  --brand: #0100fe;
+  --mint: #3be29c;
   --paper: #ffffff;
 
   /* Page background is expected to change per section/iteration —
@@ -119,7 +124,9 @@
   }
   body {
     letter-spacing: -0.02em;
-    font-feature-settings: "kern" 1, "liga" 1;
+    font-feature-settings:
+      "kern" 1,
+      "liga" 1;
   }
   h1,
   h2,
