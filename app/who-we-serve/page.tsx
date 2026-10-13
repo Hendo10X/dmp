@@ -26,7 +26,7 @@ export default function WhoWeServePage() {
       {/* Jump links */}
       <nav
         aria-label="Client groups"
-        className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-16 md:pb-24"
+        className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-24 lg:px-10"
       >
         <Reveal>
           <ul className="flex flex-wrap gap-1">
@@ -34,7 +34,7 @@ export default function WhoWeServePage() {
               <li key={audience.slug}>
                 <a
                   href={`#${audience.slug}`}
-                  className="flex items-center gap-2 rounded-full bg-secondary px-4 py-2.5 text-sm text-oxford transition-colors duration-300 hover:bg-oxford hover:text-white"
+                  className="flex items-center gap-2 rounded-full bg-secondary px-4 py-2.5 text-sm text-midnight transition-colors duration-300 hover:bg-midnight hover:text-white"
                 >
                   <Shape name={audience.shape} className="size-3" />
                   {audience.title}
@@ -45,7 +45,7 @@ export default function WhoWeServePage() {
         </Reveal>
       </nav>
 
-      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
         <ol>
           {audiences.map((audience, index) => {
             const relevant = services.filter((s) =>
@@ -58,14 +58,17 @@ export default function WhoWeServePage() {
                 className="grid scroll-mt-28 gap-8 border-t border-border py-14 md:grid-cols-12 md:gap-6 md:py-20"
               >
                 <Reveal y={16} className="flex items-start gap-4 md:col-span-2">
-                  <span className="font-heading text-lg text-oxford/40">
+                  <span className="font-heading text-lg text-midnight/40">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <Shape name={audience.shape} className="size-8 text-oxford" />
+                  <Shape
+                    name={audience.shape}
+                    className="size-8 text-midnight"
+                  />
                 </Reveal>
 
                 <div className="flex flex-col gap-6 md:col-span-5">
-                  <SplitReveal className="text-[clamp(2.25rem,4vw,4rem)] leading-[1.05] text-oxford">
+                  <SplitReveal className="text-[clamp(2.25rem,4vw,4rem)] leading-[1.05] text-midnight">
                     {audience.title}
                   </SplitReveal>
                   <SplitReveal
@@ -85,9 +88,9 @@ export default function WhoWeServePage() {
                       {audience.needs.map((need) => (
                         <li
                           key={need}
-                          className="flex items-center gap-3 text-oxford"
+                          className="flex items-center gap-3 text-midnight"
                         >
-                          <span aria-hidden className="size-1.5 bg-oxford" />
+                          <span aria-hidden className="size-1.5 bg-midnight" />
                           {need}
                         </li>
                       ))}
@@ -103,7 +106,7 @@ export default function WhoWeServePage() {
                           <li key={service.slug}>
                             <a
                               href={`/services/${service.slug}`}
-                              className="block rounded-full bg-secondary px-3 py-2 text-sm text-oxford transition-colors duration-300 hover:bg-oxford hover:text-white"
+                              className="block rounded-full bg-secondary px-3 py-2 text-sm text-midnight transition-colors duration-300 hover:bg-midnight hover:text-white"
                             >
                               {service.title}
                             </a>
@@ -112,9 +115,7 @@ export default function WhoWeServePage() {
                       </ul>
                     </div>
                   )}
-                  <ArrowLink href="/contact" tone="muted">
-                    Talk to us
-                  </ArrowLink>
+                  <ArrowLink href="/contact">Talk to us</ArrowLink>
                 </Reveal>
               </li>
             )

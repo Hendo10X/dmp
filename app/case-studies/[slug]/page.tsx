@@ -29,9 +29,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const statTones = [
-  "bg-lime text-oxford",
-  "bg-electric text-oxford",
-  "bg-oxford text-white",
+  "bg-lime text-midnight",
+  "bg-electric text-midnight",
+  "bg-midnight text-white",
 ]
 
 export default async function CaseStudyPage({ params }: Props) {
@@ -72,11 +72,11 @@ export default async function CaseStudyPage({ params }: Props) {
                 <dt className="w-20 shrink-0 font-mono text-xs tracking-wider text-muted-foreground uppercase">
                   {fact.label}
                 </dt>
-                <dd className="text-oxford">
+                <dd className="text-midnight">
                   {fact.href ? (
                     <Link
                       href={fact.href}
-                      className="underline decoration-oxford/25 underline-offset-4 hover:decoration-oxford"
+                      className="underline decoration-midnight/25 underline-offset-4 hover:decoration-midnight"
                     >
                       {fact.value}
                     </Link>
@@ -91,7 +91,7 @@ export default async function CaseStudyPage({ params }: Props) {
       </PageHero>
 
       {/* Challenge → Approach → Impact */}
-      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
         <ol>
           {[
             { label: "The challenge", text: study.challenge },
@@ -106,16 +106,16 @@ export default async function CaseStudyPage({ params }: Props) {
                 y={16}
                 className="flex items-baseline gap-4 md:col-span-3"
               >
-                <span className="font-heading text-lg text-oxford/40">
+                <span className="font-heading text-lg text-midnight/40">
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <span className="font-heading text-3xl leading-none text-oxford">
+                <span className="font-heading text-3xl leading-none text-midnight">
                   {block.label}
                 </span>
               </Reveal>
               <SplitReveal
                 as="p"
-                className="text-[clamp(1.25rem,2.2vw,2rem)] leading-[1.3] tracking-tight text-oxford md:col-span-8 md:col-start-5"
+                className="text-[clamp(1.25rem,2.2vw,2rem)] leading-[1.3] tracking-tight text-midnight md:col-span-8 md:col-start-5"
               >
                 {block.text}
               </SplitReveal>
@@ -143,7 +143,7 @@ export default async function CaseStudyPage({ params }: Props) {
         </Reveal>
       </section>
 
-      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
         <SectionHeader eyebrow="More work" title="Other case studies." />
         <Reveal className="mt-14 grid gap-12 md:mt-20 md:grid-cols-2 md:gap-6">
           {more.map((other) => (

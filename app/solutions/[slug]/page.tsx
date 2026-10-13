@@ -47,17 +47,17 @@ export default async function SolutionPage({ params }: Props) {
       />
 
       {/* What it is */}
-      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
         <div className="grid gap-8 md:grid-cols-12 md:gap-6">
           <Reveal y={16} className="md:col-span-3">
-            <span className="flex items-center gap-3 font-mono text-xs tracking-wider text-oxford/70 uppercase">
-              <Shape name={solution.shape} className="size-3 text-oxford" />
+            <span className="flex items-center gap-3 font-mono text-xs tracking-wider text-midnight/70 uppercase">
+              <Shape name={solution.shape} className="size-3 text-midnight" />
               What it is
             </span>
           </Reveal>
           <SplitReveal
             as="p"
-            className="text-[clamp(1.5rem,2.8vw,2.75rem)] leading-[1.2] tracking-tight text-oxford md:col-span-9"
+            className="text-[clamp(1.5rem,2.8vw,2.75rem)] leading-[1.2] tracking-tight text-midnight md:col-span-9"
           >
             {solution.what}
           </SplitReveal>
@@ -65,13 +65,13 @@ export default async function SolutionPage({ params }: Props) {
       </section>
 
       {/* Outcomes */}
-      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
         <SectionHeader eyebrow="What you get" title="Outcomes." />
         <Reveal className="mt-12 grid gap-2 sm:grid-cols-2 md:mt-16 lg:grid-cols-4">
           {solution.outcomes.map((outcome, index) => (
             <div
               key={outcome}
-              className="flex min-h-52 flex-col justify-between gap-8 rounded-xl bg-oxford p-6 text-white md:p-7"
+              className="flex min-h-52 flex-col justify-between gap-8 rounded-xl bg-midnight p-6 text-white md:p-7"
             >
               <span className="font-heading text-lg text-lime">
                 {String(index + 1).padStart(2, "0")}
@@ -85,7 +85,7 @@ export default async function SolutionPage({ params }: Props) {
       </section>
 
       {/* How it works */}
-      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
         <SectionHeader
           eyebrow="How it works"
           title="From evidence to action."
@@ -94,7 +94,7 @@ export default async function SolutionPage({ params }: Props) {
       </section>
 
       {/* Who it's for + powering services */}
-      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
         <div className="grid gap-16 md:grid-cols-2 md:gap-6">
           <div>
             <SectionHeader eyebrow="Who it&rsquo;s for" title="Built for." />
@@ -107,7 +107,7 @@ export default async function SolutionPage({ params }: Props) {
                     <li key={slug}>
                       <Link
                         href={`/who-we-serve#${slug}`}
-                        className="group flex items-center justify-between gap-6 border-b border-border py-5 text-oxford"
+                        className="group flex items-center justify-between gap-6 border-b border-border py-5 text-midnight"
                       >
                         <span className="font-heading text-[clamp(1.5rem,2.4vw,2.25rem)] leading-none">
                           {audience.title}
@@ -130,7 +130,7 @@ export default async function SolutionPage({ params }: Props) {
                   <Link
                     key={slug}
                     href={`/services/${slug}`}
-                    className="group flex items-center justify-between gap-6 rounded-xl bg-secondary p-5 text-oxford transition-colors duration-500 hover:bg-oxford hover:text-white"
+                    className="group flex items-center justify-between gap-6 rounded-xl bg-secondary p-5 text-midnight transition-colors duration-500 hover:bg-midnight hover:text-white"
                   >
                     <span className="flex items-center gap-4">
                       <Shape name={service.shape} className="size-6 shrink-0" />
@@ -148,14 +148,14 @@ export default async function SolutionPage({ params }: Props) {
       </section>
 
       {/* Other solutions */}
-      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
         <SectionHeader eyebrow="More solutions" title="Explore the others." />
         <Reveal className="mt-12 grid gap-2 md:mt-16 md:grid-cols-2">
           {others.map((other) => (
             <Link
               key={other.slug}
               href={`/solutions/${other.slug}`}
-              className="group flex min-h-40 flex-col justify-between gap-6 rounded-xl bg-secondary p-6 text-oxford transition-colors duration-500 hover:bg-oxford hover:text-white md:p-7"
+              className="group flex min-h-40 flex-col justify-between gap-6 rounded-xl bg-secondary p-6 text-midnight transition-colors duration-500 hover:bg-midnight hover:text-white md:p-7"
             >
               <span className="flex items-center justify-between font-mono text-xs tracking-wider uppercase">
                 {other.kicker}

@@ -44,7 +44,7 @@ export default function ContactPage() {
 
       <section
         id="enquiry"
-        className="relative z-10 mx-auto max-w-6xl scroll-mt-28 bg-background px-6 pb-24 md:pb-36"
+        className="relative z-10 mx-auto max-w-[120rem] scroll-mt-28 bg-background px-6 pb-24 md:pb-36 lg:px-10"
       >
         <div className="grid gap-16 md:grid-cols-12 md:gap-6">
           <Reveal className="md:col-span-7">
@@ -55,7 +55,7 @@ export default function ContactPage() {
 
           <Reveal className="flex flex-col gap-10 md:col-span-4 md:col-start-9">
             <div>
-              <Eyebrow className="text-oxford/70">Direct</Eyebrow>
+              <Eyebrow className="text-midnight/70">Direct</Eyebrow>
               <ul className="mt-6 flex flex-col gap-5">
                 {direct.map((item) => (
                   <li key={item.label} className="flex flex-col gap-1">
@@ -64,7 +64,7 @@ export default function ContactPage() {
                     </span>
                     <a
                       href={item.href}
-                      className="font-heading text-[clamp(1.75rem,2.6vw,2.5rem)] leading-none break-all text-oxford transition-colors hover:text-oxford/60"
+                      className="font-heading text-[clamp(1.75rem,2.6vw,2.5rem)] leading-none break-all text-midnight transition-colors hover:text-midnight/60"
                     >
                       {item.value}
                     </a>
@@ -72,7 +72,7 @@ export default function ContactPage() {
                 ))}
               </ul>
             </div>
-            <div className="rounded-xl bg-secondary p-6 text-oxford">
+            <div className="rounded-xl bg-secondary p-6 text-midnight">
               <p className="font-mono text-xs tracking-wider text-muted-foreground uppercase">
                 Prefer to talk first?
               </p>
@@ -88,7 +88,7 @@ export default function ContactPage() {
       {/* DMP Speakers */}
       <section
         id="speakers"
-        className="relative z-10 mx-auto max-w-6xl scroll-mt-28 bg-background px-6 pb-24 md:pb-36"
+        className="relative z-10 mx-auto max-w-[120rem] scroll-mt-28 bg-background px-6 pb-24 md:pb-36 lg:px-10"
       >
         <SectionHeader
           eyebrow="DMP Speakers"
@@ -101,7 +101,7 @@ export default function ContactPage() {
               <li key={talk}>
                 <Link
                   href="/contact?topic=speakers#enquiry"
-                  className="group flex min-h-48 flex-col justify-between gap-8 rounded-xl bg-oxford p-6 text-white md:p-7"
+                  className="group flex min-h-48 flex-col justify-between gap-8 rounded-xl bg-midnight p-6 text-white md:p-7"
                 >
                   <Shape
                     name={

@@ -37,7 +37,7 @@ export function SectionHeader({
         <SplitReveal
           className={cn(
             "mt-3 text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08]",
-            dark ? "text-white" : "text-oxford"
+            dark ? "text-white" : "text-midnight"
           )}
         >
           {title}

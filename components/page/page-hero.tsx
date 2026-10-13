@@ -24,12 +24,12 @@ export function PageHero({
   compact?: boolean
 }) {
   return (
-    <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pt-32 pb-16 md:pt-40 md:pb-24">
+    <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pt-32 pb-16 md:pt-40 md:pb-24 lg:px-10">
       <div className="grid gap-10 md:grid-cols-12 md:items-end md:gap-8">
         <SplitReveal
           as="h1"
           className={cn(
-            "text-oxford md:col-span-8",
+            "text-midnight md:col-span-8",
             compact
               ? "text-[clamp(2.25rem,4.6vw,3.75rem)] leading-[1.05]"
               : "text-[clamp(2.75rem,6vw,4.75rem)] leading-[1.02]"

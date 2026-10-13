@@ -21,13 +21,13 @@ export function MarketsSection({
   const [active, setActive] = React.useState<number | null>(null)
 
   return (
-    <section className="relative z-10 mx-auto max-w-6xl overflow-hidden bg-background px-6 py-24 md:py-36">
+    <section className="relative z-10 mx-auto max-w-[120rem] overflow-hidden bg-background px-6 py-24 md:py-36 lg:px-10">
       <div className="grid items-center gap-12 md:grid-cols-12 md:gap-6">
         <div className="md:col-span-5">
           <Reveal y={16}>
-            <Eyebrow className="text-oxford/70">Across the continent</Eyebrow>
+            <Eyebrow className="text-midnight/70">Across the continent</Eyebrow>
           </Reveal>
-          <SplitReveal className="mt-6 text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08] text-oxford">
+          <SplitReveal className="mt-6 text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08] text-midnight">
             {title}
           </SplitReveal>
           <SplitReveal
@@ -56,8 +56,8 @@ export function MarketsSection({
                     className={cn(
                       "flex w-full items-center gap-3 rounded-lg px-4 py-3 text-left transition-colors duration-300 outline-none focus-visible:ring-2 focus-visible:ring-electric",
                       active === index
-                        ? "bg-oxford text-white"
-                        : "bg-secondary text-oxford"
+                        ? "bg-midnight text-white"
+                        : "bg-secondary text-midnight"
                     )}
                   >
                     <span

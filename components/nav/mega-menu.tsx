@@ -16,7 +16,7 @@ const accent: Record<ShapeName, string> = {
   circle: "group-hover:text-lime",
   square: "group-hover:text-electric",
   triangle: "group-hover:text-crimson",
-  quarter: "group-hover:text-oxford",
+  quarter: "group-hover:text-midnight",
   diamond: "group-hover:text-electric",
   ring: "group-hover:text-lime",
 }
@@ -60,10 +60,10 @@ export function MegaMenu({
     >
       <div
         key={menu}
-        className="mx-auto grid max-w-6xl grid-cols-12 gap-8 px-6 py-8"
+        className="mx-auto grid max-w-[120rem] grid-cols-12 gap-8 px-6 py-8 lg:px-10"
       >
         <div className="col-span-3 flex flex-col items-start gap-4">
-          <p className="font-heading text-2xl text-oxford">{copy.title}</p>
+          <p className="font-heading text-2xl text-midnight">{copy.title}</p>
           <p className="text-sm leading-relaxed text-muted-foreground">
             {copy.body}
           </p>
@@ -84,11 +84,11 @@ export function MegaMenu({
                   <Shape
                     name={service.shape}
                     className={cn(
-                      "size-5 text-oxford/25 transition-[color,rotate] duration-300 group-hover:rotate-90",
+                      "size-5 text-midnight/25 transition-[color,rotate] duration-300 group-hover:rotate-90",
                       accent[service.shape]
                     )}
                   />
-                  <span className="font-heading text-base leading-tight text-oxford">
+                  <span className="font-heading text-base leading-tight text-midnight">
                     {service.title}
                   </span>
                   <span className="text-xs leading-snug text-muted-foreground">
@@ -107,7 +107,7 @@ export function MegaMenu({
                   onClick={onNavigate}
                   className="group flex h-full flex-col overflow-hidden rounded-xl border border-border transition-colors duration-200 outline-none hover:bg-surface focus-visible:bg-surface"
                 >
-                  <span className="relative block aspect-[16/9] overflow-hidden bg-oxford">
+                  <span className="relative block aspect-[16/9] overflow-hidden bg-midnight">
                     <Image
                       src={solution.image}
                       alt=""
@@ -121,12 +121,12 @@ export function MegaMenu({
                       {solution.kicker}
                     </span>
                     <span className="flex items-end justify-between gap-4">
-                      <span className="font-heading text-base leading-tight text-oxford">
+                      <span className="font-heading text-base leading-tight text-midnight">
                         {solution.title}
                       </span>
                       <Arrow
                         size={14}
-                        className="shrink-0 text-oxford transition-transform duration-300 group-hover:translate-x-1"
+                        className="shrink-0 text-midnight transition-transform duration-300 group-hover:translate-x-1"
                       />
                     </span>
                   </span>

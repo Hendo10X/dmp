@@ -29,17 +29,17 @@ const tiles: { title: string; body: string; href: string; shape: ShapeName }[] =
 // Closing link tiles (after PwC's Careers / Press room / Offices row).
 export function Explore() {
   return (
-    <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-28">
+    <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
       <Reveal className="grid gap-3 md:grid-cols-3">
         {tiles.map((tile) => (
           <Link
             key={tile.href}
             href={tile.href}
-            className="group flex min-h-48 flex-col justify-between gap-8 rounded-xl border border-border bg-background p-6 text-oxford transition-colors duration-300 hover:bg-surface md:p-8"
+            className="group flex min-h-48 flex-col justify-between gap-8 rounded-xl border border-border bg-background p-6 text-midnight transition-colors duration-300 hover:bg-surface md:p-8"
           >
             <Shape
               name={tile.shape}
-              className="size-7 text-oxford/20 transition-[rotate,color] duration-500 group-hover:rotate-90 group-hover:text-oxford"
+              className="size-7 text-midnight/20 transition-[rotate,color] duration-500 group-hover:rotate-90 group-hover:text-midnight"
             />
             <span className="flex items-end justify-between gap-6">
               <span className="flex flex-col gap-2">

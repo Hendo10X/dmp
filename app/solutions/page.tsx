@@ -22,20 +22,16 @@ export default function SolutionsPage() {
         intro="Our proprietary programmes and indices package what we know about African sport into tools leaders can act on."
       />
 
-      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
         <SolutionTiles />
       </section>
 
-      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
         <SectionHeader
           eyebrow="Behind the solutions"
           title="Powered by six practices."
           intro="Every solution draws on our advisory services. Need something bespoke? Start with the service closest to your challenge."
-          action={
-            <ArrowLink href="/services" tone="muted">
-              All services
-            </ArrowLink>
-          }
+          action={<ArrowLink href="/services">All services</ArrowLink>}
         />
         <ServiceCards className="mt-14 md:mt-20" />
       </section>

@@ -10,22 +10,21 @@ const MotionLink = motion.create(Link)
 
 // Pill buttons from the Crowdline template.
 const tones = {
-  // Primary: Oxford pill (on white).
-  primary: "bg-oxford text-white hover:bg-oxford/90",
-  // Outline: hairline pill (on white).
-  muted:
-    "border border-oxford/20 bg-transparent text-oxford hover:border-oxford/40 hover:bg-surface",
-  // Logo-blue pill: the nav CTA beside the wordmark.
+  // Primary: midnight pill. Every button on white uses it (client brief).
+  primary: "bg-midnight text-white hover:bg-midnight/90",
+  // Logo-blue pill: hero primary.
   brand: "bg-brand text-white hover:bg-brand/90",
-  // Outline pill on Oxford.
+  // Logo-mint pill: highlight on midnight bands.
+  mint: "bg-mint text-midnight hover:bg-mint/90",
+  // Outline pill on midnight.
   outline:
     "border border-white/25 bg-transparent text-white hover:border-white/50 hover:bg-white/5",
-  // White pill: on Oxford or photographic backgrounds.
-  light: "bg-white text-oxford hover:bg-white/90",
-  // Lime pill: secondary highlight on Oxford.
-  lime: "bg-lime text-oxford hover:bg-lime/90",
-  // Oxford pill used on electric/lime backgrounds.
-  dark: "bg-oxford text-white hover:bg-oxford/90",
+  // White pill: on midnight or photographic backgrounds.
+  light: "bg-white text-midnight hover:bg-white/90",
+  // Lime pill: secondary highlight on midnight.
+  lime: "bg-lime text-midnight hover:bg-lime/90",
+  // Midnight pill used on electric/lime backgrounds.
+  dark: "bg-midnight text-white hover:bg-midnight/90",
 }
 
 export function ArrowLink({

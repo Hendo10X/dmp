@@ -27,7 +27,7 @@ export default function IndustriesPage() {
         intro="The sports industry does not stand alone. Its value flows into media, tourism, real estate and health, and that is where much of the opportunity lies."
       />
 
-      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
         <Reveal className="grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
           {sectors.map((sector, index) => {
             const count = caseStudies.filter(
@@ -37,9 +37,9 @@ export default function IndustriesPage() {
               <Link
                 key={sector.slug}
                 href={`/case-studies?sector=${sector.slug}`}
-                className="group flex flex-col gap-5 text-oxford"
+                className="group flex flex-col gap-5 text-midnight"
               >
-                <span className="relative block aspect-[4/3] overflow-hidden rounded-xl bg-oxford">
+                <span className="relative block aspect-[4/3] overflow-hidden rounded-xl bg-midnight">
                   <Image
                     src={sector.image}
                     alt=""
@@ -50,7 +50,7 @@ export default function IndustriesPage() {
                   <span className="absolute top-3 left-3 flex size-11 items-center justify-center rounded-lg bg-white">
                     <Shape
                       name={sector.shape}
-                      className="size-6 text-oxford transition-transform duration-700 group-hover:rotate-90"
+                      className="size-6 text-midnight transition-transform duration-700 group-hover:rotate-90"
                     />
                   </span>
                   <span className="absolute right-4 bottom-4 font-heading text-6xl leading-none text-white/80">
@@ -78,15 +78,11 @@ export default function IndustriesPage() {
         </Reveal>
       </section>
 
-      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
         <SectionHeader
           eyebrow="Sector case studies"
           title="Recent work across sport."
-          action={
-            <ArrowLink href="/case-studies" tone="muted">
-              All case studies
-            </ArrowLink>
-          }
+          action={<ArrowLink href="/case-studies">All case studies</ArrowLink>}
         />
         <Reveal className="mt-14 grid gap-12 md:mt-20 md:grid-cols-2 md:gap-6">
           {caseStudies.slice(0, 2).map((study) => (

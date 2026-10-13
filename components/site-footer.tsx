@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image"
 import Link from "next/link"
 import { AnimatePresence, motion } from "motion/react"
 import { Arrow, Tick } from "@/components/ui/arrow"
@@ -21,7 +22,6 @@ const columns = [
   {
     title: "Connect",
     links: [
-      { title: "Insights", href: "/insights" },
       { title: "Careers", href: "/careers" },
       { title: "Contact", href: "/contact" },
       { title: "DMP Speakers", href: "/contact#speakers" },
@@ -38,15 +38,14 @@ const columns = [
 
 export function SiteFooter() {
   return (
-    <footer className="relative z-10 overflow-hidden border-t border-white/10 bg-oxford text-white">
-      <div className="mx-auto grid max-w-6xl gap-12 px-6 pt-16 md:grid-cols-12 md:gap-6 md:pt-28">
+    <footer className="relative z-10 overflow-hidden border-t border-white/10 bg-midnight text-white">
+      <div className="mx-auto grid max-w-[120rem] gap-12 px-6 pt-16 md:grid-cols-12 md:gap-6 md:pt-20 lg:px-10">
         <div className="md:col-span-5">
           <SplitReveal className="text-[clamp(2.25rem,3.6vw,3.5rem)] leading-[1.05]">
-            Insights, in your inbox.
+            Stay in touch.
           </SplitReveal>
           <p className="mt-5 max-w-sm text-base leading-relaxed text-white/70">
-            Research, reports and news from DMPartners. A few times a year,
-            never more.
+            News from DMPartners. A few times a year, never more.
           </p>
           <Subscribe />
         </div>
@@ -65,7 +64,7 @@ export function SiteFooter() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="transition-colors hover:text-electric focus-visible:text-electric"
+                      className="transition-colors hover:text-mint focus-visible:text-mint"
                     >
                       {link.title}
                     </Link>
@@ -77,18 +76,22 @@ export function SiteFooter() {
         </nav>
       </div>
 
-      <div className="mx-auto mt-12 flex max-w-6xl flex-wrap justify-between gap-x-4 gap-y-2 px-6 font-mono text-xs tracking-wider text-white/50 uppercase md:mt-20">
+      <div className="mx-auto mt-12 flex max-w-[120rem] flex-wrap justify-between gap-x-4 gap-y-2 px-6 font-mono text-xs tracking-wider text-white/50 uppercase md:mt-14 lg:px-10">
         <span>&copy; {new Date().getFullYear()} DMPartners</span>
         <span>Demonstrating Possibilities</span>
       </div>
 
-      {/* Oversized wordmark bleeding off the bottom edge. */}
-      <p
-        aria-hidden
-        className="mt-4 -mb-[0.18em] text-center font-logo text-[31vw] leading-[0.8] tracking-tighter text-white/10 select-none md:mt-6 md:text-white/[0.06]"
-      >
-        DMP
-      </p>
+      {/* Full-width dmpartners logo at the base (white with the mint rays). */}
+      <div className="mx-auto max-w-[120rem] px-6 pt-8 pb-8 md:pt-10 md:pb-10 lg:px-10">
+        <Image
+          src="/brand/dmpartners-white.png"
+          alt="DMPartners"
+          width={2400}
+          height={424}
+          unoptimized
+          className="h-auto w-full select-none"
+        />
+      </div>
     </footer>
   )
 }
@@ -120,7 +123,7 @@ function Subscribe() {
         type="submit"
         disabled={sent}
         aria-label="Subscribe"
-        className="flex aspect-square h-full items-center justify-center bg-lime text-oxford"
+        className="flex aspect-square h-full items-center justify-center bg-mint text-midnight"
       >
         <AnimatePresence mode="wait" initial={false}>
           <motion.span

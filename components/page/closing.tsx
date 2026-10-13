@@ -18,16 +18,16 @@ export function Quote({
     <section className="relative z-10 bg-electric">
       <figure className="mx-auto max-w-4xl px-6 py-24 text-center md:py-28">
         <Reveal y={12} className="flex justify-center">
-          <Eyebrow className="text-oxford/70">{eyebrow}</Eyebrow>
+          <Eyebrow className="text-midnight/70">{eyebrow}</Eyebrow>
         </Reveal>
         <SplitReveal
           as="blockquote"
-          className="mt-6 font-heading text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.2] text-oxford"
+          className="mt-6 font-heading text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.2] text-midnight"
         >
           &ldquo;{text}&rdquo;
         </SplitReveal>
         <Reveal y={12}>
-          <figcaption className="mt-8 font-mono text-xs tracking-wider text-oxford/70 uppercase">
+          <figcaption className="mt-8 font-mono text-xs tracking-wider text-midnight/70 uppercase">
             {by}
           </figcaption>
         </Reveal>
@@ -36,10 +36,10 @@ export function Quote({
   )
 }
 
-// "Talk to us" CTA (Crowdline's closing CTA) on Oxford. `highlight` is shown
-// on a second line in lime.
+// "Talk to us" CTA (Crowdline's closing CTA) on midnight. `highlight` is shown
+// on a second line in the logo mint.
 export function Cta({
-  title = "Got a challenge in sport?",
+  title = "Got a challenge?",
   highlight = "Let’s talk.",
   body = "Tell us where you are and where you want to be. We will take it from there.",
   href = "/contact",
@@ -52,17 +52,17 @@ export function Cta({
   label?: string
 }) {
   return (
-    <section className="relative z-10 bg-oxford text-white">
-      <div className="mx-auto max-w-6xl px-6 py-24 text-center md:py-28">
+    <section className="relative z-10 bg-midnight text-white">
+      <div className="mx-auto max-w-[120rem] px-6 py-24 text-center md:py-28 lg:px-10">
         <Reveal y={12} className="flex justify-center">
-          <Eyebrow className="text-electric">Get started</Eyebrow>
+          <Eyebrow className="text-mint">Get started</Eyebrow>
         </Reveal>
         <SplitReveal className="mx-auto mt-4 mb-6 max-w-3xl text-[clamp(2.25rem,5vw,3.5rem)] leading-[1.05]">
           {title}
           {highlight && (
             <>
               <br />
-              <span className="text-lime">{highlight}</span>
+              <span className="text-mint">{highlight}</span>
             </>
           )}
         </SplitReveal>
@@ -73,7 +73,7 @@ export function Cta({
           {body}
         </SplitReveal>
         <Reveal y={12}>
-          <ArrowLink href={href} tone="lime">
+          <ArrowLink href={href} tone="mint">
             {label}
           </ArrowLink>
         </Reveal>

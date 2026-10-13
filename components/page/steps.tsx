@@ -23,10 +23,10 @@ export function Steps({
             key={step.title}
             className="flex flex-col gap-4 rounded-xl border border-border bg-background p-6 md:p-8"
           >
-            <span className="font-mono text-5xl leading-none font-light text-oxford/20">
+            <span className="font-mono text-5xl leading-none font-light text-midnight/20">
               {String(index + 1).padStart(2, "0")}
             </span>
-            <h3 className="mt-6 text-xl leading-tight text-oxford">
+            <h3 className="mt-6 text-xl leading-tight text-midnight">
               {step.title}
             </h3>
             <p className="text-base leading-relaxed text-muted-foreground">

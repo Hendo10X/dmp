@@ -82,7 +82,7 @@ export function CaseStudyBrowser() {
       </motion.ul>
 
       {results.length === 0 && (
-        <div className="flex flex-col items-start gap-4 rounded-xl bg-secondary p-8 text-oxford">
+        <div className="flex flex-col items-start gap-4 rounded-xl bg-secondary p-8 text-midnight">
           <p className="font-heading text-3xl leading-none">
             Nothing here yet.
           </p>
@@ -93,7 +93,7 @@ export function CaseStudyBrowser() {
           <button
             type="button"
             onClick={() => router.replace("?", { scroll: false })}
-            className="font-mono text-xs tracking-wider uppercase underline decoration-oxford/30 underline-offset-8 hover:decoration-oxford"
+            className="font-mono text-xs tracking-wider uppercase underline decoration-midnight/30 underline-offset-8 hover:decoration-midnight"
           >
             Clear filters
           </button>

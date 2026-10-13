@@ -2,16 +2,19 @@
 
 import * as React from "react"
 import Image from "next/image"
+import Link from "next/link"
 
 import { gsap, useGSAP } from "@/lib/gsap"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 import { Eyebrow } from "@/components/ui/eyebrow"
-import { images } from "@/lib/content"
+import { Shape } from "@/components/ui/shape"
+import { audiences, images } from "@/lib/content"
 
-// "Who we are" from docs/brief.md, laid out as photo + stat badge + copy.
-// Copy is placeholder until the client supplies it.
+// "Who we are" from docs/brief.md: photo card beside the copy and the "who we
+// serve" pills (client brief: About handles both). The photo stretches to
+// the copy's height. Copy is placeholder until the client supplies it.
 export function About() {
   const section = React.useRef<HTMLElement>(null)
   const frame = React.useRef<HTMLDivElement>(null)
@@ -54,20 +57,20 @@ export function About() {
   return (
     <section
       ref={section}
-      className="relative z-10 mx-auto max-w-6xl bg-background px-6 py-24 md:py-28"
+      className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10"
     >
-      <div className="grid items-center gap-14 md:grid-cols-12 md:gap-6">
+      <div className="grid gap-10 md:grid-cols-12 md:items-stretch md:gap-6">
         <div
           ref={frame}
           className="relative [clip-path:inset(0%_0%_0%_0%)] md:col-span-6"
         >
-          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-oxford md:aspect-[5/6]">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-midnight md:aspect-auto md:h-full">
             <div ref={photo} className="absolute inset-x-0 -inset-y-[10%]">
               <Image
                 src={images.site}
                 alt="Two architects in hard hats reviewing blueprints on a building site"
                 fill
-                sizes="(min-width: 768px) 100vw, 260vw"
+                sizes="(min-width: 768px) 50vw, 100vw"
                 className="object-cover object-[62%_40%]"
               />
             </div>
@@ -75,31 +78,28 @@ export function About() {
 
           <div
             aria-hidden
-            className="absolute top-4 left-4 size-10 rounded-full bg-lime md:size-12"
+            className="absolute top-4 left-4 size-10 rounded-full bg-mint md:size-12"
           />
-          <div className="absolute top-10 left-10 flex items-center gap-4 rounded-xl bg-oxford px-5 py-4 text-white md:top-12 md:left-12 md:px-6 md:py-5">
-            <span className="font-display text-5xl leading-none md:text-6xl">
-              7
-            </span>
-            <span className="text-sm leading-tight">
-              Client groups
-              <br />
-              we serve
-            </span>
-          </div>
+          <p className="absolute top-10 left-10 rounded-xl bg-midnight px-5 py-4 font-heading text-lg leading-tight text-white md:top-12 md:left-12 md:px-6 md:py-5 md:text-xl">
+            Client Groups
+            <br />
+            We Serve
+          </p>
         </div>
 
-        <div className="md:col-span-5 md:col-start-8">
+        <div className="flex flex-col md:col-span-6 md:pl-6 lg:pl-10">
           <Reveal y={16}>
-            <Eyebrow className="text-oxford/70">About DMPartners</Eyebrow>
+            <Eyebrow className="text-midnight/70">About DMPartners</Eyebrow>
           </Reveal>
-          <SplitReveal className="mt-6 text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08] text-oxford">
+          <SplitReveal className="mt-4 text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08] text-midnight">
             Not aspiration.{" "}
-            <span className="text-oxford/45">Possibilities within reach.</span>
+            <span className="text-midnight/45">
+              Possibilities within reach.
+            </span>
           </SplitReveal>
           <SplitReveal
             as="p"
-            className="mt-8 max-w-xl text-base leading-relaxed text-foreground md:text-lg"
+            className="mt-5 max-w-xl text-base leading-relaxed text-foreground"
           >
             DMPartners is a commercial and investment advisory practice working
             where the sports industry meets adjacent markets. We exist to show
@@ -107,10 +107,29 @@ export function About() {
             aimed squarely at industrial development and opportunities that are
             already within reach.
           </SplitReveal>
-          <Reveal y={16} className="mt-10">
-            <ArrowLink href="/about" tone="muted">
-              Learn about us
-            </ArrowLink>
+
+          <Reveal y={16} className="mt-8 border-t border-border pt-6">
+            <Eyebrow className="text-midnight/70">Who we serve</Eyebrow>
+            <ul className="mt-4 flex flex-wrap gap-2">
+              {audiences.map((audience) => (
+                <li key={audience.slug}>
+                  <Link
+                    href={`/who-we-serve#${audience.slug}`}
+                    className="group inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm text-midnight transition-colors duration-300 hover:border-midnight hover:bg-midnight hover:text-white"
+                  >
+                    {audience.title}
+                    <Shape
+                      name={audience.shape}
+                      className="size-2.5 text-mint opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+
+          <Reveal y={16} className="mt-8 md:mt-auto md:pt-8">
+            <ArrowLink href="/about">Learn about us</ArrowLink>
           </Reveal>
         </div>
       </div>

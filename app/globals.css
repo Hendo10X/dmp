@@ -15,7 +15,7 @@
   --font-mono: var(--font-mono);
 
   /* Brand palette */
-  --color-oxford: var(--oxford);
+  --color-midnight: var(--midnight);
   --color-onyx: var(--onyx);
   --color-charcoal: var(--charcoal);
   --color-electric: var(--electric);
@@ -64,7 +64,8 @@
   color-scheme: light;
 
   /* Brand palette */
-  --oxford: #002048;
+  /* Midnight blue: the site navy (client brief), leaning toward the logo blue. */
+  --midnight: #0a1033;
   --onyx: #323637;
   --charcoal: #494848;
   --electric: #7af2f7;
@@ -84,26 +85,26 @@
   --card-foreground: var(--onyx);
   --popover: var(--paper);
   --popover-foreground: var(--onyx);
-  --primary: var(--oxford);
+  --primary: var(--midnight);
   --primary-foreground: var(--paper);
   /* Crowdline-style light surfaces: white tinted with Oxford. */
-  --surface: color-mix(in oklab, var(--oxford) 3%, var(--paper));
-  --surface-2: color-mix(in oklab, var(--oxford) 6%, var(--paper));
+  --surface: color-mix(in oklab, var(--midnight) 3%, var(--paper));
+  --surface-2: color-mix(in oklab, var(--midnight) 6%, var(--paper));
   --secondary: var(--surface-2);
-  --secondary-foreground: var(--oxford);
+  --secondary-foreground: var(--midnight);
   --muted: color-mix(in oklab, var(--charcoal) 6%, var(--paper));
   --muted-foreground: color-mix(in oklab, var(--onyx) 72%, var(--paper));
   --accent: var(--electric);
-  --accent-foreground: var(--oxford);
+  --accent-foreground: var(--midnight);
   --destructive: var(--crimson);
   /* Hairlines (Crowdline template). */
-  --border: color-mix(in oklab, var(--oxford) 11%, transparent);
-  --input: color-mix(in oklab, var(--oxford) 14%, transparent);
+  --border: color-mix(in oklab, var(--midnight) 11%, transparent);
+  --input: color-mix(in oklab, var(--midnight) 14%, transparent);
   --ring: var(--electric);
 
   --chart-1: var(--lime);
   --chart-2: var(--electric);
-  --chart-3: var(--oxford);
+  --chart-3: var(--midnight);
   --chart-4: var(--crimson);
   --chart-5: var(--charcoal);
 
