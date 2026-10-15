@@ -32,7 +32,6 @@ export type Service = {
   forWhom: string[]
   approach: { title: string; body: string }[]
   caseStudy: string
-  insight: string
 }
 
 export const services: Service[] = [
@@ -64,7 +63,6 @@ export const services: Service[] = [
       },
     ],
     caseStudy: "league-sponsorship-reset",
-    insight: "investable-league",
   },
   {
     slug: "business-transformation",
@@ -94,7 +92,6 @@ export const services: Service[] = [
       },
     ],
     caseStudy: "federation-data-rebuild",
-    insight: "federation-data-strategy",
   },
   {
     slug: "transaction-investment",
@@ -124,7 +121,6 @@ export const services: Service[] = [
       },
     ],
     caseStudy: "league-sponsorship-reset",
-    insight: "investable-league",
   },
   {
     slug: "policy-ecosystem",
@@ -154,7 +150,6 @@ export const services: Service[] = [
       },
     ],
     caseStudy: "talent-pathway-review",
-    insight: "dmp-research-partnership",
   },
   {
     slug: "research-market-intelligence",
@@ -184,7 +179,6 @@ export const services: Service[] = [
       },
     ],
     caseStudy: "talent-pathway-review",
-    insight: "talent-pathway",
   },
   {
     slug: "sustainability",
@@ -214,7 +208,6 @@ export const services: Service[] = [
       },
     ],
     caseStudy: "club-governance-review",
-    insight: "wearables-welfare",
   },
 ]
 
@@ -225,6 +218,8 @@ export const services: Service[] = [
 export type Solution = {
   slug: string
   title: string
+  // Short name for tight spots such as the nav dropdown.
+  short?: string
   kicker: string
   summary: string
   image: string
@@ -240,7 +235,8 @@ export const solutions: Solution[] = [
   {
     slug: "federation-business-transformation",
     title: "Federation Business Transformation",
-    kicker: "Programme",
+    short: "FBT",
+    kicker: "Measured",
     summary:
       "An end-to-end programme that turns national federations into well-governed, commercially sustainable organisations.",
     image: images.engineers,
@@ -599,73 +595,6 @@ export const caseStudies: CaseStudy[] = [
   },
 ]
 
-// ---------------------------------------------------------------- Insights
-
-export type Insight = {
-  slug: string
-  title: string
-  type: "Report" | "Insight" | "Perspective" | "News"
-  topic: string
-  date: string
-  image: string
-  excerpt: string
-  featured?: boolean
-}
-
-export const insights: Insight[] = [
-  {
-    slug: "federation-data-strategy",
-    title: "Why federations need a data strategy before a new stadium",
-    type: "Report",
-    topic: "Governance",
-    date: "2026-08-12",
-    image: images.research,
-    excerpt:
-      "Infrastructure gets the headlines. Data decides whether it pays off.",
-    featured: true,
-  },
-  {
-    slug: "investable-league",
-    title: "The investable league: what capital looks for in African sport",
-    type: "Insight",
-    topic: "Investment",
-    date: "2026-06-03",
-    image: images.celebrate,
-    excerpt:
-      "Five signals investors check before they commit to a league or club.",
-  },
-  {
-    slug: "wearables-welfare",
-    title: "Wearables, welfare and the athlete data question",
-    type: "Perspective",
-    topic: "Technology",
-    date: "2025-11-20",
-    image: images.analysis,
-    excerpt:
-      "Who owns an athlete's data, and what should federations do about it?",
-  },
-  {
-    slug: "talent-pathway",
-    title: "From grassroots to podium: measuring a talent pathway",
-    type: "Report",
-    topic: "Performance",
-    date: "2025-09-08",
-    image: images.celebrate,
-    excerpt:
-      "A practical framework for tracking athlete progression across a system.",
-  },
-  {
-    slug: "dmp-research-partnership",
-    title: "DMP launches a sports economy research partnership",
-    type: "News",
-    topic: "Research",
-    date: "2025-07-15",
-    image: images.meeting,
-    excerpt:
-      "A new collaboration to measure the size and growth of the sports economy.",
-  },
-]
-
 // ------------------------------------------------------------ About / team
 
 export const values = [
@@ -695,9 +624,6 @@ export const team = [
   { name: "Partner Name", role: "Founding Partner", initials: "FP" },
   { name: "Partner Name", role: "Managing Partner", initials: "MP" },
   { name: "Team Member", role: "Head of Investment Advisory", initials: "DT" },
-  { name: "Team Member", role: "Head of Research", initials: "HR" },
-  { name: "Team Member", role: "Commercial Lead", initials: "CL" },
-  { name: "Team Member", role: "Senior Consultant", initials: "SC" },
 ]
 
 // ------------------------------------------------------------------ Careers
@@ -734,15 +660,6 @@ export const findAudience = (slug: string) =>
 export const findSector = (slug: string) => sectors.find((s) => s.slug === slug)
 export const findCaseStudy = (slug: string) =>
   caseStudies.find((c) => c.slug === slug)
-export const findInsight = (slug: string) =>
-  insights.find((i) => i.slug === slug)
-
-export const formatDate = (iso: string) =>
-  new Date(iso).toLocaleDateString("en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  })
 
 // ------------------------------------------------------------------ Markets
 

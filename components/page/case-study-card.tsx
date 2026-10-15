@@ -24,13 +24,13 @@ export function CaseStudyCard({
     <Link
       href={`/case-studies/${study.slug}`}
       className={cn(
-        "group flex flex-col gap-5 text-oxford outline-none",
+        "group flex flex-col gap-4 text-midnight outline-none",
         className
       )}
     >
       <span
         className={cn(
-          "relative block overflow-hidden rounded-xl bg-oxford",
+          "relative block overflow-hidden rounded-xl bg-midnight",
           size === "large" ? "aspect-[4/3] md:aspect-[16/10]" : "aspect-[4/3]"
         )}
       >
@@ -46,23 +46,40 @@ export function CaseStudyCard({
           className="object-cover transition-transform duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-105"
         />
       </span>
-      <span className="text-xs text-muted-foreground">
+      <span
+        className={cn(
+          "text-muted-foreground",
+          size === "large" ? "text-sm" : "text-xs"
+        )}
+      >
         {[service?.title, sector?.title].filter(Boolean).join(" · ")}
       </span>
       <span
         className={cn(
           "font-heading leading-tight group-focus-visible:text-electric",
-          size === "large" ? "text-[clamp(1.5rem,2.4vw,2rem)]" : "text-xl"
+          size === "large" ? "text-[clamp(1.75rem,2.8vw,2.5rem)]" : "text-xl"
         )}
       >
         {study.title}
       </span>
       {lead && (
         <span className="flex items-baseline gap-3 border-t border-border pt-4">
-          <span className="font-heading text-2xl leading-none text-oxford">
+          <span
+            className={cn(
+              "font-heading leading-none text-midnight",
+              size === "large" ? "text-4xl" : "text-2xl"
+            )}
+          >
             {lead.value}
           </span>
-          <span className="text-sm text-muted-foreground">{lead.label}</span>
+          <span
+            className={cn(
+              "text-muted-foreground",
+              size === "large" ? "text-base" : "text-sm"
+            )}
+          >
+            {lead.label}
+          </span>
         </span>
       )}
       <span className="flex items-center gap-2 font-mono text-xs tracking-wider uppercase">

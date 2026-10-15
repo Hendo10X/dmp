@@ -101,14 +101,14 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
     >
       <div
         ref={panel}
-        className="flex size-full flex-col items-center justify-center overflow-hidden bg-oxford text-white [clip-path:polygon(0%_0%,100%_0%,100%_100%,0%_100%)]"
+        className="flex size-full flex-col items-center justify-center overflow-hidden bg-midnight text-white [clip-path:polygon(0%_0%,100%_0%,100%_100%,0%_100%)]"
       >
         <div
           aria-hidden
           className="relative h-[clamp(16rem,24vw,28rem)] overflow-hidden [--word:clamp(1.5rem,1.85vw,2.25rem)]"
         >
           {/* Dims everything except a one-line slit through the centre. */}
-          <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(to_bottom,color-mix(in_oklab,var(--oxford)_90%,transparent)_calc(50%-var(--word)*0.6),transparent_calc(50%-var(--word)*0.6),transparent_calc(50%+var(--word)*0.6),color-mix(in_oklab,var(--oxford)_90%,transparent)_calc(50%+var(--word)*0.6))]" />
+          <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(to_bottom,color-mix(in_oklab,var(--midnight)_90%,transparent)_calc(50%-var(--word)*0.6),transparent_calc(50%-var(--word)*0.6),transparent_calc(50%+var(--word)*0.6),color-mix(in_oklab,var(--midnight)_90%,transparent)_calc(50%+var(--word)*0.6))]" />
           <div ref={reel} className="text-center will-change-transform">
             {words.map((word, index) => {
               const isBrand = index === brandIndex
@@ -118,7 +118,7 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
                   ref={isBrand ? brand : undefined}
                   className={cn(
                     "block text-(length:--word) leading-[1.2] tracking-tight",
-                    isBrand && "text-electric"
+                    isBrand && "text-mint"
                   )}
                 >
                   {isBrand ? BRAND_WORD : word}
@@ -132,7 +132,7 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
       <div className="absolute inset-x-0 bottom-0 z-20 h-[5vh]">
         <div
           ref={bar}
-          className="size-full origin-left bg-lime"
+          className="size-full origin-left bg-mint"
           style={{ transform: "scaleX(0)" }}
         />
         <span
@@ -141,7 +141,7 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
           // Anchored by its right edge to the bar's leading edge; GSAP owns
           // the transform from mount (see progressAnimation).
           style={{ transform: "translate(-100%, -50%)" }}
-          className="absolute top-1/2 left-0 pr-4 font-display text-[clamp(1.25rem,1.85vw,2.25rem)] leading-none whitespace-nowrap text-oxford tabular-nums"
+          className="absolute top-1/2 left-0 pr-4 font-display text-[clamp(1.25rem,1.85vw,2.25rem)] leading-none whitespace-nowrap text-midnight tabular-nums"
         >
           0
         </span>

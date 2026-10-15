@@ -4,9 +4,9 @@ import { Eyebrow } from "@/components/ui/eyebrow"
 
 export default function NotFound() {
   return (
-    <main className="relative z-10 mx-auto flex min-h-svh max-w-6xl flex-col justify-center gap-10 bg-background px-6 pt-32 pb-24">
-      <Eyebrow className="text-oxford/70">Error 404</Eyebrow>
-      <div className="flex items-end gap-4 text-oxford">
+    <main className="relative z-10 mx-auto flex min-h-svh max-w-[120rem] flex-col justify-center gap-10 bg-background px-6 pt-32 pb-24 lg:px-10">
+      <Eyebrow className="text-midnight/70">Error 404</Eyebrow>
+      <div className="flex items-end gap-4 text-midnight">
         <h1 className="text-[clamp(5rem,18vw,18rem)] leading-[0.8]">
           Off side.
         </h1>
@@ -19,7 +19,7 @@ export default function NotFound() {
         The page you were looking for isn&rsquo;t here. It may have moved, or
         the link may be out of date.
       </p>
-      <ArrowLink href="/" tone="muted" className="self-start">
+      <ArrowLink href="/" className="self-start">
         Back to home
       </ArrowLink>
     </main>

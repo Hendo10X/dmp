@@ -64,7 +64,7 @@ export function ParallaxImage({
     <div
       ref={frame}
       className={cn(
-        "relative overflow-hidden bg-oxford [clip-path:inset(0%_0%_0%_0%)]",
+        "relative overflow-hidden bg-midnight [clip-path:inset(0%_0%_0%_0%)]",
         className
       )}
     >

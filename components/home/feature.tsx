@@ -14,18 +14,18 @@ const preview = [
 ]
 
 // Feature band (Crowdline's "For publishers" section): copy and outcome
-// bullets beside a window-style preview of the index. Full-width Oxford
+// bullets beside a window-style preview of the index. Full-width midnight
 // band: the one dark break in the white run of the home page.
 export function Feature({ slug = "sports-power-index" }: { slug?: string }) {
   const solution = findSolution(slug)
   if (!solution) return null
 
   return (
-    <section className="relative z-10 bg-oxford text-white">
-      <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 py-24 md:grid-cols-2 md:py-28">
+    <section className="relative z-10 bg-midnight text-white">
+      <div className="mx-auto grid max-w-[120rem] items-center gap-12 px-6 py-16 md:grid-cols-2 md:py-20 lg:px-10">
         <div>
           <Reveal y={12}>
-            <Eyebrow className="text-electric">
+            <Eyebrow className="text-mint">
               Featured {solution.kicker.toLowerCase()}
             </Eyebrow>
           </Reveal>
@@ -45,12 +45,12 @@ export function Feature({ slug = "sports-power-index" }: { slug?: string }) {
                   key={outcome}
                   className="flex items-start gap-3 text-sm text-white"
                 >
-                  <span className="mt-[6px] size-1.5 shrink-0 rounded-full bg-lime" />
+                  <span className="mt-[6px] size-1.5 shrink-0 rounded-full bg-mint" />
                   {outcome}
                 </li>
               ))}
             </ul>
-            <ArrowLink href={`/solutions/${solution.slug}`} tone="lime">
+            <ArrowLink href={`/solutions/${solution.slug}`} tone="mint">
               Explore the index
             </ArrowLink>
           </Reveal>
@@ -82,19 +82,19 @@ export function Feature({ slug = "sports-power-index" }: { slug?: string }) {
                   </span>
                   <span className="flex flex-col gap-2">
                     <span className="flex items-baseline justify-between gap-4">
-                      <span className="text-sm font-semibold text-oxford">
+                      <span className="text-sm font-semibold text-midnight">
                         {row.name}
                         <span className="ml-2 font-normal text-muted-foreground">
                           {row.focus}
                         </span>
                       </span>
-                      <span className="font-mono text-xs font-semibold text-oxford">
+                      <span className="font-mono text-xs font-semibold text-midnight">
                         {row.score}
                       </span>
                     </span>
                     <span className="h-1.5 overflow-hidden rounded-full bg-surface-2">
                       <span
-                        className="block h-full rounded-full bg-oxford"
+                        className="block h-full rounded-full bg-brand"
                         style={{ width: `${row.score}%` }}
                       />
                     </span>

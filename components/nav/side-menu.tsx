@@ -74,7 +74,7 @@ export function SideMenu({
       initial={false}
       animate={open ? "open" : "closed"}
       className={cn(
-        "fixed inset-0 z-40 bg-oxford text-white lg:hidden",
+        "fixed inset-0 z-40 bg-midnight text-white lg:hidden",
         !open && "pointer-events-none"
       )}
     >

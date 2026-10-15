@@ -35,21 +35,21 @@ const columns: Column[] = [
     grow: 1,
     yield: 0.72,
     height: "h-[58%]",
-    tone: "bg-lime text-oxford",
+    tone: "bg-lime text-midnight",
   },
   {
     id: "case",
     grow: 2.4,
     yield: 0.86,
     height: "h-full",
-    tone: "bg-electric/35 text-oxford",
+    tone: "bg-electric/35 text-midnight",
   },
   {
     id: "retention",
     grow: 1,
     yield: 0.62,
     height: "h-[80%]",
-    tone: "bg-oxford text-white",
+    tone: "bg-midnight text-white",
   },
   {
     id: "reach",
@@ -73,14 +73,14 @@ export function Impact() {
   }
 
   return (
-    <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 py-24 md:py-28">
+    <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pt-8 pb-16 md:pt-10 md:pb-20 lg:px-10">
       <SectionHeader
         eyebrow="Client impact"
         title="Results you can read on a scoreboard."
         intro="Good strategy shows up in numbers. Here is what changes when sport is run with evidence, modern systems and a clear commercial plan."
       />
 
-      <Reveal className="mt-14 flex flex-col gap-3 md:mt-16 md:h-[34rem] md:flex-row md:items-end md:gap-2">
+      <Reveal className="mt-10 flex flex-col gap-3 md:mt-12 md:h-[34rem] md:flex-row md:items-end md:gap-2">
         {columns.map((column) => (
           <div
             key={column.id}

@@ -10,8 +10,8 @@ import { CaseStudyCard } from "@/components/page/case-study-card"
 
 const ALL = "all"
 
-// Filter case studies by service and sector. Filters live in the URL so
-// Industries can link straight to ?sector=...
+// Filter case studies by service and industry (stored as `sector`). Filters
+// live in the URL so other pages can link straight to ?sector=...
 export function CaseStudyBrowser() {
   const router = useRouter()
   const params = useSearchParams()
@@ -33,7 +33,7 @@ export function CaseStudyBrowser() {
   )
 
   return (
-    <div className="flex flex-col gap-14 md:gap-20">
+    <div className="flex flex-col gap-10 md:gap-14">
       <div className="grid gap-8 md:grid-cols-2 md:gap-6">
         <FilterChips
           id="service"
@@ -47,7 +47,7 @@ export function CaseStudyBrowser() {
         />
         <FilterChips
           id="sector"
-          label="Sector"
+          label="Industry"
           value={sector}
           onChange={(value) => update("sector", value)}
           options={[
@@ -61,9 +61,11 @@ export function CaseStudyBrowser() {
         {results.length} case studies shown
       </p>
 
+      {/* Each card spans five shared rows (subgrid) so meta, titles and
+          stats line up across a pair. */}
       <motion.ul
         layout
-        className="grid gap-12 md:grid-cols-2 md:gap-x-6 md:gap-y-20"
+        className="grid gap-12 md:grid-cols-2 md:gap-x-6 md:gap-y-16"
       >
         <AnimatePresence mode="popLayout" initial={false}>
           {results.map((study) => (
@@ -74,15 +76,20 @@ export function CaseStudyBrowser() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
+              className="md:row-span-5 md:grid md:grid-rows-subgrid md:gap-y-4"
             >
-              <CaseStudyCard study={study} size="large" />
+              <CaseStudyCard
+                study={study}
+                size="large"
+                className="md:row-span-5 md:grid md:grid-rows-subgrid md:gap-y-4"
+              />
             </motion.li>
           ))}
         </AnimatePresence>
       </motion.ul>
 
       {results.length === 0 && (
-        <div className="flex flex-col items-start gap-4 rounded-xl bg-secondary p-8 text-oxford">
+        <div className="flex flex-col items-start gap-4 rounded-xl bg-secondary p-8 text-midnight">
           <p className="font-heading text-3xl leading-none">
             Nothing here yet.
           </p>
@@ -93,7 +100,7 @@ export function CaseStudyBrowser() {
           <button
             type="button"
             onClick={() => router.replace("?", { scroll: false })}
-            className="font-mono text-xs tracking-wider uppercase underline decoration-oxford/30 underline-offset-8 hover:decoration-oxford"
+            className="font-mono text-xs tracking-wider uppercase underline decoration-midnight/30 underline-offset-8 hover:decoration-midnight"
           >
             Clear filters
           </button>

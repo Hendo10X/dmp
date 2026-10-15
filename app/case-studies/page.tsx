@@ -17,9 +17,9 @@ export default function CaseStudiesPage() {
       <PageHero
         eyebrow="Case studies"
         title="Impact, with evidence."
-        intro="Each case study follows the same format: the challenge, what we did, and what changed. Filter by service or sector."
+        intro="Each case study follows the same format: the challenge, what we did, and what changed. Filter by service or industry."
       />
-      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
         <Suspense>
           <CaseStudyBrowser />
         </Suspense>

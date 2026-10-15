@@ -16,14 +16,12 @@ import { Burger, SideMenu } from "@/components/nav/side-menu"
 const primary: { title: string; href: string; mega?: MegaKey }[] = [
   { title: "Services", href: "/services", mega: "services" },
   { title: "Solutions", href: "/solutions", mega: "solutions" },
-  { title: "Industries", href: "/industries" },
-  { title: "Insights", href: "/insights" },
   { title: "About", href: "/about" },
   { title: "Careers", href: "/careers" },
 ]
 
-// Fixed nav bar (Crowdline layout) on solid white, no border, carrying the
-// dmpartners logo (public/brand) so its blue sits on a clean background.
+// Fixed nav bar (Crowdline layout) on solid midnight, no border, carrying the
+// white dmpartners logo (public/brand). Dropdowns stay white.
 export function Header() {
   const pathname = usePathname()
   const ready = useIntroSettled()
@@ -83,22 +81,24 @@ export function Header() {
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         onMouseLeave={scheduleClose}
         onMouseEnter={cancelClose}
-        className="fixed inset-x-0 top-0 z-50 bg-background"
+        className="fixed inset-x-0 top-0 z-50 bg-midnight"
       >
         <nav
           aria-label="Main"
-          className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6"
+          className="mx-auto flex h-14 max-w-[120rem] items-center justify-between px-6 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:px-10"
         >
+          {/* Desktop: full-width bar with the logo and CTA pinned to the
+              edges and the links centred between them. */}
           <Link
             href="/"
             onClick={closeAll}
             aria-label="DMPartners home"
-            className="flex shrink-0 items-center"
+            className="flex shrink-0 items-center justify-self-start"
           >
             {/* Short dmp mark on mobile, full wordmark from md. Both are
                 pre-sized high-res exports, served as-is so edges stay crisp. */}
             <Image
-              src="/brand/dmp.png"
+              src="/brand/dmp-white.png"
               alt="DMPartners"
               width={576}
               height={256}
@@ -107,7 +107,7 @@ export function Header() {
               className="h-7 w-auto md:hidden"
             />
             <Image
-              src="/brand/dmpartners.png"
+              src="/brand/dmpartners-white-nav.png"
               alt="DMPartners"
               width={951}
               height={168}
@@ -117,57 +117,55 @@ export function Header() {
             />
           </Link>
 
-          <div className="hidden items-center gap-8 lg:flex">
-            <ul className="flex items-center gap-5">
-              {primary.map((item) => {
-                const active = isActive(item.href)
-                const expanded = Boolean(item.mega && mega === item.mega)
-                const itemClass = cn(
-                  "flex items-center gap-1 text-[13px] font-medium transition-colors outline-none hover:text-brand focus-visible:text-brand",
-                  active || expanded ? "text-brand" : "text-muted-foreground"
-                )
-                return (
-                  <li key={item.href}>
-                    {item.mega ? (
-                      <button
-                        type="button"
-                        aria-expanded={expanded}
-                        aria-controls="mega-menu"
-                        onMouseEnter={() => openMega(item.mega!)}
-                        onClick={() =>
-                          setMega((current) =>
-                            current === item.mega ? null : item.mega!
-                          )
-                        }
-                        className={itemClass}
-                      >
-                        {item.title}
-                        <Chevron open={expanded} />
-                      </button>
-                    ) : (
-                      <Link
-                        href={item.href}
-                        onClick={closeAll}
-                        onMouseEnter={scheduleClose}
-                        aria-current={active ? "page" : undefined}
-                        className={itemClass}
-                      >
-                        {item.title}
-                      </Link>
-                    )}
-                  </li>
-                )
-              })}
-            </ul>
-            <ArrowLink
-              href="/contact"
-              onClick={closeAll}
-              tone="brand"
-              className="h-8 px-4"
-            >
-              Talk to us
-            </ArrowLink>
-          </div>
+          <ul className="hidden items-center gap-6 lg:flex">
+            {primary.map((item) => {
+              const active = isActive(item.href)
+              const expanded = Boolean(item.mega && mega === item.mega)
+              const itemClass = cn(
+                "flex items-center gap-1 text-[13px] font-medium transition-colors outline-none hover:text-white focus-visible:text-white",
+                active || expanded ? "text-white" : "text-white/65"
+              )
+              return (
+                <li key={item.href}>
+                  {item.mega ? (
+                    <button
+                      type="button"
+                      aria-expanded={expanded}
+                      aria-controls="mega-menu"
+                      onMouseEnter={() => openMega(item.mega!)}
+                      onClick={() =>
+                        setMega((current) =>
+                          current === item.mega ? null : item.mega!
+                        )
+                      }
+                      className={itemClass}
+                    >
+                      {item.title}
+                      <Chevron open={expanded} />
+                    </button>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      onClick={closeAll}
+                      onMouseEnter={scheduleClose}
+                      aria-current={active ? "page" : undefined}
+                      className={itemClass}
+                    >
+                      {item.title}
+                    </Link>
+                  )}
+                </li>
+              )
+            })}
+          </ul>
+          <ArrowLink
+            href="/contact"
+            onClick={closeAll}
+            tone="brand"
+            className="hidden h-8 justify-self-end px-4 lg:inline-flex"
+          >
+            Talk to us
+          </ArrowLink>
 
           {/* Mobile: hamburger that morphs to an X; the header stays above
               the side panel so it remains visible while open. */}
@@ -177,7 +175,7 @@ export function Header() {
             aria-expanded={menu}
             aria-controls="site-menu"
             onClick={() => setMenu((value) => !value)}
-            className="-mr-2 flex size-10 items-center justify-center text-oxford outline-none focus-visible:ring-2 focus-visible:ring-electric lg:hidden"
+            className="-mr-2 flex size-10 items-center justify-center text-white outline-none focus-visible:ring-2 focus-visible:ring-electric lg:hidden"
           >
             <Burger open={menu} />
           </button>

@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils"
 import type { Market } from "@/lib/content"
 
 // Brand colours as 0-1 RGB for WebGL.
-const OXFORD: [number, number, number] = [0, 0.125, 0.282]
-const LIME: [number, number, number] = [0.725, 0.886, 0.004]
+const MIDNIGHT: [number, number, number] = [0.039, 0.063, 0.2]
+const MINT: [number, number, number] = [0.231, 0.886, 0.612]
 const ELECTRIC: [number, number, number] = [0.478, 0.949, 0.969]
 
 // cobe's camera: phi spins around the poles, theta tilts. Derived from
@@ -98,13 +98,13 @@ export function AfricaGlobe({
       mapSamples: 24000,
       mapBrightness: dark ? 5 : 2,
       mapBaseBrightness: 0.04,
-      baseColor: dark ? [0.16, 0.26, 0.42] : [1, 1, 1],
-      markerColor: dark ? ELECTRIC : OXFORD,
-      glowColor: dark ? [0.12, 0.32, 0.48] : [0.93, 0.95, 0.98],
+      baseColor: dark ? [0.14, 0.17, 0.44] : [1, 1, 1],
+      markerColor: dark ? ELECTRIC : MIDNIGHT,
+      glowColor: dark ? [0.1, 0.14, 0.55] : [0.93, 0.95, 0.98],
       markers: markets.map((m) => ({
         location: m.location,
         size: m.home ? 0.06 : 0.035,
-        color: m.home ? LIME : dark ? ELECTRIC : OXFORD,
+        color: m.home ? MINT : dark ? ELECTRIC : MIDNIGHT,
       })),
       arcs: home
         ? markets
@@ -200,14 +200,14 @@ export function AfricaGlobe({
               data-market
               className="absolute -translate-x-1/2 -translate-y-[140%] opacity-0 transition-opacity duration-300"
             >
-              <span className="flex items-center gap-1.5 rounded-full border border-border bg-white/90 px-2 py-0.5 backdrop-blur-sm">
+              <span className="flex items-center gap-1.5 rounded-pill border border-border bg-white/90 px-2 py-0.5 backdrop-blur-sm">
                 <span
                   className={cn(
                     "size-1.5 rounded-full",
-                    market.home ? "bg-lime" : "bg-oxford"
+                    market.home ? "bg-mint" : "bg-midnight"
                   )}
                 />
-                <span className="font-mono text-[9px] leading-none text-oxford">
+                <span className="font-mono text-[9px] leading-none text-midnight">
                   {market.city}
                 </span>
                 <span className="font-mono text-[9px] leading-none font-semibold text-muted-foreground">

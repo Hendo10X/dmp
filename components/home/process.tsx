@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils"
 import { SectionHeader } from "@/components/page/section-header"
 import { Reveal } from "@/components/motion/reveal"
 
@@ -22,26 +23,40 @@ const steps = [
   },
 ]
 
+// Cards run light to dark in the logo palette (mint, electric, logo blue,
+// midnight): the colour itself travels from question to result.
+const tones = [
+  { card: "bg-mint text-midnight", body: "text-midnight/75" },
+  { card: "bg-electric text-midnight", body: "text-midnight/75" },
+  { card: "bg-brand text-white", body: "text-white/80" },
+  { card: "bg-midnight text-white", body: "text-white/70" },
+]
+
 export function Process({ action }: { action?: React.ReactNode }) {
   return (
-    <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 py-24 md:py-28">
+    <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
       <SectionHeader
         eyebrow="How we work"
         title="From question to result, in four moves."
         intro="The same disciplined sequence on every engagement, whether it is a ten-week review or a five-year programme."
         action={action}
       />
-      <Reveal className="mt-14 grid gap-px overflow-hidden rounded-xl border border-border bg-border md:mt-16 md:grid-cols-2 lg:grid-cols-4">
+      <Reveal className="mt-10 grid gap-3 md:mt-12 md:grid-cols-2 lg:grid-cols-4">
         {steps.map((step, index) => (
           <div
             key={step.title}
-            className="group bg-background p-8 transition-colors duration-300 hover:bg-surface"
+            className={cn("flex flex-col rounded-xl p-7", tones[index].card)}
           >
-            <div className="mb-6 font-mono text-5xl font-light text-oxford/15 transition-colors duration-300 group-hover:text-oxford/40">
-              {String(index + 1).padStart(2, "0")}
+            {/* Number and title share one baseline, close together. */}
+            <div className="flex items-baseline gap-2.5">
+              <span className="font-mono text-sm font-semibold opacity-60">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 className="text-2xl leading-none">{step.title}</h3>
             </div>
-            <h3 className="mb-3 text-lg text-oxford">{step.title}</h3>
-            <p className="text-sm leading-relaxed text-muted-foreground">
+            <p
+              className={cn("mt-4 text-sm leading-relaxed", tones[index].body)}
+            >
               {step.body}
             </p>
           </div>

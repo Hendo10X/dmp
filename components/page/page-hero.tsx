@@ -3,8 +3,9 @@ import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 import { ParallaxImage } from "@/components/page/parallax-image"
 
-// Opening block for every inner page (Crowdline template): large Cal Sans
-// title, muted intro, optional rounded image below.
+// Opening block for every inner page: large Cal Sans title with the intro
+// stacked underneath (client brief: side-by-side caused alignment issues),
+// optional image below.
 export function PageHero({
   title,
   intro,
@@ -24,12 +25,12 @@ export function PageHero({
   compact?: boolean
 }) {
   return (
-    <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pt-32 pb-16 md:pt-40 md:pb-24">
-      <div className="grid gap-10 md:grid-cols-12 md:items-end md:gap-8">
+    <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pt-28 pb-10 md:pt-32 md:pb-14 lg:px-10">
+      <div className="flex flex-col gap-5 md:gap-6">
         <SplitReveal
           as="h1"
           className={cn(
-            "text-oxford md:col-span-8",
+            "max-w-5xl text-midnight",
             compact
               ? "text-[clamp(2.25rem,4.6vw,3.75rem)] leading-[1.05]"
               : "text-[clamp(2.75rem,6vw,4.75rem)] leading-[1.02]"
@@ -38,11 +39,11 @@ export function PageHero({
           {title}
         </SplitReveal>
         {(intro || children) && (
-          <div className="flex flex-col items-start gap-8 md:col-span-4">
+          <div className="flex max-w-2xl flex-col items-start gap-8">
             {intro && (
               <SplitReveal
                 as="p"
-                className="text-sm leading-relaxed text-muted-foreground md:text-base"
+                className="text-base leading-relaxed text-muted-foreground md:text-lg"
               >
                 {intro}
               </SplitReveal>

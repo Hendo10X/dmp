@@ -6,6 +6,7 @@ import { SolutionTiles } from "@/components/page/solution-tiles"
 import { ServiceCards } from "@/components/page/service-cards"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { Cta } from "@/components/page/closing"
+import { Report } from "@/components/page/report"
 
 export const metadata: Metadata = {
   title: "Solutions",
@@ -22,22 +23,20 @@ export default function SolutionsPage() {
         intro="Our proprietary programmes and indices package what we know about African sport into tools leaders can act on."
       />
 
-      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
         <SolutionTiles />
       </section>
 
-      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
+      <Report />
+
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
         <SectionHeader
           eyebrow="Behind the solutions"
           title="Powered by six practices."
           intro="Every solution draws on our advisory services. Need something bespoke? Start with the service closest to your challenge."
-          action={
-            <ArrowLink href="/services" tone="muted">
-              All services
-            </ArrowLink>
-          }
+          action={<ArrowLink href="/services">All services</ArrowLink>}
         />
-        <ServiceCards className="mt-14 md:mt-20" />
+        <ServiceCards className="mt-10 md:mt-12" />
       </section>
 
       <Cta

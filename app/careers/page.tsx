@@ -47,21 +47,21 @@ export default function CareersPage() {
       />
 
       {/* Culture */}
-      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
         <SectionHeader
           eyebrow="Culture"
           title="How we work together."
           intro="Small teams, real responsibility early, and partners who stay close to the work. These are the values we hire for."
         />
-        <Reveal className="mt-14 grid gap-2 sm:grid-cols-2 md:mt-20 lg:grid-cols-4">
+        <Reveal className="mt-10 grid gap-2 sm:grid-cols-2 md:mt-12 lg:grid-cols-4">
           {values.map((value) => (
             <div
               key={value.title}
               className="flex min-h-56 flex-col justify-between gap-10 rounded-xl bg-secondary p-6 md:p-7"
             >
-              <Shape name={value.shape} className="size-10 text-oxford" />
+              <Shape name={value.shape} className="size-10 text-midnight" />
               <div className="flex flex-col gap-3">
-                <h3 className="text-3xl leading-none text-oxford">
+                <h3 className="text-3xl leading-none text-midnight">
                   {value.title}
                 </h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">
@@ -76,7 +76,7 @@ export default function CareersPage() {
       {/* Current openings */}
       <section
         id="openings"
-        className="relative z-10 mx-auto max-w-6xl scroll-mt-28 bg-background px-6 pb-24 md:pb-36"
+        className="relative z-10 mx-auto max-w-[120rem] scroll-mt-28 bg-background px-6 pb-16 md:pb-20 lg:px-10"
       >
         <SectionHeader
           eyebrow="Current openings"
@@ -89,7 +89,7 @@ export default function CareersPage() {
               <li key={role.title}>
                 <Link
                   href={`/contact?topic=careers&role=${encodeURIComponent(role.title)}`}
-                  className="group grid gap-3 border-b border-border py-6 text-oxford md:grid-cols-12 md:items-center md:gap-6 md:py-8"
+                  className="group grid gap-3 border-b border-border py-6 text-midnight md:grid-cols-12 md:items-center md:gap-6 md:py-8"
                 >
                   <span className="font-heading text-[clamp(1.75rem,3vw,2.75rem)] leading-none md:col-span-5">
                     {role.title}
@@ -111,7 +111,7 @@ export default function CareersPage() {
             <li>
               <Link
                 href="/contact?topic=careers"
-                className="group flex items-center justify-between gap-6 bg-secondary px-6 py-6 text-oxford transition-colors duration-500 hover:bg-oxford hover:text-white md:py-8"
+                className="group flex items-center justify-between gap-6 bg-secondary px-6 py-6 text-midnight transition-colors duration-500 hover:bg-midnight hover:text-white md:py-8"
               >
                 <span className="font-heading text-[clamp(1.75rem,3vw,2.75rem)] leading-none">
                   Register interest
@@ -124,12 +124,12 @@ export default function CareersPage() {
       </section>
 
       {/* Application process */}
-      <section className="relative z-10 mx-auto max-w-6xl bg-background px-6 pb-24 md:pb-36">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
         <SectionHeader
           eyebrow="Application process"
           title="Four steps, no surprises."
         />
-        <Steps steps={process} className="mt-14 md:mt-20" />
+        <Steps steps={process} className="mt-10 md:mt-12" />
       </section>
 
       <Cta
