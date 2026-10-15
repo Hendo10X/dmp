@@ -218,6 +218,8 @@ export const services: Service[] = [
 export type Solution = {
   slug: string
   title: string
+  // Short name for tight spots such as the nav dropdown.
+  short?: string
   kicker: string
   summary: string
   image: string
@@ -233,7 +235,8 @@ export const solutions: Solution[] = [
   {
     slug: "federation-business-transformation",
     title: "Federation Business Transformation",
-    kicker: "Programme",
+    short: "FBT",
+    kicker: "Measured",
     summary:
       "An end-to-end programme that turns national federations into well-governed, commercially sustainable organisations.",
     image: images.engineers,
@@ -621,9 +624,6 @@ export const team = [
   { name: "Partner Name", role: "Founding Partner", initials: "FP" },
   { name: "Partner Name", role: "Managing Partner", initials: "MP" },
   { name: "Team Member", role: "Head of Investment Advisory", initials: "DT" },
-  { name: "Team Member", role: "Head of Research", initials: "HR" },
-  { name: "Team Member", role: "Commercial Lead", initials: "CL" },
-  { name: "Team Member", role: "Senior Consultant", initials: "SC" },
 ]
 
 // ------------------------------------------------------------------ Careers

@@ -200,7 +200,7 @@ export function AfricaGlobe({
               data-market
               className="absolute -translate-x-1/2 -translate-y-[140%] opacity-0 transition-opacity duration-300"
             >
-              <span className="flex items-center gap-1.5 rounded-full border border-border bg-white/90 px-2 py-0.5 backdrop-blur-sm">
+              <span className="flex items-center gap-1.5 rounded-pill border border-border bg-white/90 px-2 py-0.5 backdrop-blur-sm">
                 <span
                   className={cn(
                     "size-1.5 rounded-full",

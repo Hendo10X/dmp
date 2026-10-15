@@ -61,7 +61,7 @@ export function SolutionTiles({ className }: { className?: string }) {
             {solution.summary}
           </span>
           <span className="relative mt-1 flex items-center gap-2 font-mono text-xs tracking-wider uppercase">
-            Explore {solution.kicker.toLowerCase()}
+            Explore
             <Arrow
               size={16}
               className="transition-transform duration-500 group-hover:translate-x-1"

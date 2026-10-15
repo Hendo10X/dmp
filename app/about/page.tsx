@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 import { images, team, values } from "@/lib/content"
+import { cn } from "@/lib/utils"
 import { Shape } from "@/components/ui/shape"
 import { Eyebrow } from "@/components/ui/eyebrow"
 import { ArrowLink } from "@/components/ui/arrow-link"
@@ -18,26 +19,33 @@ export const metadata: Metadata = {
     "DMPartners: commercial and investment advisory for the sports industry and adjacent markets across Nigeria and Africa.",
 }
 
+const valueTones = [
+  { card: "bg-mint text-midnight", body: "text-midnight/75" },
+  { card: "bg-electric text-midnight", body: "text-midnight/75" },
+  { card: "bg-brand text-white", body: "text-white/80" },
+  { card: "bg-midnight text-white", body: "text-white/70" },
+]
+
 export default function AboutPage() {
   return (
     <main>
       <PageHero
         eyebrow="About DMPartners"
-        title="Purpose, people, performance."
+        title="Purpose. People. Performance."
         intro="Guided by our tagline, Demonstrating Possibilities, we show what is achievable in Nigeria and across the African continent through sport and the markets around it."
         image={images.meeting}
         imageAlt="A business meeting in a Lagos office"
       />
 
       {/* Purpose: mission, positioning, values */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-24 md:py-36 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
         <SectionHeader
           eyebrow="Purpose"
           title="Why we exist."
           intro="Sport creates jobs, investment and national pride. Our work is aimed squarely at industrial development, and at proving that the opportunities we describe are possibilities already within reach."
         />
 
-        <div className="mt-16 grid gap-10 md:mt-24 md:grid-cols-2 md:gap-6">
+        <div className="mt-10 grid gap-10 md:mt-14 md:grid-cols-2 md:gap-6">
           {[
             {
               label: "Mission",
@@ -64,18 +72,25 @@ export default function AboutPage() {
           ))}
         </div>
 
-        <Reveal className="mt-16 grid gap-2 sm:grid-cols-2 md:mt-24 lg:grid-cols-4">
-          {values.map((value) => (
+        {/* Values in the same light-to-dark logo palette as How we work. */}
+        <Reveal className="mt-10 grid gap-3 sm:grid-cols-2 md:mt-14 lg:grid-cols-4">
+          {values.map((value, index) => (
             <div
               key={value.title}
-              className="flex min-h-64 flex-col justify-between gap-10 rounded-xl bg-secondary p-6 md:p-7"
+              className={cn(
+                "flex min-h-56 flex-col justify-between gap-10 rounded-xl p-6 md:p-7",
+                valueTones[index % valueTones.length].card
+              )}
             >
-              <Shape name={value.shape} className="size-10 text-midnight" />
+              <Shape name={value.shape} className="size-10" />
               <div className="flex flex-col gap-3">
-                <h3 className="text-3xl leading-none text-midnight">
-                  {value.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
+                <h3 className="text-3xl leading-none">{value.title}</h3>
+                <p
+                  className={cn(
+                    "text-sm leading-relaxed",
+                    valueTones[index % valueTones.length].body
+                  )}
+                >
                   {value.body}
                 </p>
               </div>
@@ -85,13 +100,13 @@ export default function AboutPage() {
       </section>
 
       {/* People */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
         <SectionHeader
           eyebrow="People"
           title="The team behind the work."
           intro="Former athletes, analysts, economists and engineers. Partner and team bios with photos will appear here."
         />
-        <Reveal className="mt-14 grid grid-cols-2 gap-x-2 gap-y-10 md:mt-20 lg:grid-cols-3">
+        <Reveal className="mt-10 grid gap-x-3 gap-y-10 sm:grid-cols-3 md:mt-12">
           {team.map((person, index) => (
             <figure key={index} className="flex flex-col gap-4">
               {/* Photo placeholder: initials on Oxford until portraits arrive. */}
@@ -127,18 +142,16 @@ export default function AboutPage() {
         intro="We start from what is achievable at home and carry it across borders. Drag the globe, or pick a market."
       />
 
-      {/* Note from the Founders */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
-        <div className="grid gap-10 md:grid-cols-12 md:gap-6">
+      {/* A message from the top: midnight band with mint accents. */}
+      <section className="relative z-10 bg-midnight text-white">
+        <div className="mx-auto grid max-w-[120rem] gap-10 px-6 py-16 md:grid-cols-12 md:gap-6 md:py-20 lg:px-10">
           <Reveal y={16} className="md:col-span-3">
-            <Eyebrow className="text-midnight/70">
-              A note from the founders
-            </Eyebrow>
+            <Eyebrow className="text-mint">A message from the top</Eyebrow>
           </Reveal>
-          <div className="flex flex-col gap-6 text-lg leading-relaxed text-foreground md:col-span-7 md:col-start-5 md:text-xl">
+          <div className="flex flex-col gap-6 text-lg leading-relaxed text-white/75 md:col-span-7 md:col-start-5 md:text-xl">
             <SplitReveal
               as="p"
-              className="text-[clamp(1.5rem,2.6vw,2.5rem)] leading-[1.2] tracking-tight text-midnight"
+              className="text-[clamp(1.5rem,2.6vw,2.5rem)] leading-[1.2] tracking-tight text-white"
             >
               We started DMPartners because we kept meeting people who could see
               what sport in Africa could become, and too few who could show it
@@ -158,7 +171,7 @@ export default function AboutPage() {
               doing.
             </SplitReveal>
             <Reveal y={16}>
-              <p className="mt-4 font-heading text-3xl text-midnight">
+              <p className="mt-4 font-heading text-3xl text-mint">
                 The Founding Partners
               </p>
             </Reveal>

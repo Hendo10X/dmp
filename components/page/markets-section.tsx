@@ -9,8 +9,9 @@ import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 import { AfricaGlobe } from "@/components/page/africa-globe"
 
-// "Across the continent": an interactive globe centred on Africa beside the
-// list of markets. Hovering or focusing a market swings the globe to it.
+// "Across the continent": an interactive midnight globe centred on Africa,
+// sized up and sitting close to the list of markets. Hovering or focusing a
+// market swings the globe to it.
 export function MarketsSection({
   title = "Built in Nigeria. Working across Africa.",
   intro = "Our home is Nigeria. Our view is continental: the opportunities in sport and its adjacent markets do not stop at borders. Drag the globe, or pick a market.",
@@ -21,8 +22,8 @@ export function MarketsSection({
   const [active, setActive] = React.useState<number | null>(null)
 
   return (
-    <section className="relative z-10 mx-auto max-w-[120rem] overflow-hidden bg-background px-6 py-24 md:py-36 lg:px-10">
-      <div className="grid items-center gap-12 md:grid-cols-12 md:gap-6">
+    <section className="relative z-10 mx-auto max-w-[120rem] overflow-hidden bg-background px-6 py-16 md:py-20 lg:px-10">
+      <div className="grid items-center gap-10 md:grid-cols-12 md:gap-4">
         <div className="md:col-span-5">
           <Reveal y={16}>
             <Eyebrow className="text-midnight/70">Across the continent</Eyebrow>
@@ -64,7 +65,7 @@ export function MarketsSection({
                       aria-hidden
                       className={cn(
                         "size-2 shrink-0",
-                        market.home ? "bg-lime" : "bg-electric"
+                        market.home ? "bg-mint" : "bg-electric"
                       )}
                     />
                     <span className="flex min-w-0 flex-col">
@@ -93,7 +94,8 @@ export function MarketsSection({
           <AfricaGlobe
             markets={markets}
             focus={active === null ? null : markets[active].location}
-            className="mx-auto max-w-[44rem]"
+            tone="dark"
+            className="mx-auto max-w-[52rem] md:-my-8 md:mr-0 md:ml-[-4%]"
           />
         </Reveal>
       </div>

@@ -50,7 +50,7 @@ export default async function CaseStudyPage({ params }: Props) {
       href: `/services/${service.slug}`,
     },
     sector && {
-      label: "Sector",
+      label: "Industry",
       value: sector.title,
       href: `/case-studies?sector=${sector.slug}`,
     },
@@ -91,7 +91,7 @@ export default async function CaseStudyPage({ params }: Props) {
       </PageHero>
 
       {/* Challenge → Approach → Impact */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
         <ol>
           {[
             { label: "The challenge", text: study.challenge },
@@ -143,9 +143,9 @@ export default async function CaseStudyPage({ params }: Props) {
         </Reveal>
       </section>
 
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
         <SectionHeader eyebrow="More work" title="Other case studies." />
-        <Reveal className="mt-14 grid gap-12 md:mt-20 md:grid-cols-2 md:gap-6">
+        <Reveal className="mt-10 grid gap-12 md:mt-12 md:grid-cols-2 md:gap-6">
           {more.map((other) => (
             <CaseStudyCard key={other.slug} study={other} size="large" />
           ))}

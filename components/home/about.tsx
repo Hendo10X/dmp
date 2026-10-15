@@ -108,14 +108,14 @@ export function About() {
             already within reach.
           </SplitReveal>
 
-          <Reveal y={16} className="mt-8 border-t border-border pt-6">
+          <Reveal y={16} className="mt-8">
             <Eyebrow className="text-midnight/70">Who we serve</Eyebrow>
             <ul className="mt-4 flex flex-wrap gap-2">
               {audiences.map((audience) => (
                 <li key={audience.slug}>
                   <Link
                     href={`/who-we-serve#${audience.slug}`}
-                    className="group inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm text-midnight transition-colors duration-300 hover:border-midnight hover:bg-midnight hover:text-white"
+                    className="group inline-flex items-center gap-2 rounded-pill border border-border px-4 py-2 text-sm text-midnight transition-colors duration-300 hover:border-midnight hover:bg-midnight hover:text-white"
                   >
                     {audience.title}
                     <Shape

@@ -14,7 +14,6 @@ const columns = [
       { title: "About", href: "/about" },
       { title: "Services", href: "/services" },
       { title: "Solutions", href: "/solutions" },
-      { title: "Industries", href: "/industries" },
       { title: "Who We Serve", href: "/who-we-serve" },
       { title: "Case Studies", href: "/case-studies" },
     ],
@@ -42,10 +41,11 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-[120rem] gap-12 px-6 pt-16 md:grid-cols-12 md:gap-6 md:pt-20 lg:px-10">
         <div className="md:col-span-5">
           <SplitReveal className="text-[clamp(2.25rem,3.6vw,3.5rem)] leading-[1.05]">
-            Stay in touch.
+            Have a question for us?{" "}
+            <span className="text-mint">Let&rsquo;s talk.</span>
           </SplitReveal>
           <p className="mt-5 max-w-sm text-base leading-relaxed text-white/70">
-            News from DMPartners. A few times a year, never more.
+            Leave your email and we will get back to you.
           </p>
           <Subscribe />
         </div>
@@ -122,7 +122,7 @@ function Subscribe() {
       <button
         type="submit"
         disabled={sent}
-        aria-label="Subscribe"
+        aria-label="Send"
         className="flex aspect-square h-full items-center justify-center bg-mint text-midnight"
       >
         <AnimatePresence mode="wait" initial={false}>

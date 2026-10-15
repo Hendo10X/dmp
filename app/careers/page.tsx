@@ -47,13 +47,13 @@ export default function CareersPage() {
       />
 
       {/* Culture */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
         <SectionHeader
           eyebrow="Culture"
           title="How we work together."
           intro="Small teams, real responsibility early, and partners who stay close to the work. These are the values we hire for."
         />
-        <Reveal className="mt-14 grid gap-2 sm:grid-cols-2 md:mt-20 lg:grid-cols-4">
+        <Reveal className="mt-10 grid gap-2 sm:grid-cols-2 md:mt-12 lg:grid-cols-4">
           {values.map((value) => (
             <div
               key={value.title}
@@ -76,7 +76,7 @@ export default function CareersPage() {
       {/* Current openings */}
       <section
         id="openings"
-        className="relative z-10 mx-auto max-w-[120rem] scroll-mt-28 bg-background px-6 pb-24 md:pb-36 lg:px-10"
+        className="relative z-10 mx-auto max-w-[120rem] scroll-mt-28 bg-background px-6 pb-16 md:pb-20 lg:px-10"
       >
         <SectionHeader
           eyebrow="Current openings"
@@ -124,12 +124,12 @@ export default function CareersPage() {
       </section>
 
       {/* Application process */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-24 md:pb-36 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
         <SectionHeader
           eyebrow="Application process"
           title="Four steps, no surprises."
         />
-        <Steps steps={process} className="mt-14 md:mt-20" />
+        <Steps steps={process} className="mt-10 md:mt-12" />
       </section>
 
       <Cta

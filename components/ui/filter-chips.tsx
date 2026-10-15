@@ -38,7 +38,7 @@ export function FilterChips({
               aria-checked={active}
               onClick={() => onChange(option.value)}
               className={cn(
-                "relative shrink-0 rounded-full bg-secondary px-4 py-2 font-mono text-xs whitespace-nowrap transition-colors duration-300 outline-none focus-visible:ring-2 focus-visible:ring-electric",
+                "relative shrink-0 rounded-pill bg-secondary px-4 py-2 font-mono text-xs whitespace-nowrap transition-colors duration-300 outline-none focus-visible:ring-2 focus-visible:ring-electric",
                 active ? "text-white" : "text-midnight hover:bg-midnight/10"
               )}
             >
@@ -46,7 +46,7 @@ export function FilterChips({
                 <motion.span
                   layoutId={`chip-${id}`}
                   transition={{ type: "spring", stiffness: 420, damping: 38 }}
-                  className="absolute inset-0 rounded-full bg-midnight"
+                  className="absolute inset-0 rounded-pill bg-midnight"
                 />
               )}
               <span className="relative">{option.label}</span>

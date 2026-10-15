@@ -48,7 +48,7 @@ export function ArrowLink({
       whileHover="hover"
       whileTap={{ scale: 0.98 }}
       className={cn(
-        "inline-flex h-10 items-center gap-2 rounded-full px-6 font-mono text-xs font-semibold tracking-wider whitespace-nowrap uppercase outline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-electric",
+        "inline-flex h-10 items-center gap-2 rounded-pill px-6 font-mono text-xs font-semibold tracking-wider whitespace-nowrap uppercase outline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-electric",
         tones[tone],
         className
       )}
