@@ -6,6 +6,16 @@ import { ArrowLink } from "@/components/ui/arrow-link"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 import { AfricaGlobe } from "@/components/page/africa-globe"
+import { WordSwap } from "@/components/home/word-swap"
+
+// The headline's second line cycles through these (first one is the tagline).
+const swapWords = [
+  "possibilities.",
+  "investment.",
+  "growth.",
+  "partnerships.",
+  "opportunity.",
+]
 
 // Split hero on a full-bleed midnight band: copy on the left, a large Africa
 // globe with market pills on the right. "possibilities." and the buttons use
@@ -18,14 +28,20 @@ export function Hero() {
       <div className="mx-auto flex min-h-svh max-w-[120rem] items-center px-6 pt-14 lg:px-10">
         <div className="flex w-full flex-col md:flex-row md:items-center md:gap-6">
           <div className="relative z-10 flex flex-col pt-16 pb-4 text-center md:w-[50%] md:py-0 md:text-left">
-            <SplitReveal
-              as="h1"
-              mode="manual"
-              play={ready}
+            <h1
+              aria-label="Demonstrating possibilities."
               className="mb-6 text-[clamp(2.75rem,5.4vw,4.75rem)] leading-[1]"
             >
-              Demonstrating <span className="text-mint">possibilities.</span>
-            </SplitReveal>
+              <SplitReveal
+                as="span"
+                mode="manual"
+                play={ready}
+                className="block"
+              >
+                Demonstrating
+              </SplitReveal>
+              <WordSwap words={swapWords} play={ready} className="text-mint" />
+            </h1>
 
             <Reveal y={12}>
               <p className="mx-auto mb-10 max-w-md text-base leading-relaxed text-white/70 md:mx-0 md:text-lg">
