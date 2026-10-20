@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 
+import { heroImages } from "@/lib/content"
+
 import { PageHero } from "@/components/page/page-hero"
 import { SectionHeader } from "@/components/page/section-header"
 import { SolutionTiles } from "@/components/page/solution-tiles"
@@ -20,10 +22,12 @@ export default function SolutionsPage() {
       <PageHero
         eyebrow="Solutions"
         title="Built to demonstrate possibility."
-        intro="Our proprietary programmes and indices package what we know about African sport into tools leaders can act on."
+        intro="Our proprietary programmes and indices package what we know about African sports into tools leaders can act on."
+        image={heroImages.solutions}
+        imageAlt="An empty football stadium with green pitch and covered stands"
       />
 
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
         <SolutionTiles />
       </section>
 

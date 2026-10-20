@@ -5,21 +5,11 @@ import Link from "next/link"
 import { motion } from "motion/react"
 
 import { services, solutions } from "@/lib/content"
-import { cn } from "@/lib/utils"
 import { Arrow } from "@/components/ui/arrow"
-import { Shape, type ShapeName } from "@/components/ui/shape"
+import { ServiceIcon } from "@/components/ui/service-icon"
 import { ArrowLink } from "@/components/ui/arrow-link"
 
 export type MegaKey = "services" | "solutions"
-
-const accent: Record<ShapeName, string> = {
-  circle: "group-hover:text-mint",
-  square: "group-hover:text-electric",
-  triangle: "group-hover:text-mint",
-  quarter: "group-hover:text-electric",
-  diamond: "group-hover:text-mint",
-  ring: "group-hover:text-electric",
-}
 
 const intro: Record<
   MegaKey,
@@ -33,7 +23,7 @@ const intro: Record<
 > = {
   services: {
     title: "Six practices.",
-    body: "Advisory built for the business of sport and the markets around it.",
+    body: "Advisory built for the business of sports and the markets around it.",
     href: "/services",
     cta: "All Services",
     tone: "brand",
@@ -97,12 +87,9 @@ export function MegaMenu({
                   onClick={onNavigate}
                   className="group row-span-3 grid grid-rows-subgrid gap-y-3 rounded-lg p-4 transition-colors duration-200 outline-none hover:bg-white/5 focus-visible:bg-white/5"
                 >
-                  <Shape
-                    name={service.shape}
-                    className={cn(
-                      "size-5 text-white/30 transition-[color,rotate] duration-300 group-hover:rotate-90",
-                      accent[service.shape]
-                    )}
+                  <ServiceIcon
+                    slug={service.slug}
+                    className="size-5 text-white/60 transition-colors duration-300 group-hover:text-white"
                   />
                   <span className="font-heading text-base leading-tight text-white">
                     {service.title}

@@ -166,3 +166,50 @@ body::before {
   z-index: 9999;
   opacity: 0.5;
 }
+
+/* Industry ticker (components/home/industry-marquee.tsx): each copy of a row
+   slides one full width, so two copies end to end loop seamlessly. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* SplitReveal masks each heading line in a box one line tall; with tight
+   leading that clipped descenders (the g in "Demonstrating"). Extra room
+   below, cancelled by a negative margin, keeps tails visible without
+   changing line spacing. */
+.split-line-mask {
+  padding-bottom: 0.2em;
+  margin-bottom: -0.2em;
+}
+
+/* Bio modal (components/page/bio-modal.tsx): panel rises in, backdrop
+   blur fades in. */
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem) scale(0.98);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Page hero photo (components/page/page-hero.tsx): eases in from a slight
+   zoom. */
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.08);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  [class*="animate-[hero-zoom"] {
+    animation: none !important;
+  }
+}

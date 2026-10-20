@@ -1,8 +1,7 @@
 import type { Metadata } from "next"
 
-import { images, team, values } from "@/lib/content"
+import { heroImages, team, values } from "@/lib/content"
 import { cn } from "@/lib/utils"
-import { Shape } from "@/components/ui/shape"
 import { Eyebrow } from "@/components/ui/eyebrow"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { Reveal } from "@/components/motion/reveal"
@@ -12,6 +11,7 @@ import { SectionHeader } from "@/components/page/section-header"
 import { Process } from "@/components/home/process"
 import { Cta, Quote } from "@/components/page/closing"
 import { MarketsSection } from "@/components/page/markets-section"
+import { TeamCard } from "@/components/page/team-card"
 
 export const metadata: Metadata = {
   title: "About",
@@ -32,24 +32,29 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About DMPartners"
         title="Purpose. People. Performance."
-        intro="Guided by our tagline, Demonstrating Possibilities, we show what is achievable in Nigeria and across the African continent through sport and the markets around it."
-        image={images.meeting}
-        imageAlt="A business meeting in a Lagos office"
+        intro="Guided by our tagline, Demonstrating Possibilities, we show what is achievable in Nigeria and across the African continent through sports and the markets around them."
+        image={heroImages.about}
+        imageAlt="High-rise office towers in Lagos"
       />
 
       {/* Purpose: mission, positioning, values */}
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
         <SectionHeader
           eyebrow="Purpose"
-          title="Why we exist."
-          intro="Sport creates jobs, investment and national pride. Our work is aimed squarely at industrial development, and at proving that the opportunities we describe are possibilities already within reach."
+          title="Defining the New Era of Sports, Culture and Business."
+          intro="The future of the sports industry is being defined by the performance of current stakeholders across market segments, public and private sector, in the ecosystem as well as cross-cutting sectoral relationships. This presents a niche opportunity to stand out from the noise to offer specialised expertise for market development, growth strategies, professionalism and direct investment."
         />
+        <Reveal y={12}>
+          <p className="mt-6 font-heading text-[clamp(1.25rem,2vw,1.75rem)] text-brand">
+            DMPartners exists to shape the future.
+          </p>
+        </Reveal>
 
         <div className="mt-10 grid gap-10 md:mt-14 md:grid-cols-2 md:gap-6">
           {[
             {
               label: "Mission",
-              text: "To demonstrate what is achievable in sport across Nigeria and Africa, and turn it into industrial development.",
+              text: "To facilitate increased business interest and committed investment into the sports industry in Nigeria, and across Africa, leveraging existing opportunities in adjacent markets guided by principles bordering on people, culture and sustainability.",
             },
             {
               label: "Positioning",
@@ -82,7 +87,9 @@ export default function AboutPage() {
                 valueTones[index % valueTones.length].card
               )}
             >
-              <Shape name={value.shape} className="size-10" />
+              <span className="font-mono text-sm font-semibold opacity-60">
+                {String(index + 1).padStart(2, "0")}
+              </span>
               <div className="flex flex-col gap-3">
                 <h3 className="text-3xl leading-none">{value.title}</h3>
                 <p
@@ -104,30 +111,11 @@ export default function AboutPage() {
         <SectionHeader
           eyebrow="People"
           title="The team behind the work."
-          intro="Former athletes, analysts, economists and engineers. Partner and team bios with photos will appear here."
+          intro="We function as a Tier-One team at every level of our operations."
         />
-        <Reveal className="mt-10 grid gap-x-3 gap-y-10 sm:grid-cols-3 md:mt-12">
+        <Reveal className="mt-10 grid items-start gap-x-3 gap-y-10 sm:grid-cols-3 md:mt-12">
           {team.map((person, index) => (
-            <figure key={index} className="flex flex-col gap-4">
-              {/* Photo placeholder: initials on Oxford until portraits arrive. */}
-              <div className="relative flex aspect-[4/5] items-end overflow-hidden rounded-xl bg-midnight p-5">
-                <span className="font-heading text-[clamp(4rem,12vw,9rem)] leading-none text-white/10">
-                  {person.initials}
-                </span>
-                <Shape
-                  name={values[index % values.length].shape}
-                  className="absolute top-5 right-5 size-8 text-white/20"
-                />
-              </div>
-              <figcaption className="flex flex-col gap-1">
-                <span className="font-heading text-2xl leading-none text-midnight">
-                  {person.name}
-                </span>
-                <span className="text-sm text-muted-foreground">
-                  {person.role}
-                </span>
-              </figcaption>
-            </figure>
+            <TeamCard key={`${person.name}-${person.role}`} person={person} />
           ))}
         </Reveal>
       </section>
@@ -154,12 +142,12 @@ export default function AboutPage() {
               className="text-[clamp(1.5rem,2.6vw,2.5rem)] leading-[1.2] tracking-tight text-white"
             >
               We started DMPartners because we kept meeting people who could see
-              what sport in Africa could become, and too few who could show it
+              what sports in Africa could become, and too few who could show it
               was possible.
             </SplitReveal>
             <SplitReveal as="p">
               Federations without a commercial plan beyond the next tournament.
-              Investors who wanted to back sport but could not find a case they
+              Investors who wanted to back sports but could not find a case they
               trusted. Governments that saw the potential but lacked the
               evidence. None of these are problems of talent. They are problems
               of structure and proof, and both can be built.

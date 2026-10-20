@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
@@ -7,15 +8,17 @@ import {
   findCaseStudy,
   findSector,
   findService,
+  team,
 } from "@/lib/content"
-import { cn } from "@/lib/utils"
+import { Arrow } from "@/components/ui/arrow"
+import { ArrowLink } from "@/components/ui/arrow-link"
+import { Eyebrow } from "@/components/ui/eyebrow"
+import { Carousel } from "@/components/ui/carousel"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
-import { PageHero } from "@/components/page/page-hero"
+import { CountUp } from "@/components/motion/count-up"
 import { SectionHeader } from "@/components/page/section-header"
 import { CaseStudyCard } from "@/components/page/case-study-card"
-import { Cta, Quote } from "@/components/page/closing"
-import { CountUp } from "@/components/motion/count-up"
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -28,51 +31,90 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return study ? { title: study.title, description: study.summary } : {}
 }
 
-const statTones = [
-  "bg-lime text-midnight",
-  "bg-electric text-midnight",
-  "bg-midnight text-white",
-]
+// Highlight the last two words of the title, like PwC's marker highlight.
+function splitTitle(title: string) {
+  const words = title.split(" ")
+  const cut = Math.max(1, words.length - 2)
+  return [words.slice(0, cut).join(" "), words.slice(cut).join(" ")]
+}
 
+// One case study, after PwC's F1 story: split hero (tinted panel with
+// breadcrumb, title, summary and facts beside the photo), the numbers in a
+// row, the story in one centred reading column with a pull quote, explore
+// cards, a named contact, and a slider of more work.
 export default async function CaseStudyPage({ params }: Props) {
   const study = findCaseStudy((await params).slug)
   if (!study) notFound()
 
   const service = findService(study.service)
   const sector = findSector(study.sector)
-  const more = caseStudies.filter((c) => c.slug !== study.slug).slice(0, 2)
+  const more = caseStudies.filter((c) => c.slug !== study.slug)
+  const contact = team.find((person) => person.photo)
+  const [lead, highlight] = splitTitle(study.title)
 
   const facts = [
     { label: "Client", value: study.client },
-    service && {
-      label: "Service",
-      value: service.title,
-      href: `/services/${service.slug}`,
-    },
     sector && {
       label: "Industry",
       value: sector.title,
       href: `/case-studies?sector=${sector.slug}`,
     },
+    service && {
+      label: "Featuring",
+      value: service.title,
+      href: `/services/${service.slug}`,
+    },
   ].filter(Boolean) as { label: string; value: string; href?: string }[]
+
+  const story = [
+    { label: "The challenge", text: study.challenge },
+    { label: "Our approach", text: study.approach },
+    { label: "The impact", text: study.impact },
+  ]
 
   return (
     <main>
-      <PageHero
-        eyebrow="Case study"
-        title={study.title}
-        intro={study.summary}
-        image={study.image}
-        compact
-      >
-        <Reveal y={16}>
-          <dl className="grid gap-4">
+      {/* Split hero */}
+      <section className="relative z-10 grid bg-surface-2 lg:min-h-[86svh] lg:grid-cols-2">
+        <div className="flex flex-col justify-end px-6 pt-28 pb-12 md:pt-32 md:pb-16 lg:pr-12 lg:pl-10">
+          <nav aria-label="Breadcrumb" className="text-xs text-midnight/60">
+            <ol className="flex flex-wrap items-center gap-2">
+              <li>
+                <Link href="/" className="hover:text-midnight">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden>/</li>
+              <li>
+                <Link href="/case-studies" className="hover:text-midnight">
+                  Case studies
+                </Link>
+              </li>
+              <li aria-hidden>/</li>
+              <li aria-current="page" className="line-clamp-1 text-midnight">
+                {study.title}
+              </li>
+            </ol>
+          </nav>
+
+          <Eyebrow className="mt-10 text-brand">Case study</Eyebrow>
+          <h1 className="mt-4 text-[clamp(2.25rem,4.4vw,4rem)] leading-[1.05] text-midnight">
+            {lead}{" "}
+            <span className="bg-mint/35 box-decoration-clone px-1">
+              {highlight}
+            </span>
+          </h1>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed font-semibold text-midnight">
+            {study.summary}
+          </p>
+
+          <dl className="mt-10 grid gap-6 border-t border-midnight/15 pt-6 sm:grid-cols-3">
             {facts.map((fact) => (
-              <div key={fact.label} className="flex gap-4">
-                <dt className="w-20 shrink-0 font-mono text-xs tracking-wider text-muted-foreground uppercase">
+              <div key={fact.label} className="flex flex-col gap-1.5">
+                <dt className="font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
                   {fact.label}
                 </dt>
-                <dd className="text-midnight">
+                <dd className="text-sm text-midnight">
                   {fact.href ? (
                     <Link
                       href={fact.href}
@@ -87,55 +129,34 @@ export default async function CaseStudyPage({ params }: Props) {
               </div>
             ))}
           </dl>
-        </Reveal>
-      </PageHero>
+        </div>
 
-      {/* Challenge → Approach → Impact */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
-        <ol>
-          {[
-            { label: "The challenge", text: study.challenge },
-            { label: "Our approach", text: study.approach },
-            { label: "The impact", text: study.impact },
-          ].map((block, index) => (
-            <li
-              key={block.label}
-              className="grid gap-6 border-t border-border py-12 md:grid-cols-12 md:gap-6 md:py-16"
-            >
-              <Reveal
-                y={16}
-                className="flex items-baseline gap-4 md:col-span-3"
-              >
-                <span className="font-heading text-lg text-midnight/40">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span className="font-heading text-3xl leading-none text-midnight">
-                  {block.label}
-                </span>
-              </Reveal>
-              <SplitReveal
-                as="p"
-                className="text-[clamp(1.25rem,2.2vw,2rem)] leading-[1.3] tracking-tight text-midnight md:col-span-8 md:col-start-5"
-              >
-                {block.text}
-              </SplitReveal>
-            </li>
-          ))}
-        </ol>
+        <div className="relative aspect-[4/3] bg-midnight lg:aspect-auto">
+          <Image
+            src={study.image}
+            alt=""
+            fill
+            priority
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover"
+          />
+        </div>
+      </section>
 
-        <Reveal className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          {study.stats.map((stat, index) => (
+      {/* The numbers */}
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
+        {/* Centred row, so two or three figures always sit balanced. */}
+        <Reveal className="mx-auto flex max-w-5xl flex-wrap justify-center gap-x-16 gap-y-10">
+          {study.stats.map((stat) => (
             <div
               key={stat.label}
-              className={cn(
-                "flex min-h-52 flex-col justify-between gap-8 p-6 md:p-7",
-                statTones[index % statTones.length]
-              )}
+              className="flex w-full flex-col items-center text-center sm:w-60"
             >
-              <span className="font-heading text-[clamp(3.5rem,6vw,5.5rem)] leading-none">
+              <span className="font-heading text-[clamp(3rem,5vw,4.5rem)] leading-none text-brand">
                 <CountUp value={stat.value} />
               </span>
-              <span className="max-w-[16rem] font-mono text-[11px] leading-snug tracking-wider uppercase">
+              <span aria-hidden className="mt-5 h-0.5 w-10 bg-mint" />
+              <span className="mt-4 max-w-[15rem] text-sm leading-snug text-muted-foreground">
                 {stat.label}
               </span>
             </div>
@@ -143,23 +164,145 @@ export default async function CaseStudyPage({ params }: Props) {
         </Reveal>
       </section>
 
+      {/* The story, one reading column */}
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
-        <SectionHeader eyebrow="More work" title="Other case studies." />
-        <Reveal className="mt-10 grid gap-12 md:mt-12 md:grid-cols-2 md:gap-6">
-          {more.map((other) => (
-            <CaseStudyCard key={other.slug} study={other} size="large" />
+        <div className="mx-auto flex max-w-3xl flex-col gap-14 border-t border-border pt-14 md:gap-16 md:pt-16">
+          {story.map((block) => (
+            <div key={block.label} className="flex flex-col gap-4">
+              <Eyebrow className="text-brand">{block.label}</Eyebrow>
+              <SplitReveal
+                as="p"
+                className="text-[clamp(1.25rem,2vw,1.625rem)] leading-[1.45] text-midnight"
+              >
+                {block.text}
+              </SplitReveal>
+            </div>
           ))}
-        </Reveal>
+
+          {study.quote && (
+            <figure className="flex flex-col gap-4">
+              <blockquote className="font-heading text-[clamp(1.5rem,2.6vw,2.25rem)] leading-[1.2] text-brand">
+                &ldquo;{study.quote.text}&rdquo;
+              </blockquote>
+              <figcaption className="text-sm text-midnight">
+                {study.quote.by}
+              </figcaption>
+            </figure>
+          )}
+        </div>
       </section>
 
-      {study.quote && (
-        <Quote
-          eyebrow="From the client"
-          text={study.quote.text}
-          by={study.quote.by}
-        />
+      {/* Explore */}
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
+        <div className="grid gap-3 md:grid-cols-2">
+          {[
+            service && {
+              title: service.title,
+              body: service.summary,
+              href: `/services/${service.slug}`,
+              cta: "Explore the service",
+            },
+            {
+              title: "More case studies",
+              body: "Federations, investors, governments and brands: see how others turned possibility into performance.",
+              href: "/case-studies",
+              cta: "All case studies",
+            },
+          ]
+            .filter(Boolean)
+            .map((card) => {
+              const item = card as {
+                title: string
+                body: string
+                href: string
+                cta: string
+              }
+              return (
+                <div
+                  key={item.title}
+                  className="flex flex-col items-center gap-5 bg-surface-2 px-6 py-12 text-center md:px-12"
+                >
+                  <span aria-hidden className="h-0.5 w-10 bg-mint" />
+                  <p className="font-heading text-2xl leading-tight text-midnight">
+                    {item.title}
+                  </p>
+                  <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+                    {item.body}
+                  </p>
+                  <ArrowLink href={item.href}>{item.cta}</ArrowLink>
+                </div>
+              )
+            })}
+        </div>
+      </section>
+
+      {/* Contact */}
+      {contact && (
+        <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
+          <div className="flex flex-col gap-8 border-t border-border pt-10 md:flex-row md:items-center md:justify-between">
+            <div className="flex items-center gap-5">
+              <span className="relative block size-20 shrink-0 overflow-hidden bg-midnight">
+                <Image
+                  src={contact.photo!}
+                  alt={`Portrait of ${contact.name}`}
+                  fill
+                  sizes="80px"
+                  className="object-cover object-top"
+                />
+              </span>
+              <div>
+                <Eyebrow className="text-muted-foreground">
+                  Talk to the team
+                </Eyebrow>
+                <p className="mt-2 font-heading text-2xl leading-tight text-midnight">
+                  {contact.name}
+                </p>
+                <p className="text-sm text-muted-foreground">{contact.role}</p>
+              </div>
+            </div>
+            <div className="flex flex-wrap items-center gap-5">
+              {contact.linkedin && (
+                <a
+                  href={contact.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-xs font-semibold tracking-wider text-brand uppercase hover:text-midnight"
+                >
+                  LinkedIn
+                </a>
+              )}
+              <ArrowLink href="/contact">Start a conversation</ArrowLink>
+            </div>
+          </div>
+        </section>
       )}
-      <Cta />
+
+      {/* More work */}
+      <section className="relative z-10 overflow-hidden bg-surface-2">
+        <div className="mx-auto max-w-[120rem] px-6 py-16 md:py-20 lg:px-10">
+          <SectionHeader
+            eyebrow="More work"
+            title="Other case studies."
+            action={
+              <Link
+                href="/case-studies"
+                className="group flex items-center gap-2 font-mono text-xs font-semibold tracking-wider text-midnight uppercase"
+              >
+                See all
+                <Arrow
+                  size={14}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </Link>
+            }
+          />
+          <Carousel label="Other case studies" className="mt-10 md:mt-12">
+            {more.map((other) => (
+              <CaseStudyCard key={other.slug} study={other} />
+            ))}
+          </Carousel>
+        </div>
+      </section>
     </main>
   )
 }

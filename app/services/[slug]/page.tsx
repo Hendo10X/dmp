@@ -9,7 +9,6 @@ import {
   services,
 } from "@/lib/content"
 import { Arrow } from "@/components/ui/arrow"
-import { Shape } from "@/components/ui/shape"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 import { PageHero } from "@/components/page/page-hero"
@@ -46,11 +45,10 @@ export default async function ServicePage({ params }: Props) {
       />
 
       {/* What it is */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
         <div className="grid gap-8 md:grid-cols-12 md:gap-6">
           <Reveal y={16} className="md:col-span-3">
             <span className="flex items-center gap-3 font-mono text-xs tracking-wider text-midnight/70 uppercase">
-              <Shape name={service.shape} className="size-3 text-midnight" />
               What it is
             </span>
           </Reveal>
@@ -73,24 +71,20 @@ export default async function ServicePage({ params }: Props) {
               if (!audience) return null
               return (
                 <li key={slug}>
-                  {/* Fixed columns so every row lines up: shape, title,
+                  {/* Fixed columns so every row lines up: title,
                       description, arrow. Description drops under the
                       title on mobile. */}
                   <Link
                     href={`/who-we-serve#${slug}`}
-                    className="group grid grid-cols-[1.25rem_minmax(0,1fr)_1.25rem] items-start gap-x-5 gap-y-2 border-b border-border py-6 text-midnight md:grid-cols-[1.5rem_minmax(0,5fr)_minmax(0,7fr)_1.25rem] md:items-center md:gap-x-8 md:py-7"
+                    className="group grid grid-cols-[minmax(0,1fr)_1.25rem] items-start gap-x-5 gap-y-2 border-b border-border py-6 text-midnight md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)_1.25rem] md:items-center md:gap-x-8 md:py-7"
                   >
-                    <Shape
-                      name={audience.shape}
-                      className="col-start-1 row-start-1 mt-1 size-5 text-midnight transition-transform duration-700 group-hover:rotate-90 md:mt-0 md:size-6"
-                    />
-                    <span className="col-start-2 row-start-1 font-heading text-[clamp(1.25rem,2vw,1.75rem)] leading-tight">
+                    <span className="col-start-1 row-start-1 font-heading text-[clamp(1.25rem,2vw,1.75rem)] leading-tight">
                       {audience.title}
                     </span>
-                    <span className="col-start-2 row-start-2 text-sm leading-relaxed text-muted-foreground md:col-start-3 md:row-start-1 md:text-base">
+                    <span className="col-start-1 row-start-2 text-sm leading-relaxed text-muted-foreground md:col-start-2 md:row-start-1 md:text-base">
                       {audience.body}
                     </span>
-                    <Arrow className="col-start-3 row-start-1 mt-1 transition-transform duration-500 group-hover:translate-x-1 md:col-start-4 md:mt-0" />
+                    <Arrow className="col-start-2 row-start-1 mt-1 transition-transform duration-500 group-hover:translate-x-1 md:col-start-3 md:mt-0" />
                   </Link>
                 </li>
               )
@@ -133,7 +127,6 @@ export default async function ServicePage({ params }: Props) {
               className="group flex items-center justify-between gap-6 rounded-xl bg-secondary p-6 text-midnight transition-colors duration-500 hover:bg-midnight hover:text-white"
             >
               <span className="flex items-center gap-4">
-                <Shape name={other.shape} className="size-6 shrink-0" />
                 <span className="font-heading text-2xl leading-none">
                   {other.title}
                 </span>

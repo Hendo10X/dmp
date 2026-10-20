@@ -4,7 +4,6 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { services } from "@/lib/content"
 import { Arrow } from "@/components/ui/arrow"
-import { Shape } from "@/components/ui/shape"
 import { Reveal } from "@/components/motion/reveal"
 
 // The six services as photo cards in their natural colours, with a midnight
@@ -39,10 +38,6 @@ export function ServiceCards({ className }: { className?: string }) {
             <span className="font-mono text-xs text-white/70">
               {String(index + 1).padStart(2, "0")}
             </span>
-            <Shape
-              name={service.shape}
-              className="size-8 text-white/40 transition-[color,rotate] duration-500 group-hover:rotate-90 group-hover:text-mint"
-            />
           </span>
 
           <span aria-hidden className="h-16" />

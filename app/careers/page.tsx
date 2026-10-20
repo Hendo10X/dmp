@@ -1,9 +1,11 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 
-import { images, openings, values } from "@/lib/content"
+import Image from "next/image"
+
+import { cn } from "@/lib/utils"
+import { heroImages, images, openings } from "@/lib/content"
 import { Arrow } from "@/components/ui/arrow"
-import { Shape } from "@/components/ui/shape"
 import { Reveal } from "@/components/motion/reveal"
 import { PageHero } from "@/components/page/page-hero"
 import { SectionHeader } from "@/components/page/section-header"
@@ -13,13 +15,13 @@ import { Cta } from "@/components/page/closing"
 export const metadata: Metadata = {
   title: "Careers",
   description:
-    "Join DMPartners: advisors and analysts demonstrating what is possible in African sport.",
+    "Join DMPartners: people at the heart of demonstrating what is possible in African sports.",
 }
 
 const process = [
   {
     title: "Apply",
-    body: "Send your CV and a short note on why sport and why DMP.",
+    body: "Send your CV and a short note on why sports and why DMP.",
   },
   {
     title: "Conversation",
@@ -35,40 +37,117 @@ const process = [
   },
 ]
 
+// How We Work Together: the client's four statements, one per card, in the
+// light-to-dark logo palette used across the site.
+const together = [
+  { text: "Small teams.", tone: "bg-mint text-midnight" },
+  {
+    text: "Excel on the strength of each other.",
+    tone: "bg-electric text-midnight",
+  },
+  { text: "Work for each other.", tone: "bg-brand text-white" },
+  { text: "Deliver together.", tone: "bg-midnight text-white" },
+]
+
+// Ways in, after EY's career path cards. Descriptions are PLACEHOLDER.
+const paths = [
+  {
+    title: "Early careers",
+    body: "Graduates and early-career analysts who want real responsibility from the first week.",
+    image: images.research,
+    href: "/contact?topic=employment",
+    cta: "Start here",
+  },
+  {
+    title: "Seasoned professionals",
+    body: "Experienced advisors, analysts and operators ready to shape the business of sports.",
+    image: images.boardroom,
+    href: "/contact?topic=employment",
+    cta: "Join us",
+  },
+  {
+    title: "Partnership",
+    body: "Firms, institutions and independent experts who want to deliver alongside us.",
+    image: images.construction,
+    href: "/contact?topic=general",
+    cta: "Partner with us",
+  },
+]
+
 export default function CareersPage() {
   return (
     <main>
       <PageHero
-        eyebrow="DMP Careers"
-        title="Do the best work of your career in sport."
-        intro="We hire curious, rigorous people who believe in what sport can do for Nigeria and the continent, and want to prove it."
-        image={images.engineers}
-        imageAlt="A team of engineers in hard hats reviewing construction plans"
+        eyebrow="Careers"
+        title="DMPCareers"
+        intro="People remain at the heart of who we are and why we do what we do."
+        image={heroImages.careers}
+        imageAlt="Three colleagues reviewing work on a laptop in a Lagos office"
       />
 
-      {/* Culture */}
+      {/* How We Work Together */}
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
+        <SectionHeader eyebrow="Culture" title="How we work together." />
+        <Reveal className="mt-10 grid gap-3 sm:grid-cols-2 md:mt-12 lg:grid-cols-4">
+          {together.map((item, index) => (
+            <div
+              key={item.text}
+              className={cn(
+                "flex min-h-56 flex-col justify-between gap-10 p-6 md:p-7",
+                item.tone
+              )}
+            >
+              <span className="font-mono text-sm font-semibold opacity-60">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <p className="font-heading text-[clamp(1.75rem,2.4vw,2.25rem)] leading-[1.05]">
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </Reveal>
+      </section>
+
+      {/* Ways in */}
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
         <SectionHeader
-          eyebrow="Culture"
-          title="How we work together."
-          intro="Small teams, real responsibility early, and partners who stay close to the work. These are the values we hire for."
+          eyebrow="Ways in"
+          title="Let's demonstrate possibilities together."
         />
-        <Reveal className="mt-10 grid gap-2 sm:grid-cols-2 md:mt-12 lg:grid-cols-4">
-          {values.map((value) => (
-            <div
-              key={value.title}
-              className="flex min-h-56 flex-col justify-between gap-10 rounded-xl bg-secondary p-6 md:p-7"
+        <Reveal className="mt-10 grid gap-3 md:mt-12 md:grid-cols-3">
+          {paths.map((path) => (
+            <Link
+              key={path.title}
+              href={path.href}
+              className="group relative flex min-h-[28rem] flex-col justify-end overflow-hidden bg-midnight p-6 text-white outline-none focus-visible:ring-2 focus-visible:ring-electric md:p-8"
             >
-              <Shape name={value.shape} className="size-10 text-midnight" />
-              <div className="flex flex-col gap-3">
-                <h3 className="text-3xl leading-none text-midnight">
-                  {value.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-muted-foreground">
-                  {value.body}
-                </p>
-              </div>
-            </div>
+              <Image
+                src={path.image}
+                alt=""
+                fill
+                sizes="(min-width: 768px) 34vw, 100vw"
+                className="object-cover transition-[scale] duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-105"
+              />
+              <span
+                aria-hidden
+                className="absolute inset-0 bg-linear-to-t from-midnight via-midnight/55 to-transparent"
+              />
+              <span className="relative flex flex-col gap-3">
+                <span className="font-heading text-3xl leading-none">
+                  {path.title}
+                </span>
+                <span className="max-w-sm text-sm leading-relaxed text-white/80">
+                  {path.body}
+                </span>
+                <span className="mt-3 flex items-center gap-2 font-mono text-xs tracking-wider text-mint uppercase">
+                  {path.cta}
+                  <Arrow
+                    size={14}
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  />
+                </span>
+              </span>
+            </Link>
           ))}
         </Reveal>
       </section>
@@ -88,7 +167,7 @@ export default function CareersPage() {
             {openings.map((role) => (
               <li key={role.title}>
                 <Link
-                  href={`/contact?topic=careers&role=${encodeURIComponent(role.title)}`}
+                  href={`/contact?topic=employment&role=${encodeURIComponent(role.title)}`}
                   className="group grid gap-3 border-b border-border py-6 text-midnight md:grid-cols-12 md:items-center md:gap-6 md:py-8"
                 >
                   <span className="font-heading text-[clamp(1.75rem,3vw,2.75rem)] leading-none md:col-span-5">
@@ -110,7 +189,7 @@ export default function CareersPage() {
             ))}
             <li>
               <Link
-                href="/contact?topic=careers"
+                href="/contact?topic=employment"
                 className="group flex items-center justify-between gap-6 bg-secondary px-6 py-6 text-midnight transition-colors duration-500 hover:bg-midnight hover:text-white md:py-8"
               >
                 <span className="font-heading text-[clamp(1.75rem,3vw,2.75rem)] leading-none">
@@ -135,7 +214,7 @@ export default function CareersPage() {
       <Cta
         title="Ready to apply?"
         body="Send us your CV and a short note. We read every application."
-        href="/contact?topic=careers"
+        href="/contact?topic=employment"
         label="Apply now"
       />
     </main>

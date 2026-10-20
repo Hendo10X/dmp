@@ -14,7 +14,7 @@ import { AfricaGlobe } from "@/components/page/africa-globe"
 // market swings the globe to it.
 export function MarketsSection({
   title = "Built in Nigeria. Working across Africa.",
-  intro = "Our home is Nigeria. Our view is continental: the opportunities in sport and its adjacent markets do not stop at borders. Drag the globe, or pick a market.",
+  intro = "Our home is Nigeria. Our view is continental: the opportunities in sports and their adjacent markets do not stop at borders. Drag the globe, or pick a market.",
 }: {
   title?: string
   intro?: string

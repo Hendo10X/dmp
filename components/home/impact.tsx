@@ -77,7 +77,7 @@ export function Impact() {
       <SectionHeader
         eyebrow="Client impact"
         title="Results you can read on a scoreboard."
-        intro="Good strategy shows up in numbers. Here is what changes when sport is run with evidence, modern systems and a clear commercial plan."
+        intro="Good strategy shows up in numbers. Here is what changes when sports are run with evidence, modern systems and a clear commercial plan."
       />
 
       <Reveal className="mt-10 flex flex-col gap-3 md:mt-12 md:h-[34rem] md:flex-row md:items-end md:gap-2">

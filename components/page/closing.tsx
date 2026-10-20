@@ -7,7 +7,7 @@ import { SplitReveal } from "@/components/motion/split-reveal"
 // Default copy is placeholder.
 export function Quote({
   eyebrow = "From our partners",
-  text = "The opportunities in Africa sports are not aspirations. They are possibilities already within reach. Our work is to demonstrate them.",
+  text = "The opportunities in African sports are not aspirational. They are possibilities already within reach. Our work is to demonstrate them.",
   by = "Founders, DMPartners",
 }: {
   eyebrow?: string

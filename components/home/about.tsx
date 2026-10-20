@@ -2,18 +2,17 @@
 
 import * as React from "react"
 import Image from "next/image"
-import Link from "next/link"
 
 import { gsap, useGSAP } from "@/lib/gsap"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 import { Eyebrow } from "@/components/ui/eyebrow"
-import { Shape } from "@/components/ui/shape"
-import { audiences, images } from "@/lib/content"
+import { images } from "@/lib/content"
+import { IndustryMarquee } from "@/components/home/industry-marquee"
 
-// "Who we are" from docs/brief.md: photo card beside the copy and the "who we
-// serve" pills (client brief: About handles both). The photo stretches to
+// "Who we are" from docs/brief.md: photo card beside the copy and the ticker of
+// industries we serve (client list). The photo stretches to
 // the copy's height. Copy is placeholder until the client supplies it.
 export function About() {
   const section = React.useRef<HTMLElement>(null)
@@ -78,7 +77,7 @@ export function About() {
 
           <div
             aria-hidden
-            className="absolute top-4 left-4 size-10 rounded-full bg-mint md:size-12"
+            className="absolute top-4 left-4 size-10 rounded-full bg-midnight md:size-12"
           />
           <p className="absolute top-10 left-10 rounded-xl bg-midnight px-5 py-4 font-heading text-lg leading-tight text-white md:top-12 md:left-12 md:px-6 md:py-5 md:text-xl">
             Client Groups
@@ -87,7 +86,7 @@ export function About() {
           </p>
         </div>
 
-        <div className="flex flex-col md:col-span-6 md:pl-6 lg:pl-10">
+        <div className="flex min-w-0 flex-col md:col-span-6 md:pl-6 lg:pl-10">
           <Reveal y={16}>
             <Eyebrow className="text-midnight/70">About DMPartners</Eyebrow>
           </Reveal>
@@ -109,23 +108,8 @@ export function About() {
           </SplitReveal>
 
           <Reveal y={16} className="mt-8">
-            <Eyebrow className="text-midnight/70">Who we serve</Eyebrow>
-            <ul className="mt-4 flex flex-wrap gap-2">
-              {audiences.map((audience) => (
-                <li key={audience.slug}>
-                  <Link
-                    href={`/who-we-serve#${audience.slug}`}
-                    className="group inline-flex items-center gap-2 rounded-pill border border-border px-4 py-2 text-sm text-midnight transition-colors duration-300 hover:border-midnight hover:bg-midnight hover:text-white"
-                  >
-                    {audience.title}
-                    <Shape
-                      name={audience.shape}
-                      className="size-2.5 text-mint opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                    />
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <Eyebrow className="text-midnight/70">Industries we serve</Eyebrow>
+            <IndustryMarquee className="mt-4" />
           </Reveal>
 
           <Reveal y={16} className="mt-8 md:mt-auto md:pt-8">

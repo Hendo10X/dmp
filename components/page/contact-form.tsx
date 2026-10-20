@@ -4,15 +4,15 @@ import * as React from "react"
 import { useSearchParams } from "next/navigation"
 import { AnimatePresence, motion } from "motion/react"
 
-import { services } from "@/lib/content"
 import { cn } from "@/lib/utils"
 import { Arrow, Tick } from "@/components/ui/arrow"
 
+// The client's four enquiry types (Website Page by Page brief).
 const topics = [
-  { value: "general", label: "General enquiry" },
-  ...services.map((s) => ({ value: s.slug, label: s.title })),
+  { value: "proposal", label: "Request for proposal" },
+  { value: "general", label: "General business enquiry" },
+  { value: "employment", label: "Employment" },
   { value: "speakers", label: "DMP Speakers" },
-  { value: "careers", label: "Careers" },
 ]
 
 const field =
@@ -96,7 +96,7 @@ export function ContactForm() {
                 className={field}
               />
             </Field>
-            <Field label="Topic" htmlFor="topic">
+            <Field label="How can we help?" htmlFor="topic">
               {/* Native arrow is hidden (appearance-none); a sharp chevron
                   matching the nav replaces it. */}
               <div className="relative">

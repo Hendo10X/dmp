@@ -5,11 +5,14 @@
 // the structure in docs/brief.md: replace with client-approved content
 // (or move to a CMS) before launch. Figures and quotes are illustrative.
 
-import type { ShapeName } from "@/components/ui/shape"
-
 // Photos: Pexels free licence (pexels.com/license). Sources by photo id:
 // stadium 29804436, meeting 30688593, research 9301257, celebrate 29804435,
-// site 7937367, engineers 37198885, analysis 9301824.
+// site 7937367, engineers 37198885, analysis 9301824, construction 10202865,
+// scaffolding 30661413, highRises 3855622, quarry 38643910,
+// classroom 28593055, boardroom 30688592, techTeam 30689114,
+// farmers 36846177, grassroots 19416414, streetFootball 5648177,
+// venue 20431293. A deliberately wide spread (construction, mining,
+// schools, government meetings, real estate, recreation) per the client.
 export const images = {
   stadium: "/Images/nigerian-fans-stadium.jpg",
   meeting: "/Images/lagos-office-meeting.jpg",
@@ -18,6 +21,27 @@ export const images = {
   engineers: "/Images/engineers-plan-review.jpg",
   analysis: "/Images/market-data-analysis.jpg",
   celebrate: "/Images/super-falcons-celebrate.jpg",
+  construction: "/Images/construction-site-team.jpg",
+  scaffolding: "/Images/scaffolding-nairobi.jpg",
+  highRises: "/Images/lagos-high-rises.jpg",
+  quarry: "/Images/open-pit-quarry.jpg",
+  classroom: "/Images/african-classroom.jpg",
+  boardroom: "/Images/lagos-boardroom-meeting.jpg",
+  techTeam: "/Images/lagos-tech-team.jpg",
+  farmers: "/Images/cassava-farmers.jpg",
+  grassroots: "/Images/grassroots-football.jpg",
+  streetFootball: "/Images/street-football.jpg",
+  venue: "/Images/baba-yara-stadium.jpg",
+}
+
+// Opening photo for each inner page's hero (Contact has none).
+export const heroImages = {
+  about: images.highRises,
+  services: images.construction,
+  solutions: images.venue,
+  whoWeServe: images.classroom,
+  careers: images.techTeam,
+  caseStudies: images.quarry,
 }
 
 // ---------------------------------------------------------------- Services
@@ -26,7 +50,6 @@ export type Service = {
   slug: string
   title: string
   summary: string
-  shape: ShapeName
   image: string
   what: string
   forWhom: string[]
@@ -40,8 +63,7 @@ export const services: Service[] = [
     title: "Strategy & Growth Advisory",
     summary:
       "Clear strategies and growth plans for sports organisations, brands and the businesses around them.",
-    shape: "circle",
-    image: images.meeting,
+    image: images.highRises,
     what: "We help leadership teams decide where to play and how to win: corporate and commercial strategy, market entry, revenue diversification, partnerships and growth plans grounded in the realities of Nigerian and African markets.",
     forWhom: ["federations", "corporates", "smes"],
     approach: [
@@ -51,7 +73,7 @@ export const services: Service[] = [
       },
       {
         title: "Find the growth",
-        body: "Size the opportunities in sport and adjacent markets, then prioritise.",
+        body: "Size the opportunities in sports and adjacent markets, then prioritise.",
       },
       {
         title: "Set the plan",
@@ -69,8 +91,7 @@ export const services: Service[] = [
     title: "Business Transformation & Performance",
     summary:
       "Operating models, governance and systems that make organisations perform, and keep performing.",
-    shape: "square",
-    image: images.engineers,
+    image: images.techTeam,
     what: "We redesign how organisations work: governance, structure, processes, people and technology. The goal is measurable performance, from faster decisions to stronger finances, with change that sticks after we leave.",
     forWhom: ["federations", "associations", "corporates"],
     approach: [
@@ -97,10 +118,9 @@ export const services: Service[] = [
     slug: "transaction-investment",
     title: "Transaction & Investment Advisory",
     summary:
-      "Due diligence, valuation, deal support and investment cases for capital entering sport.",
-    shape: "triangle",
-    image: images.analysis,
-    what: "We help investors, financial institutions and governments put capital to work in sport and adjacent markets with confidence: commercial due diligence, valuation, feasibility, transaction support and the investment cases that show what is possible.",
+      "Due diligence, valuation, deal support and investment cases for capital entering sports.",
+    image: images.boardroom,
+    what: "We help investors, financial institutions and governments put capital to work in sports and adjacent markets with confidence: commercial due diligence, valuation, feasibility, transaction support and the investment cases that show what is possible.",
     forWhom: ["investors", "mdas", "corporates"],
     approach: [
       {
@@ -127,9 +147,8 @@ export const services: Service[] = [
     title: "Policy & Ecosystem Advisory",
     summary:
       "Policy, regulation and programmes that help a whole sports economy grow.",
-    shape: "quarter",
-    image: images.research,
-    what: "We work with governments, regulators and development partners on the conditions that let sport become an industry: national sports policy, regulatory frameworks, public-private partnerships, infrastructure programmes and the ecosystems around them.",
+    image: images.meeting,
+    what: "We work with governments, regulators and development partners on the conditions that let sports become an industry: national sports policy, regulatory frameworks, public-private partnerships, infrastructure programmes and the ecosystems around them.",
     forWhom: ["mdas", "federations", "associations"],
     approach: [
       {
@@ -156,8 +175,7 @@ export const services: Service[] = [
     title: "Research & Market Intelligence",
     summary:
       "Evidence, indices and market studies on the sports economy in Nigeria and across Africa.",
-    shape: "diamond",
-    image: images.analysis,
+    image: images.research,
     what: "Independent research on the size, growth and potential of the sports economy, designed to be used: market sizing, audience and fan research, sector studies and the proprietary indices behind our solutions.",
     forWhom: ["investors", "academia", "mdas"],
     approach: [
@@ -184,9 +202,8 @@ export const services: Service[] = [
     slug: "sustainability",
     title: "Sustainability",
     summary:
-      "Environmental, social and governance strategy that makes sport last, and makes it count.",
-    shape: "ring",
-    image: images.site,
+      "Environmental, social and governance strategy that makes sports last, and makes them count.",
+    image: images.farmers,
     what: "We help sports organisations, venues and investors build sustainability into strategy and operations: ESG frameworks, sustainable venue and event planning, community impact and the reporting that funders and partners now expect.",
     forWhom: ["corporates", "investors", "federations"],
     approach: [
@@ -223,7 +240,6 @@ export type Solution = {
   kicker: string
   summary: string
   image: string
-  shape: ShapeName
   what: string
   outcomes: string[]
   how: { title: string; body: string }[]
@@ -239,8 +255,7 @@ export const solutions: Solution[] = [
     kicker: "Measured",
     summary:
       "An end-to-end programme that turns national federations into well-governed, commercially sustainable organisations.",
-    image: images.engineers,
-    shape: "square",
+    image: images.scaffolding,
     what: "Federations sit at the heart of every sport, yet many run on volunteer structures and a single funding source. Our transformation programme rebuilds them as modern organisations: governance that earns trust, commercial models that diversify income, operations that deliver, and data that proves progress.",
     outcomes: [
       "Governance aligned to international best practice",
@@ -279,8 +294,7 @@ export const solutions: Solution[] = [
     kicker: "Index",
     summary:
       "A measure of how credible and relevant brands, clubs and athletes are with fans and communities.",
-    image: images.stadium,
-    shape: "circle",
+    image: images.streetFootball,
     what: "Reach is easy to buy. Credibility is earned on the street, in communities and among fans. The Street Credibility Index measures it: how trusted, authentic and culturally relevant a brand, club or athlete is with the audiences that matter, and how that compares with peers.",
     outcomes: [
       "A credibility score benchmarked against peers",
@@ -315,8 +329,7 @@ export const solutions: Solution[] = [
     kicker: "Index",
     summary:
       "A ranking of the commercial and institutional strength of sports, properties and markets across Africa.",
-    image: images.celebrate,
-    shape: "triangle",
+    image: images.venue,
     what: "Where should capital, sponsorship and policy attention go? The Sports Power Index ranks sports, properties and markets on the factors that create value: audience, commercial maturity, governance, infrastructure and investment readiness. It turns a crowded field into a clear map of possibility.",
     outcomes: [
       "A transparent ranking of sports, properties and markets",
@@ -353,7 +366,6 @@ export type Audience = {
   slug: string
   title: string
   body: string
-  shape: ShapeName
   needs: string[]
 }
 
@@ -362,7 +374,6 @@ export const audiences: Audience[] = [
     slug: "federations",
     title: "Federations & NGBs",
     body: "Governance, strategy and performance systems for national governing bodies.",
-    shape: "circle",
     needs: [
       "Multi-year strategic plans",
       "Governance and board reviews",
@@ -372,8 +383,7 @@ export const audiences: Audience[] = [
   {
     slug: "mdas",
     title: "Ministries, Departments & Agencies",
-    body: "Policy, programme design and evaluation for public investment in sport.",
-    shape: "square",
+    body: "Policy, programme design and evaluation for public investment in sports.",
     needs: [
       "Sports policy development",
       "Programme evaluation",
@@ -383,19 +393,17 @@ export const audiences: Audience[] = [
   {
     slug: "corporates",
     title: "Corporates",
-    body: "Sponsorship strategy, activation and measurable return from sport partnerships.",
-    shape: "triangle",
+    body: "Sponsorship strategy, activation and measurable return from sports partnerships.",
     needs: [
       "Sponsorship strategy",
       "Partnership measurement",
-      "Employee wellbeing through sport",
+      "Employee wellbeing through sports",
     ],
   },
   {
     slug: "investors",
     title: "Investors & Financial Institutions",
-    body: "Due diligence, valuation and market insight for capital entering sport.",
-    shape: "quarter",
+    body: "Due diligence, valuation and market insight for capital entering sports.",
     needs: [
       "Commercial due diligence",
       "Market entry studies",
@@ -406,7 +414,6 @@ export const audiences: Audience[] = [
     slug: "academia",
     title: "Academic & Research Institutions",
     body: "Research partnerships, data and applied studies with real-world reach.",
-    shape: "circle",
     needs: [
       "Joint research programmes",
       "Data access partnerships",
@@ -417,7 +424,6 @@ export const audiences: Audience[] = [
     slug: "smes",
     title: "SMEs & Intermediaries",
     body: "Growth strategy and market access for businesses serving the sports economy.",
-    shape: "square",
     needs: [
       "Go-to-market strategy",
       "Partnership brokering",
@@ -427,8 +433,7 @@ export const audiences: Audience[] = [
   {
     slug: "associations",
     title: "Professional Associations",
-    body: "Standards, member value and professional development for bodies in sport.",
-    shape: "triangle",
+    body: "Standards, member value and professional development for bodies in sports.",
     needs: [
       "Member value propositions",
       "Accreditation frameworks",
@@ -443,7 +448,6 @@ export type Sector = {
   slug: string
   title: string
   body: string
-  shape: ShapeName
   image: string
 }
 
@@ -452,42 +456,36 @@ export const sectors: Sector[] = [
     slug: "football",
     title: "Football & Leagues",
     body: "Club and league strategy, rights, academies and matchday economics.",
-    shape: "circle",
     image: images.stadium,
   },
   {
     slug: "olympic-sport",
-    title: "Olympic & Grassroots Sport",
+    title: "Olympic & Grassroots Sports",
     body: "Funding cases, athlete pathways and participation growth.",
-    shape: "square",
     image: images.celebrate,
   },
   {
     slug: "media",
     title: "Media & Entertainment",
-    body: "Broadcast, streaming and content models built around sport audiences.",
-    shape: "triangle",
+    body: "Broadcast, streaming and content models built around sports audiences.",
     image: images.celebrate,
   },
   {
     slug: "tourism-events",
     title: "Sports Tourism & Events",
-    body: "Event bidding, hosting economics and the visitor economy around sport.",
-    shape: "quarter",
+    body: "Event bidding, hosting economics and the visitor economy around sports.",
     image: images.meeting,
   },
   {
     slug: "infrastructure",
     title: "Venues & Real Estate",
     body: "Feasibility, financing and operating models for venues and mixed-use sites.",
-    shape: "circle",
     image: images.engineers,
   },
   {
     slug: "health-wellness",
     title: "Health, Wellness & Science",
     body: "Sports medicine, wellness markets and applied research.",
-    shape: "square",
     image: images.research,
   },
 ]
@@ -516,7 +514,7 @@ export const caseStudies: CaseStudy[] = [
     client: "National sports federation",
     service: "business-transformation",
     sector: "olympic-sport",
-    image: images.research,
+    image: images.analysis,
     summary:
       "One platform for athletes, clubs and competitions, and a board that reports in days, not months.",
     challenge:
@@ -560,7 +558,7 @@ export const caseStudies: CaseStudy[] = [
     client: "Government sports agency",
     service: "research-market-intelligence",
     sector: "olympic-sport",
-    image: images.analysis,
+    image: images.grassroots,
     summary:
       "A three-year evidence base for where talent funding goes furthest.",
     challenge:
@@ -580,7 +578,7 @@ export const caseStudies: CaseStudy[] = [
     client: "Multi-sport club",
     service: "business-transformation",
     sector: "football",
-    image: images.meeting,
+    image: images.boardroom,
     summary: "A new board structure and constitution approved by members.",
     challenge:
       "An outdated constitution and an oversized board slowed every decision.",
@@ -601,29 +599,84 @@ export const values = [
   {
     title: "Evidence first",
     body: "Opinions are welcome. Decisions are made on data.",
-    shape: "square" as ShapeName,
   },
   {
     title: "Built to last",
     body: "We design for the institution, not the headline.",
-    shape: "quarter" as ShapeName,
   },
   {
     title: "Side by side",
     body: "We work inside your team, not above it.",
-    shape: "circle" as ShapeName,
   },
   {
     title: "Straight talk",
     body: "Clear advice, even when it is not what people want to hear.",
-    shape: "triangle" as ShapeName,
   },
 ]
 
-export const team = [
+export type TeamMember = {
+  name: string
+  role: string
+  initials: string
+  photo?: string
+  linkedin?: string
+  // One or two lines under the role; `bio` is the full text behind "Read bio".
+  summary?: string
+  bio?: string[]
+}
+
+// Telema Davies: client-supplied bio (Professional Bio, 15 Oct 2026) and
+// portrait. The other two entries are still placeholders.
+export const team: TeamMember[] = [
+  {
+    name: "Telema Harry Davies",
+    role: "Co-Founder & Managing Partner",
+    initials: "TD",
+    photo: "/Images/team/telema-davies.jpg",
+    linkedin: "https://www.linkedin.com/in/telema-davies",
+    summary:
+      "Over 15 years across the creative and cultural industries, with deep experience in the sports sector.",
+    bio: [
+      "Telema Harry Davies is a seasoned professional with over 15 years of experience across the creative and cultural industries, with demonstrable skills in the sports sector. He is Co-Founder and Managing Partner of DMPartners, a consulting practice focused on the intersection between the sports industry and adjacent markets, including extractives, manufacturing, trade and investment, construction and real estate, technology, media and entertainment, government, education, and events.",
+      "Telema previously served as Coordinating Secretary at Sport Nigeria LTD/GTE, a private sector infrastructure intervention organisation established to chart a new course for Nigeria's sports market and industry value chain, leveraging opportunities under the 2022-2026 National Sports Industry Policy. In this role, and throughout his career, he has driven initiatives spanning operations, project management, business intelligence, and market analysis, consistently shaping policy and fostering industry growth.",
+      "A graduate of Sociology and Anthropology from the University of Ilorin, Telema has deep experience in market research, data collection, and analysis. He co-founded TWOREPORT LIMITED, a market research and data advisory company, where he served as Head of Product Innovation, delivering products that influenced market-specific solutions for commercial growth. His research and consulting work spans landmark reports including Women and Sports in Nigeria (2016), How Nigerians Will Consume the World Cup (2018), the CampsBay Media Sports Business Series, Esports in Nigeria: The Fans, and a Temple Management Company masterclass on the role of data in sports.",
+      "As a longstanding member of the Sports Industry Thematic Group (SITG) at the Nigerian Economic Summit Group (NESG) since 2017, Telema has contributed to stakeholder engagements and research underpinning the 2022-2026 National Sports Industry Policy, the Technical Working Group on Creative, Culture, Hospitality and Tourism Industry, and the Nigeria 2050 Agenda. He served as Event Coordinator for the Kaduna State Sports Industry Policy Dialogue Summit (2023) and, until recently, as Summit Director of the Sports Africa Investment Summit, Sport Nigeria's flagship event. He has also facilitated at national and international events including the National Youth Conference and the Road to GamrX Esports Business Summit.",
+      "Telema is passionate about cultural exchange, public speaking, and using his strategic vision to contribute to the evolution of Nigeria's sports and creative economy.",
+    ],
+  },
   { name: "Partner Name", role: "Founding Partner", initials: "FP" },
-  { name: "Partner Name", role: "Managing Partner", initials: "MP" },
   { name: "Team Member", role: "Head of Investment Advisory", initials: "DT" },
+]
+
+// ------------------------------------------------------------- Industries
+
+// Client-supplied list (DMP - Industries deck): the adjacent markets DMP
+// works across. Shown on the home About section.
+export const industries = [
+  "Manufacturing & Trade",
+  "Education",
+  "Extractive Industries",
+  "Mining & Metals",
+  "Agriculture",
+  "Government & Public Services",
+  "Tourism & Hospitality",
+  "Private Equity & Investors",
+  "Media & Entertainment",
+  "Medical & Health Sciences",
+  "Retail & Consumer Goods",
+  "Technology",
+  "Real Estate & Construction",
+  "Capital Projects & Infrastructure",
+  "Defence & Security",
+]
+
+// ------------------------------------------------------------------ Social
+
+// "Follow us on social media" on Contact. PLACEHOLDER: the client has not
+// sent the profile URLs yet; an empty url renders the name without a link.
+export const social = [
+  { name: "LinkedIn", url: "" },
+  { name: "X", url: "" },
 ]
 
 // ------------------------------------------------------------------ Careers

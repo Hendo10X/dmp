@@ -1,5 +1,7 @@
 import type { Metadata } from "next"
 
+import { heroImages } from "@/lib/content"
+
 import { PageHero } from "@/components/page/page-hero"
 import { AudienceAccordion } from "@/components/page/audience-accordion"
 import { Cta } from "@/components/page/closing"
@@ -15,11 +17,13 @@ export default function WhoWeServePage() {
     <main>
       <PageHero
         eyebrow="Who we serve"
-        title="Everyone who runs sport."
-        intro="Seven kinds of organisation, each with its own pressures. Open yours to see how we help."
+        title="Everyone in the business of sports."
+        intro="Seven stakeholder groups, each with its own friction. Open yours to see how we help."
+        image={heroImages.whoWeServe}
+        imageAlt="Smiling children at their desks in a classroom"
       />
 
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
         <AudienceAccordion />
       </section>
 
