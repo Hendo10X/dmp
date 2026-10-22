@@ -45,7 +45,7 @@ export function SplitReveal({
             // visitor has already seen.
             if (played.current) return
             tween.current = gsap.from(self.lines, {
-              yPercent: 115,
+              yPercent: 130,
               duration: 1.4,
               delay,
               ease: "expo.out",

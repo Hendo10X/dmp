@@ -1,5 +1,4 @@
 import { ArrowLink } from "@/components/ui/arrow-link"
-import { Shape } from "@/components/ui/shape"
 import { Eyebrow } from "@/components/ui/eyebrow"
 
 export default function NotFound() {
@@ -10,10 +9,6 @@ export default function NotFound() {
         <h1 className="text-[clamp(5rem,18vw,18rem)] leading-[0.8]">
           Off side.
         </h1>
-        <Shape
-          name="triangle"
-          className="mb-[2vw] size-[6vw] min-w-10 text-crimson"
-        />
       </div>
       <p className="max-w-md text-lg leading-relaxed text-muted-foreground">
         The page you were looking for isn&rsquo;t here. It may have moved, or

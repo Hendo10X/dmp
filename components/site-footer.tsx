@@ -81,17 +81,18 @@ export function SiteFooter() {
         <span>Demonstrating Possibilities</span>
       </div>
 
-      {/* Full-width dmpartners logo at the base (white with the mint rays). */}
-      <div className="mx-auto max-w-[120rem] px-6 pt-8 pb-8 md:pt-10 md:pb-10 lg:px-10">
-        <Image
-          src="/brand/dmpartners-white.png"
-          alt="DMPartners"
-          width={2400}
-          height={424}
-          unoptimized
-          className="h-auto w-full select-none"
-        />
-      </div>
+      {/* Oversized, faded dmp mark bleeding off the bottom edge, like the
+          original text wordmark. Decorative: the brand is named above. */}
+      <Image
+        src="/brand/dmp-white-mono.png"
+        alt=""
+        aria-hidden
+        width={2400}
+        height={1067}
+        unoptimized
+        draggable={false}
+        className="mx-auto mt-6 -mb-[9vw] h-auto w-[90vw] max-w-[110rem] opacity-10 select-none md:mt-8 md:opacity-[0.06]"
+      />
     </footer>
   )
 }

@@ -4,7 +4,6 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { solutions } from "@/lib/content"
 import { Arrow } from "@/components/ui/arrow"
-import { Shape } from "@/components/ui/shape"
 import { Reveal } from "@/components/motion/reveal"
 
 // Three tall photo tiles for the proprietary solutions, after PwC's
@@ -46,10 +45,6 @@ export function SolutionTiles({ className }: { className?: string }) {
             <span className="font-mono text-[10px] tracking-widest uppercase">
               {solution.kicker}
             </span>
-            <Shape
-              name={solution.shape}
-              className="size-7 text-white transition-[rotate,color] duration-700 group-hover:rotate-90 group-hover:text-mint"
-            />
           </span>
 
           <span aria-hidden />

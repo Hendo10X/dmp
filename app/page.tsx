@@ -26,7 +26,7 @@ export default function Page() {
           <SectionHeader
             eyebrow="Our solutions"
             title="Three ways we demonstrate possibility."
-            intro="Proprietary programmes and indices that turn what we know about African sport into decisions."
+            intro="Proprietary programmes and indices that turn what we know about African sports into decisions."
             action={<ArrowLink href="/solutions">All solutions</ArrowLink>}
           />
           <SolutionTiles className="mt-10 md:mt-12" />

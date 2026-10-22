@@ -8,7 +8,7 @@ export function Services() {
       <SectionHeader
         eyebrow="What we do"
         title="Six practices. One ambition."
-        intro="From strategy and transformation to transactions, policy, research and sustainability: advisory built for the business of sport and the markets around it."
+        intro="From strategy and transformation to transactions, policy, research and sustainability: advisory built for the business of sports and the markets around it."
         action={<ArrowLink href="/services">All services</ArrowLink>}
       />
       <ServiceCards className="mt-10 md:mt-12" />

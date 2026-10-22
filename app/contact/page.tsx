@@ -4,12 +4,12 @@ import Link from "next/link"
 
 import { Arrow } from "@/components/ui/arrow"
 import { Eyebrow } from "@/components/ui/eyebrow"
-import { Shape } from "@/components/ui/shape"
 import { Reveal } from "@/components/motion/reveal"
 import { PageHero } from "@/components/page/page-hero"
 import { SectionHeader } from "@/components/page/section-header"
 import { ContactForm } from "@/components/page/contact-form"
 import { Quote } from "@/components/page/closing"
+import { social } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -27,9 +27,9 @@ const direct = [
 ]
 
 const talks = [
-  "The business of sport",
+  "The business of sports",
   "Data and the modern federation",
-  "Investing in African sport",
+  "Investing in African sports",
   "Governance that lasts",
 ]
 
@@ -38,7 +38,7 @@ export default function ContactPage() {
     <main>
       <PageHero
         eyebrow="Contact"
-        title="Start a conversation."
+        title="Start a Conversation."
         intro="Tell us a little about your organisation and what you are trying to change. A short note is plenty."
       />
 
@@ -77,9 +77,37 @@ export default function ContactPage() {
                 Prefer to talk first?
               </p>
               <p className="mt-3 leading-relaxed">
-                Mention it in your message and we will arrange a call at a time
-                that suits you.
+                Drop a message and we will schedule a call at a time that suits
+                you.
               </p>
+            </div>
+            <div>
+              <Eyebrow className="text-midnight/70">
+                Follow us on social media
+              </Eyebrow>
+              <p className="mt-4 text-midnight">
+                Join the conversation on LinkedIn and X.
+              </p>
+              <ul className="mt-4 flex gap-2">
+                {social.map((profile) => (
+                  <li key={profile.name}>
+                    {profile.url ? (
+                      <a
+                        href={profile.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex h-10 items-center rounded-pill border border-midnight/20 px-5 font-mono text-xs font-semibold tracking-wider text-midnight uppercase transition-colors hover:bg-midnight hover:text-white"
+                      >
+                        {profile.name}
+                      </a>
+                    ) : (
+                      <span className="inline-flex h-10 items-center rounded-pill border border-midnight/20 px-5 font-mono text-xs font-semibold tracking-wider text-midnight uppercase">
+                        {profile.name}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
           </Reveal>
         </div>
@@ -103,14 +131,9 @@ export default function ContactPage() {
                   href="/contact?topic=speakers#enquiry"
                   className="group flex min-h-48 flex-col justify-between gap-8 rounded-xl bg-midnight p-6 text-white md:p-7"
                 >
-                  <Shape
-                    name={
-                      (["circle", "square", "triangle", "quarter"] as const)[
-                        index
-                      ]
-                    }
-                    className="size-8 text-white/25 transition-colors duration-700 group-hover:text-mint"
-                  />
+                  <span className="font-mono text-sm text-white/50">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
                   <span className="flex items-end justify-between gap-4">
                     <span className="font-heading text-3xl leading-none">
                       {talk}

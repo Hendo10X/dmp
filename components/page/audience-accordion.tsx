@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { audiences, services } from "@/lib/content"
-import { Shape } from "@/components/ui/shape"
 import { ArrowLink } from "@/components/ui/arrow-link"
 
 const ease = [0.76, 0, 0.24, 1] as const
@@ -62,15 +61,6 @@ export function AudienceAccordion() {
                 >
                   {audience.title}
                 </span>
-                <Shape
-                  name={audience.shape}
-                  className={cn(
-                    "size-7 shrink-0 transition-[rotate,color] duration-500 md:size-9",
-                    isOpen
-                      ? "rotate-90 text-mint"
-                      : "text-midnight/20 group-hover:text-midnight"
-                  )}
-                />
               </button>
             </h2>
 

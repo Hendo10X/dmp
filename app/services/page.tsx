@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { caseStudies } from "@/lib/content"
+import { caseStudies, heroImages } from "@/lib/content"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { Reveal } from "@/components/motion/reveal"
 import { PageHero } from "@/components/page/page-hero"
@@ -13,7 +13,7 @@ import { Cta } from "@/components/page/closing"
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Strategy and growth, transformation, transactions and investment, policy, research and sustainability advisory for sport and adjacent markets across Africa.",
+    "Strategy and growth, transformation, transactions and investment, policy, research and sustainability advisory for sports and adjacent markets across Africa.",
 }
 
 export default function ServicesPage() {
@@ -22,10 +22,12 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="What we do."
-        intro="Six practices, each built for the business of sport and the markets around it. Start with the one closest to your challenge, or explore our solutions."
+        intro="Six practices, each built for the business of sports and the markets around it. Start with the one closest to your challenge, or explore our solutions."
+        image={heroImages.services}
+        imageAlt="Construction workers in hard hats on a building site"
       />
 
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
         <ServiceCards />
       </section>
 

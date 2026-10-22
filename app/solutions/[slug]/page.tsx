@@ -9,7 +9,6 @@ import {
   solutions,
 } from "@/lib/content"
 import { Arrow } from "@/components/ui/arrow"
-import { Shape } from "@/components/ui/shape"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 import { PageHero } from "@/components/page/page-hero"
@@ -47,11 +46,10 @@ export default async function SolutionPage({ params }: Props) {
       />
 
       {/* What it is */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
         <div className="grid gap-8 md:grid-cols-12 md:gap-6">
           <Reveal y={16} className="md:col-span-3">
             <span className="flex items-center gap-3 font-mono text-xs tracking-wider text-midnight/70 uppercase">
-              <Shape name={solution.shape} className="size-3 text-midnight" />
               What it is
             </span>
           </Reveal>
@@ -133,7 +131,6 @@ export default async function SolutionPage({ params }: Props) {
                     className="group flex items-center justify-between gap-6 rounded-xl bg-secondary p-5 text-midnight transition-colors duration-500 hover:bg-midnight hover:text-white"
                   >
                     <span className="flex items-center gap-4">
-                      <Shape name={service.shape} className="size-6 shrink-0" />
                       <span className="font-heading text-2xl leading-none">
                         {service.title}
                       </span>
@@ -157,9 +154,8 @@ export default async function SolutionPage({ params }: Props) {
               href={`/solutions/${other.slug}`}
               className="group flex min-h-40 flex-col justify-between gap-6 rounded-xl bg-secondary p-6 text-midnight transition-colors duration-500 hover:bg-midnight hover:text-white md:p-7"
             >
-              <span className="flex items-center justify-between font-mono text-xs tracking-wider uppercase">
+              <span className="font-mono text-xs tracking-wider uppercase">
                 {other.kicker}
-                <Shape name={other.shape} className="size-6" />
               </span>
               <span className="flex items-end justify-between gap-6">
                 <span className="font-heading text-[clamp(1.75rem,2.6vw,2.5rem)] leading-[1.05]">
