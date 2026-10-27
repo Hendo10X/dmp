@@ -5,6 +5,7 @@ import Image from "next/image"
 import { useLenis } from "lenis/react"
 
 import type { TeamMember } from "@/lib/content"
+import { LinkedinLink } from "@/components/ui/linkedin-link"
 
 // "Read bio" button plus a native <dialog> modal: photo beside the full bio,
 // page behind blurred. The dialog gives focus trapping, Escape to close and
@@ -106,14 +107,7 @@ export function BioModal({ person }: { person: TeamMember }) {
             </div>
 
             {person.linkedin && (
-              <a
-                href={person.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="self-start font-mono text-xs font-semibold tracking-wider text-brand uppercase hover:text-midnight"
-              >
-                LinkedIn
-              </a>
+              <LinkedinLink href={person.linkedin} name={person.name} />
             )}
           </div>
         </div>

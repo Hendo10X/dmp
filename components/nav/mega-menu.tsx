@@ -102,7 +102,7 @@ export function MegaMenu({
             ))}
           </ul>
         ) : (
-          <ul className="col-span-9 grid grid-cols-3 gap-3">
+          <ul className="col-span-9 grid grid-cols-4 gap-3">
             {solutions.map((solution) => (
               <li key={solution.slug}>
                 <Link

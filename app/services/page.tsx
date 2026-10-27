@@ -27,13 +27,13 @@ export default function ServicesPage() {
         imageAlt="Construction workers in hard hats on a building site"
       />
 
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
         <ServiceCards />
       </section>
 
       <Process />
 
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
         <SectionHeader
           eyebrow="In practice"
           title="See the pillars at work."

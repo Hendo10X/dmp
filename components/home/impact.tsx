@@ -73,7 +73,7 @@ export function Impact() {
   }
 
   return (
-    <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pt-8 pb-16 md:pt-10 md:pb-20 lg:px-10">
+    <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pt-8 pb-6 md:pt-10 md:pb-8 lg:px-10">
       <SectionHeader
         eyebrow="Client impact"
         title="Results you can read on a scoreboard."

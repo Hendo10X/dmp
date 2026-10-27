@@ -11,6 +11,7 @@ export const navLinks: NavLink[] = [
   { title: "Services", href: "/services", image: images.meeting },
   { title: "Solutions", href: "/solutions", image: images.celebrate },
   { title: "Case Studies", href: "/case-studies", image: images.engineers },
+  { title: "Reports", href: "/reports", image: images.research },
   { title: "About", href: "/about", image: images.site },
   { title: "Careers", href: "/careers", image: images.analysis },
 ]

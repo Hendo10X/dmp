@@ -17,6 +17,7 @@ const primary: { title: string; href: string; mega?: MegaKey }[] = [
   { title: "Services", href: "/services", mega: "services" },
   { title: "Solutions", href: "/solutions", mega: "solutions" },
   { title: "Case Studies", href: "/case-studies" },
+  { title: "Reports", href: "/reports" },
   { title: "About", href: "/about" },
   { title: "Careers", href: "/careers" },
 ]

@@ -97,7 +97,9 @@ export default async function CaseStudyPage({ params }: Props) {
             </ol>
           </nav>
 
-          <Eyebrow className="mt-10 text-brand">Case study</Eyebrow>
+          <Eyebrow className="mt-10 text-sm text-brand md:text-base">
+            Case study
+          </Eyebrow>
           <h1 className="mt-4 text-[clamp(2.25rem,4.4vw,4rem)] leading-[1.05] text-midnight">
             {lead}{" "}
             <span className="bg-mint/35 box-decoration-clone px-1">
@@ -144,7 +146,7 @@ export default async function CaseStudyPage({ params }: Props) {
       </section>
 
       {/* The numbers */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
         {/* Centred row, so two or three figures always sit balanced. */}
         <Reveal className="mx-auto flex max-w-5xl flex-wrap justify-center gap-x-16 gap-y-10">
           {study.stats.map((stat) => (
@@ -165,7 +167,7 @@ export default async function CaseStudyPage({ params }: Props) {
       </section>
 
       {/* The story, one reading column */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
         <div className="mx-auto flex max-w-3xl flex-col gap-14 border-t border-border pt-14 md:gap-16 md:pt-16">
           {story.map((block) => (
             <div key={block.label} className="flex flex-col gap-4">
@@ -193,7 +195,7 @@ export default async function CaseStudyPage({ params }: Props) {
       </section>
 
       {/* Explore */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
         <div className="grid gap-3 md:grid-cols-2">
           {[
             service && {
@@ -238,7 +240,7 @@ export default async function CaseStudyPage({ params }: Props) {
 
       {/* Contact */}
       {contact && (
-        <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
+        <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
           <div className="flex flex-col gap-8 border-t border-border pt-10 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-5">
               <span className="relative block size-20 shrink-0 overflow-hidden bg-midnight">

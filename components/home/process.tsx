@@ -34,7 +34,7 @@ const tones = [
 
 export function Process({ action }: { action?: React.ReactNode }) {
   return (
-    <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
+    <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
       <SectionHeader
         eyebrow="How we work"
         title="From question to result, in four moves."

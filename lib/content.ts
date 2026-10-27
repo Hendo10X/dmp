@@ -41,6 +41,7 @@ export const heroImages = {
   solutions: images.venue,
   whoWeServe: images.classroom,
   careers: images.techTeam,
+  reports: images.research,
   caseStudies: images.quarry,
 }
 
@@ -358,6 +359,43 @@ export const solutions: Solution[] = [
     forWhom: ["investors", "mdas", "corporates"],
     services: ["research-market-intelligence", "transaction-investment"],
   },
+  // PLACEHOLDER description: the client named the index; scope and method
+  // still to be confirmed.
+  {
+    slug: "brand-equity-index",
+    title: "Brand Equity Index",
+    kicker: "Index",
+    summary:
+      "A measure of the brand value of clubs, leagues, federations and athletes, and what drives it.",
+    image: images.celebrate,
+    what: "A sports brand is an asset, but few properties can say what theirs is worth. The Brand Equity Index measures the strength of sports brands across awareness, reputation, fan loyalty and commercial pull, so rights holders can price partnerships and brands can choose where to invest.",
+    outcomes: [
+      "A comparable brand score for each property",
+      "The drivers behind brand value, ranked",
+      "Benchmarks against peers across markets",
+      "A clear case for sponsors and investors",
+    ],
+    how: [
+      {
+        title: "Set the measures",
+        body: "Awareness, reputation, loyalty, reach and commercial pull.",
+      },
+      {
+        title: "Listen to fans",
+        body: "Audience research, social data and partner insight.",
+      },
+      {
+        title: "Score and compare",
+        body: "Weighted scores and peer benchmarks across markets.",
+      },
+      {
+        title: "Put it to work",
+        body: "Pricing, sponsorship and brand strategy advice.",
+      },
+    ],
+    forWhom: ["federations", "corporates", "investors"],
+    services: ["strategy-growth", "research-market-intelligence"],
+  },
 ]
 
 // --------------------------------------------------------------- Audiences
@@ -620,8 +658,7 @@ export type TeamMember = {
   initials: string
   photo?: string
   linkedin?: string
-  // One or two lines under the role; `bio` is the full text behind "Read bio".
-  summary?: string
+  // Full text behind "Read bio".
   bio?: string[]
 }
 
@@ -634,8 +671,6 @@ export const team: TeamMember[] = [
     initials: "TD",
     photo: "/Images/team/telema-davies.jpg",
     linkedin: "https://www.linkedin.com/in/telema-davies",
-    summary:
-      "Over 15 years across the creative and cultural industries, with deep experience in the sports sector.",
     bio: [
       "Telema Harry Davies is a seasoned professional with over 15 years of experience across the creative and cultural industries, with demonstrable skills in the sports sector. He is Co-Founder and Managing Partner of DMPartners, a consulting practice focused on the intersection between the sports industry and adjacent markets, including extractives, manufacturing, trade and investment, construction and real estate, technology, media and entertainment, government, education, and events.",
       "Telema previously served as Coordinating Secretary at Sport Nigeria LTD/GTE, a private sector infrastructure intervention organisation established to chart a new course for Nigeria's sports market and industry value chain, leveraging opportunities under the 2022-2026 National Sports Industry Policy. In this role, and throughout his career, he has driven initiatives spanning operations, project management, business intelligence, and market analysis, consistently shaping policy and fostering industry growth.",
@@ -672,11 +707,14 @@ export const industries = [
 
 // ------------------------------------------------------------------ Social
 
-// "Follow us on social media" on Contact. PLACEHOLDER: the client has not
-// sent the profile URLs yet; an empty url renders the name without a link.
+// Official profiles (client-supplied). Shown on Contact and in the footer.
 export const social = [
-  { name: "LinkedIn", url: "" },
-  { name: "X", url: "" },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/company/dmpartners-limited/",
+  },
+  { name: "Facebook", url: "https://www.facebook.com/share/1FUUxAqyxg/" },
+  { name: "X", url: "https://x.com/DMPartnersBA" },
 ]
 
 // ------------------------------------------------------------------ Careers

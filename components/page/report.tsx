@@ -9,7 +9,7 @@ import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 
 // The Nigeria Sports Industry Outlook 2026 (public/reports) on a mint band
-// on the Solutions page: visitors leave their details, then the PDF
+// on the Reports page: visitors leave their details, then the PDF
 // downloads straight away, with a button as a fallback. The client also
 // wants it emailed; that needs an email provider, and the details are not
 // stored or sent anywhere yet.

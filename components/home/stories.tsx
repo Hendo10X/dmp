@@ -8,12 +8,16 @@ import { CaseStudyCard } from "@/components/page/case-study-card"
 // rows line up across the grid (CSS subgrid).
 export function Stories() {
   return (
-    <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
+    <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
       <SectionHeader
         eyebrow="Client stories"
         title="Real stories. Real results."
         intro="How federations, leagues and public bodies turned possibility into performance with DMPartners."
-        action={<ArrowLink href="/case-studies">All case studies</ArrowLink>}
+        action={
+          <ArrowLink href="/case-studies" tone="electric">
+            All case studies
+          </ArrowLink>
+        }
       />
       <Reveal className="mt-10 grid gap-10 md:mt-12 md:grid-cols-3 md:gap-x-6">
         {caseStudies.slice(0, 3).map((study) => (
