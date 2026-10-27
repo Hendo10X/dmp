@@ -56,7 +56,7 @@ export function About() {
   return (
     <section
       ref={section}
-      className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10"
+      className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pt-6 pb-10 md:pt-8 md:pb-12 lg:px-10"
     >
       <div className="grid gap-10 md:grid-cols-12 md:items-stretch md:gap-6">
         <div

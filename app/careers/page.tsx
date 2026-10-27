@@ -67,7 +67,7 @@ const paths = [
   },
   {
     title: "Partnership",
-    body: "Firms, institutions and independent experts who want to deliver alongside us.",
+    body: "Independent experts who want to deliver alongside us.",
     image: images.construction,
     href: "/contact?topic=general",
     cta: "Partner with us",
@@ -80,20 +80,21 @@ export default function CareersPage() {
       <PageHero
         eyebrow="Careers"
         title="DMPCareers"
+        large
         intro="People remain at the heart of who we are and why we do what we do."
         image={heroImages.careers}
         imageAlt="Three colleagues reviewing work on a laptop in a Lagos office"
       />
 
       {/* How We Work Together */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
         <SectionHeader eyebrow="Culture" title="How we work together." />
         <Reveal className="mt-10 grid gap-3 sm:grid-cols-2 md:mt-12 lg:grid-cols-4">
           {together.map((item, index) => (
             <div
               key={item.text}
               className={cn(
-                "flex min-h-56 flex-col justify-between gap-10 p-6 md:p-7",
+                "flex min-h-56 flex-col gap-10 p-6 md:p-7",
                 item.tone
               )}
             >
@@ -109,17 +110,17 @@ export default function CareersPage() {
       </section>
 
       {/* Ways in */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
         <SectionHeader
           eyebrow="Ways in"
           title="Let's demonstrate possibilities together."
         />
-        <Reveal className="mt-10 grid gap-3 md:mt-12 md:grid-cols-3">
+        <Reveal className="mt-10 grid gap-3 md:mt-12 md:grid-cols-3 md:grid-rows-[minmax(17rem,1fr)_auto_auto_auto]">
           {paths.map((path) => (
             <Link
               key={path.title}
               href={path.href}
-              className="group relative flex min-h-[28rem] flex-col justify-end overflow-hidden bg-midnight p-6 text-white outline-none focus-visible:ring-2 focus-visible:ring-electric md:p-8"
+              className="group relative grid min-h-[28rem] grid-rows-[1fr_auto_auto_auto] gap-y-3 overflow-hidden bg-midnight p-6 text-white outline-none focus-visible:ring-2 focus-visible:ring-electric md:row-span-4 md:min-h-0 md:grid-rows-subgrid md:p-8"
             >
               <Image
                 src={path.image}
@@ -132,20 +133,19 @@ export default function CareersPage() {
                 aria-hidden
                 className="absolute inset-0 bg-linear-to-t from-midnight via-midnight/55 to-transparent"
               />
-              <span className="relative flex flex-col gap-3">
-                <span className="font-heading text-3xl leading-none">
-                  {path.title}
-                </span>
-                <span className="max-w-sm text-sm leading-relaxed text-white/80">
-                  {path.body}
-                </span>
-                <span className="mt-3 flex items-center gap-2 font-mono text-xs tracking-wider text-mint uppercase">
-                  {path.cta}
-                  <Arrow
-                    size={14}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  />
-                </span>
+              <span aria-hidden />
+              <span className="relative font-heading text-3xl leading-none">
+                {path.title}
+              </span>
+              <span className="relative max-w-sm text-sm leading-relaxed text-white/80">
+                {path.body}
+              </span>
+              <span className="relative mt-3 flex items-center gap-2 font-mono text-xs tracking-wider text-mint uppercase">
+                {path.cta}
+                <Arrow
+                  size={14}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
               </span>
             </Link>
           ))}
@@ -155,7 +155,7 @@ export default function CareersPage() {
       {/* Current openings */}
       <section
         id="openings"
-        className="relative z-10 mx-auto max-w-[120rem] scroll-mt-28 bg-background px-6 pb-16 md:pb-20 lg:px-10"
+        className="relative z-10 mx-auto max-w-[120rem] scroll-mt-28 bg-background px-6 pb-10 md:pb-12 lg:px-10"
       >
         <SectionHeader
           eyebrow="Current openings"
@@ -203,7 +203,7 @@ export default function CareersPage() {
       </section>
 
       {/* Application process */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
         <SectionHeader
           eyebrow="Application process"
           title="Four steps, no surprises."

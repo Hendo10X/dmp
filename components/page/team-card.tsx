@@ -2,9 +2,10 @@ import Image from "next/image"
 
 import type { TeamMember } from "@/lib/content"
 import { BioModal } from "@/components/page/bio-modal"
+import { LinkedinLink } from "@/components/ui/linkedin-link"
 
-// One person on the About team grid. With a photo: portrait, summary line,
-// LinkedIn and a "Read bio" button that opens the full text in a modal. Without:
+// One person on the About team grid. With a photo: portrait, a "Read bio"
+// button that opens the full text in a modal, and a LinkedIn icon. Without:
 // initials on midnight as a placeholder until the portrait arrives.
 export function TeamCard({ person }: { person: TeamMember }) {
   return (
@@ -30,24 +31,11 @@ export function TeamCard({ person }: { person: TeamMember }) {
           {person.name}
         </span>
         <span className="text-sm text-muted-foreground">{person.role}</span>
-        {person.summary && (
-          <p className="mt-2 text-sm leading-relaxed text-foreground">
-            {person.summary}
-          </p>
-        )}
-
         {(person.bio || person.linkedin) && (
-          <div className="mt-4 flex flex-col items-start gap-3 lg:flex-row lg:items-center lg:gap-5">
+          <div className="mt-4 flex items-center gap-3">
             <BioModal person={person} />
             {person.linkedin && (
-              <a
-                href={person.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-xs font-semibold tracking-wider text-brand uppercase hover:text-midnight"
-              >
-                LinkedIn
-              </a>
+              <LinkedinLink href={person.linkedin} name={person.name} />
             )}
           </div>
         )}

@@ -22,7 +22,7 @@ export function MarketsSection({
   const [active, setActive] = React.useState<number | null>(null)
 
   return (
-    <section className="relative z-10 mx-auto max-w-[120rem] overflow-hidden bg-background px-6 py-16 md:py-20 lg:px-10">
+    <section className="relative z-10 mx-auto max-w-[120rem] overflow-hidden bg-background px-6 py-10 md:py-12 lg:px-10">
       <div className="grid items-center gap-10 md:grid-cols-12 md:gap-4">
         <div className="md:col-span-5">
           <Reveal y={16}>

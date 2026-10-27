@@ -19,6 +19,7 @@ export function PageHero({
   imageAlt = "",
   children,
   compact = false,
+  large = false,
 }: {
   eyebrow?: string
   title: string
@@ -30,10 +31,14 @@ export function PageHero({
   children?: React.ReactNode
   // Smaller title for long headlines (case studies).
   compact?: boolean
+  // Bigger title and intro (Careers, per the client).
+  large?: boolean
 }) {
   const titleSize = compact
     ? "text-[clamp(2.25rem,4.6vw,4rem)] leading-[1.05]"
-    : "text-[clamp(2.75rem,6vw,5rem)] leading-[1.02]"
+    : large
+      ? "text-[clamp(3.5rem,9vw,8rem)] leading-[0.98]"
+      : "text-[clamp(2.75rem,6vw,5rem)] leading-[1.02]"
 
   if (image) {
     return (
@@ -58,19 +63,24 @@ export function PageHero({
         />
 
         <div className="relative mx-auto w-full max-w-[120rem] px-6 pt-32 pb-12 md:pb-16 lg:px-10">
-          <div className="flex max-w-4xl flex-col gap-5 md:gap-6">
+          <div className="flex max-w-6xl flex-col gap-5 md:gap-6">
             {eyebrow && (
               <Reveal y={12}>
-                <Eyebrow className="text-mint">{eyebrow}</Eyebrow>
+                <Eyebrow className="text-sm text-mint md:text-base">
+                  {eyebrow}
+                </Eyebrow>
               </Reveal>
             )}
-            <SplitReveal as="h1" className={titleSize}>
+            <SplitReveal as="h1" className={cn("max-w-4xl", titleSize)}>
               {title}
             </SplitReveal>
             {intro && (
               <SplitReveal
                 as="p"
-                className="max-w-2xl text-base leading-relaxed text-white/80 md:text-lg"
+                className={cn(
+                  "max-w-5xl leading-relaxed text-white/80",
+                  large ? "text-lg md:text-2xl" : "text-base md:text-lg"
+                )}
               >
                 {intro}
               </SplitReveal>

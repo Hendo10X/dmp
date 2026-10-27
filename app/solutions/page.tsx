@@ -8,12 +8,11 @@ import { SolutionTiles } from "@/components/page/solution-tiles"
 import { ServiceCards } from "@/components/page/service-cards"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { Cta } from "@/components/page/closing"
-import { Report } from "@/components/page/report"
 
 export const metadata: Metadata = {
   title: "Solutions",
   description:
-    "Federation Business Transformation, the Street Credibility Index and the Sports Power Index: DMPartners' proprietary solutions.",
+    "Federation Business Transformation, the Street Credibility Index, the Sports Power Index and the Brand Equity Index: DMPartners' proprietary solutions.",
 }
 
 export default function SolutionsPage() {
@@ -27,13 +26,11 @@ export default function SolutionsPage() {
         imageAlt="An empty football stadium with green pitch and covered stands"
       />
 
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
         <SolutionTiles />
       </section>
 
-      <Report />
-
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
         <SectionHeader
           eyebrow="Behind the solutions"
           title="Powered by six practices."

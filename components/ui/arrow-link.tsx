@@ -10,12 +10,15 @@ const MotionLink = motion.create(Link)
 
 // Pill buttons from the Crowdline template.
 const tones = {
-  // Primary: midnight pill. Every button on white uses it (client brief).
+  // Primary: midnight pill. On the home page section buttons rotate through
+  // the four colours (midnight, brand, mint, electric) per the client.
   primary: "bg-midnight text-white hover:bg-midnight/90",
   // Logo-blue pill: hero primary.
   brand: "bg-brand text-white hover:bg-brand/90",
   // Logo-mint pill: highlight on midnight bands.
   mint: "bg-mint text-midnight hover:bg-mint/90",
+  // Electric pill: the fourth logo-palette colour for mixed button sets.
+  electric: "bg-electric text-midnight hover:bg-electric/85",
   // Outline pill on midnight.
   outline:
     "border border-white/25 bg-transparent text-white hover:border-white/50 hover:bg-white/5",

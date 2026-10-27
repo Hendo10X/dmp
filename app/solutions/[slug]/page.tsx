@@ -46,7 +46,7 @@ export default async function SolutionPage({ params }: Props) {
       />
 
       {/* What it is */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
         <div className="grid gap-8 md:grid-cols-12 md:gap-6">
           <Reveal y={16} className="md:col-span-3">
             <span className="flex items-center gap-3 font-mono text-xs tracking-wider text-midnight/70 uppercase">
@@ -63,7 +63,7 @@ export default async function SolutionPage({ params }: Props) {
       </section>
 
       {/* Outcomes */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
         <SectionHeader eyebrow="What you get" title="Outcomes." />
         <Reveal className="mt-12 grid gap-2 sm:grid-cols-2 md:mt-16 lg:grid-cols-4">
           {solution.outcomes.map((outcome, index) => (
@@ -83,7 +83,7 @@ export default async function SolutionPage({ params }: Props) {
       </section>
 
       {/* How it works */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
         <SectionHeader
           eyebrow="How it works"
           title="From evidence to action."
@@ -92,7 +92,7 @@ export default async function SolutionPage({ params }: Props) {
       </section>
 
       {/* Who it's for + powering services */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
         <div className="grid gap-16 md:grid-cols-2 md:gap-6">
           <div>
             <SectionHeader eyebrow="Who it&rsquo;s for" title="Built for." />
@@ -145,7 +145,7 @@ export default async function SolutionPage({ params }: Props) {
       </section>
 
       {/* Other solutions */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
         <SectionHeader eyebrow="More solutions" title="Explore the others." />
         <Reveal className="mt-12 grid gap-2 md:mt-16 md:grid-cols-2">
           {others.map((other) => (

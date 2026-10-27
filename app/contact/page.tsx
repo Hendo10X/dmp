@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Suspense } from "react"
 import Link from "next/link"
 
+import { cn } from "@/lib/utils"
 import { Arrow } from "@/components/ui/arrow"
 import { Eyebrow } from "@/components/ui/eyebrow"
 import { Reveal } from "@/components/motion/reveal"
@@ -9,7 +10,7 @@ import { PageHero } from "@/components/page/page-hero"
 import { SectionHeader } from "@/components/page/section-header"
 import { ContactForm } from "@/components/page/contact-form"
 import { Quote } from "@/components/page/closing"
-import { social } from "@/lib/content"
+import { SocialLinks } from "@/components/ui/social-links"
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -33,6 +34,12 @@ const talks = [
   "Governance that lasts",
 ]
 
+const talkTones = [
+  "bg-midnight text-white",
+  "bg-brand text-white",
+  "bg-mint text-midnight",
+]
+
 export default function ContactPage() {
   return (
     <main>
@@ -44,7 +51,7 @@ export default function ContactPage() {
 
       <section
         id="enquiry"
-        className="relative z-10 mx-auto max-w-[120rem] scroll-mt-28 bg-background px-6 pb-16 md:pb-20 lg:px-10"
+        className="relative z-10 mx-auto max-w-[120rem] scroll-mt-28 bg-background px-6 pb-10 md:pb-12 lg:px-10"
       >
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-6">
           <Reveal className="lg:col-span-7">
@@ -86,28 +93,9 @@ export default function ContactPage() {
                 Follow us on social media
               </Eyebrow>
               <p className="mt-4 text-midnight">
-                Join the conversation on LinkedIn and X.
+                Join the conversation on LinkedIn, Facebook and X.
               </p>
-              <ul className="mt-4 flex gap-2">
-                {social.map((profile) => (
-                  <li key={profile.name}>
-                    {profile.url ? (
-                      <a
-                        href={profile.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex h-10 items-center rounded-pill border border-midnight/20 px-5 font-mono text-xs font-semibold tracking-wider text-midnight uppercase transition-colors hover:bg-midnight hover:text-white"
-                      >
-                        {profile.name}
-                      </a>
-                    ) : (
-                      <span className="inline-flex h-10 items-center rounded-pill border border-midnight/20 px-5 font-mono text-xs font-semibold tracking-wider text-midnight uppercase">
-                        {profile.name}
-                      </span>
-                    )}
-                  </li>
-                ))}
-              </ul>
+              <SocialLinks className="mt-4" />
             </div>
           </Reveal>
         </div>
@@ -116,7 +104,7 @@ export default function ContactPage() {
       {/* DMP Speakers */}
       <section
         id="speakers"
-        className="relative z-10 mx-auto max-w-[120rem] scroll-mt-28 bg-background px-6 pb-16 md:pb-20 lg:px-10"
+        className="relative z-10 mx-auto max-w-[120rem] scroll-mt-28 bg-background px-6 pb-10 md:pb-12 lg:px-10"
       >
         <SectionHeader
           eyebrow="DMP Speakers"
@@ -124,20 +112,26 @@ export default function ContactPage() {
           intro="Our partners speak at conferences, board away-days and federation congresses on the ideas behind our work."
         />
         <Reveal className="mt-12 md:mt-16">
-          <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Three colours in rotation; each card opens the enquiry form
+              with the topic set and the talk named in the message. */}
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {talks.map((talk, index) => (
-              <li key={talk}>
+              <li key={talk} className="flex">
                 <Link
-                  href="/contact?topic=speakers#enquiry"
-                  className="group flex min-h-48 flex-col justify-between gap-8 rounded-xl bg-midnight p-6 text-white md:p-7"
+                  href={`/contact?topic=speakers&talk=${encodeURIComponent(talk)}#enquiry`}
+                  className={cn(
+                    "group flex min-h-56 w-full flex-col gap-6 rounded-xl p-6 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] outline-none hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-electric md:p-7",
+                    talkTones[index % talkTones.length]
+                  )}
                 >
-                  <span className="font-mono text-sm text-white/50">
+                  <span className="font-mono text-sm opacity-60">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="flex items-end justify-between gap-4">
-                    <span className="font-heading text-3xl leading-none">
-                      {talk}
-                    </span>
+                  <span className="font-heading text-3xl leading-none">
+                    {talk}
+                  </span>
+                  <span className="mt-auto flex items-center justify-between gap-4 font-mono text-xs tracking-wider uppercase">
+                    Book this talk
                     <Arrow className="transition-transform duration-500 group-hover:translate-x-1" />
                   </span>
                 </Link>

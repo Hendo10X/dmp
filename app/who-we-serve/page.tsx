@@ -23,7 +23,7 @@ export default function WhoWeServePage() {
         imageAlt="Smiling children at their desks in a classroom"
       />
 
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
         <AudienceAccordion />
       </section>
 

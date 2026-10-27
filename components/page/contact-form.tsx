@@ -24,6 +24,14 @@ export function ContactForm() {
   const params = useSearchParams()
   const initialTopic = params.get("topic") ?? "general"
   const role = params.get("role")
+  const talk = params.get("talk")
+  // Prefill from the link that brought the visitor here (a careers role or
+  // a DMP speaker talk).
+  const message = role
+    ? `I'm interested in the ${role} role.`
+    : talk
+      ? `I'd like to book a DMP speaker on "${talk}".`
+      : ""
   const [sent, setSent] = React.useState(false)
 
   return (
@@ -129,12 +137,12 @@ export function ContactForm() {
             </Field>
             <Field label="Message" htmlFor="message" className="sm:col-span-2">
               <textarea
-                key={role ?? ""}
+                key={role ?? talk ?? ""}
                 id="message"
                 name="message"
                 required
                 rows={5}
-                defaultValue={role ? `I'm interested in the ${role} role.` : ""}
+                defaultValue={message}
                 className={cn(field, "resize-y")}
               />
             </Field>

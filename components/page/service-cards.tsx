@@ -6,7 +6,7 @@ import { services } from "@/lib/content"
 import { Arrow } from "@/components/ui/arrow"
 import { Reveal } from "@/components/motion/reveal"
 
-// The six services as photo cards in their natural colours, with a midnight
+// The six services as photo cards under a midnight-blue tint, with a deeper
 // fade under the copy. Cards share their rows (CSS subgrid) so titles,
 // summaries and links line up across each row. Used on Home, Services and
 // Solutions.
@@ -28,10 +28,16 @@ export function ServiceCards({ className }: { className?: string }) {
             sizes="(min-width: 1024px) 34vw, (min-width: 640px) 50vw, 100vw"
             className="object-cover transition-[scale] duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-105"
           />
-          {/* Midnight fade under the copy. */}
+          {/* Even midnight-blue tint over the whole photo so the white copy
+              always stands out (client), plus a deeper fade under the text.
+              The tint lifts slightly on hover. */}
           <span
             aria-hidden
-            className="absolute inset-0 bg-linear-to-t from-midnight/90 via-midnight/30 to-transparent transition-opacity duration-700 group-hover:opacity-70"
+            className="absolute inset-0 bg-midnight/55 transition-colors duration-700 group-hover:bg-midnight/40"
+          />
+          <span
+            aria-hidden
+            className="absolute inset-0 bg-linear-to-t from-midnight/90 via-midnight/20 to-transparent"
           />
 
           <span className="relative flex items-start justify-between">

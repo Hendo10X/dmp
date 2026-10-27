@@ -38,19 +38,40 @@ export default function AboutPage() {
       />
 
       {/* Purpose: mission, positioning, values */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
-        <SectionHeader
-          eyebrow="Purpose"
-          title="Defining the New Era of Sports, Culture and Business."
-          intro="The future of the sports industry is being defined by the performance of current stakeholders across market segments, public and private sector, in the ecosystem as well as cross-cutting sectoral relationships. This presents a niche opportunity to stand out from the noise to offer specialised expertise for market development, growth strategies, professionalism and direct investment."
-        />
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
+        {/* Heading left, paragraph right, bottom-aligned so the paragraph
+            ends level with the heading's last line (client). */}
+        <div className="grid gap-6 md:grid-cols-12 md:items-end md:gap-8">
+          <div className="md:col-span-7">
+            <Reveal y={12}>
+              <Eyebrow>Purpose</Eyebrow>
+            </Reveal>
+            <SplitReveal className="mt-3 text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08] text-midnight">
+              Defining the New Era of Sports, Culture and Business.
+            </SplitReveal>
+          </div>
+          <SplitReveal
+            as="p"
+            className="text-sm leading-relaxed text-muted-foreground md:col-span-5 md:text-base"
+          >
+            The future of the sports industry is being defined by the
+            performance of current stakeholders across market segments, public
+            and private sector, in the ecosystem as well as cross-cutting
+            sectoral relationships. This presents a niche opportunity to stand
+            out from the noise to offer specialised expertise for market
+            development, growth strategies, professionalism and direct
+            investment.
+          </SplitReveal>
+        </div>
         <Reveal y={12}>
           <p className="mt-6 font-heading text-[clamp(1.25rem,2vw,1.75rem)] text-brand">
             DMPartners exists to shape the future.
           </p>
         </Reveal>
 
-        <div className="mt-10 grid gap-10 md:mt-14 md:grid-cols-2 md:gap-6">
+        {/* Mission and positioning as stacked rows: label left, statement
+            right, a hairline between them. */}
+        <dl className="mt-10 border-b border-border md:mt-12">
           {[
             {
               label: "Mission",
@@ -61,21 +82,24 @@ export default function AboutPage() {
               text: "Commercial and investment advisory at the intersection of the sports industry and adjacent markets.",
             },
           ].map((item) => (
-            <div key={item.label} className="flex flex-col gap-5">
-              <Reveal y={16}>
-                <span className="font-mono text-xs tracking-wider text-muted-foreground uppercase">
-                  {item.label}
-                </span>
-              </Reveal>
-              <SplitReveal
-                as="p"
-                className="text-[clamp(1.5rem,2.6vw,2.5rem)] leading-[1.15] tracking-tight text-midnight"
-              >
-                {item.text}
-              </SplitReveal>
+            <div
+              key={item.label}
+              className="grid gap-4 border-t border-border py-8 md:grid-cols-12 md:gap-8 md:py-10"
+            >
+              <dt className="font-mono text-xs tracking-wider text-muted-foreground uppercase md:col-span-3 md:pt-2">
+                {item.label}
+              </dt>
+              <dd className="md:col-span-9">
+                <SplitReveal
+                  as="p"
+                  className="text-[clamp(1.375rem,2.4vw,2.25rem)] leading-[1.2] tracking-tight text-midnight"
+                >
+                  {item.text}
+                </SplitReveal>
+              </dd>
             </div>
           ))}
-        </div>
+        </dl>
 
         {/* Values in the same light-to-dark logo palette as How we work. */}
         <Reveal className="mt-10 grid gap-3 sm:grid-cols-2 md:mt-14 lg:grid-cols-4">
@@ -107,7 +131,7 @@ export default function AboutPage() {
       </section>
 
       {/* People */}
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-16 md:pb-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
         <SectionHeader
           eyebrow="People"
           title="The team behind the work."

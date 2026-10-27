@@ -27,11 +27,11 @@ export default function CaseStudiesPage() {
         imageAlt="Trucks working an open-pit quarry"
       />
 
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pt-16 md:pt-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pt-10 md:pt-12 lg:px-10">
         <CaseStudyFeatured studies={caseStudies.slice(0, 4)} />
       </section>
 
-      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-16 md:py-20 lg:px-10">
+      <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
         <h2 className="text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08] text-midnight">
           All success stories
         </h2>

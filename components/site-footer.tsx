@@ -6,6 +6,7 @@ import Link from "next/link"
 import { AnimatePresence, motion } from "motion/react"
 import { Arrow, Tick } from "@/components/ui/arrow"
 import { SplitReveal } from "@/components/motion/split-reveal"
+import { SocialLinks } from "@/components/ui/social-links"
 
 const columns = [
   {
@@ -21,6 +22,7 @@ const columns = [
   {
     title: "Connect",
     links: [
+      { title: "Reports", href: "/reports" },
       { title: "Careers", href: "/careers" },
       { title: "Contact", href: "/contact" },
       { title: "DMP Speakers", href: "/contact#speakers" },
@@ -48,6 +50,10 @@ export function SiteFooter() {
             Leave your email and we will get back to you.
           </p>
           <Subscribe />
+          <p className="mt-10 text-[0.7rem] tracking-[0.18em] text-white/50 uppercase">
+            Follow us
+          </p>
+          <SocialLinks tone="dark" className="mt-4" />
         </div>
 
         <nav

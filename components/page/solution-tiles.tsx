@@ -6,15 +6,15 @@ import { solutions } from "@/lib/content"
 import { Arrow } from "@/components/ui/arrow"
 import { Reveal } from "@/components/motion/reveal"
 
-// Three tall photo tiles for the proprietary solutions, after PwC's
-// "Three ways to unlock new growth" row. On desktop the tiles share their
+// Photo tiles for the proprietary solutions (four across on desktop), after
+// PwC's "Three ways to unlock new growth" row. On desktop the tiles share their
 // rows (CSS subgrid), so every title, summary and link sits on the same line
 // as Federation Business Transformation's, whatever the title length.
 export function SolutionTiles({ className }: { className?: string }) {
   return (
     <Reveal
       className={cn(
-        "grid gap-3 md:grid-cols-3 md:grid-rows-[auto_minmax(11rem,1fr)_auto_auto_auto]",
+        "grid gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:grid-rows-[auto_minmax(11rem,1fr)_auto_auto_auto]",
         className
       )}
     >
@@ -22,13 +22,13 @@ export function SolutionTiles({ className }: { className?: string }) {
         <Link
           key={solution.slug}
           href={`/solutions/${solution.slug}`}
-          className="group relative grid min-h-[26rem] grid-rows-[auto_1fr_auto_auto_auto] gap-y-3 overflow-hidden rounded-xl bg-midnight p-6 text-white outline-none focus-visible:ring-2 focus-visible:ring-electric md:row-span-5 md:min-h-0 md:grid-rows-subgrid md:p-7"
+          className="group relative grid min-h-[26rem] grid-rows-[auto_1fr_auto_auto_auto] gap-y-3 overflow-hidden rounded-xl bg-midnight p-6 text-white outline-none focus-visible:ring-2 focus-visible:ring-electric md:p-7 lg:row-span-5 lg:min-h-0 lg:grid-rows-subgrid"
         >
           <Image
             src={solution.image}
             alt=""
             fill
-            sizes="(min-width: 768px) 60vw, 200vw"
+            sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
             className="object-cover transition-[scale] duration-1000 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:scale-105"
           />
           {/* Midnight wash: light at rest, deepens on hover for legibility. */}
