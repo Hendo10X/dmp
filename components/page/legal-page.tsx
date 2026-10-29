@@ -16,8 +16,8 @@ export function LegalPage({
     <main>
       <PageHero eyebrow="Legal" title={title} intro={intro} compact />
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
-        <div className="grid gap-6 md:grid-cols-12">
-          <div className="flex flex-col gap-12 md:col-span-7 md:col-start-4">
+        <div>
+          <div className="flex max-w-3xl flex-col gap-12">
             {sections.map((section) => (
               <div key={section.heading} className="flex flex-col gap-4">
                 <h2 className="text-3xl leading-none text-midnight">

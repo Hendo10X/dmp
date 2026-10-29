@@ -18,6 +18,7 @@ export const navLinks: NavLink[] = [
 
 export const navFooterLinks = [
   { title: "Contact", href: "/contact" },
+  { title: "DMP Speakers", href: "/speakers" },
   { title: "Privacy Policy", href: "/privacy" },
   { title: "Terms", href: "/terms" },
 ]
