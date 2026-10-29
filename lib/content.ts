@@ -43,6 +43,7 @@ export const heroImages = {
   careers: images.techTeam,
   reports: images.research,
   caseStudies: images.quarry,
+  speakers: images.boardroom,
 }
 
 // ---------------------------------------------------------------- Services
@@ -63,7 +64,7 @@ export const services: Service[] = [
     slug: "strategy-growth",
     title: "Strategy & Growth Advisory",
     summary:
-      "Clear strategies and growth plans for sports organisations, brands and the businesses around them.",
+      "Clear strategy and clear plans for businesses, organisations, brands and the agencies around them.",
     image: images.highRises,
     what: "We help leadership teams decide where to play and how to win: corporate and commercial strategy, market entry, revenue diversification, partnerships and growth plans grounded in the realities of Nigerian and African markets.",
     forWhom: ["federations", "corporates", "smes"],

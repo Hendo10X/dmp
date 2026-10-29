@@ -25,7 +25,7 @@ const columns = [
       { title: "Reports", href: "/reports" },
       { title: "Careers", href: "/careers" },
       { title: "Contact", href: "/contact" },
-      { title: "DMP Speakers", href: "/contact#speakers" },
+      { title: "DMP Speakers", href: "/speakers" },
     ],
   },
   {

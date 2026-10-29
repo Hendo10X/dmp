@@ -38,7 +38,7 @@ export default async function ServicePage({ params }: Props) {
   return (
     <main>
       <PageHero
-        eyebrow="Service"
+        eyebrow="Services"
         title={service.title}
         intro={service.summary}
         image={service.image}
@@ -46,19 +46,19 @@ export default async function ServicePage({ params }: Props) {
 
       {/* What it is */}
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
-        <div className="grid gap-8 md:grid-cols-12 md:gap-6">
-          <Reveal y={16} className="md:col-span-3">
-            <span className="flex items-center gap-3 font-mono text-xs tracking-wider text-midnight/70 uppercase">
-              What it is
-            </span>
-          </Reveal>
-          <SplitReveal
-            as="p"
-            className="text-[clamp(1.5rem,2.8vw,2.75rem)] leading-[1.2] tracking-tight text-midnight md:col-span-9"
-          >
-            {service.what}
-          </SplitReveal>
-        </div>
+        {/* Stacked so the copy starts on the same left edge as the hero
+            title (client: the old side column pushed it out of line). */}
+        <Reveal y={16}>
+          <span className="font-mono text-xs tracking-wider text-midnight/70 uppercase">
+            What it is
+          </span>
+        </Reveal>
+        <SplitReveal
+          as="p"
+          className="mt-5 max-w-5xl text-[clamp(1.5rem,2.8vw,2.75rem)] leading-[1.2] tracking-tight text-midnight"
+        >
+          {service.what}
+        </SplitReveal>
       </section>
 
       {/* Who it's for */}

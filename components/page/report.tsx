@@ -3,6 +3,8 @@
 import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 
+import { industries } from "@/lib/content"
+import { cn } from "@/lib/utils"
 import { Arrow, Tick } from "@/components/ui/arrow"
 import { Eyebrow } from "@/components/ui/eyebrow"
 import { Reveal } from "@/components/motion/reveal"
@@ -19,6 +21,54 @@ const REPORT = {
   file: "DMPartners - Nigeria Sports Industry Outlook 2026.pdf",
 }
 
+// Dropdown options for the download form (client list). Academia sits in
+// both Occupation and Industry, as asked.
+const titles = [
+  "Mr",
+  "Mrs",
+  "Ms",
+  "Miss",
+  "Dr",
+  "Prof",
+  "Chief",
+  "Hon.",
+  "Other",
+]
+
+const roles = [
+  "Chairman",
+  "CEO",
+  "MD",
+  "Executive Director",
+  "Director",
+  "General Manager",
+  "Head of Department",
+  "Manager",
+  "Consultant",
+  "Analyst",
+  "Officer",
+  "Lecturer",
+  "Researcher",
+  "Student",
+  "Other",
+]
+
+const occupations = [
+  "Business executive",
+  "Government and public service",
+  "Academia",
+  "Investor",
+  "Sports administrator",
+  "Athlete or coach",
+  "Media professional",
+  "Consultant",
+  "Entrepreneur",
+  "Student",
+  "Other",
+]
+
+const sectors = ["Sports", ...industries, "Academia", "Other"]
+
 export function Report() {
   const [sent, setSent] = React.useState(false)
 
@@ -28,7 +78,7 @@ export function Report() {
   return (
     <section className="relative z-10 bg-mint text-midnight">
       <div className="mx-auto grid max-w-[120rem] gap-10 px-6 py-16 md:grid-cols-12 md:items-center md:gap-6 md:py-20 lg:px-10">
-        <div className="md:col-span-6">
+        <div className="md:col-span-5">
           <Reveal y={12}>
             <Eyebrow className="text-midnight/70">Free report</Eyebrow>
           </Reveal>
@@ -49,7 +99,7 @@ export function Report() {
           </Reveal>
         </div>
 
-        <Reveal className="md:col-span-5 md:col-start-8">
+        <Reveal className="md:col-span-6 md:col-start-7">
           <AnimatePresence mode="wait" initial={false}>
             {sent ? (
               <motion.div
@@ -94,44 +144,62 @@ export function Report() {
                   link.click()
                   setSent(true)
                 }}
-                className="flex flex-col gap-3"
+                className="grid gap-3 sm:grid-cols-2"
               >
-                <label htmlFor="report-name" className="sr-only">
-                  Name
-                </label>
-                <input
-                  id="report-name"
-                  name="name"
-                  required
-                  autoComplete="name"
-                  placeholder="Your name"
+                <Select
+                  id="report-title"
+                  name="title"
+                  label="Title"
+                  options={titles}
                   className={field}
                 />
-                <label htmlFor="report-email" className="sr-only">
-                  Email address
-                </label>
-                <input
+                <Input
+                  id="report-name"
+                  name="name"
+                  label="Full name"
+                  autoComplete="name"
+                  className={field}
+                />
+                <Input
                   id="report-email"
                   name="email"
                   type="email"
-                  required
+                  label="Email"
                   autoComplete="email"
-                  placeholder="Your email"
                   className={field}
                 />
-                <label htmlFor="report-org" className="sr-only">
-                  Organisation (optional)
-                </label>
-                <input
+                <Input
                   id="report-org"
                   name="organisation"
+                  label="Organisation or company"
                   autoComplete="organization"
-                  placeholder="Organisation (optional)"
                   className={field}
+                />
+                <Select
+                  id="report-role"
+                  name="role"
+                  label="Role"
+                  options={roles}
+                  className={field}
+                />
+                <Select
+                  id="report-occupation"
+                  name="occupation"
+                  label="Occupation"
+                  options={occupations}
+                  className={field}
+                />
+                <Select
+                  id="report-sector"
+                  name="sector"
+                  label="Industry or sector"
+                  options={sectors}
+                  className={field}
+                  wrapperClassName="sm:col-span-2"
                 />
                 <button
                   type="submit"
-                  className="group mt-1 inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-midnight px-6 font-mono text-xs font-semibold tracking-wider text-white uppercase outline-offset-4 transition-colors hover:bg-midnight/90 focus-visible:outline-2 focus-visible:outline-midnight"
+                  className="group mt-1 inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-midnight px-6 font-mono text-xs font-semibold tracking-wider text-white uppercase outline-offset-4 transition-colors hover:bg-midnight/90 focus-visible:outline-2 focus-visible:outline-midnight sm:col-span-2"
                 >
                   Download the report
                   <Arrow
@@ -145,5 +213,86 @@ export function Report() {
         </Reveal>
       </div>
     </section>
+  )
+}
+
+// Fields use their label as the placeholder (sr-only label for screen
+// readers), matching the form's compact look on the mint band.
+function Input({
+  id,
+  label,
+  className,
+  ...props
+}: React.ComponentProps<"input"> & { id: string; label: string }) {
+  return (
+    <div>
+      <label htmlFor={id} className="sr-only">
+        {label}
+      </label>
+      <input
+        id={id}
+        required
+        placeholder={label}
+        className={className}
+        {...props}
+      />
+    </div>
+  )
+}
+
+function Select({
+  id,
+  name,
+  label,
+  options,
+  className,
+  wrapperClassName,
+}: {
+  id: string
+  name: string
+  label: string
+  options: string[]
+  className: string
+  wrapperClassName?: string
+}) {
+  return (
+    <div className={cn("relative", wrapperClassName)}>
+      <label htmlFor={id} className="sr-only">
+        {label}
+      </label>
+      {/* The empty first option is the placeholder; while it is selected the
+          select is :invalid, which mutes the text like an input placeholder. */}
+      <select
+        id={id}
+        name={name}
+        required
+        defaultValue=""
+        className={cn(
+          className,
+          "cursor-pointer appearance-none pr-11 invalid:text-midnight/40"
+        )}
+      >
+        <option value="" disabled>
+          {label}
+        </option>
+        {options.map((option) => (
+          <option key={option} value={option} className="text-midnight">
+            {option}
+          </option>
+        ))}
+      </select>
+      <svg
+        aria-hidden
+        viewBox="0 0 12 12"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.5}
+        strokeLinecap="square"
+        strokeLinejoin="miter"
+        className="pointer-events-none absolute top-1/2 right-4 size-3 -translate-y-1/2 text-midnight"
+      >
+        <path d="M2.5 4.5L6 8l3.5-3.5" />
+      </svg>
+    </div>
   )
 }

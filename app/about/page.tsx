@@ -156,11 +156,12 @@ export default function AboutPage() {
 
       {/* A message from the top: midnight band with mint accents. */}
       <section className="relative z-10 bg-midnight text-white">
-        <div className="mx-auto grid max-w-[120rem] gap-10 px-6 py-16 md:grid-cols-12 md:gap-6 md:py-20 lg:px-10">
-          <Reveal y={16} className="md:col-span-3">
+        {/* Stacked and left-aligned with the rest of the page. */}
+        <div className="mx-auto max-w-[120rem] px-6 py-16 md:py-20 lg:px-10">
+          <Reveal y={16}>
             <Eyebrow className="text-mint">A message from the top</Eyebrow>
           </Reveal>
-          <div className="flex flex-col gap-6 text-lg leading-relaxed text-white/75 md:col-span-7 md:col-start-5 md:text-xl">
+          <div className="mt-6 flex max-w-4xl flex-col gap-6 text-lg leading-relaxed text-white/75 md:text-xl">
             <SplitReveal
               as="p"
               className="text-[clamp(1.5rem,2.6vw,2.5rem)] leading-[1.2] tracking-tight text-white"
