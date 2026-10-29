@@ -49,13 +49,13 @@ export default async function ServicePage({ params }: Props) {
         {/* Stacked so the copy starts on the same left edge as the hero
             title (client: the old side column pushed it out of line). */}
         <Reveal y={16}>
-          <span className="font-mono text-xs tracking-wider text-midnight/70 uppercase">
+          <span className="text-sm font-medium text-midnight/70">
             What it is
           </span>
         </Reveal>
         <SplitReveal
           as="p"
-          className="mt-5 max-w-5xl text-[clamp(1.5rem,2.8vw,2.75rem)] leading-[1.2] tracking-tight text-midnight"
+          className="mt-5 max-w-5xl text-[clamp(1.5rem,2.8vw,2.75rem)] leading-[1.2] text-midnight"
         >
           {service.what}
         </SplitReveal>
@@ -65,7 +65,7 @@ export default async function ServicePage({ params }: Props) {
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
         <SectionHeader eyebrow="Who it&rsquo;s for" title="Built for." />
         <Reveal className="mt-12 md:mt-16">
-          <ul className="border-t border-border">
+          <ul className="flex flex-col gap-2">
             {service.forWhom.map((slug) => {
               const audience = findAudience(slug)
               if (!audience) return null
@@ -76,12 +76,12 @@ export default async function ServicePage({ params }: Props) {
                       title on mobile. */}
                   <Link
                     href={`/who-we-serve#${slug}`}
-                    className="group grid grid-cols-[minmax(0,1fr)_1.25rem] items-start gap-x-5 gap-y-2 border-b border-border py-6 text-midnight md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)_1.25rem] md:items-center md:gap-x-8 md:py-7"
+                    className="group grid grid-cols-[minmax(0,1fr)_1.25rem] items-start gap-x-5 gap-y-2 bg-surface px-6 py-6 text-midnight transition-colors hover:bg-surface-2 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)_1.25rem] md:items-center md:gap-x-8 md:py-7"
                   >
                     <span className="col-start-1 row-start-1 font-heading text-[clamp(1.25rem,2vw,1.75rem)] leading-tight">
                       {audience.title}
                     </span>
-                    <span className="col-start-1 row-start-2 text-sm leading-relaxed text-muted-foreground md:col-start-2 md:row-start-1 md:text-base">
+                    <span className="col-start-1 row-start-2 text-sm leading-relaxed text-midnight/70 md:col-start-2 md:row-start-1 md:text-base">
                       {audience.body}
                     </span>
                     <Arrow className="col-start-2 row-start-1 mt-1 transition-transform duration-500 group-hover:translate-x-1 md:col-start-3 md:mt-0" />

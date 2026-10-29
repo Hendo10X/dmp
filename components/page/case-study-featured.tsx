@@ -35,7 +35,7 @@ export function CaseStudyFeatured({ studies }: { studies: CaseStudy[] }) {
                 {study.client}
               </span>
             </span>
-            <span className="flex flex-1 items-start justify-between gap-4 bg-surface-2 px-5 pt-3 pb-6 text-sm leading-relaxed text-midnight/80">
+            <span className="flex flex-1 items-start justify-between gap-4 bg-surface-2 px-5 pt-3 pb-6 text-sm leading-relaxed text-midnight/70">
               {study.summary}
               <Arrow
                 size={14}

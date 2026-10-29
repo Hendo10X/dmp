@@ -109,13 +109,13 @@ export function SideMenu({
               })}
             </nav>
 
-            <div className="mt-10 grid grid-cols-2 gap-y-2 border-t border-white/15 pt-6">
+            <div className="mt-10 grid grid-cols-2 gap-y-2 pt-6">
               {navFooterLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={onClose}
-                  className="text-sm text-white/60 transition-colors hover:text-white"
+                  className="text-sm text-white/70 transition-colors hover:text-white"
                 >
                   {link.title}
                 </Link>

@@ -39,7 +39,7 @@ const columns = [
 
 export function SiteFooter() {
   return (
-    <footer className="relative z-10 overflow-hidden border-t border-white/10 bg-midnight text-white">
+    <footer className="relative z-10 overflow-hidden bg-midnight text-white">
       <div className="mx-auto grid max-w-[120rem] gap-12 px-6 pt-16 md:grid-cols-12 md:gap-6 md:pt-20 lg:px-10">
         <div className="md:col-span-5">
           <SplitReveal className="text-[clamp(2.25rem,3.6vw,3.5rem)] leading-[1.05]">
@@ -50,7 +50,7 @@ export function SiteFooter() {
             Leave your email and we will get back to you.
           </p>
           <Subscribe />
-          <p className="mt-10 text-[0.7rem] tracking-[0.18em] text-white/50 uppercase">
+          <p className="mt-10 text-[0.7rem] font-medium tracking-[0.18em] text-white/70">
             Follow us
           </p>
           <SocialLinks tone="dark" className="mt-4" />
@@ -62,7 +62,7 @@ export function SiteFooter() {
         >
           {columns.map((column) => (
             <div key={column.title}>
-              <p className="text-[0.7rem] tracking-[0.18em] text-white/50 uppercase">
+              <p className="text-[0.7rem] font-medium tracking-[0.18em] text-white/70">
                 {column.title}
               </p>
               <ul className="mt-5 flex flex-col gap-3">
@@ -82,7 +82,7 @@ export function SiteFooter() {
         </nav>
       </div>
 
-      <div className="mx-auto mt-12 flex max-w-[120rem] flex-wrap justify-between gap-x-4 gap-y-2 px-6 font-mono text-xs tracking-wider text-white/50 uppercase md:mt-14 lg:px-10">
+      <div className="mx-auto mt-12 flex max-w-[120rem] flex-wrap justify-between gap-x-4 gap-y-2 px-6 text-sm font-medium text-white/70 md:mt-14 lg:px-10">
         <span>&copy; {new Date().getFullYear()} DMPartners</span>
         <span>Demonstrating Possibilities</span>
       </div>

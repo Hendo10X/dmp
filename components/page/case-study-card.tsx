@@ -48,7 +48,7 @@ export function CaseStudyCard({
       </span>
       <span
         className={cn(
-          "text-muted-foreground",
+          "text-midnight/70",
           size === "large" ? "text-sm" : "text-xs"
         )}
       >
@@ -63,7 +63,7 @@ export function CaseStudyCard({
         {study.title}
       </span>
       {lead && (
-        <span className="flex items-baseline gap-3 border-t border-border pt-4">
+        <span className="flex items-baseline gap-3 pt-2">
           <span
             className={cn(
               "font-heading leading-none text-midnight",
@@ -74,7 +74,7 @@ export function CaseStudyCard({
           </span>
           <span
             className={cn(
-              "text-muted-foreground",
+              "text-midnight/70",
               size === "large" ? "text-base" : "text-sm"
             )}
           >
@@ -82,7 +82,7 @@ export function CaseStudyCard({
           </span>
         </span>
       )}
-      <span className="flex items-center gap-2 font-mono text-xs tracking-wider uppercase">
+      <span className="flex items-center gap-2 text-sm font-medium">
         Read case study
         <Arrow
           size={16}

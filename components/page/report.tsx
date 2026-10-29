@@ -73,7 +73,7 @@ export function Report() {
   const [sent, setSent] = React.useState(false)
 
   const field =
-    "h-12 w-full rounded-lg border border-midnight/15 bg-white px-4 text-midnight outline-none placeholder:text-midnight/40 focus-visible:border-midnight"
+    "h-12 w-full rounded-lg bg-white px-4 text-midnight outline-none placeholder:text-midnight/40 focus-visible:ring-2 focus-visible:ring-midnight"
 
   return (
     <section className="relative z-10 bg-mint text-midnight">
@@ -87,13 +87,13 @@ export function Report() {
           </SplitReveal>
           <SplitReveal
             as="p"
-            className="mt-5 max-w-md text-base leading-relaxed text-midnight/75"
+            className="mt-5 max-w-md text-base leading-relaxed text-midnight/70"
           >
             Our research on the business of sports in Nigeria. Leave your
             details and the report downloads straight away.
           </SplitReveal>
           <Reveal y={12}>
-            <p className="mt-6 font-mono text-xs tracking-wider text-midnight/60 uppercase">
+            <p className="mt-6 text-sm font-medium text-midnight/70">
               PDF &middot; 67 pages &middot; 7.1 MB
             </p>
           </Reveal>
@@ -121,7 +121,7 @@ export function Report() {
                 <a
                   href={REPORT.href}
                   download={REPORT.file}
-                  className="group inline-flex h-12 items-center gap-2 rounded-pill bg-mint px-6 font-mono text-xs font-semibold tracking-wider text-midnight uppercase outline-offset-4 transition-colors hover:bg-mint/90 focus-visible:outline-2 focus-visible:outline-mint"
+                  className="group inline-flex h-12 items-center gap-2 rounded-pill bg-mint px-6 text-sm font-semibold text-midnight outline-offset-4 transition-colors hover:bg-mint/90 focus-visible:outline-2 focus-visible:outline-mint"
                 >
                   Download the report
                   <Arrow
@@ -205,7 +205,7 @@ export function Report() {
                 />
                 <button
                   type="submit"
-                  className="group mt-1 inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-midnight px-6 font-mono text-xs font-semibold tracking-wider text-white uppercase outline-offset-4 transition-colors hover:bg-midnight/90 focus-visible:outline-2 focus-visible:outline-midnight sm:col-span-2"
+                  className="group mt-1 inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-midnight px-6 text-sm font-semibold text-white outline-offset-4 transition-colors hover:bg-midnight/90 focus-visible:outline-2 focus-visible:outline-midnight sm:col-span-2"
                 >
                   Download the report
                   <Arrow
@@ -275,7 +275,7 @@ function Select({
         defaultValue=""
         className={cn(
           className,
-          "cursor-pointer appearance-none pr-11 invalid:text-midnight/40"
+          "cursor-pointer appearance-none pr-11 invalid:text-midnight/70"
         )}
       >
         <option value="" disabled>

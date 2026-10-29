@@ -47,7 +47,7 @@ export function SectionHeader({
             as="p"
             className={cn(
               "mt-5 max-w-xl text-sm leading-relaxed md:text-base",
-              dark ? "text-white/70" : "text-muted-foreground"
+              dark ? "text-white/70" : "text-midnight/70"
             )}
           >
             {intro}

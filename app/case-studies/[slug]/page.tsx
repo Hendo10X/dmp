@@ -39,7 +39,7 @@ function splitTitle(title: string) {
 }
 
 // One case study, after PwC's F1 story: split hero (tinted panel with
-// breadcrumb, title, summary and facts beside the photo), the numbers in a
+// back link, title, summary and facts beside the photo), the numbers in a
 // row, the story in one centred reading column with a pull quote, explore
 // cards, a named contact, and a slider of more work.
 export default async function CaseStudyPage({ params }: Props) {
@@ -77,25 +77,12 @@ export default async function CaseStudyPage({ params }: Props) {
       {/* Split hero */}
       <section className="relative z-10 grid bg-surface-2 lg:min-h-[86svh] lg:grid-cols-2">
         <div className="flex flex-col justify-end px-6 pt-28 pb-12 md:pt-32 md:pb-16 lg:pr-12 lg:pl-10">
-          <nav aria-label="Breadcrumb" className="text-xs text-midnight/60">
-            <ol className="flex flex-wrap items-center gap-2">
-              <li>
-                <Link href="/" className="hover:text-midnight">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden>/</li>
-              <li>
-                <Link href="/case-studies" className="hover:text-midnight">
-                  Case studies
-                </Link>
-              </li>
-              <li aria-hidden>/</li>
-              <li aria-current="page" className="line-clamp-1 text-midnight">
-                {study.title}
-              </li>
-            </ol>
-          </nav>
+          <Link
+            href="/case-studies"
+            className="w-fit text-sm text-midnight/70 transition-colors hover:text-midnight"
+          >
+            All case studies
+          </Link>
 
           <Eyebrow className="mt-10 text-sm text-brand md:text-base">
             Case study
@@ -110,10 +97,10 @@ export default async function CaseStudyPage({ params }: Props) {
             {study.summary}
           </p>
 
-          <dl className="mt-10 grid gap-6 border-t border-midnight/15 pt-6 sm:grid-cols-3">
+          <dl className="mt-10 grid gap-6 sm:grid-cols-3">
             {facts.map((fact) => (
               <div key={fact.label} className="flex flex-col gap-1.5">
-                <dt className="font-mono text-[11px] tracking-wider text-muted-foreground uppercase">
+                <dt className="text-sm font-medium text-midnight/70">
                   {fact.label}
                 </dt>
                 <dd className="text-sm text-midnight">
@@ -158,7 +145,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 <CountUp value={stat.value} />
               </span>
               <span aria-hidden className="mt-5 h-0.5 w-10 bg-mint" />
-              <span className="mt-4 max-w-[15rem] text-sm leading-snug text-muted-foreground">
+              <span className="mt-4 max-w-[15rem] text-sm leading-snug text-midnight/70">
                 {stat.label}
               </span>
             </div>
@@ -168,7 +155,7 @@ export default async function CaseStudyPage({ params }: Props) {
 
       {/* The story, one reading column */}
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
-        <div className="mx-auto flex max-w-3xl flex-col gap-14 border-t border-border pt-14 md:gap-16 md:pt-16">
+        <div className="mx-auto flex max-w-3xl flex-col gap-14 md:gap-16">
           {story.map((block) => (
             <div key={block.label} className="flex flex-col gap-4">
               <Eyebrow className="text-brand">{block.label}</Eyebrow>
@@ -228,7 +215,7 @@ export default async function CaseStudyPage({ params }: Props) {
                   <p className="font-heading text-2xl leading-tight text-midnight">
                     {item.title}
                   </p>
-                  <p className="max-w-md text-sm leading-relaxed text-muted-foreground">
+                  <p className="max-w-md text-sm leading-relaxed text-midnight/70">
                     {item.body}
                   </p>
                   <ArrowLink href={item.href}>{item.cta}</ArrowLink>
@@ -241,7 +228,7 @@ export default async function CaseStudyPage({ params }: Props) {
       {/* Contact */}
       {contact && (
         <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
-          <div className="flex flex-col gap-8 border-t border-border pt-10 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-5">
               <span className="relative block size-20 shrink-0 overflow-hidden bg-midnight">
                 <Image
@@ -253,13 +240,11 @@ export default async function CaseStudyPage({ params }: Props) {
                 />
               </span>
               <div>
-                <Eyebrow className="text-muted-foreground">
-                  Talk to the team
-                </Eyebrow>
+                <Eyebrow className="text-midnight/70">Talk to the team</Eyebrow>
                 <p className="mt-2 font-heading text-2xl leading-tight text-midnight">
                   {contact.name}
                 </p>
-                <p className="text-sm text-muted-foreground">{contact.role}</p>
+                <p className="text-sm text-midnight/70">{contact.role}</p>
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-5">
@@ -268,7 +253,7 @@ export default async function CaseStudyPage({ params }: Props) {
                   href={contact.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-xs font-semibold tracking-wider text-brand uppercase hover:text-midnight"
+                  className="text-sm font-semibold text-brand hover:text-midnight"
                 >
                   LinkedIn
                 </a>
@@ -288,7 +273,7 @@ export default async function CaseStudyPage({ params }: Props) {
             action={
               <Link
                 href="/case-studies"
-                className="group flex items-center gap-2 font-mono text-xs font-semibold tracking-wider text-midnight uppercase"
+                className="group flex items-center gap-2 text-sm font-semibold text-midnight"
               >
                 See all
                 <Arrow

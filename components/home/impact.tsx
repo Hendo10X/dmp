@@ -118,7 +118,7 @@ function StatColumn({ stat }: { stat: { value: string; label: string } }) {
       <span className="font-display text-[clamp(2.25rem,3.4vw,3.5rem)] leading-none whitespace-nowrap">
         <CountUp value={stat.value} />
       </span>
-      <span className="max-w-[14rem] font-mono text-[11px] leading-snug tracking-wider uppercase">
+      <span className="max-w-[14rem] text-sm leading-snug font-medium">
         {stat.label}
       </span>
     </div>
@@ -130,15 +130,13 @@ function CaseColumn() {
     <div className="flex h-full flex-col gap-6 p-5 md:flex-row md:p-6">
       <div className="flex min-w-[15rem] flex-1 flex-col justify-between gap-10">
         <div>
-          <p className="font-mono text-xs tracking-wider uppercase opacity-70">
-            Case study
-          </p>
+          <p className="text-sm font-medium opacity-70">Case study</p>
           <h3 className="mt-3 max-w-xs font-display text-xl leading-[1.15] md:text-2xl">
             A national federation rebuilds around its data
           </h3>
           <Link
             href="/case-studies/federation-data-rebuild"
-            className="group mt-5 inline-flex items-center gap-2 font-mono text-xs tracking-wider uppercase"
+            className="group mt-5 inline-flex items-center gap-2 text-sm font-medium"
           >
             Read case study
             <Arrow
@@ -151,7 +149,7 @@ function CaseColumn() {
           <span className="block font-display text-[clamp(3rem,5vw,5rem)] leading-none">
             <CountUp value={stats.hero.value} />
           </span>
-          <span className="mt-3 block max-w-[16rem] font-mono text-[11px] leading-snug tracking-wider uppercase">
+          <span className="mt-3 block max-w-[16rem] text-sm leading-snug font-medium">
             {stats.hero.label}
           </span>
         </div>

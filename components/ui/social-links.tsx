@@ -36,10 +36,10 @@ export function SocialLinks({
               rel="noopener noreferrer"
               aria-label={`DMPartners on ${profile.name}`}
               className={cn(
-                "flex size-11 items-center justify-center border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-electric",
+                "flex size-11 items-center justify-center transition-colors outline-none focus-visible:ring-2 focus-visible:ring-electric",
                 tone === "dark"
-                  ? "border-white/20 text-white hover:border-mint hover:bg-mint hover:text-midnight"
-                  : "border-midnight/20 text-midnight hover:border-brand hover:bg-brand hover:text-white"
+                  ? "bg-white/10 text-white hover:bg-mint hover:text-midnight"
+                  : "bg-surface text-midnight hover:bg-brand hover:text-white"
               )}
             >
               <HugeiconsIcon

@@ -200,19 +200,8 @@ export function AfricaGlobe({
               data-market
               className="absolute -translate-x-1/2 -translate-y-[140%] opacity-0 transition-opacity duration-300"
             >
-              <span className="flex items-center gap-1.5 rounded-pill border border-border bg-white/90 px-2 py-0.5 backdrop-blur-sm">
-                <span
-                  className={cn(
-                    "size-1.5 rounded-full",
-                    market.home ? "bg-mint" : "bg-midnight"
-                  )}
-                />
-                <span className="font-mono text-[9px] leading-none text-midnight">
-                  {market.city}
-                </span>
-                <span className="font-mono text-[9px] leading-none font-semibold text-muted-foreground">
-                  {market.code}
-                </span>
+              <span className="block rounded-pill bg-white px-2 py-1 text-[11px] leading-none text-midnight">
+                {market.city}
               </span>
             </div>
           ))}

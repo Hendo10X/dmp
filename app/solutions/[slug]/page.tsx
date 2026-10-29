@@ -50,13 +50,13 @@ export default async function SolutionPage({ params }: Props) {
         {/* Stacked so the copy starts on the same left edge as the hero
             title (client: the old side column pushed it out of line). */}
         <Reveal y={16}>
-          <span className="font-mono text-xs tracking-wider text-midnight/70 uppercase">
+          <span className="text-sm font-medium text-midnight/70">
             What it is
           </span>
         </Reveal>
         <SplitReveal
           as="p"
-          className="mt-5 max-w-5xl text-[clamp(1.5rem,2.8vw,2.75rem)] leading-[1.2] tracking-tight text-midnight"
+          className="mt-5 max-w-5xl text-[clamp(1.5rem,2.8vw,2.75rem)] leading-[1.2] text-midnight"
         >
           {solution.what}
         </SplitReveal>
@@ -66,14 +66,11 @@ export default async function SolutionPage({ params }: Props) {
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
         <SectionHeader eyebrow="What you get" title="Outcomes." />
         <Reveal className="mt-12 grid gap-2 sm:grid-cols-2 md:mt-16 lg:grid-cols-4">
-          {solution.outcomes.map((outcome, index) => (
+          {solution.outcomes.map((outcome) => (
             <div
               key={outcome}
-              className="flex min-h-52 flex-col justify-between gap-8 rounded-xl bg-midnight p-6 text-white md:p-7"
+              className="flex min-h-52 flex-col justify-end rounded-xl bg-midnight p-6 text-white md:p-7"
             >
-              <span className="font-heading text-lg text-lime">
-                {String(index + 1).padStart(2, "0")}
-              </span>
               <span className="text-lg leading-snug font-semibold">
                 {outcome}
               </span>
@@ -105,7 +102,7 @@ export default async function SolutionPage({ params }: Props) {
                     <li key={slug}>
                       <Link
                         href={`/who-we-serve#${slug}`}
-                        className="group flex items-center justify-between gap-6 border-b border-border py-5 text-midnight"
+                        className="group flex items-center justify-between gap-6 bg-surface px-6 py-5 text-midnight transition-colors hover:bg-surface-2"
                       >
                         <span className="font-heading text-[clamp(1.5rem,2.4vw,2.25rem)] leading-none">
                           {audience.title}
@@ -154,9 +151,7 @@ export default async function SolutionPage({ params }: Props) {
               href={`/solutions/${other.slug}`}
               className="group flex min-h-40 flex-col justify-between gap-6 rounded-xl bg-secondary p-6 text-midnight transition-colors duration-500 hover:bg-midnight hover:text-white md:p-7"
             >
-              <span className="font-mono text-xs tracking-wider uppercase">
-                {other.kicker}
-              </span>
+              <span className="text-sm font-medium">{other.kicker}</span>
               <span className="flex items-end justify-between gap-6">
                 <span className="font-heading text-[clamp(1.75rem,2.6vw,2.5rem)] leading-[1.05]">
                   {other.title}

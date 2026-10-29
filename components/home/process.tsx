@@ -26,9 +26,9 @@ const steps = [
 // Cards run light to dark in the logo palette (mint, electric, logo blue,
 // midnight): the colour itself travels from question to result.
 const tones = [
-  { card: "bg-mint text-midnight", body: "text-midnight/75" },
-  { card: "bg-electric text-midnight", body: "text-midnight/75" },
-  { card: "bg-brand text-white", body: "text-white/80" },
+  { card: "bg-mint text-midnight", body: "text-midnight/70" },
+  { card: "bg-electric text-midnight", body: "text-midnight/70" },
+  { card: "bg-brand text-white", body: "text-white/70" },
   { card: "bg-midnight text-white", body: "text-white/70" },
 ]
 
@@ -49,7 +49,7 @@ export function Process({ action }: { action?: React.ReactNode }) {
           >
             {/* Number and title share one baseline, close together. */}
             <div className="flex items-baseline gap-2.5">
-              <span className="font-mono text-sm font-semibold opacity-60">
+              <span className="text-sm font-semibold opacity-60">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <h3 className="text-2xl leading-none">{step.title}</h3>

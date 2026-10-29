@@ -21,7 +21,7 @@ export function Steps({
         {steps.map((step, index) => (
           <li
             key={step.title}
-            className="flex flex-col gap-4 rounded-xl border border-border bg-background p-6 md:p-8"
+            className="flex flex-col gap-4 rounded-xl bg-surface p-6 md:p-8"
           >
             <span className="font-heading text-5xl leading-none text-brand">
               {String(index + 1).padStart(2, "0")}
@@ -29,7 +29,7 @@ export function Steps({
             <h3 className="mt-2 text-xl leading-tight text-midnight">
               {step.title}
             </h3>
-            <p className="text-base leading-relaxed text-muted-foreground">
+            <p className="text-base leading-relaxed text-midnight/70">
               {step.body}
             </p>
           </li>

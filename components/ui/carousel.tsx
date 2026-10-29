@@ -66,10 +66,10 @@ export function Carousel({
 
   const dark = tone === "dark"
   const button = cn(
-    "flex size-11 items-center justify-center border transition-colors outline-none focus-visible:ring-2 focus-visible:ring-electric disabled:cursor-not-allowed disabled:opacity-30",
+    "flex size-11 items-center justify-center transition-colors outline-none focus-visible:ring-2 focus-visible:ring-electric disabled:cursor-not-allowed disabled:opacity-30",
     dark
-      ? "border-white/25 text-white hover:enabled:bg-white hover:enabled:text-midnight"
-      : "border-midnight/20 text-midnight hover:enabled:bg-midnight hover:enabled:text-white"
+      ? "bg-white/10 text-white hover:enabled:bg-white hover:enabled:text-midnight"
+      : "bg-surface text-midnight hover:enabled:bg-midnight hover:enabled:text-white"
   )
 
   return (

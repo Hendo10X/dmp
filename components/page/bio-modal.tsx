@@ -29,7 +29,7 @@ export function BioModal({ person }: { person: TeamMember }) {
       <button
         type="button"
         onClick={open}
-        className="inline-flex h-10 items-center gap-2 self-start rounded-pill bg-midnight px-6 font-mono text-xs font-semibold tracking-wider whitespace-nowrap text-white uppercase outline-offset-4 transition-colors hover:bg-midnight/90 focus-visible:outline-2 focus-visible:outline-electric"
+        className="inline-flex h-10 items-center gap-2 self-start rounded-pill bg-midnight px-6 text-sm font-semibold whitespace-nowrap text-white outline-offset-4 transition-colors hover:bg-midnight/90 focus-visible:outline-2 focus-visible:outline-electric"
       >
         Read bio
         <span aria-hidden className="text-sm leading-none text-mint">
@@ -95,7 +95,7 @@ export function BioModal({ person }: { person: TeamMember }) {
               >
                 {person.name}
               </p>
-              <p className="mt-2 font-mono text-xs tracking-wider text-muted-foreground uppercase">
+              <p className="mt-2 text-sm font-medium text-midnight/70">
                 {person.role}
               </p>
             </div>

@@ -42,9 +42,7 @@ export function SolutionTiles({ className }: { className?: string }) {
           />
 
           <span className="relative flex items-center justify-between">
-            <span className="font-mono text-[10px] tracking-widest uppercase">
-              {solution.kicker}
-            </span>
+            <span className="text-sm font-medium">{solution.kicker}</span>
           </span>
 
           <span aria-hidden />
@@ -52,10 +50,10 @@ export function SolutionTiles({ className }: { className?: string }) {
           <span className="relative font-heading text-[clamp(1.75rem,2.4vw,2.25rem)] leading-[1.05]">
             {solution.title}
           </span>
-          <span className="relative max-w-sm text-sm leading-relaxed text-white/80 md:text-base">
+          <span className="relative max-w-sm text-sm leading-relaxed text-white/70 md:text-base">
             {solution.summary}
           </span>
-          <span className="relative mt-1 flex items-center gap-2 font-mono text-xs tracking-wider uppercase">
+          <span className="relative mt-1 flex items-center gap-2 text-sm font-medium">
             Explore
             <Arrow
               size={16}

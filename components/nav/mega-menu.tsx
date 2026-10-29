@@ -55,7 +55,7 @@ export function MegaMenu({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-      className="absolute inset-x-0 top-full border-t border-white/10 bg-midnight"
+      className="absolute inset-x-0 top-full bg-midnight"
     >
       <div
         key={menu}
@@ -63,7 +63,7 @@ export function MegaMenu({
       >
         <div className="col-span-3 flex flex-col items-start gap-4">
           <p className="font-heading text-2xl text-white">{copy.title}</p>
-          <p className="text-sm leading-relaxed text-white/65">{copy.body}</p>
+          <p className="text-sm leading-relaxed text-white/70">{copy.body}</p>
           <ArrowLink
             href={copy.href}
             onClick={onNavigate}
@@ -89,12 +89,12 @@ export function MegaMenu({
                 >
                   <ServiceIcon
                     slug={service.slug}
-                    className="size-5 text-white/60 transition-colors duration-300 group-hover:text-white"
+                    className="size-5 text-white/70 transition-colors duration-300 group-hover:text-white"
                   />
                   <span className="font-heading text-base leading-tight text-white">
                     {service.title}
                   </span>
-                  <span className="text-xs leading-snug text-white/60">
+                  <span className="text-xs leading-snug text-white/70">
                     {service.summary}
                   </span>
                 </Link>
@@ -108,7 +108,7 @@ export function MegaMenu({
                 <Link
                   href={`/solutions/${solution.slug}`}
                   onClick={onNavigate}
-                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-white/10 transition-colors duration-200 outline-none hover:bg-white/5 focus-visible:bg-white/5"
+                  className="group flex h-full flex-col overflow-hidden rounded-xl bg-white/5 transition-colors duration-200 outline-none hover:bg-white/10 focus-visible:bg-white/10"
                 >
                   <span className="relative block aspect-[16/9] overflow-hidden bg-midnight">
                     <Image
@@ -120,7 +120,7 @@ export function MegaMenu({
                     />
                   </span>
                   <span className="flex flex-1 flex-col gap-2 p-4">
-                    <span className="font-mono text-[10px] tracking-widest text-mint uppercase">
+                    <span className="text-sm font-medium text-mint">
                       {solution.kicker}
                     </span>
                     <span className="flex items-end justify-between gap-4">

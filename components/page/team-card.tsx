@@ -30,7 +30,7 @@ export function TeamCard({ person }: { person: TeamMember }) {
         <span className="font-heading text-2xl leading-tight text-midnight">
           {person.name}
         </span>
-        <span className="text-sm text-muted-foreground">{person.role}</span>
+        <span className="text-sm text-midnight/70">{person.role}</span>
         {(person.bio || person.linkedin) && (
           <div className="mt-4 flex items-center gap-3">
             <BioModal person={person} />

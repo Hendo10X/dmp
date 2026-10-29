@@ -49,7 +49,7 @@ export default function ContactPage() {
               <ul className="mt-6 flex flex-col gap-5">
                 {direct.map((item) => (
                   <li key={item.label} className="flex flex-col gap-1">
-                    <span className="font-mono text-xs tracking-wider text-muted-foreground uppercase">
+                    <span className="text-sm font-medium text-midnight/70">
                       {item.label}
                     </span>
                     <a
@@ -63,7 +63,7 @@ export default function ContactPage() {
               </ul>
             </div>
             <div className="rounded-xl bg-midnight p-6 text-white">
-              <p className="font-mono text-xs tracking-wider text-mint uppercase">
+              <p className="text-sm font-medium text-mint">
                 Prefer to talk first?
               </p>
               <p className="mt-3 leading-relaxed">

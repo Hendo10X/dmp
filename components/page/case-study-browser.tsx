@@ -67,14 +67,14 @@ export function CaseStudyBrowser() {
           <button
             type="button"
             onClick={() => router.replace("?", { scroll: false })}
-            className="font-mono text-xs tracking-wider text-midnight uppercase underline decoration-midnight/30 underline-offset-4 hover:decoration-midnight sm:ml-auto"
+            className="text-sm font-medium text-midnight underline decoration-midnight/30 underline-offset-4 hover:decoration-midnight sm:ml-auto"
           >
             Clear filters
           </button>
         )}
       </div>
 
-      <p aria-live="polite" className="text-sm text-muted-foreground">
+      <p aria-live="polite" className="text-sm text-midnight/70">
         {results.length} {results.length === 1 ? "result" : "results"}
       </p>
 
@@ -114,14 +114,14 @@ export function CaseStudyBrowser() {
                       className="object-cover transition-[scale] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
                     />
                   </span>
-                  <span className="text-xs text-muted-foreground">{meta}</span>
+                  <span className="text-xs text-midnight/70">{meta}</span>
                   <span className="font-heading text-xl leading-tight group-hover:text-brand">
                     {study.title}
                   </span>
-                  <span className="text-sm leading-relaxed text-muted-foreground">
+                  <span className="text-sm leading-relaxed text-midnight/70">
                     {study.summary}
                   </span>
-                  <span className="flex items-center gap-2 self-end pt-2 font-mono text-xs tracking-wider uppercase">
+                  <span className="flex items-center gap-2 self-end pt-2 text-sm font-medium">
                     Read case study
                     <Arrow
                       size={14}
@@ -139,7 +139,7 @@ export function CaseStudyBrowser() {
         <button
           type="button"
           onClick={() => setVisible((count) => count + PAGE)}
-          className="self-center rounded-pill border border-midnight/25 px-8 py-3 font-mono text-xs font-semibold tracking-wider text-midnight uppercase transition-colors hover:bg-midnight hover:text-white"
+          className="self-center rounded-pill bg-midnight px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-midnight/90"
         >
           Load more
         </button>
@@ -150,7 +150,7 @@ export function CaseStudyBrowser() {
           <p className="font-heading text-3xl leading-none">
             Nothing here yet.
           </p>
-          <p className="text-muted-foreground">
+          <p className="text-midnight/70">
             We may still have relevant experience. Clear a filter, or ask us
             directly.
           </p>

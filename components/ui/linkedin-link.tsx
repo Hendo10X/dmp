@@ -9,7 +9,7 @@ export function LinkedinLink({ href, name }: { href: string; name: string }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`${name} on LinkedIn`}
-      className="flex size-10 shrink-0 items-center justify-center border border-midnight/20 text-midnight transition-colors outline-none hover:border-brand hover:bg-brand hover:text-white focus-visible:ring-2 focus-visible:ring-electric"
+      className="flex size-10 shrink-0 items-center justify-center bg-surface text-midnight transition-colors outline-none hover:bg-brand hover:text-white focus-visible:ring-2 focus-visible:ring-electric"
     >
       <HugeiconsIcon
         icon={Linkedin01Icon}
