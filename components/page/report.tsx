@@ -4,6 +4,7 @@ import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 
 import { industries } from "@/lib/content"
+import { sendReportRequest } from "@/app/reports/actions"
 import { cn } from "@/lib/utils"
 import { Arrow, Tick } from "@/components/ui/arrow"
 import { Eyebrow } from "@/components/ui/eyebrow"
@@ -12,9 +13,8 @@ import { SplitReveal } from "@/components/motion/split-reveal"
 
 // The Nigeria Sports Industry Outlook 2026 (public/reports) on a mint band
 // on the Reports page: visitors leave their details, then the PDF
-// downloads straight away, with a button as a fallback. The client also
-// wants it emailed; that needs an email provider, and the details are not
-// stored or sent anywhere yet.
+// downloads straight away, with a button as a fallback. The details are
+// emailed to the team (app/reports/actions.ts).
 const REPORT = {
   title: "Nigeria Sports Industry Outlook 2026",
   href: "/reports/nigeria-sports-industry-outlook-2026.pdf",
@@ -137,6 +137,12 @@ export function Report() {
                 transition={{ duration: 0.25 }}
                 onSubmit={(event) => {
                   event.preventDefault()
+                  // Email the details to the team in the background; the
+                  // download never waits on it or fails because of it.
+                  sendReportRequest(
+                    REPORT.title,
+                    new FormData(event.currentTarget)
+                  ).catch(() => {})
                   // Start the download in the same click so browsers allow it.
                   const link = document.createElement("a")
                   link.href = REPORT.href
