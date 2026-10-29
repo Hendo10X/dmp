@@ -16,7 +16,7 @@ const topics = [
 ]
 
 const field =
-  "w-full rounded-lg bg-surface border border-border px-4 py-3 text-midnight outline-none transition-shadow placeholder:text-midnight/40 focus-visible:ring-2 focus-visible:ring-electric"
+  "w-full rounded-lg bg-surface px-4 py-3 text-midnight outline-none transition-shadow placeholder:text-midnight/40 focus-visible:ring-2 focus-visible:ring-electric"
 
 // Short enquiry form from the brief. UI only: no form service is connected
 // yet (docs/brief.md, Q8), so submitting just confirms on screen.
@@ -52,14 +52,14 @@ export function ContactForm() {
             <p className="font-heading text-4xl leading-none">
               Thanks. Message received.
             </p>
-            <p className="max-w-md text-muted-foreground">
+            <p className="max-w-md text-midnight/70">
               Someone from the team will reply by email. For anything urgent,
               use the direct details alongside.
             </p>
             <button
               type="button"
               onClick={() => setSent(false)}
-              className="font-mono text-xs tracking-wider uppercase underline decoration-midnight/30 underline-offset-8 hover:decoration-midnight"
+              className="text-sm font-medium underline decoration-midnight/30 underline-offset-8 hover:decoration-midnight"
             >
               Send another
             </button>
@@ -151,7 +151,7 @@ export function ContactForm() {
                 type="submit"
                 className="group inline-flex h-12 items-stretch outline-offset-4 focus-visible:outline-2 focus-visible:outline-electric"
               >
-                <span className="flex items-center bg-midnight px-5 font-mono text-xs tracking-wider text-white uppercase">
+                <span className="flex items-center bg-midnight px-5 text-sm font-medium text-white">
                   Send message
                 </span>
                 <span className="flex aspect-square h-full items-center justify-center bg-mint text-midnight">
@@ -179,10 +179,7 @@ function Field({
 }) {
   return (
     <div className={cn("flex flex-col gap-2", className)}>
-      <label
-        htmlFor={htmlFor}
-        className="font-mono text-xs tracking-wider text-muted-foreground uppercase"
-      >
+      <label htmlFor={htmlFor} className="text-sm font-medium text-midnight/70">
         {label}
       </label>
       {children}

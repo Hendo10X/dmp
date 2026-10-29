@@ -94,13 +94,10 @@ export default function CareersPage() {
             <div
               key={item.text}
               className={cn(
-                "flex min-h-56 flex-col gap-10 p-6 md:p-7",
+                "flex min-h-56 flex-col justify-end p-6 md:p-7",
                 item.tone
               )}
             >
-              <span className="font-mono text-sm font-semibold opacity-60">
-                {String(index + 1).padStart(2, "0")}
-              </span>
               <p className="font-heading text-[clamp(1.75rem,2.4vw,2.25rem)] leading-[1.05]">
                 {item.text}
               </p>
@@ -137,10 +134,10 @@ export default function CareersPage() {
               <span className="relative font-heading text-3xl leading-none">
                 {path.title}
               </span>
-              <span className="relative max-w-sm text-sm leading-relaxed text-white/80">
+              <span className="relative max-w-sm text-sm leading-relaxed text-white/70">
                 {path.body}
               </span>
-              <span className="relative mt-3 flex items-center gap-2 font-mono text-xs tracking-wider text-mint uppercase">
+              <span className="relative mt-3 flex items-center gap-2 text-sm font-medium text-mint">
                 {path.cta}
                 <Arrow
                   size={14}
@@ -168,19 +165,19 @@ export default function CareersPage() {
               <li key={role.title}>
                 <Link
                   href={`/contact?topic=employment&role=${encodeURIComponent(role.title)}`}
-                  className="group grid gap-3 border-b border-border py-6 text-midnight md:grid-cols-12 md:items-center md:gap-6 md:py-8"
+                  className="group grid gap-3 bg-surface px-6 py-6 text-midnight transition-colors hover:bg-surface-2 md:grid-cols-12 md:items-center md:gap-6 md:py-8"
                 >
                   <span className="font-heading text-[clamp(1.75rem,3vw,2.75rem)] leading-none md:col-span-5">
                     {role.title}
                   </span>
-                  <span className="text-muted-foreground md:col-span-3">
+                  <span className="text-midnight/70 md:col-span-3">
                     {role.team}
                   </span>
-                  <span className="flex gap-4 text-sm text-muted-foreground md:col-span-3">
+                  <span className="flex gap-4 text-sm text-midnight/70 md:col-span-3">
                     <span>{role.type}</span>
                     <span>{role.location}</span>
                   </span>
-                  <span className="flex items-center gap-2 font-mono text-xs tracking-wider uppercase md:col-span-1 md:justify-end">
+                  <span className="flex items-center gap-2 text-sm font-medium md:col-span-1 md:justify-end">
                     <span className="md:sr-only">Apply</span>
                     <Arrow className="transition-transform duration-500 group-hover:translate-x-1" />
                   </span>

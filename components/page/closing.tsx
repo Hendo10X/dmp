@@ -27,7 +27,7 @@ export function Quote({
           &ldquo;{text}&rdquo;
         </SplitReveal>
         <Reveal y={12}>
-          <figcaption className="mt-8 font-mono text-xs tracking-wider text-midnight/70 uppercase">
+          <figcaption className="mt-8 text-sm font-medium text-midnight/70">
             {by}
           </figcaption>
         </Reveal>

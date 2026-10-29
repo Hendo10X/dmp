@@ -125,7 +125,7 @@ export function Header() {
               const expanded = Boolean(item.mega && mega === item.mega)
               const itemClass = cn(
                 "flex items-center gap-1 text-[13px] font-medium transition-colors outline-none hover:text-white focus-visible:text-white",
-                active || expanded ? "text-white" : "text-white/65"
+                active || expanded ? "text-white" : "text-white/70"
               )
               return (
                 <li key={item.href}>

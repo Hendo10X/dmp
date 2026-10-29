@@ -51,7 +51,7 @@ export function IndustryMarquee({ className }: { className?: string }) {
 
 function Chip({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-pill border border-border px-4 py-2 text-sm whitespace-nowrap text-midnight">
+    <span className="inline-flex items-center gap-2 rounded-pill bg-surface px-4 py-2 text-sm whitespace-nowrap text-midnight">
       <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-mint" />
       {children}
     </span>

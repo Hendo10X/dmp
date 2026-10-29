@@ -10,7 +10,7 @@ export default function NotFound() {
           Off side.
         </h1>
       </div>
-      <p className="max-w-md text-lg leading-relaxed text-muted-foreground">
+      <p className="max-w-md text-lg leading-relaxed text-midnight/70">
         The page you were looking for isn&rsquo;t here. It may have moved, or
         the link may be out of date.
       </p>

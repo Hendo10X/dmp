@@ -92,7 +92,7 @@ export function About() {
           </Reveal>
           <SplitReveal className="mt-4 text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08] text-midnight">
             Not aspiration.{" "}
-            <span className="text-midnight/45">
+            <span className="text-midnight/70">
               Possibilities within reach.
             </span>
           </SplitReveal>

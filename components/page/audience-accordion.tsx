@@ -28,18 +28,14 @@ export function AudienceAccordion() {
   }, [])
 
   return (
-    <ol className="border-b border-border">
+    <ol>
       {audiences.map((audience, index) => {
         const isOpen = open === audience.slug
         const relevant = services.filter((s) =>
           s.forWhom.includes(audience.slug)
         )
         return (
-          <li
-            key={audience.slug}
-            id={audience.slug}
-            className="scroll-mt-24 border-t border-border"
-          >
+          <li key={audience.slug} id={audience.slug} className="scroll-mt-24">
             <h2>
               <button
                 type="button"
@@ -48,9 +44,6 @@ export function AudienceAccordion() {
                 onClick={() => setOpen(isOpen ? "" : audience.slug)}
                 className="group flex w-full items-center gap-4 py-6 text-left outline-none focus-visible:ring-2 focus-visible:ring-electric md:gap-8 md:py-8"
               >
-                <span className="w-8 shrink-0 font-mono text-sm text-midnight/40">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
                 <span
                   className={cn(
                     "flex-1 font-heading text-[clamp(1.5rem,3.2vw,3rem)] leading-[1.05] transition-[color,translate] duration-500",
@@ -86,14 +79,14 @@ export function AudienceAccordion() {
 
                     <div className="flex flex-col gap-8 md:col-span-5 md:col-start-8">
                       <div>
-                        <p className="font-mono text-xs tracking-wider text-mint uppercase">
+                        <p className="text-sm font-medium text-mint">
                           Typical work
                         </p>
                         <ul className="mt-4 flex flex-col gap-2">
                           {audience.needs.map((need) => (
                             <li
                               key={need}
-                              className="flex items-center gap-3 text-white/85"
+                              className="flex items-center gap-3 text-white/70"
                             >
                               <span
                                 aria-hidden
@@ -106,7 +99,7 @@ export function AudienceAccordion() {
                       </div>
                       {relevant.length > 0 && (
                         <div>
-                          <p className="font-mono text-xs tracking-wider text-mint uppercase">
+                          <p className="text-sm font-medium text-mint">
                             Most relevant services
                           </p>
                           <ul className="mt-4 flex flex-wrap gap-2">
@@ -114,7 +107,7 @@ export function AudienceAccordion() {
                               <li key={service.slug}>
                                 <Link
                                   href={`/services/${service.slug}`}
-                                  className="block rounded-pill border border-white/20 px-3 py-2 text-sm text-white transition-colors duration-300 hover:border-mint hover:bg-mint hover:text-midnight"
+                                  className="block rounded-pill bg-white/10 px-3 py-2 text-sm text-white transition-colors duration-300 hover:border-mint hover:bg-mint hover:text-midnight"
                                 >
                                   {service.title}
                                 </Link>

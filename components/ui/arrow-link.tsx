@@ -19,9 +19,8 @@ const tones = {
   mint: "bg-mint text-midnight hover:bg-mint/90",
   // Electric pill: the fourth logo-palette colour for mixed button sets.
   electric: "bg-electric text-midnight hover:bg-electric/85",
-  // Outline pill on midnight.
-  outline:
-    "border border-white/25 bg-transparent text-white hover:border-white/50 hover:bg-white/5",
+  // Quiet pill on midnight.
+  outline: "bg-white/10 text-white hover:bg-white/20",
   // White pill: on midnight or photographic backgrounds.
   light: "bg-white text-midnight hover:bg-white/90",
   // Lime pill: secondary highlight on midnight.
@@ -51,7 +50,7 @@ export function ArrowLink({
       whileHover="hover"
       whileTap={{ scale: 0.98 }}
       className={cn(
-        "inline-flex h-10 items-center gap-2 rounded-pill px-6 font-mono text-xs font-semibold tracking-wider whitespace-nowrap uppercase outline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-electric",
+        "inline-flex h-10 items-center gap-2 rounded-pill px-6 text-sm font-semibold whitespace-nowrap outline-offset-4 transition-colors focus-visible:outline-2 focus-visible:outline-electric",
         tones[tone],
         className
       )}

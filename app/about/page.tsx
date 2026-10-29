@@ -20,9 +20,9 @@ export const metadata: Metadata = {
 }
 
 const valueTones = [
-  { card: "bg-mint text-midnight", body: "text-midnight/75" },
-  { card: "bg-electric text-midnight", body: "text-midnight/75" },
-  { card: "bg-brand text-white", body: "text-white/80" },
+  { card: "bg-mint text-midnight", body: "text-midnight/70" },
+  { card: "bg-electric text-midnight", body: "text-midnight/70" },
+  { card: "bg-brand text-white", body: "text-white/70" },
   { card: "bg-midnight text-white", body: "text-white/70" },
 ]
 
@@ -52,7 +52,7 @@ export default function AboutPage() {
           </div>
           <SplitReveal
             as="p"
-            className="text-sm leading-relaxed text-muted-foreground md:col-span-5 md:text-base"
+            className="text-sm leading-relaxed text-midnight/70 md:col-span-5 md:text-base"
           >
             The future of the sports industry is being defined by the
             performance of current stakeholders across market segments, public
@@ -71,7 +71,7 @@ export default function AboutPage() {
 
         {/* Mission and positioning as stacked rows: label left, statement
             right, a hairline between them. */}
-        <dl className="mt-10 border-b border-border md:mt-12">
+        <dl className="mt-10 md:mt-12">
           {[
             {
               label: "Mission",
@@ -84,15 +84,15 @@ export default function AboutPage() {
           ].map((item) => (
             <div
               key={item.label}
-              className="grid gap-4 border-t border-border py-8 md:grid-cols-12 md:gap-8 md:py-10"
+              className="grid gap-4 py-8 md:grid-cols-12 md:gap-8 md:py-10"
             >
-              <dt className="font-mono text-xs tracking-wider text-muted-foreground uppercase md:col-span-3 md:pt-2">
+              <dt className="text-sm font-medium text-midnight/70 md:col-span-3 md:pt-2">
                 {item.label}
               </dt>
               <dd className="md:col-span-9">
                 <SplitReveal
                   as="p"
-                  className="text-[clamp(1.375rem,2.4vw,2.25rem)] leading-[1.2] tracking-tight text-midnight"
+                  className="text-[clamp(1.375rem,2.4vw,2.25rem)] leading-[1.2] text-midnight"
                 >
                   {item.text}
                 </SplitReveal>
@@ -107,13 +107,10 @@ export default function AboutPage() {
             <div
               key={value.title}
               className={cn(
-                "flex min-h-56 flex-col justify-between gap-10 rounded-xl p-6 md:p-7",
+                "flex min-h-56 flex-col justify-end gap-10 rounded-xl p-6 md:p-7",
                 valueTones[index % valueTones.length].card
               )}
             >
-              <span className="font-mono text-sm font-semibold opacity-60">
-                {String(index + 1).padStart(2, "0")}
-              </span>
               <div className="flex flex-col gap-3">
                 <h3 className="text-3xl leading-none">{value.title}</h3>
                 <p
@@ -161,10 +158,10 @@ export default function AboutPage() {
           <Reveal y={16}>
             <Eyebrow className="text-mint">A message from the top</Eyebrow>
           </Reveal>
-          <div className="mt-6 flex max-w-4xl flex-col gap-6 text-lg leading-relaxed text-white/75 md:text-xl">
+          <div className="mt-6 flex max-w-4xl flex-col gap-6 text-lg leading-relaxed text-white/70 md:text-xl">
             <SplitReveal
               as="p"
-              className="text-[clamp(1.5rem,2.6vw,2.5rem)] leading-[1.2] tracking-tight text-white"
+              className="text-[clamp(1.5rem,2.6vw,2.5rem)] leading-[1.2] text-white"
             >
               We started DMPartners because we kept meeting people who could see
               what sports in Africa could become, and too few who could show it

@@ -40,21 +40,15 @@ export function ServiceCards({ className }: { className?: string }) {
             className="absolute inset-0 bg-linear-to-t from-midnight/90 via-midnight/20 to-transparent"
           />
 
-          <span className="relative flex items-start justify-between">
-            <span className="font-mono text-xs text-white/70">
-              {String(index + 1).padStart(2, "0")}
-            </span>
-          </span>
-
           <span aria-hidden className="h-16" />
 
           <span className="relative font-heading text-xl leading-tight">
             {service.title}
           </span>
-          <span className="relative text-sm leading-relaxed text-white/80">
+          <span className="relative text-sm leading-relaxed text-white/70">
             {service.summary}
           </span>
-          <span className="relative mt-1 flex items-center gap-2 font-mono text-xs tracking-wider uppercase">
+          <span className="relative mt-1 flex items-center gap-2 text-sm font-medium">
             Explore
             <Arrow
               size={14}

@@ -33,7 +33,7 @@ export function MarketsSection({
           </SplitReveal>
           <SplitReveal
             as="p"
-            className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground md:text-lg"
+            className="mt-6 max-w-md text-base leading-relaxed text-midnight/70 md:text-lg"
           >
             {intro}
           </SplitReveal>
@@ -77,7 +77,7 @@ export function MarketsSection({
                           "truncate text-xs",
                           active === index
                             ? "text-white/70"
-                            : "text-muted-foreground"
+                            : "text-midnight/70"
                         )}
                       >
                         {market.country}

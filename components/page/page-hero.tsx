@@ -78,7 +78,7 @@ export function PageHero({
               <SplitReveal
                 as="p"
                 className={cn(
-                  "max-w-5xl leading-relaxed text-white/80",
+                  "max-w-5xl leading-relaxed text-white/70",
                   large ? "text-lg md:text-2xl" : "text-base md:text-lg"
                 )}
               >
@@ -106,7 +106,7 @@ export function PageHero({
             {intro && (
               <SplitReveal
                 as="p"
-                className="text-base leading-relaxed text-muted-foreground md:text-lg"
+                className="text-base leading-relaxed text-midnight/70 md:text-lg"
               >
                 {intro}
               </SplitReveal>

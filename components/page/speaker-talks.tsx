@@ -34,11 +34,8 @@ export function SpeakerTalks({ className }: { className?: string }) {
                 tones[index % tones.length]
               )}
             >
-              <span className="font-mono text-sm opacity-60">
-                {String(index + 1).padStart(2, "0")}
-              </span>
               <span className="font-heading text-3xl leading-none">{talk}</span>
-              <span className="mt-auto flex items-center justify-between gap-4 font-mono text-xs tracking-wider uppercase">
+              <span className="mt-auto flex items-center justify-between gap-4 text-sm font-medium">
                 Book this talk
                 <Arrow className="transition-transform duration-500 group-hover:translate-x-1" />
               </span>
