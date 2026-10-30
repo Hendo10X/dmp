@@ -39,20 +39,18 @@ export default function AboutPage() {
 
       {/* Purpose: mission, positioning, values */}
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
-        {/* Heading left, paragraph right, bottom-aligned so the paragraph
-            ends level with the heading's last line (client). */}
-        <div className="grid gap-6 md:grid-cols-12 md:items-end md:gap-8">
-          <div className="md:col-span-7">
-            <Reveal y={12}>
-              <Eyebrow>Purpose</Eyebrow>
-            </Reveal>
-            <SplitReveal className="mt-3 text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08] text-midnight">
-              Defining the New Era of Sports, Culture and Business.
-            </SplitReveal>
-          </div>
+        {/* Label left on the heading's line, copy right: the same columns
+            as the Mission and Positioning rows below (client). */}
+        <div className="grid gap-4 md:grid-cols-12 md:items-baseline md:gap-8">
+          <Reveal y={12} className="md:col-span-3">
+            <Eyebrow className="text-midnight/70">Purpose</Eyebrow>
+          </Reveal>
+          <SplitReveal className="text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08] text-midnight md:col-span-9">
+            Defining the New Era of Sports, Culture and Business.
+          </SplitReveal>
           <SplitReveal
             as="p"
-            className="text-sm leading-relaxed text-midnight/70 md:col-span-5 md:text-base"
+            className="max-w-3xl text-sm leading-relaxed text-midnight/70 md:col-span-9 md:col-start-4 md:text-base"
           >
             The future of the sports industry is being defined by the
             performance of current stakeholders across market segments, public
@@ -62,12 +60,12 @@ export default function AboutPage() {
             development, growth strategies, professionalism and direct
             investment.
           </SplitReveal>
+          <Reveal y={12} className="md:col-span-9 md:col-start-4">
+            <p className="font-heading text-[clamp(1.25rem,2vw,1.75rem)] text-brand">
+              DMPartners exists to shape the future.
+            </p>
+          </Reveal>
         </div>
-        <Reveal y={12}>
-          <p className="mt-6 font-heading text-[clamp(1.25rem,2vw,1.75rem)] text-brand">
-            DMPartners exists to shape the future.
-          </p>
-        </Reveal>
 
         {/* Mission and positioning as stacked rows: label left, statement
             right, a hairline between them. */}
