@@ -6,6 +6,7 @@ import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { heroImages, images, openings } from "@/lib/content"
 import { Arrow } from "@/components/ui/arrow"
+import { ArrowLink } from "@/components/ui/arrow-link"
 import { Reveal } from "@/components/motion/reveal"
 import { PageHero } from "@/components/page/page-hero"
 import { SectionHeader } from "@/components/page/section-header"
@@ -54,7 +55,7 @@ const paths = [
   {
     title: "Early careers",
     body: "Graduates and early-career analysts who want real responsibility from the first week.",
-    image: images.research,
+    image: images.meeting,
     href: "/contact?topic=employment",
     cta: "Start here",
   },
@@ -79,7 +80,11 @@ export default function CareersPage() {
     <main>
       <PageHero
         eyebrow="Careers"
-        title="DMPCareers"
+        title={
+          <>
+            DMP<em className="text-mint">Careers</em>
+          </>
+        }
         large
         intro="People remain at the heart of who we are and why we do what we do."
         image={heroImages.careers}
@@ -158,9 +163,14 @@ export default function CareersPage() {
           eyebrow="Current openings"
           title="Open roles."
           intro="Nothing that fits? Register your interest and we will be in touch when the right role opens."
+          action={
+            <ArrowLink href="/contact?topic=employment" tone="brand">
+              Register interest
+            </ArrowLink>
+          }
         />
         <Reveal className="mt-12 md:mt-16">
-          <ul>
+          <ul className="flex flex-col gap-2">
             {openings.map((role) => (
               <li key={role.title}>
                 <Link
@@ -184,17 +194,6 @@ export default function CareersPage() {
                 </Link>
               </li>
             ))}
-            <li>
-              <Link
-                href="/contact?topic=employment"
-                className="group flex items-center justify-between gap-6 bg-secondary px-6 py-6 text-midnight transition-colors duration-500 hover:bg-midnight hover:text-white md:py-8"
-              >
-                <span className="font-heading text-[clamp(1.75rem,3vw,2.75rem)] leading-none">
-                  Register interest
-                </span>
-                <Arrow className="transition-transform duration-500 group-hover:translate-x-1" />
-              </Link>
-            </li>
           </ul>
         </Reveal>
       </section>

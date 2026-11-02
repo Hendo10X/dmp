@@ -156,8 +156,8 @@ function CaseColumn() {
       </div>
       <div className="relative aspect-[4/3] min-w-0 flex-1 overflow-hidden md:aspect-auto">
         <Image
-          src={images.research}
-          alt="An analyst presenting performance data to colleagues"
+          src={images.engineers}
+          alt="Engineers reviewing plans together"
           fill
           sizes="(min-width: 768px) 50vw, 100vw"
           className="object-cover object-top"

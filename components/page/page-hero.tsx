@@ -22,8 +22,9 @@ export function PageHero({
   large = false,
 }: {
   eyebrow?: string
-  title: string
-  intro?: string
+  // Nodes allowed so a word can carry the italic mint highlight (client).
+  title: React.ReactNode
+  intro?: React.ReactNode
   image?: string
   imageAlt?: string
   // Extra content under the intro (e.g. case-study facts). Styled for the
@@ -77,9 +78,14 @@ export function PageHero({
             {intro && (
               <SplitReveal
                 as="p"
+                // Intro kept near the heading's width so eyebrow, title and
+                // intro read as one aligned block (client). Careers keeps its
+                // single-line intro.
                 className={cn(
-                  "max-w-5xl leading-relaxed text-white/70",
-                  large ? "text-lg md:text-2xl" : "text-base md:text-lg"
+                  "leading-relaxed text-white/70",
+                  large
+                    ? "max-w-5xl text-lg md:text-2xl"
+                    : "max-w-3xl text-base md:text-lg"
                 )}
               >
                 {intro}

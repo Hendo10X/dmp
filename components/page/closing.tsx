@@ -18,7 +18,7 @@ export function Quote({
     <section className="relative z-10 bg-electric">
       <figure className="mx-auto max-w-4xl px-6 py-24 text-center md:py-28">
         <Reveal y={12} className="flex justify-center">
-          <Eyebrow className="text-midnight/70">{eyebrow}</Eyebrow>
+          <Eyebrow>{eyebrow}</Eyebrow>
         </Reveal>
         <SplitReveal
           as="blockquote"

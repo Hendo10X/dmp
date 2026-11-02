@@ -23,7 +23,7 @@ const intro: Record<
 > = {
   services: {
     title: "Six practices.",
-    body: "Advisory built for the business of sports and the markets around it.",
+    body: "Advisory built for the business of sports and the markets connected to it.",
     href: "/services",
     cta: "All Services",
     tone: "brand",
@@ -120,7 +120,7 @@ export function MegaMenu({
                     />
                   </span>
                   <span className="flex flex-1 flex-col gap-2 p-4">
-                    <span className="text-sm font-medium text-mint">
+                    <span className="text-sm font-semibold tracking-wider text-mint uppercase">
                       {solution.kicker}
                     </span>
                     <span className="flex items-end justify-between gap-4">

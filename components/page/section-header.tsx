@@ -3,7 +3,7 @@ import { Eyebrow } from "@/components/ui/eyebrow"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 
-// Section opener (Crowdline template): mono eyebrow, bold Cal Sans title,
+// Section opener: capitalised eyebrow, bold Cal Sans title,
 // optional intro underneath, optional action to the right.
 export function SectionHeader({
   eyebrow,
@@ -30,7 +30,7 @@ export function SectionHeader({
     >
       <div className="max-w-2xl">
         <Reveal y={12}>
-          <Eyebrow className={dark ? "text-electric" : undefined}>
+          <Eyebrow className={dark ? "text-mint" : undefined}>
             {eyebrow}
           </Eyebrow>
         </Reveal>

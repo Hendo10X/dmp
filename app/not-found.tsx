@@ -4,7 +4,7 @@ import { Eyebrow } from "@/components/ui/eyebrow"
 export default function NotFound() {
   return (
     <main className="relative z-10 mx-auto flex min-h-svh max-w-[120rem] flex-col justify-center gap-10 bg-background px-6 pt-32 pb-24 lg:px-10">
-      <Eyebrow className="text-midnight/70">Error 404</Eyebrow>
+      <Eyebrow>Error 404</Eyebrow>
       <div className="flex items-end gap-4 text-midnight">
         <h1 className="text-[clamp(5rem,18vw,18rem)] leading-[0.8]">
           Off side.

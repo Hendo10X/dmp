@@ -32,25 +32,32 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About DMPartners"
         title="Purpose. People. Performance."
-        intro="Guided by our tagline, Demonstrating Possibilities, we show what is achievable in Nigeria and across the African continent through sports and the markets around them."
+        intro={
+          <>
+            Guided by our tagline,{" "}
+            <em className="text-mint">Demonstrating Possibilities</em>, we show
+            what is achievable in Nigeria and across the African continent
+            through sports and the markets connected to it.
+          </>
+        }
         image={heroImages.about}
         imageAlt="High-rise office towers in Lagos"
       />
 
       {/* Purpose: mission, positioning, values */}
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
-        {/* Label left on the heading's line, copy right: the same columns
-            as the Mission and Positioning rows below (client). */}
-        <div className="grid gap-4 md:grid-cols-12 md:items-baseline md:gap-8">
-          <Reveal y={12} className="md:col-span-3">
-            <Eyebrow className="text-midnight/70">Purpose</Eyebrow>
+        {/* One column, every line starting on the same left edge
+            (client). */}
+        <div className="flex max-w-4xl flex-col gap-5">
+          <Reveal y={12}>
+            <Eyebrow>Purpose</Eyebrow>
           </Reveal>
-          <SplitReveal className="text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08] text-midnight md:col-span-9">
+          <SplitReveal className="text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08] text-midnight">
             Defining the New Era of Sports, Culture and Business.
           </SplitReveal>
           <SplitReveal
             as="p"
-            className="max-w-3xl text-sm leading-relaxed text-midnight/70 md:col-span-9 md:col-start-4 md:text-base"
+            className="text-sm leading-relaxed text-midnight/70 md:text-base"
           >
             The future of the sports industry is being defined by the
             performance of current stakeholders across market segments, public
@@ -60,7 +67,7 @@ export default function AboutPage() {
             development, growth strategies, professionalism and direct
             investment.
           </SplitReveal>
-          <Reveal y={12} className="md:col-span-9 md:col-start-4">
+          <Reveal y={12}>
             <p className="font-heading text-[clamp(1.25rem,2vw,1.75rem)] text-brand">
               DMPartners exists to shape the future.
             </p>
@@ -84,7 +91,7 @@ export default function AboutPage() {
               key={item.label}
               className="grid gap-4 py-8 md:grid-cols-12 md:gap-8 md:py-10"
             >
-              <dt className="text-sm font-medium text-midnight/70 md:col-span-3 md:pt-2">
+              <dt className="text-sm font-semibold tracking-wider text-brand uppercase md:col-span-3 md:pt-2">
                 {item.label}
               </dt>
               <dd className="md:col-span-9">
@@ -132,7 +139,9 @@ export default function AboutPage() {
           title="The team behind the work."
           intro="We function as a Tier-One team at every level of our operations."
         />
-        <Reveal className="mt-10 grid items-start gap-x-3 gap-y-10 sm:grid-cols-3 md:mt-12">
+        {/* Smaller cards (client): four-column track, so three founders
+            sit at a modest size from the left edge. */}
+        <Reveal className="mt-10 grid items-start gap-x-3 gap-y-10 sm:grid-cols-3 md:mt-12 lg:grid-cols-4">
           {team.map((person, index) => (
             <TeamCard key={`${person.name}-${person.role}`} person={person} />
           ))}

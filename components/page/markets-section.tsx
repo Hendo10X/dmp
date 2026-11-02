@@ -26,7 +26,7 @@ export function MarketsSection({
       <div className="grid items-center gap-10 md:grid-cols-12 md:gap-4">
         <div className="md:col-span-5">
           <Reveal y={16}>
-            <Eyebrow className="text-midnight/70">Across the continent</Eyebrow>
+            <Eyebrow>Across the continent</Eyebrow>
           </Reveal>
           <SplitReveal className="mt-6 text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08] text-midnight">
             {title}

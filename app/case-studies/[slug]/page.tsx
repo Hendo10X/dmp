@@ -100,7 +100,7 @@ export default async function CaseStudyPage({ params }: Props) {
           <dl className="mt-10 grid gap-6 sm:grid-cols-3">
             {facts.map((fact) => (
               <div key={fact.label} className="flex flex-col gap-1.5">
-                <dt className="text-sm font-medium text-midnight/70">
+                <dt className="text-sm font-semibold tracking-wider text-brand uppercase">
                   {fact.label}
                 </dt>
                 <dd className="text-sm text-midnight">
@@ -240,7 +240,7 @@ export default async function CaseStudyPage({ params }: Props) {
                 />
               </span>
               <div>
-                <Eyebrow className="text-midnight/70">Talk to the team</Eyebrow>
+                <Eyebrow>Talk to the team</Eyebrow>
                 <p className="mt-2 font-heading text-2xl leading-tight text-midnight">
                   {contact.name}
                 </p>

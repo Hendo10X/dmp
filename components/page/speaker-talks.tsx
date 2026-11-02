@@ -28,7 +28,7 @@ export function SpeakerTalks({ className }: { className?: string }) {
         {talks.map((talk, index) => (
           <li key={talk} className="flex">
             <Link
-              href={`/contact?topic=speakers&talk=${encodeURIComponent(talk)}#enquiry`}
+              href={`/contact?topic=speakers&talk=${encodeURIComponent(talk)}`}
               className={cn(
                 "group flex min-h-56 w-full flex-col gap-6 rounded-xl p-6 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] outline-none hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-electric md:p-7",
                 tones[index % tones.length]

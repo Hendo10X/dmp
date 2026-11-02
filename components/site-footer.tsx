@@ -84,7 +84,7 @@ export function SiteFooter() {
 
       <div className="mx-auto mt-12 flex max-w-[120rem] flex-wrap justify-between gap-x-4 gap-y-2 px-6 text-sm font-medium text-white/70 md:mt-14 lg:px-10">
         <span>&copy; {new Date().getFullYear()} DMPartners</span>
-        <span>Demonstrating Possibilities</span>
+        <em className="text-mint">Demonstrating Possibilities</em>
       </div>
 
       {/* Oversized, faded dmp mark bleeding off the bottom edge, like the

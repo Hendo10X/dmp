@@ -80,7 +80,7 @@ export function Report() {
       <div className="mx-auto grid max-w-[120rem] gap-10 px-6 py-16 md:grid-cols-12 md:items-center md:gap-6 md:py-20 lg:px-10">
         <div className="md:col-span-5">
           <Reveal y={12}>
-            <Eyebrow className="text-midnight/70">Free report</Eyebrow>
+            <Eyebrow>Free report</Eyebrow>
           </Reveal>
           <SplitReveal className="mt-3 text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08]">
             {REPORT.title}.

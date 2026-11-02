@@ -22,13 +22,18 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Services"
         title="What we do."
-        intro="Six practices, each built for the business of sports and the markets around it. Start with the one closest to your challenge, or explore our solutions."
+        intro="Six practices, each built for the business of sports and the markets connected to it. Start with the one closest to your challenge, or explore our solutions."
         image={heroImages.services}
         imageAlt="Construction workers in hard hats on a building site"
       />
 
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
-        <ServiceCards />
+        <SectionHeader
+          eyebrow="What we do"
+          title="Six practices. One ambition."
+          intro="From strategy and transformation to transactions, policy, research and sustainability: advisory built for the business of sports and the markets connected to it."
+        />
+        <ServiceCards className="mt-10 md:mt-12" />
       </section>
 
       <Process />

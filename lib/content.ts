@@ -6,17 +6,18 @@
 // (or move to a CMS) before launch. Figures and quotes are illustrative.
 
 // Photos: Pexels free licence (pexels.com/license). Sources by photo id:
-// stadium 29804436, meeting 30688593, research 9301257, celebrate 29804435,
+// stadium 29804436, meeting 30688593, insight 7876455, celebrate 29804435,
 // site 7937367, engineers 37198885, analysis 9301824, construction 10202865,
 // scaffolding 30661413, highRises 3855622, quarry 38643910,
 // classroom 28593055, boardroom 30688592, techTeam 30689114,
 // farmers 36846177, grassroots 19416414, streetFootball 5648177,
-// venue 20431293. A deliberately wide spread (construction, mining,
+// venue 20431293, aerial 15480801. A deliberately wide spread (construction, mining,
 // schools, government meetings, real estate, recreation) per the client.
 export const images = {
   stadium: "/Images/nigerian-fans-stadium.jpg",
   meeting: "/Images/lagos-office-meeting.jpg",
-  research: "/Images/research-presentation.jpg",
+  insight: "/Images/analyst-reviewing-charts.jpg",
+  aerial: "/Images/aerial-football-stadium.jpg",
   site: "/Images/architects-site-review.jpg",
   engineers: "/Images/engineers-plan-review.jpg",
   analysis: "/Images/market-data-analysis.jpg",
@@ -38,10 +39,10 @@ export const images = {
 export const heroImages = {
   about: images.highRises,
   services: images.construction,
-  solutions: images.venue,
+  solutions: images.aerial,
   whoWeServe: images.classroom,
   careers: images.techTeam,
-  reports: images.research,
+  reports: images.analysis,
   caseStudies: images.quarry,
   speakers: images.boardroom,
 }
@@ -90,7 +91,7 @@ export const services: Service[] = [
   },
   {
     slug: "business-transformation",
-    title: "Business Transformation & Performance",
+    title: "Business Transformation Framework",
     summary:
       "Operating models, governance and systems that make organisations perform, and keep performing.",
     image: images.techTeam,
@@ -177,7 +178,7 @@ export const services: Service[] = [
     title: "Research & Market Intelligence",
     summary:
       "Evidence, indices and market studies on the sports economy in Nigeria and across Africa.",
-    image: images.research,
+    image: images.insight,
     what: "Independent research on the size, growth and potential of the sports economy, designed to be used: market sizing, audience and fan research, sector studies and the proprietary indices behind our solutions.",
     forWhom: ["investors", "academia", "mdas"],
     approach: [
@@ -525,7 +526,7 @@ export const sectors: Sector[] = [
     slug: "health-wellness",
     title: "Health, Wellness & Science",
     body: "Sports medicine, wellness markets and applied research.",
-    image: images.research,
+    image: images.insight,
   },
 ]
 
@@ -667,13 +668,13 @@ export type TeamMember = {
 // portrait. The other two entries are still placeholders.
 export const team: TeamMember[] = [
   {
-    name: "Telema Harry Davies",
+    name: "Telema Davies",
     role: "Co-Founder & Managing Partner",
     initials: "TD",
     photo: "/Images/team/telema-davies.jpg",
     linkedin: "https://www.linkedin.com/in/telema-davies",
     bio: [
-      "Telema Harry Davies is a seasoned professional with over 15 years of experience across the creative and cultural industries, with demonstrable skills in the sports sector. He is Co-Founder and Managing Partner of DMPartners, a consulting practice focused on the intersection between the sports industry and adjacent markets, including extractives, manufacturing, trade and investment, construction and real estate, technology, media and entertainment, government, education, and events.",
+      "Telema Davies is a seasoned professional with over 15 years of experience across the creative and cultural industries, with demonstrable skills in the sports sector. He is Co-Founder and Managing Partner of DMPartners, a consulting practice focused on the intersection between the sports industry and adjacent markets, including extractives, manufacturing, trade and investment, construction and real estate, technology, media and entertainment, government, education, and events.",
       "Telema previously served as Coordinating Secretary at Sport Nigeria LTD/GTE, a private sector infrastructure intervention organisation established to chart a new course for Nigeria's sports market and industry value chain, leveraging opportunities under the 2022-2026 National Sports Industry Policy. In this role, and throughout his career, he has driven initiatives spanning operations, project management, business intelligence, and market analysis, consistently shaping policy and fostering industry growth.",
       "A graduate of Sociology and Anthropology from the University of Ilorin, Telema has deep experience in market research, data collection, and analysis. He co-founded TWOREPORT LIMITED, a market research and data advisory company, where he served as Head of Product Innovation, delivering products that influenced market-specific solutions for commercial growth. His research and consulting work spans landmark reports including Women and Sports in Nigeria (2016), How Nigerians Will Consume the World Cup (2018), the CampsBay Media Sports Business Series, Esports in Nigeria: The Fans, and a Temple Management Company masterclass on the role of data in sports.",
       "As a longstanding member of the Sports Industry Thematic Group (SITG) at the Nigerian Economic Summit Group (NESG) since 2017, Telema has contributed to stakeholder engagements and research underpinning the 2022-2026 National Sports Industry Policy, the Technical Working Group on Creative, Culture, Hospitality and Tourism Industry, and the Nigeria 2050 Agenda. He served as Event Coordinator for the Kaduna State Sports Industry Policy Dialogue Summit (2023) and, until recently, as Summit Director of the Sports Africa Investment Summit, Sport Nigeria's flagship event. He has also facilitated at national and international events including the National Youth Conference and the Road to GamrX Esports Business Summit.",
