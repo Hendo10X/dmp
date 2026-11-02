@@ -88,7 +88,7 @@ export function About() {
 
         <div className="flex min-w-0 flex-col md:col-span-6 md:pl-6 lg:pl-10">
           <Reveal y={16}>
-            <Eyebrow className="text-midnight/70">About DMPartners</Eyebrow>
+            <Eyebrow>About DMPartners</Eyebrow>
           </Reveal>
           <SplitReveal className="mt-4 text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08] text-midnight">
             Not aspiration.{" "}
@@ -108,7 +108,7 @@ export function About() {
           </SplitReveal>
 
           <Reveal y={16} className="mt-8">
-            <Eyebrow className="text-midnight/70">Industries we serve</Eyebrow>
+            <Eyebrow>Industries we serve</Eyebrow>
             <IndustryMarquee className="mt-4" />
           </Reveal>
 

@@ -3,6 +3,7 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Arrow } from "@/components/ui/arrow"
 import { Reveal } from "@/components/motion/reveal"
+import { SectionHeader } from "@/components/page/section-header"
 
 // Each tile owns a logo colour, always on (client: plain white felt dull).
 // Hover lifts the tile slightly and nudges the arrow.
@@ -31,7 +32,12 @@ const tiles: { title: string; body: string; href: string; tone: string }[] = [
 export function Explore() {
   return (
     <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
-      <Reveal className="grid gap-3 md:grid-cols-3">
+      <SectionHeader
+        eyebrow="Explore"
+        title="Where to next."
+        intro="Join the team, see what our solutions can do, or start a conversation with DMPartners."
+      />
+      <Reveal className="mt-10 grid gap-3 md:mt-12 md:grid-cols-3">
         {tiles.map((tile) => (
           <Link
             key={tile.href}

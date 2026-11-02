@@ -58,7 +58,7 @@ export default function SpeakersPage() {
       <Cta
         title="Have an event in mind?"
         body="Tell us the date and the audience. We will come back with the right speaker and talk."
-        href="/contact?topic=speakers#enquiry"
+        href="/contact?topic=speakers"
         label="Enquire now"
       />
     </main>

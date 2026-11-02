@@ -18,7 +18,7 @@ export function Quote({
     <section className="relative z-10 bg-electric">
       <figure className="mx-auto max-w-4xl px-6 py-24 text-center md:py-28">
         <Reveal y={12} className="flex justify-center">
-          <Eyebrow className="text-midnight/70">{eyebrow}</Eyebrow>
+          <Eyebrow>{eyebrow}</Eyebrow>
         </Reveal>
         <SplitReveal
           as="blockquote"
@@ -52,7 +52,8 @@ export function Cta({
   label?: string
 }) {
   return (
-    <section className="relative z-10 bg-midnight text-white">
+    // Logo blue, so the band reads apart from the midnight footer below it.
+    <section className="relative z-10 bg-brand text-white">
       <div className="mx-auto max-w-[120rem] px-6 py-24 text-center md:py-28 lg:px-10">
         <Reveal y={12} className="flex justify-center">
           <Eyebrow className="text-mint">Get started</Eyebrow>

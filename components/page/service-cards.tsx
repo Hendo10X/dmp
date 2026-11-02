@@ -15,11 +15,11 @@ export function ServiceCards({ className }: { className?: string }) {
     <Reveal
       className={cn("grid gap-3 sm:grid-cols-2 lg:grid-cols-3", className)}
     >
-      {services.map((service, index) => (
+      {services.map((service) => (
         <Link
           key={service.slug}
           href={`/services/${service.slug}`}
-          className="group relative row-span-5 grid grid-rows-subgrid gap-y-3 overflow-hidden rounded-xl bg-midnight p-7 text-white outline-none focus-visible:ring-2 focus-visible:ring-electric"
+          className="group relative row-span-4 grid grid-rows-subgrid gap-y-3 overflow-hidden rounded-xl bg-midnight p-7 text-white outline-none focus-visible:ring-2 focus-visible:ring-electric"
         >
           <Image
             src={service.image}
@@ -40,7 +40,7 @@ export function ServiceCards({ className }: { className?: string }) {
             className="absolute inset-0 bg-linear-to-t from-midnight/90 via-midnight/20 to-transparent"
           />
 
-          <span aria-hidden className="h-16" />
+          <span aria-hidden className="h-20" />
 
           <span className="relative font-heading text-xl leading-tight">
             {service.title}

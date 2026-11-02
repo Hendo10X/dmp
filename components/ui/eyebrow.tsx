@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils"
 
-// Section label: short sentence-case text above a heading. `dot` adds a small leading marker.
+// Section label: short capitalised text above a heading. Logo blue on
+// white by default; pass text-mint on dark backgrounds (client). `dot` adds a small leading marker.
 export function Eyebrow({
   children,
   className,
@@ -13,7 +14,7 @@ export function Eyebrow({
   return (
     <p
       className={cn(
-        "flex items-center gap-2 text-sm font-medium text-midnight",
+        "flex items-center gap-2 text-sm font-semibold tracking-wider text-brand uppercase",
         className
       )}
     >

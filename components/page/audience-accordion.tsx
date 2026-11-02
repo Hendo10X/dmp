@@ -79,7 +79,7 @@ export function AudienceAccordion() {
 
                     <div className="flex flex-col gap-8 md:col-span-5 md:col-start-8">
                       <div>
-                        <p className="text-sm font-medium text-mint">
+                        <p className="text-sm font-semibold tracking-wider text-mint uppercase">
                           Typical work
                         </p>
                         <ul className="mt-4 flex flex-col gap-2">
@@ -99,7 +99,7 @@ export function AudienceAccordion() {
                       </div>
                       {relevant.length > 0 && (
                         <div>
-                          <p className="text-sm font-medium text-mint">
+                          <p className="text-sm font-semibold tracking-wider text-mint uppercase">
                             Most relevant services
                           </p>
                           <ul className="mt-4 flex flex-wrap gap-2">

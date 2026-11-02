@@ -49,7 +49,7 @@ export default async function ServicePage({ params }: Props) {
         {/* Stacked so the copy starts on the same left edge as the hero
             title (client: the old side column pushed it out of line). */}
         <Reveal y={16}>
-          <span className="text-sm font-medium text-midnight/70">
+          <span className="text-sm font-semibold tracking-wider text-brand uppercase">
             What it is
           </span>
         </Reveal>

@@ -45,11 +45,11 @@ export default function ContactPage() {
 
           <Reveal className="flex flex-col gap-10 lg:col-span-4 lg:col-start-9">
             <div>
-              <Eyebrow className="text-midnight/70">Direct</Eyebrow>
+              <Eyebrow>Direct</Eyebrow>
               <ul className="mt-6 flex flex-col gap-5">
                 {direct.map((item) => (
                   <li key={item.label} className="flex flex-col gap-1">
-                    <span className="text-sm font-medium text-midnight/70">
+                    <span className="text-sm font-semibold tracking-wider text-brand uppercase">
                       {item.label}
                     </span>
                     <a
@@ -63,7 +63,7 @@ export default function ContactPage() {
               </ul>
             </div>
             <div className="rounded-xl bg-midnight p-6 text-white">
-              <p className="text-sm font-medium text-mint">
+              <p className="text-sm font-semibold tracking-wider text-mint uppercase">
                 Prefer to talk first?
               </p>
               <p className="mt-3 leading-relaxed">
@@ -72,9 +72,7 @@ export default function ContactPage() {
               </p>
             </div>
             <div>
-              <Eyebrow className="text-midnight/70">
-                Follow us on social media
-              </Eyebrow>
+              <Eyebrow>Follow us on social media</Eyebrow>
               <p className="mt-4 text-midnight">
                 Join the conversation on LinkedIn, Facebook and X.
               </p>
@@ -87,7 +85,7 @@ export default function ContactPage() {
       <Quote
         eyebrow="Why talk to us"
         text="The first conversation is free, and it is always useful. If we are not the right fit, we will say so and point you to someone who is."
-        by="The DMP Partners"
+        by="DMPartners"
       />
     </main>
   )

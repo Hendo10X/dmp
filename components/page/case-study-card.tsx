@@ -63,7 +63,7 @@ export function CaseStudyCard({
         {study.title}
       </span>
       {lead && (
-        <span className="flex items-baseline gap-3 pt-2">
+        <span className="flex items-baseline gap-3 border-t border-border pt-4">
           <span
             className={cn(
               "font-heading leading-none text-midnight",
