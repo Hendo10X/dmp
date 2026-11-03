@@ -4,6 +4,7 @@ import { heroImages } from "@/lib/content"
 import { PageHero } from "@/components/page/page-hero"
 import { SectionHeader } from "@/components/page/section-header"
 import { SpeakerTalks } from "@/components/page/speaker-talks"
+import { getTalks } from "@/lib/cms"
 import { Steps } from "@/components/page/steps"
 import { Cta } from "@/components/page/closing"
 
@@ -30,7 +31,8 @@ const booking = [
 ]
 
 // DMP Speakers on its own page (client), moved off Contact.
-export default function SpeakersPage() {
+export default async function SpeakersPage() {
+  const talks = await getTalks()
   return (
     <main>
       <PageHero
@@ -47,7 +49,7 @@ export default function SpeakersPage() {
           title="Choose a talk."
           intro="Each talk is tailored to the room. Pick one to start a booking."
         />
-        <SpeakerTalks className="mt-10 md:mt-12" />
+        <SpeakerTalks talks={talks} className="mt-10 md:mt-12" />
       </section>
 
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">

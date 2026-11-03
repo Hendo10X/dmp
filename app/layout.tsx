@@ -4,9 +4,6 @@ import localFont from "next/font/local"
 
 import "lenis/dist/lenis.css"
 import "./globals.css"
-import { Providers } from "@/components/providers"
-import { Header } from "@/components/nav/header"
-import { SiteFooter } from "@/components/site-footer"
 import { cn } from "@/lib/utils"
 
 // Type system from the Crowdline template: Cal Sans headings, Inter body,
@@ -60,13 +57,9 @@ export default function RootLayout({
         fontMono.variable
       )}
     >
-      <body>
-        <Providers>
-          <Header />
-          {children}
-          <SiteFooter />
-        </Providers>
-      </body>
+      {/* Site chrome lives in app/(site)/layout.tsx so the Studio at
+          /studio gets a bare page. */}
+      <body>{children}</body>
     </html>
   )
 }

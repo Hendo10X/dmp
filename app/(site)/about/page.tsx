@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
-import { heroImages, team, values } from "@/lib/content"
+import { heroImages, values } from "@/lib/content"
+import { getTeam } from "@/lib/cms"
 import { cn } from "@/lib/utils"
 import { Eyebrow } from "@/components/ui/eyebrow"
 import { ArrowLink } from "@/components/ui/arrow-link"
@@ -26,7 +27,8 @@ const valueTones = [
   { card: "bg-midnight text-white", body: "text-white/70" },
 ]
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const team = await getTeam()
   return (
     <main>
       <PageHero

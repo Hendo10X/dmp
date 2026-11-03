@@ -7,23 +7,29 @@ import { PageHero } from "@/components/page/page-hero"
 import { ContactForm } from "@/components/page/contact-form"
 import { Quote } from "@/components/page/closing"
 import { SocialLinks } from "@/components/ui/social-links"
+import { getSettings } from "@/lib/cms"
 
 export const metadata: Metadata = {
   title: "Contact",
   description: "Start a conversation with DMP.",
 }
 
-// PLACEHOLDER contact details: replace with the client's real ones.
-const direct = [
-  {
-    label: "Email",
-    value: "hello@dmpartners.com",
-    href: "mailto:hello@dmpartners.com",
-  },
-  { label: "Phone", value: "+234 800 000 0000", href: "tel:+2348000000000" },
-]
+export default async function ContactPage() {
+  // Email, phone and socials come from Sanity's "Contact & social".
+  const settings = await getSettings()
+  const direct = [
+    {
+      label: "Email",
+      value: settings.email,
+      href: `mailto:${settings.email}`,
+    },
+    {
+      label: "Phone",
+      value: settings.phone,
+      href: `tel:${settings.phone.replace(/[^+\d]/g, "")}`,
+    },
+  ]
 
-export default function ContactPage() {
   return (
     <main>
       <PageHero
@@ -76,7 +82,7 @@ export default function ContactPage() {
               <p className="mt-4 text-midnight">
                 Join the conversation on LinkedIn, Facebook and X.
               </p>
-              <SocialLinks className="mt-4" />
+              <SocialLinks profiles={settings.social} className="mt-4" />
             </div>
           </Reveal>
         </div>

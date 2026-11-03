@@ -2,12 +2,8 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
-import {
-  findAudience,
-  findCaseStudy,
-  findService,
-  services,
-} from "@/lib/content"
+import { findAudience, findService, services } from "@/lib/content"
+import { getCaseStudies } from "@/lib/cms"
 import { Arrow } from "@/components/ui/arrow"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
@@ -32,7 +28,12 @@ export default async function ServicePage({ params }: Props) {
   const service = findService((await params).slug)
   if (!service) notFound()
 
-  const study = findCaseStudy(service.caseStudy)
+  // The practice's featured study, or any study tagged with the practice if
+  // that one has been removed in Sanity.
+  const studies = await getCaseStudies()
+  const study =
+    studies.find((c) => c.slug === service.caseStudy) ??
+    studies.find((c) => c.service === service.slug)
   const others = services.filter((s) => s.slug !== service.slug)
 
   return (

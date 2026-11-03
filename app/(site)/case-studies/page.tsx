@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
 
-import { caseStudies, heroImages } from "@/lib/content"
+import { heroImages } from "@/lib/content"
+import { getCaseStudies } from "@/lib/cms"
 import { PageHero } from "@/components/page/page-hero"
 import { CaseStudyFeatured } from "@/components/page/case-study-featured"
 import { CaseStudyBrowser } from "@/components/page/case-study-browser"
@@ -16,7 +17,8 @@ export const metadata: Metadata = {
 // After PwC's global case studies page: hero, a featured strip of tiles,
 // then "All success stories" with a filter bar, a four-across grid and
 // "Load more".
-export default function CaseStudiesPage() {
+export default async function CaseStudiesPage() {
+  const caseStudies = await getCaseStudies()
   return (
     <main>
       <PageHero
@@ -37,7 +39,7 @@ export default function CaseStudiesPage() {
         </h2>
         <div className="mt-8">
           <Suspense>
-            <CaseStudyBrowser />
+            <CaseStudyBrowser studies={caseStudies} />
           </Suspense>
         </div>
       </section>

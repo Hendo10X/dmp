@@ -710,7 +710,9 @@ export const industries = [
 // ------------------------------------------------------------------ Social
 
 // Official profiles (client-supplied). Shown on Contact and in the footer.
-export const social = [
+export type SocialProfile = { name: string; url: string }
+
+export const social: SocialProfile[] = [
   {
     name: "LinkedIn",
     url: "https://www.linkedin.com/company/dmpartners-limited/",
@@ -719,9 +721,61 @@ export const social = [
   { name: "X", url: "https://x.com/DMPartnersBA" },
 ]
 
+// PLACEHOLDER contact details: replace with the client's real ones.
+export const contactDetails = {
+  email: "hello@dmpartners.com",
+  phone: "+234 800 000 0000",
+}
+
+// --------------------------------------------------------------- Speakers
+
+// DMP Speakers talk topics. PLACEHOLDER titles until the client confirms
+// the list.
+export const talks = [
+  "The business of sports",
+  "Data and the modern federation",
+  "Investing in African sports",
+  "Governance that lasts",
+]
+
+// ------------------------------------------------------------------ Reports
+
+export type ReportDoc = {
+  title: string
+  // PDF link, and the file name it downloads as.
+  href: string
+  file: string
+  pages?: number
+  // e.g. "7.1 MB"
+  size?: string
+  summary: string[]
+}
+
+// The Nigeria Sports Industry Outlook 2026 (public/reports). Summary drawn
+// from the report's introduction, executive summary and outlook for 2026.
+export const featuredReport: ReportDoc = {
+  title: "Nigeria Sports Industry Outlook 2026",
+  href: "/reports/nigeria-sports-industry-outlook-2026.pdf",
+  file: "DMPartners - Nigeria Sports Industry Outlook 2026.pdf",
+  pages: 67,
+  size: "7.1 MB",
+  summary: [
+    "With over 70% of Nigeria’s population under the age of 35, sports is one of the country’s most powerful and underleveraged economic opportunities, even after its recognition as a business sector of the Nigerian economy in 2020. The Nigeria Sports Industry Outlook 2026, the first report of its kind, is a strategic intelligence report and reference for investors, policymakers, business leaders and practitioners looking for where capital, partnerships and innovation can unlock sustainable returns across the sports value chain.",
+    "The Outlook examines five pillars that shape how sports is organised, funded, commercialised, regulated and consumed: governance, policy and regulations; sporting events; partnerships and investments; licensing, IP and merchandising; and sports infrastructure. Stakeholders across these sectors review the moments that defined 2025, from the signing of the anti-doping bill to the Sports Africa Investment Summit and the Super Falcons’ WAFCON campaign, and set out the shifts they expect in 2026.",
+    "Their consensus is that success will be measured beyond medals: in stronger systems, credible administration, private-sector confidence and how well the industry converts ambition into structure, and structure into long-term value.",
+  ],
+}
+
 // ------------------------------------------------------------------ Careers
 
-export const openings = [
+export type Opening = {
+  title: string
+  team: string
+  type: string
+  location: string
+}
+
+export const openings: Opening[] = [
   {
     title: "Senior Consultant, Strategy",
     team: "Strategy & Growth Advisory",

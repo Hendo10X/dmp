@@ -7,11 +7,11 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { AnimatePresence, motion } from "motion/react"
 
 import {
-  caseStudies,
   findSector,
   findService,
   sectors,
   services,
+  type CaseStudy,
 } from "@/lib/content"
 import { Arrow } from "@/components/ui/arrow"
 
@@ -22,7 +22,7 @@ const PAGE = 8
 // with dropdowns, a results count, a four-across grid of photo cards and
 // "Load more". Filters live in the URL (?service=, ?sector= shown as
 // Industry) so other pages can link straight to a filtered view.
-export function CaseStudyBrowser() {
+export function CaseStudyBrowser({ studies }: { studies: CaseStudy[] }) {
   const router = useRouter()
   const params = useSearchParams()
   const service = params.get("service") ?? ALL
@@ -38,7 +38,7 @@ export function CaseStudyBrowser() {
     router.replace(query ? `?${query}` : "?", { scroll: false })
   }
 
-  const results = caseStudies.filter(
+  const results = studies.filter(
     (study) =>
       (service === ALL || study.service === service) &&
       (sector === ALL || study.sector === sector)

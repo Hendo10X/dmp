@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
-import { caseStudies, heroImages } from "@/lib/content"
+import { heroImages } from "@/lib/content"
+import { getCaseStudies } from "@/lib/cms"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { Reveal } from "@/components/motion/reveal"
 import { PageHero } from "@/components/page/page-hero"
@@ -16,7 +17,8 @@ export const metadata: Metadata = {
     "Strategy and growth, transformation, transactions and investment, policy, research and sustainability advisory for sports and adjacent markets across Africa.",
 }
 
-export default function ServicesPage() {
+export default async function ServicesPage() {
+  const caseStudies = await getCaseStudies()
   return (
     <main>
       <PageHero

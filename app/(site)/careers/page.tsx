@@ -4,7 +4,8 @@ import Link from "next/link"
 import Image from "next/image"
 
 import { cn } from "@/lib/utils"
-import { heroImages, images, openings } from "@/lib/content"
+import { heroImages, images } from "@/lib/content"
+import { getOpenings } from "@/lib/cms"
 import { Arrow } from "@/components/ui/arrow"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { Reveal } from "@/components/motion/reveal"
@@ -75,7 +76,8 @@ const paths = [
   },
 ]
 
-export default function CareersPage() {
+export default async function CareersPage() {
+  const openings = await getOpenings()
   return (
     <main>
       <PageHero
@@ -170,31 +172,38 @@ export default function CareersPage() {
           }
         />
         <Reveal className="mt-12 md:mt-16">
-          <ul className="flex flex-col gap-2">
-            {openings.map((role) => (
-              <li key={role.title}>
-                <Link
-                  href={`/contact?topic=employment&role=${encodeURIComponent(role.title)}`}
-                  className="group grid gap-3 bg-surface px-6 py-6 text-midnight transition-colors hover:bg-surface-2 md:grid-cols-12 md:items-center md:gap-6 md:py-8"
-                >
-                  <span className="font-heading text-[clamp(1.75rem,3vw,2.75rem)] leading-none md:col-span-5">
-                    {role.title}
-                  </span>
-                  <span className="text-midnight/70 md:col-span-3">
-                    {role.team}
-                  </span>
-                  <span className="flex gap-4 text-sm text-midnight/70 md:col-span-3">
-                    <span>{role.type}</span>
-                    <span>{role.location}</span>
-                  </span>
-                  <span className="flex items-center gap-2 text-sm font-medium md:col-span-1 md:justify-end">
-                    <span className="md:sr-only">Apply</span>
-                    <Arrow className="transition-transform duration-500 group-hover:translate-x-1" />
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          {openings.length === 0 ? (
+            <p className="text-lg text-midnight/70">
+              No open roles right now. Register your interest and we will be in
+              touch.
+            </p>
+          ) : (
+            <ul className="flex flex-col gap-2">
+              {openings.map((role) => (
+                <li key={role.title}>
+                  <Link
+                    href={`/contact?topic=employment&role=${encodeURIComponent(role.title)}`}
+                    className="group grid gap-3 bg-surface px-6 py-6 text-midnight transition-colors hover:bg-surface-2 md:grid-cols-12 md:items-center md:gap-6 md:py-8"
+                  >
+                    <span className="font-heading text-[clamp(1.75rem,3vw,2.75rem)] leading-none md:col-span-5">
+                      {role.title}
+                    </span>
+                    <span className="text-midnight/70 md:col-span-3">
+                      {role.team}
+                    </span>
+                    <span className="flex gap-4 text-sm text-midnight/70 md:col-span-3">
+                      <span>{role.type}</span>
+                      <span>{role.location}</span>
+                    </span>
+                    <span className="flex items-center gap-2 text-sm font-medium md:col-span-1 md:justify-end">
+                      <span className="md:sr-only">Apply</span>
+                      <Arrow className="transition-transform duration-500 group-hover:translate-x-1" />
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
         </Reveal>
       </section>
 

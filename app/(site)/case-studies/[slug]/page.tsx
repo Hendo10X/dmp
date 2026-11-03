@@ -3,13 +3,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
-import {
-  caseStudies,
-  findCaseStudy,
-  findSector,
-  findService,
-  team,
-} from "@/lib/content"
+import { findSector, findService } from "@/lib/content"
+import { getCaseStudies, getTeam } from "@/lib/cms"
 import { Arrow } from "@/components/ui/arrow"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { Eyebrow } from "@/components/ui/eyebrow"
@@ -22,12 +17,16 @@ import { CaseStudyCard } from "@/components/page/case-study-card"
 
 type Props = { params: Promise<{ slug: string }> }
 
-export function generateStaticParams() {
-  return caseStudies.map((study) => ({ slug: study.slug }))
+// Known case studies are built ahead; ones added in Sanity later render on
+// first visit.
+export async function generateStaticParams() {
+  const studies = await getCaseStudies()
+  return studies.map((study) => ({ slug: study.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const study = findCaseStudy((await params).slug)
+  const { slug } = await params
+  const study = (await getCaseStudies()).find((c) => c.slug === slug)
   return study ? { title: study.title, description: study.summary } : {}
 }
 
@@ -43,7 +42,9 @@ function splitTitle(title: string) {
 // row, the story in one centred reading column with a pull quote, explore
 // cards, a named contact, and a slider of more work.
 export default async function CaseStudyPage({ params }: Props) {
-  const study = findCaseStudy((await params).slug)
+  const { slug } = await params
+  const [caseStudies, team] = await Promise.all([getCaseStudies(), getTeam()])
+  const study = caseStudies.find((c) => c.slug === slug)
   if (!study) notFound()
 
   const service = findService(study.service)

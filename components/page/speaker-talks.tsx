@@ -4,15 +4,6 @@ import { cn } from "@/lib/utils"
 import { Arrow } from "@/components/ui/arrow"
 import { Reveal } from "@/components/motion/reveal"
 
-// DMP Speakers talk topics. PLACEHOLDER titles until the client confirms
-// the list.
-export const talks = [
-  "The business of sports",
-  "Data and the modern federation",
-  "Investing in African sports",
-  "Governance that lasts",
-]
-
 const tones = [
   "bg-midnight text-white",
   "bg-brand text-white",
@@ -21,7 +12,13 @@ const tones = [
 
 // Talk cards in three rotating colours. Each opens the enquiry form on
 // Contact with the topic set and the talk named in the message.
-export function SpeakerTalks({ className }: { className?: string }) {
+export function SpeakerTalks({
+  talks,
+  className,
+}: {
+  talks: string[]
+  className?: string
+}) {
   return (
     <Reveal className={className}>
       <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">

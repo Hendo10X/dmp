@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
     // One high quality level for every photo: full-bleed and scaled-up
     // (parallax/zoom) images look soft at the default 75.
     qualities: [90],
+    // Photos uploaded in Sanity.
+    remotePatterns: [{ protocol: "https", hostname: "cdn.sanity.io" }],
   },
   // Pin the project root: a stray package-lock.json in the user's home folder
   // otherwise makes Turbopack guess the wrong workspace root.
