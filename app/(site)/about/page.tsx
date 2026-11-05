@@ -116,11 +116,17 @@ export default async function AboutPage() {
           title={about.team.title}
           intro={about.team.intro}
         />
-        {/* Smaller cards (client): four-column track, so three founders
-            sit at a modest size from the left edge. */}
-        <Reveal className="mt-10 grid items-start gap-x-3 gap-y-10 sm:grid-cols-3 md:mt-12 lg:grid-cols-4">
-          {team.map((person, index) => (
-            <TeamCard key={`${person.name}-${person.role}`} person={person} />
+        {/* Smaller cards (client), centred (client): each card keeps the
+            width of a three-column track (four on large screens), and rows
+            centre, so any number of people sits in the middle. */}
+        <Reveal className="mt-10 flex flex-wrap items-start justify-center gap-x-3 gap-y-10 md:mt-12">
+          {team.map((person) => (
+            <div
+              key={`${person.name}-${person.role}`}
+              className="w-full sm:w-[calc((100%-1.5rem)/3)] lg:w-[calc((100%-2.25rem)/4)]"
+            >
+              <TeamCard person={person} />
+            </div>
           ))}
         </Reveal>
       </section>
