@@ -25,7 +25,7 @@ export default function Page() {
         <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
           <SectionHeader
             eyebrow="Our solutions"
-            title="Four ways we demonstrate possibility."
+            title="Four ways we demonstrate possibilities."
             intro="Proprietary programmes and indices that turn what we know about African sports into decisions."
             action={
               <ArrowLink href="/solutions" tone="brand">

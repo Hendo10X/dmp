@@ -16,7 +16,7 @@ const tiles: { title: string; body: string; href: string; tone: string }[] = [
   },
   {
     title: "Solutions",
-    body: "Our programmes and indices, built to demonstrate possibility.",
+    body: "Our programmes and indices, built to demonstrate possibilities.",
     href: "/solutions",
     tone: "bg-brand text-white",
   },
@@ -35,7 +35,7 @@ export function Explore() {
       <SectionHeader
         eyebrow="Explore"
         title="Where to next."
-        intro="Join the team, see what our solutions can do, or start a conversation."
+        intro="Join the team, see what our solutions can do, or start a conversation with DMPartners."
       />
       <Reveal className="mt-10 grid gap-3 md:mt-12 md:grid-cols-3">
         {tiles.map((tile) => (

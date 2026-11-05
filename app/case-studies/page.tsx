@@ -22,7 +22,7 @@ export default function CaseStudiesPage() {
       <PageHero
         eyebrow="Case studies"
         title="Impact, with evidence."
-        intro="How federations, investors, governments and brands turn possibility into performance."
+        intro="How federations, investors, governments and brands turn possibilities into performance."
         image={heroImages.caseStudies}
         imageAlt="Trucks working an open-pit quarry"
       />
