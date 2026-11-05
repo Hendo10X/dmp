@@ -194,7 +194,7 @@ export default async function CaseStudyPage({ params }: Props) {
             },
             {
               title: "More case studies",
-              body: "Federations, investors, governments and brands: see how others turned possibility into performance.",
+              body: "Federations, investors, governments and brands: see how others turned possibilities into performance.",
               href: "/case-studies",
               cta: "All case studies",
             },

@@ -333,7 +333,7 @@ export const solutions: Solution[] = [
     summary:
       "A ranking of the commercial and institutional strength of sports, properties and markets across Africa.",
     image: images.venue,
-    what: "Where should capital, sponsorship and policy attention go? The Sports Power Index ranks sports, properties and markets on the factors that create value: audience, commercial maturity, governance, infrastructure and investment readiness. It turns a crowded field into a clear map of possibility.",
+    what: "Where should capital, sponsorship and policy attention go? The Sports Power Index ranks sports, properties and markets on the factors that create value: audience, commercial maturity, governance, infrastructure and investment readiness. It turns a crowded field into a clear map of possibilities.",
     outcomes: [
       "A transparent ranking of sports, properties and markets",
       "Scores across five pillars of sporting power",
