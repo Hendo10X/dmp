@@ -24,7 +24,7 @@ export default async function CaseStudiesPage() {
       <PageHero
         eyebrow="Case studies"
         title="Impact, with evidence."
-        intro="How federations, investors, governments and brands turn possibility into performance with DMPartners."
+        intro="How federations, investors, governments and brands turn possibility into performance."
         image={heroImages.caseStudies}
         imageAlt="Trucks working an open-pit quarry"
       />

@@ -615,7 +615,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "club-governance-review",
     title: "Modernising governance at a heritage club",
-    client: "Multi-sport club",
+    client: "Business Transformation Framework",
     service: "business-transformation",
     sector: "football",
     image: images.boardroom,
