@@ -35,7 +35,7 @@ export function Explore() {
       <SectionHeader
         eyebrow="Explore"
         title="Where to next."
-        intro="Join the team, see what our solutions can do, or start a conversation with DMPartners."
+        intro="Join the team, see what our solutions can do, or start a conversation."
       />
       <Reveal className="mt-10 grid gap-3 md:mt-12 md:grid-cols-3">
         {tiles.map((tile) => (
