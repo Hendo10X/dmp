@@ -1,8 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { usePathname } from "next/navigation"
+import { usePathname, useSearchParams } from "next/navigation"
 import { ReactLenis, useLenis, type LenisRef } from "lenis/react"
+import type Lenis from "lenis"
 
 import { gsap, ScrollTrigger } from "@/lib/gsap"
 
@@ -28,7 +29,16 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     return () => gsap.ticker.remove(update)
   }, [enabled])
 
-  if (!enabled) return children
+  if (!enabled) {
+    return (
+      <>
+        <React.Suspense fallback={null}>
+          <ScrollToTop />
+        </React.Suspense>
+        {children}
+      </>
+    )
+  }
 
   return (
     <ReactLenis
@@ -36,31 +46,107 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
       ref={lenisRef}
       options={{ autoRaf: false, lerp: 0.1, anchors: { offset: -96 } }}
     >
-      <ScrollTriggerSync />
+      <React.Suspense fallback={null}>
+        <LenisScrollToTop />
+      </React.Suspense>
       {children}
     </ReactLenis>
   )
 }
 
-function ScrollTriggerSync() {
+function LenisScrollToTop() {
   const lenis = useLenis(ScrollTrigger.update)
-  const pathname = usePathname()
+  return <ScrollToTop lenis={lenis} />
+}
 
-  // New page: start at the top and let ScrollTrigger re-measure once the
-  // new sections have laid out.
+// Every forward navigation opens at the top of the page, or at its #anchor
+// (e.g. /who-we-serve#federations): a new path always, and a new query only
+// when a link caused it, so in-page filters that rewrite the query (case
+// studies) keep their place. Back/forward is left to Next.js, which returns
+// the visitor to where they were. The jump repeats over the next frames so
+// nothing left over can drag the page back down: momentum from a scroll or
+// swipe still coasting when the link was tapped, or late layout shifts.
+function ScrollToTop({ lenis }: { lenis?: Lenis }) {
+  const pathname = usePathname()
+  const search = useSearchParams().toString()
+  const lastPath = React.useRef(pathname)
+  const linkNavigation = React.useRef(false)
+  const historyNavigation = React.useRef(false)
+  const mounted = React.useRef(false)
+  // Read through a ref so Lenis arriving after mount does not re-run (and
+  // cancel) the jump.
+  const lenisRef = React.useRef(lenis)
+  lenisRef.current = lenis
+
   React.useEffect(() => {
-    // Honour #anchors (e.g. /who-we-serve#federations), else go to the top.
-    const target = window.location.hash
-      ? document.querySelector(window.location.hash)
-      : null
-    lenis?.scrollTo(target instanceof HTMLElement ? target : 0, {
-      immediate: true,
-      force: true,
-      offset: target ? -96 : 0,
+    const onClick = (event: MouseEvent) => {
+      if (event.defaultPrevented || event.button !== 0) return
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
+        return
+      const link = (event.target as Element | null)?.closest?.("a[href]")
+      if (
+        link instanceof HTMLAnchorElement &&
+        link.origin === location.origin &&
+        link.target !== "_blank" &&
+        link.pathname + link.search !== location.pathname + location.search
+      )
+        linkNavigation.current = true
+    }
+    const onPop = () => {
+      historyNavigation.current = true
+    }
+    document.addEventListener("click", onClick, true)
+    window.addEventListener("popstate", onPop)
+    return () => {
+      document.removeEventListener("click", onClick, true)
+      window.removeEventListener("popstate", onPop)
+    }
+  }, [])
+
+  React.useEffect(() => {
+    const newPath = lastPath.current !== pathname
+    lastPath.current = pathname
+    const fromLink = linkNavigation.current
+    const fromHistory = historyNavigation.current
+    linkNavigation.current = false
+    historyNavigation.current = false
+    if (fromHistory && mounted.current) return
+    // First render and path changes always qualify; query-only changes need
+    // a link behind them.
+    if (!newPath && !fromLink && mounted.current) return
+    mounted.current = true
+
+    const jump = () => {
+      const id = decodeURIComponent(window.location.hash.slice(1))
+      const target = id ? document.getElementById(id) : null
+      const lenis = lenisRef.current
+      if (lenis) {
+        lenis.scrollTo(target ?? 0, {
+          immediate: true,
+          force: true,
+          offset: target ? -96 : 0,
+        })
+      } else if (target) {
+        target.scrollIntoView()
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" })
+      }
+    }
+
+    jump()
+    let frame = requestAnimationFrame(() => {
+      jump()
+      frame = requestAnimationFrame(jump)
     })
-    const id = window.setTimeout(() => ScrollTrigger.refresh(), 100)
-    return () => window.clearTimeout(id)
-  }, [pathname, lenis])
+    const late = window.setTimeout(() => {
+      jump()
+      ScrollTrigger.refresh()
+    }, 150)
+    return () => {
+      cancelAnimationFrame(frame)
+      window.clearTimeout(late)
+    }
+  }, [pathname, search])
 
   return null
 }
