@@ -5,7 +5,7 @@ import Link from "next/link"
 import { AnimatePresence, motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
-import { audiences, services } from "@/lib/content"
+import { audiences, type Service } from "@/lib/content"
 import { ArrowLink } from "@/components/ui/arrow-link"
 
 const ease = [0.76, 0, 0.24, 1] as const
@@ -14,7 +14,11 @@ const ease = [0.76, 0, 0.24, 1] as const
 // consultancy sites): one group open at a time, its detail in a midnight
 // panel with mint accents. A #slug in the URL (e.g. from the home page
 // pills) opens that group.
-export function AudienceAccordion() {
+export function AudienceAccordion({
+  services,
+}: {
+  services: Pick<Service, "slug" | "title" | "forWhom">[]
+}) {
   const [open, setOpen] = React.useState<string>(audiences[0].slug)
 
   React.useEffect(() => {

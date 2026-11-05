@@ -1,11 +1,16 @@
 import { cn } from "@/lib/utils"
-import { industries } from "@/lib/content"
 
 // The industries DMP works across, as two slow ticker rows running in
 // opposite directions (CSS only). Each row is rendered twice end to end so
 // the loop is seamless; hovering a row pauses it. The edges fade out with a
 // mask. Reduced motion: one static, wrapped list instead.
-export function IndustryMarquee({ className }: { className?: string }) {
+export function IndustryMarquee({
+  industries,
+  className,
+}: {
+  industries: string[]
+  className?: string
+}) {
   const half = Math.ceil(industries.length / 2)
   const rows = [industries.slice(0, half), industries.slice(half)]
 

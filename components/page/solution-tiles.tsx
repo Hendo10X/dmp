@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
-import { solutions } from "@/lib/content"
+import { getSolutions } from "@/lib/cms"
 import { Arrow } from "@/components/ui/arrow"
 import { Reveal } from "@/components/motion/reveal"
 
@@ -10,7 +10,8 @@ import { Reveal } from "@/components/motion/reveal"
 // PwC's "Three ways to unlock new growth" row. On desktop the tiles share their
 // rows (CSS subgrid), so every title, summary and link sits on the same line
 // as Federation Business Transformation's, whatever the title length.
-export function SolutionTiles({ className }: { className?: string }) {
+export async function SolutionTiles({ className }: { className?: string }) {
+  const solutions = await getSolutions()
   return (
     <Reveal
       className={cn(

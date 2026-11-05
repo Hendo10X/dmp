@@ -1,50 +1,37 @@
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
+import { getSiteContent } from "@/lib/cms"
 import { Arrow } from "@/components/ui/arrow"
 import { Reveal } from "@/components/motion/reveal"
 import { SectionHeader } from "@/components/page/section-header"
 
-// Each tile owns a logo colour, always on (client: plain white felt dull).
-// Hover lifts the tile slightly and nudges the arrow.
-const tiles: { title: string; body: string; href: string; tone: string }[] = [
-  {
-    title: "Careers",
-    body: "Do the best work of your career in African sports.",
-    href: "/careers",
-    tone: "bg-mint text-midnight",
-  },
-  {
-    title: "Solutions",
-    body: "Our programmes and indices, built to demonstrate possibilities.",
-    href: "/solutions",
-    tone: "bg-brand text-white",
-  },
-  {
-    title: "Contact",
-    body: "Start a conversation, or book a DMP speaker.",
-    href: "/contact",
-    tone: "bg-midnight text-white",
-  },
+// Each tile owns a logo colour, always on (client: plain white felt dull),
+// assigned in order. Hover lifts the tile slightly and nudges the arrow.
+const tones = [
+  "bg-mint text-midnight",
+  "bg-brand text-white",
+  "bg-midnight text-white",
 ]
 
 // Closing link tiles (after PwC's Careers / Press room / Offices row).
-export function Explore() {
+export async function Explore() {
+  const { header, tiles } = (await getSiteContent()).home.explore
   return (
     <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
       <SectionHeader
-        eyebrow="Explore"
-        title="Where to next."
-        intro="Join the team, see what our solutions can do, or start a conversation with DMPartners."
+        eyebrow={header.eyebrow}
+        title={header.title}
+        intro={header.intro}
       />
       <Reveal className="mt-10 grid gap-3 md:mt-12 md:grid-cols-3">
-        {tiles.map((tile) => (
+        {tiles.map((tile, index) => (
           <Link
-            key={tile.href}
+            key={`${index}-${tile.href}`}
             href={tile.href}
             className={cn(
               "group flex min-h-48 flex-col justify-end gap-8 rounded-xl p-6 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] outline-none hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-electric md:p-8",
-              tile.tone
+              tones[index % tones.length]
             )}
           >
             <span className="flex items-end justify-between gap-6">

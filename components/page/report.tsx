@@ -3,23 +3,18 @@
 import * as React from "react"
 import { AnimatePresence, motion } from "motion/react"
 
-import { industries } from "@/lib/content"
-import { sendReportRequest } from "@/app/reports/actions"
+import { industries, type ReportDoc } from "@/lib/content"
+import { sendReportRequest } from "@/lib/report-email"
 import { cn } from "@/lib/utils"
 import { Arrow, Tick } from "@/components/ui/arrow"
 import { Eyebrow } from "@/components/ui/eyebrow"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 
-// The Nigeria Sports Industry Outlook 2026 (public/reports) on a mint band
-// on the Reports page: visitors leave their details, then the PDF
-// downloads straight away, with a button as a fallback. The details are
-// emailed to the team (app/reports/actions.ts).
-const REPORT = {
-  title: "Nigeria Sports Industry Outlook 2026",
-  href: "/reports/nigeria-sports-industry-outlook-2026.pdf",
-  file: "DMPartners - Nigeria Sports Industry Outlook 2026.pdf",
-}
+// The featured report (Sanity, or lib/content.ts) on a mint band on the
+// Reports page: visitors leave their details, then the PDF downloads
+// straight away, with a button as a fallback. The details are emailed to
+// the team (lib/report-email.ts).
 
 // Dropdown options for the download form (client list). Academia sits in
 // both Occupation and Industry, as asked.
@@ -69,7 +64,7 @@ const occupations = [
 
 const sectors = ["Sports", ...industries, "Academia", "Other"]
 
-export function Report() {
+export function Report({ report: REPORT }: { report: ReportDoc }) {
   const [sent, setSent] = React.useState(false)
 
   const field =
@@ -89,12 +84,14 @@ export function Report() {
             as="p"
             className="mt-5 max-w-md text-base leading-relaxed text-midnight/70"
           >
-            Our research on the business of sports in Nigeria. Leave your
-            details and the report downloads straight away.
+            Free to download. Leave your details and the report downloads
+            straight away.
           </SplitReveal>
           <Reveal y={12}>
             <p className="mt-6 text-sm font-medium text-midnight/70">
-              PDF &middot; 67 pages &middot; 7.1 MB
+              {["PDF", REPORT.pages && `${REPORT.pages} pages`, REPORT.size]
+                .filter(Boolean)
+                .join(" · ")}
             </p>
           </Reveal>
         </div>

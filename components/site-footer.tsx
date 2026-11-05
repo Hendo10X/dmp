@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "motion/react"
 import { Arrow, Tick } from "@/components/ui/arrow"
 import { SplitReveal } from "@/components/motion/split-reveal"
 import { SocialLinks } from "@/components/ui/social-links"
+import type { SocialProfile } from "@/lib/content"
 
 const columns = [
   {
@@ -37,7 +38,7 @@ const columns = [
   },
 ]
 
-export function SiteFooter() {
+export function SiteFooter({ social }: { social: SocialProfile[] }) {
   return (
     <footer className="relative z-10 overflow-hidden bg-midnight text-white">
       <div className="mx-auto grid max-w-[120rem] gap-12 px-6 pt-16 md:grid-cols-12 md:gap-6 md:pt-20 lg:px-10">
@@ -53,7 +54,7 @@ export function SiteFooter() {
           <p className="mt-10 text-[0.7rem] font-medium tracking-[0.18em] text-white/70">
             Follow us
           </p>
-          <SocialLinks tone="dark" className="mt-4" />
+          <SocialLinks profiles={social} tone="dark" className="mt-4" />
         </div>
 
         <nav

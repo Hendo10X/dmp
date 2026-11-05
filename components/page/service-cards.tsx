@@ -2,15 +2,16 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
-import { services } from "@/lib/content"
+import { getServices } from "@/lib/cms"
 import { Arrow } from "@/components/ui/arrow"
 import { Reveal } from "@/components/motion/reveal"
 
-// The six services as photo cards under a midnight-blue tint, with a deeper
+// The services as photo cards under a midnight-blue tint, with a deeper
 // fade under the copy. Cards share their rows (CSS subgrid) so titles,
 // summaries and links line up across each row. Used on Home, Services and
 // Solutions.
-export function ServiceCards({ className }: { className?: string }) {
+export async function ServiceCards({ className }: { className?: string }) {
+  const services = await getServices()
   return (
     <Reveal
       className={cn("grid gap-3 sm:grid-cols-2 lg:grid-cols-3", className)}

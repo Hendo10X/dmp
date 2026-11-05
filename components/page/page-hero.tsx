@@ -4,6 +4,20 @@ import { cn } from "@/lib/utils"
 import { Eyebrow } from "@/components/ui/eyebrow"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
+import { Emphasis } from "@/components/ui/emphasis"
+import type { Hero } from "@/lib/site-content"
+
+// Props for PageHero from a page's Sanity hero (*words* become the
+// italic mint highlight).
+export function heroProps(hero: Hero) {
+  return {
+    eyebrow: hero.eyebrow,
+    title: <Emphasis text={hero.title} />,
+    intro: hero.intro ? <Emphasis text={hero.intro} /> : undefined,
+    image: hero.image,
+    imageAlt: hero.imageAlt,
+  }
+}
 
 // Opening block for every inner page.
 // With `image` (every page except Contact, per the client): a full-bleed

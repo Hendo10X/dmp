@@ -6,7 +6,7 @@ import {
 } from "@hugeicons/core-free-icons"
 
 import { cn } from "@/lib/utils"
-import { social } from "@/lib/content"
+import { social, type SocialProfile } from "@/lib/content"
 
 const icons = {
   LinkedIn: Linkedin01Icon,
@@ -17,15 +17,18 @@ const icons = {
 // DMPartners' social profiles as square icon buttons. "light" sits on white
 // (Contact), "dark" on midnight (footer).
 export function SocialLinks({
+  profiles = social,
   tone = "light",
   className,
 }: {
+  // From Sanity's "Contact & social" when set (lib/cms.ts).
+  profiles?: SocialProfile[]
   tone?: "light" | "dark"
   className?: string
 }) {
   return (
     <ul className={cn("flex gap-2", className)}>
-      {social.map((profile) => {
+      {profiles.map((profile) => {
         const icon = icons[profile.name as keyof typeof icons]
         if (!profile.url || !icon) return null
         return (
