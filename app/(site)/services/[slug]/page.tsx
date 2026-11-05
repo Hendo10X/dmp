@@ -2,8 +2,8 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
-import { findAudience, findService, services } from "@/lib/content"
-import { getCaseStudies } from "@/lib/cms"
+import { findAudience } from "@/lib/content"
+import { getCaseStudies, getServices } from "@/lib/cms"
 import { Arrow } from "@/components/ui/arrow"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
@@ -15,17 +15,26 @@ import { Cta } from "@/components/page/closing"
 
 type Props = { params: Promise<{ slug: string }> }
 
-export function generateStaticParams() {
-  return services.map((service) => ({ slug: service.slug }))
+// Known services are built ahead; ones added in Sanity later render on
+// first visit.
+export async function generateStaticParams() {
+  return (await getServices()).map((service) => ({ slug: service.slug }))
+}
+
+async function findService(slug: string) {
+  return (await getServices()).find((s) => s.slug === slug)
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const service = findService((await params).slug)
+  const service = await findService((await params).slug)
   return service ? { title: service.title, description: service.summary } : {}
 }
 
 export default async function ServicePage({ params }: Props) {
-  const service = findService((await params).slug)
+  const [service, services] = await Promise.all([
+    params.then(({ slug }) => findService(slug)),
+    getServices(),
+  ])
   if (!service) notFound()
 
   // The practice's featured study, or any study tagged with the practice if

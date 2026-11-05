@@ -1,10 +1,9 @@
 import type { Metadata } from "next"
 
-import { heroImages } from "@/lib/content"
-import { getCaseStudies } from "@/lib/cms"
+import { getCaseStudies, getSiteContent } from "@/lib/cms"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { Reveal } from "@/components/motion/reveal"
-import { PageHero } from "@/components/page/page-hero"
+import { heroProps, PageHero } from "@/components/page/page-hero"
 import { SectionHeader } from "@/components/page/section-header"
 import { ServiceCards } from "@/components/page/service-cards"
 import { CaseStudyCard } from "@/components/page/case-study-card"
@@ -18,22 +17,20 @@ export const metadata: Metadata = {
 }
 
 export default async function ServicesPage() {
-  const caseStudies = await getCaseStudies()
+  const [caseStudies, content] = await Promise.all([
+    getCaseStudies(),
+    getSiteContent(),
+  ])
+  const page = content.pages.services
   return (
     <main>
-      <PageHero
-        eyebrow="Services"
-        title="What we do."
-        intro="Six practices, each built for the business of sports and the markets connected to it. Start with the one closest to your challenge, or explore our solutions."
-        image={heroImages.services}
-        imageAlt="Construction workers in hard hats on a building site"
-      />
+      <PageHero {...heroProps(page.hero)} />
 
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
         <SectionHeader
-          eyebrow="What we do"
-          title="Six practices. One ambition."
-          intro="From strategy and transformation to transactions, policy, research and sustainability: advisory built for the business of sports and the markets connected to it."
+          eyebrow={page.cards.eyebrow}
+          title={page.cards.title}
+          intro={page.cards.intro}
         />
         <ServiceCards className="mt-10 md:mt-12" />
       </section>
@@ -42,9 +39,9 @@ export default async function ServicesPage() {
 
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
         <SectionHeader
-          eyebrow="In practice"
-          title="See the pillars at work."
-          intro="Each engagement draws on more than one pillar. These case studies show how."
+          eyebrow={page.inPractice.eyebrow}
+          title={page.inPractice.title}
+          intro={page.inPractice.intro}
           action={<ArrowLink href="/case-studies">All case studies</ArrowLink>}
         />
         <Reveal className="mt-10 grid gap-12 md:mt-12 md:grid-cols-3 md:gap-6">

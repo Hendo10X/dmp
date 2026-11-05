@@ -1,4 +1,4 @@
-import { getCaseStudies } from "@/lib/cms"
+import { getCaseStudies, getSiteContent } from "@/lib/cms"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { Reveal } from "@/components/motion/reveal"
 import { SectionHeader } from "@/components/page/section-header"
@@ -7,13 +7,17 @@ import { CaseStudyCard } from "@/components/page/case-study-card"
 // "Real stories. Real results." (after PwC): three case study cards whose
 // rows line up across the grid (CSS subgrid).
 export async function Stories() {
-  const caseStudies = await getCaseStudies()
+  const [caseStudies, content] = await Promise.all([
+    getCaseStudies(),
+    getSiteContent(),
+  ])
+  const header = content.home.stories
   return (
     <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
       <SectionHeader
-        eyebrow="Client stories"
-        title="Real stories. Real results."
-        intro="How federations, leagues and public bodies turned possibilities into performance with DMPartners."
+        eyebrow={header.eyebrow}
+        title={header.title}
+        intro={header.intro}
         action={
           <ArrowLink href="/case-studies" tone="electric">
             All case studies

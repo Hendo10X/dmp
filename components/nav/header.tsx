@@ -9,7 +9,11 @@ import { AnimatePresence, motion } from "motion/react"
 import { cn } from "@/lib/utils"
 import { useIntroSettled } from "@/lib/preloader-store"
 import { ArrowLink } from "@/components/ui/arrow-link"
-import { MegaMenu, type MegaKey } from "@/components/nav/mega-menu"
+import {
+  MegaMenu,
+  type MegaKey,
+  type MenuLists,
+} from "@/components/nav/mega-menu"
 import { Burger, SideMenu } from "@/components/nav/side-menu"
 
 // Desktop top-level links. Services and Solutions open dropdowns.
@@ -24,7 +28,7 @@ const primary: { title: string; href: string; mega?: MegaKey }[] = [
 
 // Fixed nav bar (Crowdline layout) on solid midnight, no border, carrying the
 // white dmpartners logo (public/brand). Dropdowns stay white.
-export function Header() {
+export function Header({ lists }: { lists: MenuLists }) {
   const pathname = usePathname()
   const ready = useIntroSettled()
 
@@ -185,7 +189,14 @@ export function Header() {
 
         <div className="hidden lg:block">
           <AnimatePresence>
-            {mega && <MegaMenu key="mega" menu={mega} onNavigate={closeAll} />}
+            {mega && (
+              <MegaMenu
+                key="mega"
+                menu={mega}
+                lists={lists}
+                onNavigate={closeAll}
+              />
+            )}
           </AnimatePresence>
         </div>
       </motion.header>

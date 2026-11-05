@@ -1,10 +1,9 @@
 import type { Metadata } from "next"
 
-import { heroImages } from "@/lib/content"
-import { PageHero } from "@/components/page/page-hero"
+import { heroProps, PageHero } from "@/components/page/page-hero"
 import { SectionHeader } from "@/components/page/section-header"
 import { SpeakerTalks } from "@/components/page/speaker-talks"
-import { getTalks } from "@/lib/cms"
+import { getSiteContent, getTalks } from "@/lib/cms"
 import { Steps } from "@/components/page/steps"
 import { Cta } from "@/components/page/closing"
 
@@ -32,16 +31,10 @@ const booking = [
 
 // DMP Speakers on its own page (client), moved off Contact.
 export default async function SpeakersPage() {
-  const talks = await getTalks()
+  const [talks, content] = await Promise.all([getTalks(), getSiteContent()])
   return (
     <main>
-      <PageHero
-        eyebrow="DMP Speakers"
-        title="Book a DMP speaker."
-        intro="Our partners speak at conferences, board away-days and federation congresses on the ideas behind our work."
-        image={heroImages.speakers}
-        imageAlt="Colleagues in discussion around a boardroom table in Lagos"
-      />
+      <PageHero {...heroProps(content.pages.speakers.hero)} />
 
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
         <SectionHeader

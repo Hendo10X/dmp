@@ -2,12 +2,8 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
-import {
-  findAudience,
-  findService,
-  findSolution,
-  solutions,
-} from "@/lib/content"
+import { findAudience } from "@/lib/content"
+import { getSiteContent } from "@/lib/cms"
 import { Arrow } from "@/components/ui/arrow"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
@@ -18,21 +14,30 @@ import { Cta } from "@/components/page/closing"
 
 type Props = { params: Promise<{ slug: string }> }
 
-export function generateStaticParams() {
+// Known solutions are built ahead; ones added in Sanity later render on
+// first visit.
+export async function generateStaticParams() {
+  const { solutions } = await getSiteContent()
   return solutions.map((solution) => ({ slug: solution.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const solution = findSolution((await params).slug)
+  const { slug } = await params
+  const solution = (await getSiteContent()).solutions.find(
+    (s) => s.slug === slug
+  )
   return solution
     ? { title: solution.title, description: solution.summary }
     : {}
 }
 
 export default async function SolutionPage({ params }: Props) {
-  const solution = findSolution((await params).slug)
+  const { slug } = await params
+  const { solutions, services } = await getSiteContent()
+  const solution = solutions.find((s) => s.slug === slug)
   if (!solution) notFound()
 
+  const findService = (slug: string) => services.find((s) => s.slug === slug)
   const others = solutions.filter((s) => s.slug !== solution.slug)
 
   return (

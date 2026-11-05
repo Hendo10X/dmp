@@ -8,8 +8,8 @@ import { Arrow } from "@/components/ui/arrow"
 import { cn } from "@/lib/utils"
 import { Reveal } from "@/components/motion/reveal"
 import { SectionHeader } from "@/components/page/section-header"
-import { images } from "@/lib/content"
 import { CountUp } from "@/components/motion/count-up"
+import type { HomeContent, Stat } from "@/lib/site-content"
 
 type Column = {
   id: string
@@ -21,13 +21,9 @@ type Column = {
   tone: string
 }
 
-// Illustrative figures only: replace with real, client-approved results.
-const stats = {
-  bookings: { value: "38%", label: "Increase in matchday revenue" },
-  hero: { value: "2.4×", label: "Faster reporting to the federation board" },
-  retention: { value: "91%", label: "Sponsor renewal rate" },
-  reach: { value: "12", label: "Member associations on one data platform" },
-}
+// The three number columns take Sanity's stats in order (first, second,
+// third); the case column sits second.
+const statSlot: Record<string, number> = { bookings: 0, retention: 1, reach: 2 }
 
 const columns: Column[] = [
   {
@@ -62,8 +58,12 @@ const columns: Column[] = [
 
 const HOVER_GROWTH = 2
 
-export function Impact() {
+export function Impact({ content }: { content: HomeContent["impact"] }) {
   const [active, setActive] = React.useState<string | null>(null)
+  const { header, stats, story } = content
+  const shown = columns.filter(
+    (column) => column.id === "case" || stats[statSlot[column.id]]
+  )
 
   const growFor = (column: Column) => {
     if (!active) return column.grow
@@ -75,13 +75,13 @@ export function Impact() {
   return (
     <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pt-8 pb-6 md:pt-10 md:pb-8 lg:px-10">
       <SectionHeader
-        eyebrow="Client impact"
-        title="Results you can read on a scoreboard."
-        intro="Good strategy shows up in numbers. Here is what changes when sports are run with evidence, modern systems and a clear commercial plan."
+        eyebrow={header.eyebrow}
+        title={header.title}
+        intro={header.intro}
       />
 
       <Reveal className="mt-10 flex flex-col gap-3 md:mt-12 md:h-[34rem] md:flex-row md:items-end md:gap-2">
-        {columns.map((column) => (
+        {shown.map((column) => (
           <div
             key={column.id}
             onMouseEnter={() => setActive(column.id)}
@@ -101,9 +101,9 @@ export function Impact() {
             )}
           >
             {column.id === "case" ? (
-              <CaseColumn />
+              <CaseColumn story={story} />
             ) : (
-              <StatColumn stat={stats[column.id as keyof typeof stats]} />
+              <StatColumn stat={stats[statSlot[column.id]]} />
             )}
           </div>
         ))}
@@ -112,7 +112,7 @@ export function Impact() {
   )
 }
 
-function StatColumn({ stat }: { stat: { value: string; label: string } }) {
+function StatColumn({ stat }: { stat: Stat }) {
   return (
     <div className="flex h-full min-h-44 flex-col justify-between gap-10 p-5 md:p-6">
       <span className="font-display text-[clamp(2.25rem,3.4vw,3.5rem)] leading-none whitespace-nowrap">
@@ -125,17 +125,21 @@ function StatColumn({ stat }: { stat: { value: string; label: string } }) {
   )
 }
 
-function CaseColumn() {
+function CaseColumn({ story }: { story: HomeContent["impact"]["story"] }) {
   return (
     <div className="flex h-full flex-col gap-6 p-5 md:flex-row md:p-6">
       <div className="flex min-w-[15rem] flex-1 flex-col justify-between gap-10">
         <div>
-          <p className="text-sm font-medium opacity-70">Case study</p>
+          <p className="text-sm font-medium opacity-70">{story.eyebrow}</p>
           <h3 className="mt-3 max-w-xs font-display text-xl leading-[1.15] md:text-2xl">
-            A national federation rebuilds around its data
+            {story.title}
           </h3>
           <Link
-            href="/case-studies/federation-data-rebuild"
+            href={
+              story.caseStudy
+                ? `/case-studies/${story.caseStudy}`
+                : "/case-studies"
+            }
             className="group mt-5 inline-flex items-center gap-2 text-sm font-medium"
           >
             Read case study
@@ -147,17 +151,17 @@ function CaseColumn() {
         </div>
         <div>
           <span className="block font-display text-[clamp(3rem,5vw,5rem)] leading-none">
-            <CountUp value={stats.hero.value} />
+            <CountUp value={story.stat.value} />
           </span>
           <span className="mt-3 block max-w-[16rem] text-sm leading-snug font-medium">
-            {stats.hero.label}
+            {story.stat.label}
           </span>
         </div>
       </div>
       <div className="relative aspect-[4/3] min-w-0 flex-1 overflow-hidden md:aspect-auto">
         <Image
-          src={images.engineers}
-          alt="Engineers reviewing plans together"
+          src={story.image}
+          alt={story.imageAlt}
           fill
           sizes="(min-width: 768px) 50vw, 100vw"
           className="object-cover object-top"

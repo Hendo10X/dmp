@@ -398,7 +398,8 @@ export const defaultContent: SiteContent = {
         intro:
           "Our proprietary programmes and indices package what we know about African sports into tools leaders can act on.",
         image: heroImages.solutions,
-        imageAlt: "Aerial view of a football stadium",
+        imageAlt:
+          "An empty football stadium with green pitch and covered stands",
       },
       behind: {
         eyebrow: "Behind the solutions",

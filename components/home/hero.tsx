@@ -7,21 +7,16 @@ import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 import { AfricaGlobe } from "@/components/page/africa-globe"
 import { WordSwap } from "@/components/home/word-swap"
-
-// The headline's second line cycles through these (first one is the tagline).
-const swapWords = [
-  "possibilities.",
-  "investment.",
-  "growth.",
-  "partnerships.",
-  "opportunity.",
-]
+import { Emphasis } from "@/components/ui/emphasis"
+import type { HomeContent } from "@/lib/site-content"
 
 // Split hero on a full-bleed midnight band: copy on the left, a large Africa
 // globe with market pills on the right. "possibilities." and the buttons use
-// the logo colours (client brief).
-export function Hero() {
+// the logo colours (client brief). The second line cycles through `words`
+// (the first is the tagline); copy comes from Sanity's Home page.
+export function Hero({ content }: { content: HomeContent["hero"] }) {
   const ready = usePreloaderDone()
+  const { lead, words, intro } = content
 
   return (
     <section className="relative z-10 overflow-hidden bg-midnight text-white">
@@ -29,7 +24,7 @@ export function Hero() {
         <div className="flex w-full flex-col md:flex-row md:items-center md:gap-6">
           <div className="relative z-10 flex flex-col pt-16 pb-4 text-center md:w-[50%] md:py-0 md:text-left">
             <h1
-              aria-label="Demonstrating possibilities."
+              aria-label={[lead, words[0]].filter(Boolean).join(" ")}
               className="mb-6 text-[clamp(2.75rem,5.4vw,4.75rem)] leading-[1]"
             >
               <SplitReveal
@@ -38,18 +33,15 @@ export function Hero() {
                 play={ready}
                 className="block"
               >
-                Demonstrating
+                {lead}
               </SplitReveal>
-              <WordSwap words={swapWords} play={ready} className="text-mint" />
+              <WordSwap words={words} play={ready} className="text-mint" />
             </h1>
 
             <Reveal y={12}>
+              {/* *Wrapped words* stand out in white here, not italic. */}
               <p className="mx-auto mb-10 max-w-md text-base leading-relaxed text-white/70 md:mx-0 md:text-lg">
-                Commercial and investment advisory where the{" "}
-                <span className="text-white">
-                  sports industry meets adjacent markets
-                </span>
-                , across Nigeria and the wider African continent.
+                <Emphasis text={intro} className="text-white" italic={false} />
               </p>
             </Reveal>
 

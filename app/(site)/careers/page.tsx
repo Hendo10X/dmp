@@ -4,12 +4,11 @@ import Link from "next/link"
 import Image from "next/image"
 
 import { cn } from "@/lib/utils"
-import { heroImages, images } from "@/lib/content"
-import { getOpenings } from "@/lib/cms"
+import { getOpenings, getSiteContent } from "@/lib/cms"
 import { Arrow } from "@/components/ui/arrow"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { Reveal } from "@/components/motion/reveal"
-import { PageHero } from "@/components/page/page-hero"
+import { heroProps, PageHero } from "@/components/page/page-hero"
 import { SectionHeader } from "@/components/page/section-header"
 import { Steps } from "@/components/page/steps"
 import { Cta } from "@/components/page/closing"
@@ -20,93 +19,44 @@ export const metadata: Metadata = {
     "Join DMPartners: people at the heart of demonstrating what is possible in African sports.",
 }
 
-const process = [
-  {
-    title: "Apply",
-    body: "Send your CV and a short note on why sports and why DMP.",
-  },
-  {
-    title: "Conversation",
-    body: "A relaxed first call with someone from the team you would join.",
-  },
-  {
-    title: "Case exercise",
-    body: "A realistic problem, worked through with us rather than alone.",
-  },
-  {
-    title: "Offer",
-    body: "Meet the partners, ask anything, and hear back within a week.",
-  },
+// How We Work Together cards take the light-to-dark logo palette used
+// across the site, in order.
+const tones = [
+  "bg-mint text-midnight",
+  "bg-electric text-midnight",
+  "bg-brand text-white",
+  "bg-midnight text-white",
 ]
 
-// How We Work Together: the client's four statements, one per card, in the
-// light-to-dark logo palette used across the site.
-const together = [
-  { text: "Small teams.", tone: "bg-mint text-midnight" },
-  {
-    text: "Excel on the strength of each other.",
-    tone: "bg-electric text-midnight",
-  },
-  { text: "Work for each other.", tone: "bg-brand text-white" },
-  { text: "Deliver together.", tone: "bg-midnight text-white" },
-]
-
-// Ways in, after EY's career path cards. Descriptions are PLACEHOLDER.
-const paths = [
-  {
-    title: "Early careers",
-    body: "Graduates and early-career analysts who want real responsibility from the first week.",
-    image: images.meeting,
-    href: "/contact?topic=employment",
-    cta: "Start here",
-  },
-  {
-    title: "Seasoned professionals",
-    body: "Experienced advisors, analysts and operators ready to shape the business of sports.",
-    image: images.boardroom,
-    href: "/contact?topic=employment",
-    cta: "Join us",
-  },
-  {
-    title: "Partnership",
-    body: "Independent experts who want to deliver alongside us.",
-    image: images.construction,
-    href: "/contact?topic=general",
-    cta: "Partner with us",
-  },
-]
-
+// Copy comes from Sanity's Careers page.
 export default async function CareersPage() {
-  const openings = await getOpenings()
+  const [openings, content] = await Promise.all([
+    getOpenings(),
+    getSiteContent(),
+  ])
+  const page = content.careers
   return (
     <main>
-      <PageHero
-        eyebrow="Careers"
-        title={
-          <>
-            DMP<em className="text-mint">Careers</em>
-          </>
-        }
-        large
-        intro="People remain at the heart of who we are and why we do what we do."
-        image={heroImages.careers}
-        imageAlt="Three colleagues reviewing work on a laptop in a Lagos office"
-      />
+      <PageHero {...heroProps(page.hero)} large />
 
       {/* How We Work Together */}
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
-        <SectionHeader eyebrow="Culture" title="How we work together." />
+        <SectionHeader
+          eyebrow={page.culture.header.eyebrow}
+          title={page.culture.header.title}
+          intro={page.culture.header.intro}
+        />
         <Reveal className="mt-10 grid gap-3 sm:grid-cols-2 md:mt-12 lg:grid-cols-4">
-          {together.map((item, index) => (
+          {page.culture.cards.map((text, index) => (
             <div
-              key={item.text}
+              key={`${index}-${text}`}
               className={cn(
                 "flex min-h-56 flex-col justify-end p-6 md:p-7",
-                item.tone
+                tones[index % tones.length]
               )}
             >
               <p className="font-heading text-[clamp(1.75rem,2.4vw,2.25rem)] leading-[1.05]">
-                {item.text}
+                {text}
               </p>
             </div>
           ))}
@@ -116,13 +66,14 @@ export default async function CareersPage() {
       {/* Ways in */}
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
         <SectionHeader
-          eyebrow="Ways in"
-          title="Let's demonstrate possibilities together."
+          eyebrow={page.paths.header.eyebrow}
+          title={page.paths.header.title}
+          intro={page.paths.header.intro}
         />
         <Reveal className="mt-10 grid gap-3 md:mt-12 md:grid-cols-3 md:grid-rows-[minmax(17rem,1fr)_auto_auto_auto]">
-          {paths.map((path) => (
+          {page.paths.cards.map((path, index) => (
             <Link
-              key={path.title}
+              key={`${index}-${path.title}`}
               href={path.href}
               className="group relative grid min-h-[28rem] grid-rows-[1fr_auto_auto_auto] gap-y-3 overflow-hidden bg-midnight p-6 text-white outline-none focus-visible:ring-2 focus-visible:ring-electric md:row-span-4 md:min-h-0 md:grid-rows-subgrid md:p-8"
             >
@@ -162,9 +113,9 @@ export default async function CareersPage() {
         className="relative z-10 mx-auto max-w-[120rem] scroll-mt-28 bg-background px-6 pb-10 md:pb-12 lg:px-10"
       >
         <SectionHeader
-          eyebrow="Current openings"
-          title="Open roles."
-          intro="Nothing that fits? Register your interest and we will be in touch when the right role opens."
+          eyebrow={page.openings.eyebrow}
+          title={page.openings.title}
+          intro={page.openings.intro}
           action={
             <ArrowLink href="/contact?topic=employment" tone="brand">
               Register interest
@@ -210,10 +161,11 @@ export default async function CareersPage() {
       {/* Application process */}
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
         <SectionHeader
-          eyebrow="Application process"
-          title="Four steps, no surprises."
+          eyebrow={page.process.header.eyebrow}
+          title={page.process.header.title}
+          intro={page.process.header.intro}
         />
-        <Steps steps={process} className="mt-10 md:mt-12" />
+        <Steps steps={page.process.steps} className="mt-10 md:mt-12" />
       </section>
 
       <Cta

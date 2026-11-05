@@ -6,13 +6,7 @@ import Link from "next/link"
 import { useRouter, useSearchParams } from "next/navigation"
 import { AnimatePresence, motion } from "motion/react"
 
-import {
-  findSector,
-  findService,
-  sectors,
-  services,
-  type CaseStudy,
-} from "@/lib/content"
+import { findSector, sectors, type CaseStudy } from "@/lib/content"
 import { Arrow } from "@/components/ui/arrow"
 
 const ALL = "all"
@@ -22,7 +16,14 @@ const PAGE = 8
 // with dropdowns, a results count, a four-across grid of photo cards and
 // "Load more". Filters live in the URL (?service=, ?sector= shown as
 // Industry) so other pages can link straight to a filtered view.
-export function CaseStudyBrowser({ studies }: { studies: CaseStudy[] }) {
+export function CaseStudyBrowser({
+  studies,
+  services,
+}: {
+  studies: CaseStudy[]
+  services: { slug: string; title: string }[]
+}) {
+  const findService = (slug: string) => services.find((s) => s.slug === slug)
   const router = useRouter()
   const params = useSearchParams()
   const service = params.get("service") ?? ALL

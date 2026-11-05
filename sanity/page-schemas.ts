@@ -355,7 +355,7 @@ export const homePage = page(
       "closing",
       defineField({
         name: "quote",
-        title: "Quote band (Home, About, Contact)",
+        title: "Quote band (Home and About)",
         type: "object",
         fields: [str("eyebrow"), txt("text", "Quote"), str("by", "Attributed to")],
       })

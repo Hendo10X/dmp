@@ -1,3 +1,4 @@
+import { getSiteContent } from "@/lib/cms"
 import { Preloader } from "@/components/preloader/preloader"
 import { Hero } from "@/components/home/hero"
 import { Process } from "@/components/home/process"
@@ -14,19 +15,21 @@ import { ArrowLink } from "@/components/ui/arrow-link"
 
 // Home: midnight globe hero, how we work, solutions, services, the
 // midnight feature band, stories, impact, about (with who we serve), then
-// the closing run. "Who we are" lives in About (client brief).
-export default function Page() {
+// the closing run. "Who we are" lives in About (client brief). Copy comes
+// from Sanity's Home page.
+export default async function Page() {
+  const { home } = await getSiteContent()
   return (
     <>
       <Preloader />
       <main>
-        <Hero />
+        <Hero content={home.hero} />
         <Process />
         <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
           <SectionHeader
-            eyebrow="Our solutions"
-            title="Four ways we demonstrate possibilities."
-            intro="Proprietary programmes and indices that turn what we know about African sports into decisions."
+            eyebrow={home.solutions.eyebrow}
+            title={home.solutions.title}
+            intro={home.solutions.intro}
             action={
               <ArrowLink href="/solutions" tone="brand">
                 All solutions
@@ -38,10 +41,10 @@ export default function Page() {
         <Services />
         <Feature />
         <Stories />
-        <Impact />
-        <About />
+        <Impact content={home.impact} />
+        <About content={home.about} industries={home.industries} />
         <Explore />
-        <Quote />
+        <Quote {...home.quote} />
         <Cta />
       </main>
     </>

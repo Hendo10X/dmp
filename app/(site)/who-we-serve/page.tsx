@@ -1,8 +1,7 @@
 import type { Metadata } from "next"
 
-import { heroImages } from "@/lib/content"
-
-import { PageHero } from "@/components/page/page-hero"
+import { getSiteContent } from "@/lib/cms"
+import { heroProps, PageHero } from "@/components/page/page-hero"
 import { AudienceAccordion } from "@/components/page/audience-accordion"
 import { Cta } from "@/components/page/closing"
 
@@ -12,19 +11,19 @@ export const metadata: Metadata = {
     "Federations, public bodies, corporates, investors, academia, SMEs and professional associations.",
 }
 
-export default function WhoWeServePage() {
+export default async function WhoWeServePage() {
+  const content = await getSiteContent()
+  const services = content.services.map(({ slug, title, forWhom }) => ({
+    slug,
+    title,
+    forWhom,
+  }))
   return (
     <main>
-      <PageHero
-        eyebrow="Who we serve"
-        title="Everyone in the business of sports."
-        intro="Seven stakeholder groups, each with its own friction. Open yours to see how we help."
-        image={heroImages.whoWeServe}
-        imageAlt="Smiling children at their desks in a classroom"
-      />
+      <PageHero {...heroProps(content.pages.whoWeServe.hero)} />
 
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
-        <AudienceAccordion />
+        <AudienceAccordion services={services} />
       </section>
 
       <Cta />

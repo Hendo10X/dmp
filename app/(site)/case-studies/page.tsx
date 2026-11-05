@@ -1,9 +1,8 @@
 import type { Metadata } from "next"
 import { Suspense } from "react"
 
-import { heroImages } from "@/lib/content"
-import { getCaseStudies } from "@/lib/cms"
-import { PageHero } from "@/components/page/page-hero"
+import { getCaseStudies, getSiteContent } from "@/lib/cms"
+import { heroProps, PageHero } from "@/components/page/page-hero"
 import { CaseStudyFeatured } from "@/components/page/case-study-featured"
 import { CaseStudyBrowser } from "@/components/page/case-study-browser"
 import { Cta } from "@/components/page/closing"
@@ -18,16 +17,14 @@ export const metadata: Metadata = {
 // then "All success stories" with a filter bar, a four-across grid and
 // "Load more".
 export default async function CaseStudiesPage() {
-  const caseStudies = await getCaseStudies()
+  const [caseStudies, content] = await Promise.all([
+    getCaseStudies(),
+    getSiteContent(),
+  ])
+  const services = content.services.map(({ slug, title }) => ({ slug, title }))
   return (
     <main>
-      <PageHero
-        eyebrow="Case studies"
-        title="Impact, with evidence."
-        intro="How federations, investors, governments and brands turn possibilities into performance."
-        image={heroImages.caseStudies}
-        imageAlt="Trucks working an open-pit quarry"
-      />
+      <PageHero {...heroProps(content.pages.caseStudies.hero)} />
 
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pt-10 md:pt-12 lg:px-10">
         <CaseStudyFeatured studies={caseStudies.slice(0, 4)} />
@@ -39,7 +36,7 @@ export default async function CaseStudiesPage() {
         </h2>
         <div className="mt-8">
           <Suspense>
-            <CaseStudyBrowser studies={caseStudies} />
+            <CaseStudyBrowser studies={caseStudies} services={services} />
           </Suspense>
         </div>
       </section>

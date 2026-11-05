@@ -331,3 +331,11 @@ export const getSiteContent = cache(async (): Promise<SiteContent> => {
     },
   }
 })
+
+export async function getServices() {
+  return (await getSiteContent()).services
+}
+
+export async function getSolutions() {
+  return (await getSiteContent()).solutions
+}

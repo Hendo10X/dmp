@@ -4,12 +4,18 @@ import Image from "next/image"
 import Link from "next/link"
 import { motion } from "motion/react"
 
-import { services, solutions } from "@/lib/content"
+import type { Service, Solution } from "@/lib/content"
 import { Arrow } from "@/components/ui/arrow"
 import { ServiceIcon } from "@/components/ui/service-icon"
 import { ArrowLink } from "@/components/ui/arrow-link"
 
 export type MegaKey = "services" | "solutions"
+
+// Just what the dropdowns show (built in components/site-chrome.tsx).
+export type MenuLists = {
+  services: Pick<Service, "slug" | "title" | "summary">[]
+  solutions: Pick<Solution, "slug" | "title" | "short" | "kicker" | "image">[]
+}
 
 const intro: Record<
   MegaKey,
@@ -41,12 +47,15 @@ const intro: Record<
 // only).
 export function MegaMenu({
   menu,
+  lists,
   onNavigate,
 }: {
   menu: MegaKey
+  lists: MenuLists
   onNavigate: () => void
 }) {
   const copy = intro[menu]
+  const { services, solutions } = lists
 
   return (
     <motion.div

@@ -3,8 +3,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
-import { findSector, findService } from "@/lib/content"
-import { getCaseStudies, getTeam } from "@/lib/cms"
+import { findSector } from "@/lib/content"
+import { getCaseStudies, getServices, getTeam } from "@/lib/cms"
 import { Arrow } from "@/components/ui/arrow"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { Eyebrow } from "@/components/ui/eyebrow"
@@ -43,11 +43,15 @@ function splitTitle(title: string) {
 // cards, a named contact, and a slider of more work.
 export default async function CaseStudyPage({ params }: Props) {
   const { slug } = await params
-  const [caseStudies, team] = await Promise.all([getCaseStudies(), getTeam()])
+  const [caseStudies, team, services] = await Promise.all([
+    getCaseStudies(),
+    getTeam(),
+    getServices(),
+  ])
   const study = caseStudies.find((c) => c.slug === slug)
   if (!study) notFound()
 
-  const service = findService(study.service)
+  const service = services.find((s) => s.slug === study.service)
   const sector = findSector(study.sector)
   const more = caseStudies.filter((c) => c.slug !== study.slug)
   const contact = team.find((person) => person.photo)

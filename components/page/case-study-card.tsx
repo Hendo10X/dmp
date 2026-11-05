@@ -2,12 +2,13 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
-import { findSector, findService, type CaseStudy } from "@/lib/content"
+import { findSector, type CaseStudy } from "@/lib/content"
+import { getServices } from "@/lib/cms"
 import { Arrow } from "@/components/ui/arrow"
 
 // Photo card for a case study: image zooms gently on hover; the lead stat
 // sits in its own row under the title, aligned with the text.
-export function CaseStudyCard({
+export async function CaseStudyCard({
   study,
   className,
   size = "default",
@@ -16,7 +17,7 @@ export function CaseStudyCard({
   className?: string
   size?: "default" | "large"
 }) {
-  const service = findService(study.service)
+  const service = (await getServices()).find((s) => s.slug === study.service)
   const sector = findSector(study.sector)
   const lead = study.stats[0]
 

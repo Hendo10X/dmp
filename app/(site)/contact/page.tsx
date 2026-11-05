@@ -3,11 +3,11 @@ import { Suspense } from "react"
 
 import { Eyebrow } from "@/components/ui/eyebrow"
 import { Reveal } from "@/components/motion/reveal"
-import { PageHero } from "@/components/page/page-hero"
+import { heroProps, PageHero } from "@/components/page/page-hero"
 import { ContactForm } from "@/components/page/contact-form"
 import { Quote } from "@/components/page/closing"
 import { SocialLinks } from "@/components/ui/social-links"
-import { getSettings } from "@/lib/cms"
+import { getSettings, getSiteContent } from "@/lib/cms"
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -16,7 +16,10 @@ export const metadata: Metadata = {
 
 export default async function ContactPage() {
   // Email, phone and socials come from Sanity's "Contact & social".
-  const settings = await getSettings()
+  const [settings, content] = await Promise.all([
+    getSettings(),
+    getSiteContent(),
+  ])
   const direct = [
     {
       label: "Email",
@@ -32,11 +35,7 @@ export default async function ContactPage() {
 
   return (
     <main>
-      <PageHero
-        eyebrow="Contact"
-        title="Start a Conversation."
-        intro="Tell us a little about your organisation and what you are trying to change. A short note is plenty."
-      />
+      <PageHero {...heroProps(content.pages.contact.hero)} />
 
       <section
         id="enquiry"

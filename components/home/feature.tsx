@@ -1,4 +1,4 @@
-import { findSolution } from "@/lib/content"
+import { getSiteContent } from "@/lib/cms"
 import { Eyebrow } from "@/components/ui/eyebrow"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { Reveal } from "@/components/motion/reveal"
@@ -15,9 +15,13 @@ const preview = [
 
 // Feature band: one solution's copy and outcomes beside a stats card of the
 // index (client asked for the card back). Full-width midnight band: the one
-// dark break in the white run of the home page.
-export function Feature({ slug = "sports-power-index" }: { slug?: string }) {
-  const solution = findSolution(slug)
+// dark break in the white run of the home page. The solution is picked on
+// Sanity's Home page; if it is missing, the first solution shows.
+export async function Feature() {
+  const content = await getSiteContent()
+  const solution =
+    content.solutions.find((s) => s.slug === content.home.feature.solution) ??
+    content.solutions[0]
   if (!solution) return null
 
   return (

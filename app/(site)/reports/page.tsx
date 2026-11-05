@@ -1,11 +1,10 @@
 import type { Metadata } from "next"
 
-import { heroImages } from "@/lib/content"
-import { getFeaturedReport } from "@/lib/cms"
+import { getFeaturedReport, getSiteContent } from "@/lib/cms"
 import { Eyebrow } from "@/components/ui/eyebrow"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
-import { PageHero } from "@/components/page/page-hero"
+import { heroProps, PageHero } from "@/components/page/page-hero"
 import { Report } from "@/components/page/report"
 import { Cta } from "@/components/page/closing"
 
@@ -18,17 +17,14 @@ export const metadata: Metadata = {
 // Reports get their own page (client): the featured report's summary, then
 // its gated download. The client picks the report in Sanity.
 export default async function ReportsPage() {
-  const report = await getFeaturedReport()
+  const [report, content] = await Promise.all([
+    getFeaturedReport(),
+    getSiteContent(),
+  ])
 
   return (
     <main>
-      <PageHero
-        eyebrow="Reports"
-        title="Research that moves decisions."
-        intro="Evidence on sports and industrialisation in Nigeria and across Africa."
-        image={heroImages.reports}
-        imageAlt="Market data charts on a screen"
-      />
+      <PageHero {...heroProps(content.pages.reports.hero)} />
 
       {/* Summary: one left-aligned reading column on white (client). */}
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">

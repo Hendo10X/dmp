@@ -1,8 +1,7 @@
 import type { Metadata } from "next"
 
-import { heroImages } from "@/lib/content"
-
-import { PageHero } from "@/components/page/page-hero"
+import { getSiteContent } from "@/lib/cms"
+import { heroProps, PageHero } from "@/components/page/page-hero"
 import { SectionHeader } from "@/components/page/section-header"
 import { SolutionTiles } from "@/components/page/solution-tiles"
 import { ServiceCards } from "@/components/page/service-cards"
@@ -15,16 +14,11 @@ export const metadata: Metadata = {
     "Federation Business Transformation, the Street Credibility Index, the Sports Power Index and the Brand Equity Index: DMPartners' proprietary solutions.",
 }
 
-export default function SolutionsPage() {
+export default async function SolutionsPage() {
+  const page = (await getSiteContent()).pages.solutions
   return (
     <main>
-      <PageHero
-        eyebrow="Solutions"
-        title="Built to demonstrate possibilities."
-        intro="Our proprietary programmes and indices package what we know about African sports into tools leaders can act on."
-        image={heroImages.solutions}
-        imageAlt="An empty football stadium with green pitch and covered stands"
-      />
+      <PageHero {...heroProps(page.hero)} />
 
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
         <SolutionTiles />
@@ -32,9 +26,9 @@ export default function SolutionsPage() {
 
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
         <SectionHeader
-          eyebrow="Behind the solutions"
-          title="Powered by six practices."
-          intro="Every solution draws on our advisory services. Need something bespoke? Start with the service closest to your challenge."
+          eyebrow={page.behind.eyebrow}
+          title={page.behind.title}
+          intro={page.behind.intro}
           action={<ArrowLink href="/services">All services</ArrowLink>}
         />
         <ServiceCards className="mt-10 md:mt-12" />

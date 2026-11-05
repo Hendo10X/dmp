@@ -1,13 +1,12 @@
 import type { Metadata } from "next"
 
-import { heroImages, values } from "@/lib/content"
-import { getTeam } from "@/lib/cms"
+import { getSiteContent, getTeam } from "@/lib/cms"
 import { cn } from "@/lib/utils"
 import { Eyebrow } from "@/components/ui/eyebrow"
 import { ArrowLink } from "@/components/ui/arrow-link"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
-import { PageHero } from "@/components/page/page-hero"
+import { heroProps, PageHero } from "@/components/page/page-hero"
 import { SectionHeader } from "@/components/page/section-header"
 import { Process } from "@/components/home/process"
 import { Cta, Quote } from "@/components/page/closing"
@@ -28,23 +27,11 @@ const valueTones = [
 ]
 
 export default async function AboutPage() {
-  const team = await getTeam()
+  const [team, content] = await Promise.all([getTeam(), getSiteContent()])
+  const { about, home } = content
   return (
     <main>
-      <PageHero
-        eyebrow="About DMPartners"
-        title="Purpose. People. Performance."
-        intro={
-          <>
-            Guided by our tagline,{" "}
-            <em className="text-mint">Demonstrating Possibilities</em>, we show
-            what is achievable in Nigeria and across the African continent
-            through sports and the markets connected to it.
-          </>
-        }
-        image={heroImages.about}
-        imageAlt="High-rise office towers in Lagos"
-      />
+      <PageHero {...heroProps(about.hero)} />
 
       {/* Purpose: mission, positioning, values */}
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 py-10 md:py-12 lg:px-10">
@@ -52,26 +39,20 @@ export default async function AboutPage() {
             (client). */}
         <div className="flex max-w-4xl flex-col gap-5">
           <Reveal y={12}>
-            <Eyebrow>Purpose</Eyebrow>
+            <Eyebrow>{about.purpose.eyebrow}</Eyebrow>
           </Reveal>
           <SplitReveal className="text-[clamp(1.875rem,3.6vw,2.75rem)] leading-[1.08] text-midnight">
-            Defining the New Era of Sports, Culture and Business.
+            {about.purpose.title}
           </SplitReveal>
           <SplitReveal
             as="p"
             className="text-sm leading-relaxed text-midnight/70 md:text-base"
           >
-            The future of the sports industry is being defined by the
-            performance of current stakeholders across market segments, public
-            and private sector, in the ecosystem as well as cross-cutting
-            sectoral relationships. This presents a niche opportunity to stand
-            out from the noise to offer specialised expertise for market
-            development, growth strategies, professionalism and direct
-            investment.
+            {about.purpose.body}
           </SplitReveal>
           <Reveal y={12}>
             <p className="font-heading text-[clamp(1.25rem,2vw,1.75rem)] text-brand">
-              DMPartners exists to shape the future.
+              {about.purpose.tagline}
             </p>
           </Reveal>
         </div>
@@ -80,14 +61,8 @@ export default async function AboutPage() {
             right, a hairline between them. */}
         <dl className="mt-10 md:mt-12">
           {[
-            {
-              label: "Mission",
-              text: "To facilitate increased business interest and committed investment into the sports industry in Nigeria, and across Africa, leveraging existing opportunities in adjacent markets guided by principles bordering on people, culture and sustainability.",
-            },
-            {
-              label: "Positioning",
-              text: "Commercial and investment advisory at the intersection of the sports industry and adjacent markets.",
-            },
+            { label: "Mission", text: about.mission },
+            { label: "Positioning", text: about.positioning },
           ].map((item) => (
             <div
               key={item.label}
@@ -110,9 +85,9 @@ export default async function AboutPage() {
 
         {/* Values in the same light-to-dark logo palette as How we work. */}
         <Reveal className="mt-10 grid gap-3 sm:grid-cols-2 md:mt-14 lg:grid-cols-4">
-          {values.map((value, index) => (
+          {about.values.map((value, index) => (
             <div
-              key={value.title}
+              key={`${index}-${value.title}`}
               className={cn(
                 "flex min-h-56 flex-col justify-end gap-10 rounded-xl p-6 md:p-7",
                 valueTones[index % valueTones.length].card
@@ -137,9 +112,9 @@ export default async function AboutPage() {
       {/* People */}
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
         <SectionHeader
-          eyebrow="People"
-          title="The team behind the work."
-          intro="We function as a Tier-One team at every level of our operations."
+          eyebrow={about.team.eyebrow}
+          title={about.team.title}
+          intro={about.team.intro}
         />
         {/* Smaller cards (client): four-column track, so three founders
             sit at a modest size from the left edge. */}
@@ -156,8 +131,8 @@ export default async function AboutPage() {
       />
 
       <MarketsSection
-        title="Nigeria first. The continent in view."
-        intro="We start from what is achievable at home and carry it across borders. Drag the globe, or pick a market."
+        title={about.markets.title}
+        intro={about.markets.intro}
       />
 
       {/* A message from the top: midnight band with mint accents. */}
@@ -165,40 +140,30 @@ export default async function AboutPage() {
         {/* Stacked and left-aligned with the rest of the page. */}
         <div className="mx-auto max-w-[120rem] px-6 py-16 md:py-20 lg:px-10">
           <Reveal y={16}>
-            <Eyebrow className="text-mint">A message from the top</Eyebrow>
+            <Eyebrow className="text-mint">{about.message.eyebrow}</Eyebrow>
           </Reveal>
           <div className="mt-6 flex max-w-4xl flex-col gap-6 text-lg leading-relaxed text-white/70 md:text-xl">
             <SplitReveal
               as="p"
               className="text-[clamp(1.5rem,2.6vw,2.5rem)] leading-[1.2] text-white"
             >
-              We started DMPartners because we kept meeting people who could see
-              what sports in Africa could become, and too few who could show it
-              was possible.
+              {about.message.lead}
             </SplitReveal>
-            <SplitReveal as="p">
-              Federations without a commercial plan beyond the next tournament.
-              Investors who wanted to back sports but could not find a case they
-              trusted. Governments that saw the potential but lacked the
-              evidence. None of these are problems of talent. They are problems
-              of structure and proof, and both can be built.
-            </SplitReveal>
-            <SplitReveal as="p">
-              That is our promise to every client: we will tell you what the
-              evidence says, work beside your people to act on it, and measure
-              what changed. If it does not move the numbers, it was not worth
-              doing.
-            </SplitReveal>
+            {about.message.paragraphs.map((paragraph, index) => (
+              <SplitReveal key={index} as="p">
+                {paragraph}
+              </SplitReveal>
+            ))}
             <Reveal y={16}>
               <p className="mt-4 font-heading text-3xl text-mint">
-                The Founding Partners
+                {about.message.signoff}
               </p>
             </Reveal>
           </div>
         </div>
       </section>
 
-      <Quote />
+      <Quote {...home.quote} />
       <Cta />
     </main>
   )
