@@ -1,5 +1,6 @@
 import { HugeiconsIcon } from "@hugeicons/react"
 import {
+  Briefcase01Icon,
   ChartIncreaseIcon,
   CourtHouseIcon,
   Exchange01Icon,
@@ -28,8 +29,8 @@ export function ServiceIcon({
   slug: string
   className?: string
 }) {
-  const icon = icons[slug as keyof typeof icons]
-  if (!icon) return null
+  // Services added later in Sanity get a neutral briefcase.
+  const icon = icons[slug as keyof typeof icons] ?? Briefcase01Icon
   return (
     <HugeiconsIcon
       icon={icon}

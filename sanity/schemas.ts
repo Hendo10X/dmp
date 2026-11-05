@@ -1,10 +1,10 @@
 import { defineArrayMember, defineField, defineType } from "sanity"
 
-import { sectors, services } from "@/lib/content"
+import { sectors } from "@/lib/content"
+import { pageSchemaTypes } from "@/sanity/page-schemas"
 
-// What the client edits in the Studio. Practices (services) and industries
-// stay in code, so a case study picks them from fixed lists.
-const serviceOptions = services.map((s) => ({ title: s.title, value: s.slug }))
+// What the client edits in the Studio. Industries stay in code, so a case
+// study picks one from a fixed list; practices are Service documents.
 const sectorOptions = sectors.map((s) => ({ title: s.title, value: s.slug }))
 
 // Lower numbers show first; equal numbers fall back to newest first.
@@ -42,8 +42,8 @@ export const caseStudy = defineType({
     defineField({
       name: "service",
       title: "Practice",
-      type: "string",
-      options: { list: serviceOptions },
+      type: "reference",
+      to: [{ type: "service" }],
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -269,4 +269,5 @@ export const schemaTypes = [
   teamMember,
   speakerTalk,
   siteSettings,
+  ...pageSchemaTypes,
 ]
