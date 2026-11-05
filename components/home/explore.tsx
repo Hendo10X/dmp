@@ -16,7 +16,7 @@ const tiles: { title: string; body: string; href: string; tone: string }[] = [
   },
   {
     title: "Solutions",
-    body: "Our programmes and indices, built to demonstrate possibility.",
+    body: "Our programmes and indices, built to demonstrate possibilities.",
     href: "/solutions",
     tone: "bg-brand text-white",
   },

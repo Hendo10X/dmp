@@ -12,7 +12,7 @@ export function Stories() {
       <SectionHeader
         eyebrow="Client stories"
         title="Real stories. Real results."
-        intro="How federations, leagues and public bodies turned possibility into performance with DMPartners."
+        intro="How federations, leagues and public bodies turned possibilities into performance with DMPartners."
         action={
           <ArrowLink href="/case-studies" tone="electric">
             All case studies

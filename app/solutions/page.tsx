@@ -20,7 +20,7 @@ export default function SolutionsPage() {
     <main>
       <PageHero
         eyebrow="Solutions"
-        title="Built to demonstrate possibility."
+        title="Built to demonstrate possibilities."
         intro="Our proprietary programmes and indices package what we know about African sports into tools leaders can act on."
         image={heroImages.solutions}
         imageAlt="An empty football stadium with green pitch and covered stands"
