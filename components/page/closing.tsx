@@ -3,12 +3,13 @@ import { Eyebrow } from "@/components/ui/eyebrow"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 
-// Partner or client quote: centred pull quote on an electric band.
-// Default copy is placeholder.
+// Partner or client quote: centred pull quote on an electric band. The
+// eyebrow above the quote is optional (client: the founders quote names
+// its source underneath only).
 export function Quote({
-  eyebrow = "From our partners",
+  eyebrow,
   text = "The opportunities in African sports are not aspirational. They are possibilities already within reach. Our work is to demonstrate them.",
-  by = "Founders, DMPartners",
+  by = "From the founders",
 }: {
   eyebrow?: string
   text?: string
@@ -17,12 +18,14 @@ export function Quote({
   return (
     <section className="relative z-10 bg-electric">
       <figure className="mx-auto max-w-4xl px-6 py-24 text-center md:py-28">
-        <Reveal y={12} className="flex justify-center">
-          <Eyebrow>{eyebrow}</Eyebrow>
-        </Reveal>
+        {eyebrow && (
+          <Reveal y={12} className="mb-6 flex justify-center">
+            <Eyebrow>{eyebrow}</Eyebrow>
+          </Reveal>
+        )}
         <SplitReveal
           as="blockquote"
-          className="mt-6 font-heading text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.2] text-midnight"
+          className="font-heading text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.2] text-midnight"
         >
           &ldquo;{text}&rdquo;
         </SplitReveal>

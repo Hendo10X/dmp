@@ -5,7 +5,7 @@ import { getCaseStudies, getSiteContent } from "@/lib/cms"
 import { heroProps, PageHero } from "@/components/page/page-hero"
 import { CaseStudyFeatured } from "@/components/page/case-study-featured"
 import { CaseStudyBrowser } from "@/components/page/case-study-browser"
-import { Cta } from "@/components/page/closing"
+import { Cta, Quote } from "@/components/page/closing"
 
 export const metadata: Metadata = {
   title: "Case Studies",
@@ -40,6 +40,8 @@ export default async function CaseStudiesPage() {
           </Suspense>
         </div>
       </section>
+
+      <Quote {...content.pages.caseStudies.quote} />
 
       <Cta
         title="Want results like these?"

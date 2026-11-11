@@ -6,7 +6,7 @@ import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
 import { heroProps, PageHero } from "@/components/page/page-hero"
 import { Report } from "@/components/page/report"
-import { Cta } from "@/components/page/closing"
+import { Cta, Quote } from "@/components/page/closing"
 
 export const metadata: Metadata = {
   title: "Reports",
@@ -56,6 +56,8 @@ export default async function ReportsPage() {
       </section>
 
       {report && <Report report={report} />}
+
+      <Quote {...content.pages.reports.quote} />
 
       <Cta
         title="Need research of your own?"

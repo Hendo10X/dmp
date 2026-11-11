@@ -17,6 +17,7 @@ const columns = [
       { title: "Services", href: "/services" },
       { title: "Solutions", href: "/solutions" },
       { title: "Who We Serve", href: "/who-we-serve" },
+      { title: "Industries", href: "/who-we-serve#industries" },
       { title: "Case Studies", href: "/case-studies" },
     ],
   },
