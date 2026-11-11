@@ -30,6 +30,10 @@ export type Card = { title: string; body: string }
 
 export type Stat = { value: string; label: string }
 
+// Pull quote band near the foot of a page. `eyebrow` (a label above the
+// quote) is optional.
+export type Quote = { eyebrow: string; text: string; by: string }
+
 export type HomeContent = {
   hero: { lead: string; words: string[]; intro: string }
   howWeWork: { header: Header; steps: Card[] }
@@ -63,7 +67,7 @@ export type HomeContent = {
     header: Header
     tiles: { title: string; body: string; href: string }[]
   }
-  quote: { eyebrow: string; text: string; by: string }
+  quote: Quote
 }
 
 export type AboutContent = {
@@ -102,9 +106,9 @@ export type CareersContent = {
 export type PagesContent = {
   services: { hero: Hero; cards: Header; inPractice: Header }
   solutions: { hero: Hero; behind: Header }
-  whoWeServe: { hero: Hero }
-  caseStudies: { hero: Hero }
-  reports: { hero: Hero }
+  whoWeServe: { hero: Hero; industries: Header }
+  caseStudies: { hero: Hero; quote: Quote }
+  reports: { hero: Hero; quote: Quote }
   speakers: { hero: Hero }
   contact: { hero: Hero }
 }
@@ -243,9 +247,10 @@ export const defaultContent: SiteContent = {
       ],
     },
     quote: {
-      eyebrow: "From our partners",
+      // No label above the quote; the source sits underneath (client).
+      eyebrow: "",
       text: "The opportunities in African sports are not aspirational. They are possibilities already within reach. Our work is to demonstrate them.",
-      by: "Founders, DMPartners",
+      by: "From the founders",
     },
   },
 
@@ -417,6 +422,13 @@ export const defaultContent: SiteContent = {
         image: heroImages.whoWeServe,
         imageAlt: "Smiling children at their desks in a classroom",
       },
+      // The list itself is Home's "Industries we serve".
+      industries: {
+        eyebrow: "Industries",
+        title: "The industries we work across.",
+        intro:
+          "Sports touches every part of the economy. These are the industries where we put that to work.",
+      },
     },
     caseStudies: {
       hero: {
@@ -427,6 +439,11 @@ export const defaultContent: SiteContent = {
         image: heroImages.caseStudies,
         imageAlt: "Trucks working an open-pit quarry",
       },
+      quote: {
+        eyebrow: "",
+        text: "Sports will drive the largest real estate development in Nigeria.",
+        by: "Chief Sunday Dare, Former Minister of Youth & Sports Development",
+      },
     },
     reports: {
       hero: {
@@ -436,6 +453,11 @@ export const defaultContent: SiteContent = {
           "Evidence on sports and industrialisation in Nigeria and across Africa.",
         image: heroImages.reports,
         imageAlt: "Market data charts on a screen",
+      },
+      quote: {
+        eyebrow: "",
+        text: "Information is real estate.",
+        by: "Telema Davies",
       },
     },
     speakers: {

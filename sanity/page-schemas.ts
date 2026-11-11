@@ -99,6 +99,19 @@ const lines = (name: string, title: string, description?: string) =>
 
 const heroField = defineField({ name: "hero", title: "Hero", type: "hero" })
 
+// The quote band near the foot of a page.
+const quoteField = (title: string) =>
+  defineField({
+    name: "quote",
+    title,
+    type: "object",
+    fields: [
+      str("eyebrow", "Label above the quote", "Optional."),
+      txt("text", "Quote"),
+      str("by", "Attributed to"),
+    ],
+  })
+
 // ------------------------------------------------------- Services, solutions
 
 export const service = defineType({
@@ -326,7 +339,7 @@ export const homePage = page(
     ),
     inGroup(
       "about",
-      lines("industries", "Industries we serve", "Shown as the moving ticker.")
+      lines("industries", "Industries we serve", "Shown in the ticker on Home and the grid on Who we serve.")
     ),
     inGroup(
       "closing",
@@ -351,15 +364,7 @@ export const homePage = page(
         ],
       })
     ),
-    inGroup(
-      "closing",
-      defineField({
-        name: "quote",
-        title: "Quote band (Home and About)",
-        type: "object",
-        fields: [str("eyebrow"), txt("text", "Quote"), str("by", "Attributed to")],
-      })
-    ),
+    inGroup("closing", quoteField("Quote band (Home and About)")),
   ],
   [
     { name: "hero", title: "Hero", default: true },
@@ -464,11 +469,18 @@ export const solutionsPage = page("solutionsPage", "Solutions page", [
   header("behind", "Services section heading"),
 ])
 
-export const whoWeServePage = page("whoWeServePage", "Who we serve", [heroField])
+export const whoWeServePage = page("whoWeServePage", "Who we serve", [
+  heroField,
+  header("industries", "Industries section heading"),
+])
 export const caseStudiesPage = page("caseStudiesPage", "Case studies page", [
   heroField,
+  quoteField("Quote band"),
 ])
-export const reportsPage = page("reportsPage", "Reports page", [heroField])
+export const reportsPage = page("reportsPage", "Reports page", [
+  heroField,
+  quoteField("Quote band"),
+])
 export const speakersPage = page("speakersPage", "Speakers page", [heroField])
 export const contactPage = page("contactPage", "Contact page", [heroField])
 
