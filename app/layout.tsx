@@ -5,6 +5,7 @@ import localFont from "next/font/local"
 import "lenis/dist/lenis.css"
 import "./globals.css"
 import { cn } from "@/lib/utils"
+import { siteUrl } from "@/lib/site-url"
 
 // Type system from the Crowdline template: Cal Sans headings, Inter body,
 // Geist (in the --font-mono slot) for labels, nav and buttons.
@@ -33,6 +34,10 @@ const fontLogo = Special_Gothic_Expanded_One({
 })
 
 export const metadata: Metadata = {
+  // Link previews: each key page draws its own card (opengraph-image.tsx).
+  metadataBase: new URL(siteUrl),
+  openGraph: { siteName: "DMPartners", type: "website", locale: "en_NG" },
+  twitter: { card: "summary_large_image" },
   title: {
     default: "DMPartners | Demonstrating Possibilities",
     template: "%s | DMPartners",

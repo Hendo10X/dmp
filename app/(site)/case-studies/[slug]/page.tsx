@@ -14,6 +14,8 @@ import { SplitReveal } from "@/components/motion/split-reveal"
 import { CountUp } from "@/components/motion/count-up"
 import { SectionHeader } from "@/components/page/section-header"
 import { CaseStudyCard } from "@/components/page/case-study-card"
+import { ShareLinks } from "@/components/page/share-links"
+import { siteUrl } from "@/lib/site-url"
 
 type Props = { params: Promise<{ slug: string }> }
 
@@ -27,7 +29,19 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   const study = (await getCaseStudies()).find((c) => c.slug === slug)
-  return study ? { title: study.title, description: study.summary } : {}
+  if (!study) return {}
+  return {
+    title: study.title,
+    description: study.summary,
+    // So a shared link previews as this story (image: opengraph-image.tsx).
+    openGraph: {
+      title: study.title,
+      description: study.summary,
+      type: "article",
+      siteName: "DMPartners",
+      url: `/case-studies/${study.slug}`,
+    },
+  }
 }
 
 // Highlight the last two words of the title, like PwC's marker highlight.
@@ -56,6 +70,7 @@ export default async function CaseStudyPage({ params }: Props) {
   const more = caseStudies.filter((c) => c.slug !== study.slug)
   const contact = team.find((person) => person.photo)
   const [lead, highlight] = splitTitle(study.title)
+  const shareUrl = `${siteUrl}/case-studies/${study.slug}`
 
   const facts = [
     { label: "Client", value: study.client },
@@ -123,6 +138,13 @@ export default async function CaseStudyPage({ params }: Props) {
               </div>
             ))}
           </dl>
+
+          <ShareLinks
+            url={shareUrl}
+            title={study.title}
+            tone="white"
+            className="mt-10"
+          />
         </div>
 
         <div className="relative aspect-[4/3] bg-midnight lg:aspect-auto">
@@ -183,6 +205,10 @@ export default async function CaseStudyPage({ params }: Props) {
               </figcaption>
             </figure>
           )}
+
+          {/* Again at the end of the story, where readers decide to pass
+              it on. */}
+          <ShareLinks url={shareUrl} title={study.title} />
         </div>
       </section>
 
