@@ -3,6 +3,7 @@ import { Providers } from "@/components/providers"
 import { Header } from "@/components/nav/header"
 import type { MenuLists } from "@/components/nav/mega-menu"
 import { SiteFooter } from "@/components/site-footer"
+import { ChatWidget } from "@/components/chat/chat-widget"
 
 // Header, footer and smooth scroll around every site page (and the 404).
 export async function SiteChrome({ children }: { children: React.ReactNode }) {
@@ -33,6 +34,7 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
       <Header lists={lists} />
       {children}
       <SiteFooter social={settings.social} />
+      <ChatWidget email={settings.email} />
     </Providers>
   )
 }

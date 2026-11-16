@@ -31,7 +31,8 @@ export default async function ContactPage() {
       value: settings.phone,
       href: `tel:${settings.phone.replace(/[^+\d]/g, "")}`,
     },
-  ]
+    // No phone row until a real number is set in Sanity.
+  ].filter((item) => item.value)
 
   return (
     <main>

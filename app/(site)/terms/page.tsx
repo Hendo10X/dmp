@@ -8,7 +8,7 @@ export default function TermsPage() {
   return (
     <LegalPage
       title="Terms of use"
-      intro="The terms that apply when you use this website. Placeholder text pending legal review."
+      intro="The terms that apply when you use this website."
       sections={[
         {
           heading: "Using this site",

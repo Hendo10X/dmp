@@ -8,7 +8,7 @@ export default function PrivacyPage() {
   return (
     <LegalPage
       title="Privacy Policy"
-      intro="How DMP collects, uses and protects personal information. Placeholder text pending legal review."
+      intro="How DMP collects, uses and protects personal information."
       sections={[
         {
           heading: "What we collect",
