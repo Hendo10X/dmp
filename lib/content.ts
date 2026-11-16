@@ -665,7 +665,7 @@ export type TeamMember = {
 }
 
 // Telema Davies: client-supplied bio (Professional Bio, 15 Oct 2026) and
-// portrait. The other two entries are still placeholders.
+// portrait. The rest of the team is managed in Sanity.
 export const team: TeamMember[] = [
   {
     name: "Telema Davies",
@@ -681,8 +681,6 @@ export const team: TeamMember[] = [
       "Telema is passionate about cultural exchange, public speaking, and using his strategic vision to contribute to the evolution of Nigeria's sports and creative economy.",
     ],
   },
-  { name: "Partner Name", role: "Founding Partner", initials: "FP" },
-  { name: "Team Member", role: "Head of Investment Advisory", initials: "DT" },
 ]
 
 // ------------------------------------------------------------- Industries
@@ -721,10 +719,11 @@ export const social: SocialProfile[] = [
   { name: "X", url: "https://x.com/DMPartnersBA" },
 ]
 
-// PLACEHOLDER contact details: replace with the client's real ones.
+// Contact details. The phone number is set in Sanity ("Contact & social");
+// until a real one is entered, Contact shows the email only.
 export const contactDetails = {
   email: "hello@dmpartners.com",
-  phone: "+234 800 000 0000",
+  phone: "",
 }
 
 // --------------------------------------------------------------- Speakers

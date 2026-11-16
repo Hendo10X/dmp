@@ -31,7 +31,8 @@ export default async function ContactPage() {
       value: settings.phone,
       href: `tel:${settings.phone.replace(/[^+\d]/g, "")}`,
     },
-  ]
+    // No phone row until a real number is set in Sanity.
+  ].filter((item) => item.value)
 
   return (
     <main>
@@ -44,7 +45,7 @@ export default async function ContactPage() {
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-6">
           <Reveal className="lg:col-span-7">
             <Suspense>
-              <ContactForm />
+              <ContactForm email={settings.email} />
             </Suspense>
           </Reveal>
 

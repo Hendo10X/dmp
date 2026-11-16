@@ -27,7 +27,8 @@ export function Quote({
           as="blockquote"
           className="font-heading text-[clamp(1.5rem,3vw,2.5rem)] leading-[1.2] text-midnight"
         >
-          &ldquo;{text}&rdquo;
+          {/* One string: separate nodes let the closing mark wrap alone. */}
+          {`“${text}”`}
         </SplitReveal>
         <Reveal y={12}>
           <figcaption className="mt-8 text-sm font-medium text-midnight/70">

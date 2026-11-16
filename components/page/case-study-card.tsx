@@ -26,13 +26,19 @@ export async function CaseStudyCard({
       href={`/case-studies/${study.slug}`}
       className={cn(
         "group flex flex-col gap-4 text-midnight outline-none",
+        // Large (service pages): photo left, copy right and bottom-aligned
+        // with the photo, so the card fills the row without a blank half.
+        size === "large" &&
+          "md:grid md:grid-cols-[3fr_2fr] md:grid-rows-[1fr_auto_auto_auto] md:gap-x-10",
         className
       )}
     >
       <span
         className={cn(
           "relative block overflow-hidden rounded-xl bg-midnight",
-          size === "large" ? "aspect-[4/3] md:aspect-[16/10]" : "aspect-[4/3]"
+          size === "large"
+            ? "aspect-[4/3] md:row-span-4 md:aspect-[16/10]"
+            : "aspect-[4/3]"
         )}
       >
         <Image
@@ -50,7 +56,7 @@ export async function CaseStudyCard({
       <span
         className={cn(
           "text-midnight/70",
-          size === "large" ? "text-sm" : "text-xs"
+          size === "large" ? "text-sm md:self-end" : "text-xs"
         )}
       >
         {[service?.title, sector?.title].filter(Boolean).join(" · ")}

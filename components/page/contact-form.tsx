@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { Arrow, Tick } from "@/components/ui/arrow"
+import { sendEnquiry } from "@/lib/enquiry-email"
 
 // The client's four enquiry types (Website Page by Page brief).
 const topics = [
@@ -18,9 +19,10 @@ const topics = [
 const field =
   "w-full rounded-lg bg-surface px-4 py-3 text-midnight outline-none transition-shadow placeholder:text-midnight/40 focus-visible:ring-2 focus-visible:ring-electric"
 
-// Short enquiry form from the brief. UI only: no form service is connected
-// yet (docs/brief.md, Q8), so submitting just confirms on screen.
-export function ContactForm() {
+// Short enquiry form from the brief. Submitting emails the team
+// (lib/enquiry-email.ts); if that fails, the visitor is asked to email
+// `email` directly, so no enquiry is lost without them knowing.
+export function ContactForm({ email }: { email: string }) {
   const params = useSearchParams()
   const initialTopic = params.get("topic") ?? "general"
   const role = params.get("role")
@@ -33,6 +35,8 @@ export function ContactForm() {
       ? `I'd like to book a DMP speaker on "${talk}".`
       : ""
   const [sent, setSent] = React.useState(false)
+  const [sending, setSending] = React.useState(false)
+  const [failed, setFailed] = React.useState(false)
 
   return (
     <div className="relative">
@@ -71,12 +75,29 @@ export function ContactForm() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.4 }}
-            onSubmit={(event) => {
+            onSubmit={async (event) => {
               event.preventDefault()
-              setSent(true)
+              const data = new FormData(event.currentTarget)
+              setSending(true)
+              setFailed(false)
+              const ok = await sendEnquiry(data)
+                .then((result) => result.ok)
+                .catch(() => false)
+              setSending(false)
+              if (ok) setSent(true)
+              else setFailed(true)
             }}
             className="grid gap-4 sm:grid-cols-2"
           >
+            {/* Left empty by people; filled by bots (see sendEnquiry). */}
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden
+              className="hidden"
+            />
             <Field label="Name" htmlFor="name">
               <input
                 id="name"
@@ -146,18 +167,30 @@ export function ContactForm() {
                 className={cn(field, "resize-y")}
               />
             </Field>
-            <div className="sm:col-span-2">
+            <div className="flex flex-col items-start gap-4 sm:col-span-2">
               <button
                 type="submit"
-                className="group inline-flex h-12 items-stretch outline-offset-4 focus-visible:outline-2 focus-visible:outline-electric"
+                disabled={sending}
+                className="group inline-flex h-12 items-stretch outline-offset-4 focus-visible:outline-2 focus-visible:outline-electric disabled:opacity-60"
               >
                 <span className="flex items-center bg-midnight px-5 text-sm font-medium text-white">
-                  Send message
+                  {sending ? "Sending" : "Send message"}
                 </span>
                 <span className="flex aspect-square h-full items-center justify-center bg-mint text-midnight">
                   <Arrow className="transition-transform duration-500 group-hover:translate-x-1" />
                 </span>
               </button>
+              <p role="alert" className="text-sm text-crimson empty:hidden">
+                {failed && (
+                  <>
+                    We could not send your message. Please email{" "}
+                    <a href={`mailto:${email}`} className="underline">
+                      {email}
+                    </a>{" "}
+                    instead.
+                  </>
+                )}
+              </p>
             </div>
           </motion.form>
         )}

@@ -122,7 +122,7 @@ export default async function CareersPage() {
             </ArrowLink>
           }
         />
-        <Reveal className="mt-12 md:mt-16">
+        <Reveal className="mt-10 md:mt-12">
           {openings.length === 0 ? (
             <p className="text-lg text-midnight/70">
               No open roles right now. Register your interest and we will be in

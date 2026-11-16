@@ -199,6 +199,11 @@ export type SiteSettings = {
   social: SocialProfile[]
 }
 
+// The dummy number the site launched with (+234 800 000 0000) is never
+// shown; any other number entered in Sanity is.
+const realPhone = (phone?: string) =>
+  phone && !phone.replace(/\D/g, "").endsWith("8000000000") ? phone : ""
+
 export async function getSettings(): Promise<SiteSettings> {
   const row = await query<SettingsRow | undefined>(
     `*[_id == "siteSettings"][0]{email, phone, linkedin, facebook, x}`,
@@ -207,7 +212,7 @@ export async function getSettings(): Promise<SiteSettings> {
   if (row === undefined) return { ...contactDetails, social }
   return {
     email: row?.email || contactDetails.email,
-    phone: row?.phone || contactDetails.phone,
+    phone: realPhone(row?.phone) || contactDetails.phone,
     social: [
       { name: "LinkedIn", url: row?.linkedin ?? "" },
       { name: "Facebook", url: row?.facebook ?? "" },
