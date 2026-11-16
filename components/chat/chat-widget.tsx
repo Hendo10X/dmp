@@ -232,7 +232,7 @@ export function ChatWidget({ email }: { email: string }) {
       </AnimatePresence>
 
       {/* Launcher: waits for the home preloader, like the header. The
-          hairline keeps the pill visible over the midnight bands. */}
+          No outline (client). */}
       <motion.button
         type="button"
         onClick={() => setOpen((value) => !value)}
@@ -241,7 +241,7 @@ export function ChatWidget({ email }: { email: string }) {
         animate={{ opacity: ready ? 1 : 0, y: ready ? 0 : 16 }}
         transition={{ duration: 0.6, ease }}
         className={cn(
-          "flex h-12 items-center gap-2 rounded-pill border border-white/20 bg-midnight px-5 text-sm font-medium text-white transition-colors outline-none hover:bg-brand focus-visible:ring-2 focus-visible:ring-electric",
+          "flex h-12 items-center gap-2 rounded-pill bg-midnight px-5 text-sm font-medium text-white transition-colors outline-none hover:bg-brand focus-visible:ring-2 focus-visible:ring-electric",
           !ready && "pointer-events-none"
         )}
       >
