@@ -74,7 +74,7 @@ export default async function ServicePage({ params }: Props) {
       {/* Who it's for */}
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
         <SectionHeader eyebrow="Who it&rsquo;s for" title="Built for." />
-        <Reveal className="mt-12 md:mt-16">
+        <Reveal className="mt-10 md:mt-12">
           <ul className="flex flex-col gap-2">
             {service.forWhom.map((slug) => {
               const audience = findAudience(slug)

@@ -33,7 +33,7 @@ export async function SiteChrome({ children }: { children: React.ReactNode }) {
     <Providers>
       <Header lists={lists} />
       {children}
-      <SiteFooter social={settings.social} />
+      <SiteFooter social={settings.social} email={settings.email} />
       <ChatWidget email={settings.email} />
     </Providers>
   )

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 
 import { findAudience } from "@/lib/content"
 import { getSiteContent } from "@/lib/cms"
+import { cn } from "@/lib/utils"
 import { Arrow } from "@/components/ui/arrow"
 import { Reveal } from "@/components/motion/reveal"
 import { SplitReveal } from "@/components/motion/split-reveal"
@@ -99,7 +100,7 @@ export default async function SolutionPage({ params }: Props) {
           <div>
             <SectionHeader eyebrow="Who it&rsquo;s for" title="Built for." />
             <Reveal className="mt-10">
-              <ul>
+              <ul className="flex flex-col gap-2">
                 {solution.forWhom.map((slug) => {
                   const audience = findAudience(slug)
                   if (!audience) return null
@@ -107,9 +108,9 @@ export default async function SolutionPage({ params }: Props) {
                     <li key={slug}>
                       <Link
                         href={`/who-we-serve#${slug}`}
-                        className="group flex items-center justify-between gap-6 bg-surface px-6 py-5 text-midnight transition-colors hover:bg-surface-2"
+                        className="group flex items-center justify-between gap-6 rounded-xl bg-secondary p-5 text-midnight transition-colors duration-500 hover:bg-midnight hover:text-white"
                       >
-                        <span className="font-heading text-[clamp(1.5rem,2.4vw,2.25rem)] leading-none">
+                        <span className="font-heading text-2xl leading-none">
                           {audience.title}
                         </span>
                         <Arrow className="transition-transform duration-500 group-hover:translate-x-1" />
@@ -149,7 +150,12 @@ export default async function SolutionPage({ params }: Props) {
       {/* Other solutions */}
       <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
         <SectionHeader eyebrow="More solutions" title="Explore the others." />
-        <Reveal className="mt-12 grid gap-2 md:mt-16 md:grid-cols-2">
+        <Reveal
+          className={cn(
+            "mt-10 grid gap-2 md:mt-12",
+            others.length % 3 === 0 ? "md:grid-cols-3" : "md:grid-cols-2"
+          )}
+        >
           {others.map((other) => (
             <Link
               key={other.slug}

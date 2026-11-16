@@ -8,6 +8,7 @@ import { Arrow, Tick } from "@/components/ui/arrow"
 import { SplitReveal } from "@/components/motion/split-reveal"
 import { SocialLinks } from "@/components/ui/social-links"
 import type { SocialProfile } from "@/lib/content"
+import { sendEnquiry } from "@/lib/enquiry-email"
 
 const columns = [
   {
@@ -39,7 +40,13 @@ const columns = [
   },
 ]
 
-export function SiteFooter({ social }: { social: SocialProfile[] }) {
+export function SiteFooter({
+  social,
+  email,
+}: {
+  social: SocialProfile[]
+  email: string
+}) {
   return (
     <footer className="relative z-10 overflow-hidden bg-midnight text-white">
       <div className="mx-auto grid max-w-[120rem] gap-12 px-6 pt-16 md:grid-cols-12 md:gap-6 md:pt-20 lg:px-10">
@@ -51,7 +58,7 @@ export function SiteFooter({ social }: { social: SocialProfile[] }) {
           <p className="mt-5 max-w-sm text-base leading-relaxed text-white/70">
             Leave your email and we will get back to you.
           </p>
-          <Subscribe />
+          <Subscribe email={email} />
           <p className="mt-10 text-[0.7rem] font-medium tracking-[0.18em] text-white/70">
             Follow us
           </p>
@@ -105,48 +112,80 @@ export function SiteFooter({ social }: { social: SocialProfile[] }) {
   )
 }
 
-// UI only: no newsletter provider is connected yet (docs/brief.md, Q8).
-function Subscribe() {
+// "Leave your email": sends it to the team (lib/enquiry-email.ts) so they
+// can reply. If that fails, the visitor is pointed to the contact email.
+function Subscribe({ email }: { email: string }) {
   const [sent, setSent] = React.useState(false)
+  const [failed, setFailed] = React.useState(false)
 
   return (
-    <form
-      onSubmit={(event) => {
-        event.preventDefault()
-        setSent(true)
-      }}
-      className="mt-10 flex h-12 max-w-md"
-    >
-      <label htmlFor="footer-email" className="sr-only">
-        Email address
-      </label>
-      <input
-        id="footer-email"
-        type="email"
-        required
-        placeholder="Your email"
-        disabled={sent}
-        className="min-w-0 flex-1 bg-white/10 px-4 text-white outline-none placeholder:text-white/50 focus-visible:bg-white/15"
-      />
-      <button
-        type="submit"
-        disabled={sent}
-        aria-label="Send"
-        className="flex aspect-square h-full items-center justify-center bg-mint text-midnight"
+    <>
+      <form
+        onSubmit={async (event) => {
+          event.preventDefault()
+          const data = new FormData(event.currentTarget)
+          data.set("topic", "callback")
+          setFailed(false)
+          const ok = await sendEnquiry(data)
+            .then((result) => result.ok)
+            .catch(() => false)
+          if (ok) setSent(true)
+          else setFailed(true)
+        }}
+        className="mt-10 flex h-12 max-w-md"
       >
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.span
-            key={sent ? "sent" : "idle"}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25 }}
-            className="flex text-xs font-medium"
-          >
-            {sent ? <Tick /> : <Arrow />}
-          </motion.span>
-        </AnimatePresence>
-      </button>
-    </form>
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden
+          className="hidden"
+        />
+        <label htmlFor="footer-email" className="sr-only">
+          Email address
+        </label>
+        <input
+          id="footer-email"
+          name="email"
+          type="email"
+          required
+          placeholder="Your email"
+          disabled={sent}
+          className="min-w-0 flex-1 bg-white/10 px-4 text-white outline-none placeholder:text-white/50 focus-visible:bg-white/15"
+        />
+        <button
+          type="submit"
+          disabled={sent}
+          aria-label="Send"
+          className="flex aspect-square h-full items-center justify-center bg-mint text-midnight"
+        >
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.span
+              key={sent ? "sent" : "idle"}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.25 }}
+              className="flex text-xs font-medium"
+            >
+              {sent ? <Tick /> : <Arrow />}
+            </motion.span>
+          </AnimatePresence>
+        </button>
+      </form>
+      <p role="status" className="mt-3 text-sm text-white/70 empty:hidden">
+        {sent && "Thanks. We will be in touch."}
+        {failed && (
+          <>
+            That did not go through. Please email{" "}
+            <a href={`mailto:${email}`} className="text-mint underline">
+              {email}
+            </a>
+            .
+          </>
+        )}
+      </p>
+    </>
   )
 }
