@@ -721,11 +721,12 @@ export const social: SocialProfile[] = [
 
 // Contact details (client-supplied, Nov 2026). frontoffice@ is the
 // general address used across the site (Contact, footer, forms, the chat
-// assistant). The phone number is set in Sanity ("Contact & social");
-// until a real one is entered, Contact shows email only.
+// assistant). The phone number is set in Sanity ("Contact & social").
 export const contactDetails = {
   email: "frontoffice@dmpartners.org",
-  phone: "",
+  // PLACEHOLDER phone number until the client supplies the real one.
+  // Replace it here and in Sanity ("Contact & social").
+  phone: "+234 8123456789",
 }
 
 // Partners who can be emailed directly, listed on Contact under the
