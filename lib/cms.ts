@@ -204,6 +204,11 @@ export type SiteSettings = {
 const realPhone = (phone?: string) =>
   phone && !phone.replace(/\D/g, "").endsWith("8000000000") ? phone : ""
 
+// Likewise the placeholder address (hello@dmpartners.com): the real one is
+// on dmpartners.org.
+const realEmail = (email?: string) =>
+  email && !email.toLowerCase().endsWith("@dmpartners.com") ? email : ""
+
 export async function getSettings(): Promise<SiteSettings> {
   const row = await query<SettingsRow | undefined>(
     `*[_id == "siteSettings"][0]{email, phone, linkedin, facebook, x}`,
@@ -211,7 +216,7 @@ export async function getSettings(): Promise<SiteSettings> {
   )
   if (row === undefined) return { ...contactDetails, social }
   return {
-    email: row?.email || contactDetails.email,
+    email: realEmail(row?.email) || contactDetails.email,
     phone: realPhone(row?.phone) || contactDetails.phone,
     social: [
       { name: "LinkedIn", url: row?.linkedin ?? "" },

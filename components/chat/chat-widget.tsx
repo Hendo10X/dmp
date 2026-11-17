@@ -58,9 +58,49 @@ function Rich({ text }: { text: string }) {
   )
 }
 
+// Phones: the panel fills the screen. Its height follows the visible
+// viewport, so the question box stays above the on-screen keyboard (iOS
+// does not shrink 100dvh for the keyboard).
+const PHONE = "(max-width: 639px)"
+
+function usePhoneSheet(open: boolean) {
+  const [box, setBox] = React.useState<{ top: number; height: number }>()
+
+  React.useEffect(() => {
+    const query = window.matchMedia(PHONE)
+    if (!open || !query.matches) {
+      setBox(undefined)
+      return
+    }
+    // The page behind stays put while the sheet is open.
+    const root = document.documentElement
+    const previous = root.style.overflow
+    root.style.overflow = "hidden"
+
+    const viewport = window.visualViewport
+    const update = () =>
+      setBox(
+        viewport
+          ? { top: viewport.offsetTop, height: viewport.height }
+          : { top: 0, height: window.innerHeight }
+      )
+    update()
+    viewport?.addEventListener("resize", update)
+    viewport?.addEventListener("scroll", update)
+    return () => {
+      root.style.overflow = previous
+      viewport?.removeEventListener("resize", update)
+      viewport?.removeEventListener("scroll", update)
+    }
+  }, [open])
+
+  return box
+}
+
 // Site assistant (client request): a midnight pill in the bottom corner
-// opens a small chat panel. Answers come from /api/chat, which only knows
-// what is on this website and sends anything else to the contact email.
+// opens a small chat panel (a full-screen sheet on phones). Answers come
+// from /api/chat, which only knows what is on this website and sends
+// anything else to the contact email.
 export function ChatWidget({ email }: { email: string }) {
   const ready = useIntroSettled()
   const [open, setOpen] = React.useState(false)
@@ -69,10 +109,13 @@ export function ChatWidget({ email }: { email: string }) {
   const [busy, setBusy] = React.useState(false)
   const log = React.useRef<HTMLDivElement>(null)
   const input = React.useRef<HTMLInputElement>(null)
+  const sheet = usePhoneSheet(open)
 
   React.useEffect(() => {
     if (!open) return
-    input.current?.focus()
+    // On phones the keyboard would cover the suggestions, so the box is
+    // only focused when tapped.
+    if (!window.matchMedia(PHONE).matches) input.current?.focus()
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false)
     }
@@ -109,7 +152,7 @@ export function ChatWidget({ email }: { email: string }) {
   }
 
   return (
-    <div className="fixed right-4 bottom-4 z-40 flex flex-col items-end md:right-6 md:bottom-6">
+    <div className="fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-[60] flex flex-col items-end md:right-6 md:bottom-6">
       <AnimatePresence>
         {open && (
           <motion.section
@@ -120,9 +163,10 @@ export function ChatWidget({ email }: { email: string }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.3, ease }}
-            className="mb-3 flex h-[min(34rem,calc(100svh-8rem))] w-[min(23rem,calc(100vw-2rem))] flex-col overflow-hidden rounded-xl border border-border bg-background"
+            style={sheet}
+            className="flex flex-col overflow-hidden bg-background max-sm:fixed max-sm:inset-x-0 max-sm:top-0 max-sm:h-dvh sm:mb-3 sm:h-[min(34rem,calc(100svh-8rem))] sm:w-[23rem] sm:rounded-xl sm:border sm:border-border"
           >
-            <header className="flex items-start justify-between gap-4 bg-midnight px-5 py-4 text-white">
+            <header className="flex items-center justify-between gap-4 bg-midnight px-5 py-4 text-white max-sm:pt-[max(1rem,env(safe-area-inset-top))]">
               <div>
                 <p className="font-heading text-lg leading-tight">Ask DMP</p>
                 <p className="mt-1 text-xs text-white/70">
@@ -133,7 +177,7 @@ export function ChatWidget({ email }: { email: string }) {
                 type="button"
                 onClick={() => setOpen(false)}
                 aria-label="Close chat"
-                className="-mt-1 -mr-2 flex size-9 items-center justify-center text-white/70 transition-colors outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-electric"
+                className="-mr-3 flex size-11 shrink-0 items-center justify-center text-white/70 transition-colors outline-none hover:text-white focus-visible:ring-2 focus-visible:ring-electric"
               >
                 <HugeiconsIcon
                   icon={Cancel01Icon}
@@ -164,7 +208,7 @@ export function ChatWidget({ email }: { email: string }) {
                       <button
                         type="button"
                         onClick={() => ask(suggestion)}
-                        className="rounded-pill border border-border px-3 py-2 text-left text-sm text-midnight transition-colors outline-none hover:bg-surface focus-visible:ring-2 focus-visible:ring-electric"
+                        className="min-h-11 rounded-pill border border-border px-4 py-2 text-left text-sm text-midnight transition-colors outline-none hover:bg-surface focus-visible:ring-2 focus-visible:ring-electric"
                       >
                         {suggestion}
                       </button>
@@ -191,7 +235,7 @@ export function ChatWidget({ email }: { email: string }) {
                 event.preventDefault()
                 ask(draft)
               }}
-              className="border-t border-border p-3"
+              className="border-t border-border p-3 max-sm:pb-[max(0.75rem,env(safe-area-inset-bottom))]"
             >
               <div className="flex items-center gap-2">
                 <label htmlFor="chat-question" className="sr-only">
@@ -205,7 +249,7 @@ export function ChatWidget({ email }: { email: string }) {
                   maxLength={600}
                   autoComplete="off"
                   placeholder="Type your question"
-                  className="h-11 min-w-0 flex-1 rounded-pill bg-surface px-4 text-sm text-midnight outline-none placeholder:text-midnight/50 focus-visible:ring-2 focus-visible:ring-electric"
+                  className="h-11 min-w-0 flex-1 rounded-pill bg-surface px-4 text-base text-midnight sm:text-sm outline-none placeholder:text-midnight/50 focus-visible:ring-2 focus-visible:ring-electric"
                 />
                 <button
                   type="submit"
@@ -231,8 +275,8 @@ export function ChatWidget({ email }: { email: string }) {
         )}
       </AnimatePresence>
 
-      {/* Launcher: waits for the home preloader, like the header. The
-          No outline (client). */}
+      {/* Launcher: waits for the home preloader, like the header. No
+          outline (client). */}
       <motion.button
         type="button"
         onClick={() => setOpen((value) => !value)}
@@ -242,7 +286,8 @@ export function ChatWidget({ email }: { email: string }) {
         transition={{ duration: 0.6, ease }}
         className={cn(
           "flex h-12 items-center gap-2 rounded-pill bg-midnight px-5 text-sm font-medium text-white transition-colors outline-none hover:bg-brand focus-visible:ring-2 focus-visible:ring-electric",
-          !ready && "pointer-events-none"
+          !ready && "pointer-events-none",
+          open && "max-sm:hidden"
         )}
       >
         <HugeiconsIcon
@@ -267,7 +312,7 @@ function Bubble({
   return (
     <p
       className={cn(
-        "max-w-[88%] rounded-xl px-4 py-3 text-sm leading-relaxed whitespace-pre-wrap",
+        "max-w-[88%] rounded-xl px-4 py-3 text-sm leading-relaxed break-words whitespace-pre-wrap",
         role === "user"
           ? "self-end bg-midnight text-white"
           : "self-start bg-surface text-midnight"

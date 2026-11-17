@@ -1,6 +1,6 @@
 import "server-only"
 
-import { audiences } from "@/lib/content"
+import { audiences, directContacts } from "@/lib/content"
 import {
   getCaseStudies,
   getFeaturedReport,
@@ -84,7 +84,8 @@ ${openings.length ? `Open roles: ${openings.map((o) => `${o.title} (${o.team}, $
 DMP partners speak at conferences, board away-days and federation congresses.${talks.length ? ` Talks: ${talks.join("; ")}.` : ""} Enquiries through /contact?topic=speakers.`,
 
     `CONTACT (page: /contact)
-Email: ${settings.email}
+General email: ${settings.email}
+${directContacts.map((c) => `${c.name} (${c.role}): ${c.email}`).join("\n")}
 ${settings.social.map((p) => `${p.name}: ${p.url}`).join("\n")}
 Other pages: /about (purpose, values, team), /privacy, /terms.`,
   ].join("\n\n")

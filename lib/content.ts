@@ -719,12 +719,32 @@ export const social: SocialProfile[] = [
   { name: "X", url: "https://x.com/DMPartnersBA" },
 ]
 
-// Contact details. The phone number is set in Sanity ("Contact & social");
-// until a real one is entered, Contact shows the email only.
+// Contact details (client-supplied, Nov 2026). frontoffice@ is the
+// general address used across the site (Contact, footer, forms, the chat
+// assistant). The phone number is set in Sanity ("Contact & social").
 export const contactDetails = {
-  email: "hello@dmpartners.com",
-  phone: "",
+  email: "frontoffice@dmpartners.org",
+  // PLACEHOLDER phone number until the client supplies the real one.
+  // Replace it here and in Sanity ("Contact & social").
+  phone: "+234 8123456789",
 }
+
+// Partners who can be emailed directly, listed on Contact under the
+// general address.
+export type DirectContact = { name: string; role: string; email: string }
+
+export const directContacts: DirectContact[] = [
+  {
+    name: "Telema Davies",
+    role: "Co-Founder & Managing Partner",
+    email: "telema@dmpartners.org",
+  },
+  {
+    name: "Oyinlola Ige",
+    role: "Senior Partner",
+    email: "oyinlola@dmpartners.org",
+  },
+]
 
 // --------------------------------------------------------------- Speakers
 
