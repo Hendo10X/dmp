@@ -5,7 +5,7 @@
 //   RESEND_API_KEY      API key from the Resend dashboard
 //   REPORT_EMAIL_TO     inbox that receives the details (comma-separated ok)
 //   REPORT_EMAIL_FROM   sender on a domain verified in Resend, e.g.
-//                       "DMPartners <reports@dmpartners.com>". Until a domain
+//                       "DMPartners <reports@dmpartners.org>". Until a domain
 //                       is verified, Resend's onboarding@resend.dev can only
 //                       deliver to the Resend account owner's own address.
 

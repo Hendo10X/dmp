@@ -8,6 +8,7 @@ import { ContactForm } from "@/components/page/contact-form"
 import { Quote } from "@/components/page/closing"
 import { SocialLinks } from "@/components/ui/social-links"
 import { getSettings, getSiteContent } from "@/lib/cms"
+import { directContacts } from "@/lib/content"
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -22,12 +23,20 @@ export default async function ContactPage() {
   ])
   const direct = [
     {
-      label: "Email",
+      label: "General enquiries",
+      role: "",
       value: settings.email,
       href: `mailto:${settings.email}`,
     },
+    ...directContacts.map((person) => ({
+      label: person.name,
+      role: person.role,
+      value: person.email,
+      href: `mailto:${person.email}`,
+    })),
     {
       label: "Phone",
+      role: "",
       value: settings.phone,
       href: `tel:${settings.phone.replace(/[^+\d]/g, "")}`,
     },
@@ -54,13 +63,19 @@ export default async function ContactPage() {
               <Eyebrow>Direct</Eyebrow>
               <ul className="mt-6 flex flex-col gap-5">
                 {direct.map((item) => (
-                  <li key={item.label} className="flex flex-col gap-1">
+                  <li key={item.label} className="flex flex-col gap-1.5">
                     <span className="text-sm font-semibold tracking-wider text-brand uppercase">
                       {item.label}
+                      {item.role && (
+                        <span className="block text-xs font-normal tracking-normal text-midnight/70 normal-case">
+                          {item.role}
+                        </span>
+                      )}
                     </span>
+                    {/* Sized so the longest address fits the column. */}
                     <a
                       href={item.href}
-                      className="font-heading text-[clamp(1.25rem,1.9vw,1.875rem)] leading-none whitespace-nowrap text-midnight transition-colors hover:text-brand"
+                      className="font-heading text-xl leading-tight break-all text-midnight transition-colors hover:text-brand"
                     >
                       {item.value}
                     </a>
