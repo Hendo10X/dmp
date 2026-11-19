@@ -17,6 +17,8 @@ const FIELDS = [
   ["role", "Role"],
   ["occupation", "Occupation"],
   ["sector", "Industry or sector"],
+  // The required consent box on the download form.
+  ["consent", "Agreed to terms (personal use only)"],
 ] as const
 
 const escape = (value: string) =>
