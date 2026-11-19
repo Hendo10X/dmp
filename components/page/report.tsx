@@ -200,6 +200,25 @@ export function Report({ report: REPORT }: { report: ReportDoc }) {
                   className={field}
                   wrapperClassName="sm:col-span-2"
                 />
+                {/* Consent before download (client). Required: the form
+                    will not submit until it is ticked. */}
+                <label
+                  htmlFor="report-consent"
+                  className="mt-1 flex cursor-pointer items-start gap-3 text-sm leading-snug text-midnight sm:col-span-2"
+                >
+                  <input
+                    id="report-consent"
+                    name="consent"
+                    type="checkbox"
+                    value="Yes"
+                    required
+                    className="mt-0.5 size-5 shrink-0 cursor-pointer accent-midnight focus-visible:ring-2 focus-visible:ring-midnight"
+                  />
+                  <span>
+                    By downloading this report, I consent to its terms and
+                    confirm I understand it is for my personal use only.
+                  </span>
+                </label>
                 <button
                   type="submit"
                   className="group mt-1 inline-flex h-12 items-center justify-center gap-2 rounded-pill bg-midnight px-6 text-sm font-semibold text-white outline-offset-4 transition-colors hover:bg-midnight/90 focus-visible:outline-2 focus-visible:outline-midnight sm:col-span-2"
