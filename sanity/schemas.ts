@@ -142,6 +142,13 @@ export const teamMember = defineType({
       description: "Portrait. Without one, the initials show instead.",
     }),
     defineField({
+      name: "cutout",
+      title: "Portrait cut-out",
+      type: "image",
+      description:
+        "The same portrait with the background removed (a PNG with a transparent background). The site shows it on DMP blue so every card matches. Without it, the portrait shows with its own background.",
+    }),
+    defineField({
       name: "linkedin",
       title: "LinkedIn profile",
       type: "url",

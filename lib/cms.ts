@@ -12,6 +12,7 @@ import {
   social,
   talks,
   team,
+  teamCutouts,
   type CaseStudy,
   type Opening,
   type ReportDoc,
@@ -105,13 +106,14 @@ type TeamRow = {
   name: string
   role: string
   photo: SanityImage
+  cutout: SanityImage
   linkedin?: string
   bio?: string[]
 }
 
 export async function getTeam(): Promise<TeamMember[]> {
   const rows = await query<TeamRow[] | null>(
-    `*[_type == "teamMember"] | ${ORDER} {name, role, photo, linkedin, bio}`,
+    `*[_type == "teamMember"] | ${ORDER} {name, role, photo, cutout, linkedin, bio}`,
     null
   )
   if (!rows) return team
@@ -120,6 +122,7 @@ export async function getTeam(): Promise<TeamMember[]> {
     role: row.role,
     initials: initialsOf(row.name),
     photo: imageUrl(row.photo),
+    cutout: imageUrl(row.cutout) ?? teamCutouts[row.name.trim()],
     linkedin: row.linkedin ?? undefined,
     bio: row.bio?.length ? row.bio : undefined,
   }))

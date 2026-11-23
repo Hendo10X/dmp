@@ -7,7 +7,7 @@ import { heroProps, PageHero } from "@/components/page/page-hero"
 import { ContactForm } from "@/components/page/contact-form"
 import { Quote } from "@/components/page/closing"
 import { SocialLinks } from "@/components/ui/social-links"
-import { getSettings, getSiteContent } from "@/lib/cms"
+import { getSettings, getSiteContent, getTeam } from "@/lib/cms"
 import { directContacts } from "@/lib/content"
 
 export const metadata: Metadata = {
@@ -17,10 +17,15 @@ export const metadata: Metadata = {
 
 export default async function ContactPage() {
   // Email, phone and socials come from Sanity's "Contact & social".
-  const [settings, content] = await Promise.all([
+  const [settings, content, team] = await Promise.all([
     getSettings(),
     getSiteContent(),
+    getTeam(),
   ])
+  // Roles follow the team list in Sanity, so a title change there shows
+  // here too.
+  const roleOf = (name: string, fallback: string) =>
+    team.find((member) => member.name.trim() === name)?.role || fallback
   const direct = [
     {
       label: "General enquiries",
@@ -30,7 +35,7 @@ export default async function ContactPage() {
     },
     ...directContacts.map((person) => ({
       label: person.name,
-      role: person.role,
+      role: roleOf(person.name, person.role),
       value: person.email,
       href: `mailto:${person.email}`,
     })),

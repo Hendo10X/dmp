@@ -261,9 +261,9 @@ export default async function CaseStudyPage({ params }: Props) {
         <section className="relative z-10 mx-auto max-w-[120rem] bg-background px-6 pb-10 md:pb-12 lg:px-10">
           <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
             <div className="flex items-center gap-5">
-              <span className="relative block size-20 shrink-0 overflow-hidden bg-midnight">
+              <span className="relative block size-20 shrink-0 overflow-hidden bg-brand">
                 <Image
-                  src={contact.photo!}
+                  src={(contact.cutout ?? contact.photo)!}
                   alt={`Portrait of ${contact.name}`}
                   fill
                   sizes="80px"
