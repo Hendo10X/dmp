@@ -659,6 +659,9 @@ export type TeamMember = {
   role: string
   initials: string
   photo?: string
+  // The portrait with its background removed (transparent PNG/WebP). Shown
+  // on DMP logo blue so every card matches (client).
+  cutout?: string
   linkedin?: string
   // Full text behind "Read bio".
   bio?: string[]
@@ -666,12 +669,20 @@ export type TeamMember = {
 
 // Telema Davies: client-supplied bio (Professional Bio, 15 Oct 2026) and
 // portrait. The rest of the team is managed in Sanity.
+// Cut-outs made from the portraits in Sanity (Nov 2026), used until a
+// "Portrait cut-out" is uploaded there. Keyed by name as written in Sanity.
+export const teamCutouts: Record<string, string> = {
+  "Telema Davies": "/Images/team/telema-davies-cutout.webp",
+  "Oyinlola Ige": "/Images/team/oyinlola-ige-cutout.webp",
+}
+
 export const team: TeamMember[] = [
   {
     name: "Telema Davies",
     role: "Co-Founder & Managing Partner",
     initials: "TD",
     photo: "/Images/team/telema-davies.jpg",
+    cutout: "/Images/team/telema-davies-cutout.webp",
     linkedin: "https://www.linkedin.com/in/telema-davies",
     bio: [
       "Telema Davies is a seasoned professional with over 15 years of experience across the creative and cultural industries, with demonstrable skills in the sports sector. He is Co-Founder and Managing Partner of DMPartners, a consulting practice focused on the intersection between the sports industry and adjacent markets, including extractives, manufacturing, trade and investment, construction and real estate, technology, media and entertainment, government, education, and events.",

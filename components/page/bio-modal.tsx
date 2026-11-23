@@ -72,10 +72,10 @@ export function BioModal({ person }: { person: TeamMember }) {
           data-lenis-prevent
           className="max-h-[90svh] overflow-y-auto md:grid md:h-[min(85svh,44rem)] md:grid-cols-[auto_minmax(0,1fr)] md:overflow-hidden"
         >
-          {person.photo && (
-            <div className="relative aspect-[4/5] bg-midnight md:h-full">
+          {(person.cutout ?? person.photo) && (
+            <div className="relative aspect-[4/5] bg-brand md:h-full">
               <Image
-                src={person.photo}
+                src={(person.cutout ?? person.photo)!}
                 alt={`Portrait of ${person.name}`}
                 fill
                 sizes="(min-width: 768px) 36rem, 100vw"
